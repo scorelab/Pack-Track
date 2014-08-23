@@ -13,5 +13,6 @@
 		<s:textfield name="password" label="Password"/>
 		<s:submit value="Log in" />
 	</s:form>
+	<div>Status :<s:property value="status"/></div>
 </body>
 </html>

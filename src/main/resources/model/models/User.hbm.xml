@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="model.models.User" table="USER">
+        <id name="userName" type="java.lang.String">
+            <column name="USERNAME" />
+            <generator class="assigned" />
+        </id>
+        <property name="password" type="java.lang.String">
+            <column name="PASSWORD" />
+        </property>
+        <property name="designation" type="java.lang.String">
+            <column name="DESIGNATION" />
+        </property>
+        <property name="role" type="java.lang.String">
+            <column name="ROLE" />
+        </property>
+        <property name="shed" type="java.lang.String">
+            <column name="SHED" />
+        </property>
+        <property name="sub_dept" type="java.lang.String">
+            <column name="SUB_DEPT" />
+        </property>
+        <property name="nic_number" type="java.lang.String">
+            <column name="NIC_NUMBER" />
+        </property>
+
+    </class>
+</hibernate-mapping>
