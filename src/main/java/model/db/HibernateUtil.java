@@ -1,4 +1,4 @@
-package lk.ucsc.packtrack.model.db;
+package model.db;
 
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
