@@ -9,6 +9,6 @@
 
 <body>
 <h2>Welcome to Pack Track</h2>
-<a href="<s:url action="test"/>">login</a>
+<a href="<s:url action="login"/>">login</a>
 </body>
 </html>
