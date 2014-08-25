@@ -88,9 +88,9 @@
                  <font color="blue">Pack Track</font>
                 </h1>
             </div>
-		    <a href=" Track Parcel"><b><font size=4 color="gray"><input type="image" src="images/track.png" alt="submit" value="Track Parcel" style="height: 100px; width: 200px" ></button></font></b></a>
-            <a href="Calculate Transport Cost"><b><font size=4 color="gray"><input type="image" src="images/cost.png" alt="submit" value="Calculate Transport cost" style="height: 100px; width: 200px"></button></font></b></a> 
-			<a href="Login"><b><font size=4 color="gray"><input type="image" src="images/login.png" alt="submit"value="Log in" style="height: 100px; width: 200px"></button></font><b></a>	
+		    <a href=" Track Parcel"><b><font size=4 color="gray"><input type="image" src="images/track.png" alt="submit" value="Track Parcel" style="height: 90px; width: 90px" ></button></font></b></a>
+            <a href="Calculate Transport Cost"><b><font size=4 color="gray"><input type="image" src="images/cost.png" alt="submit" value="Calculate Transport cost" style="height: 90px; width: 90px"></button></font></b></a> 
+			<a href="Login"><b><font size=4 color="gray"><input type="image" src="images/login.png" alt="submit"value="Log in" style="height: 90px; width: 90px"></button></font><b></a>	
 			
            
         <!-- /.row -->
