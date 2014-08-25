@@ -18,8 +18,8 @@ public class HomeAction extends ActionSupport implements SessionAware {
 
 		UserManager uManager = new UserManager();
 
-		if (uManager.login((String) session.get("userName"),
-				(String) session.get("password")) != null) {
+		if (uManager.loginCheck((String) session.get("userName"),
+				(String) session.get("password"))) {
 			return SUCCESS;
 		} else {
 			return ERROR;
