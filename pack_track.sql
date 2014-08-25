@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 24, 2014 at 06:30 PM
+-- Generation Time: Aug 25, 2014 at 05:44 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -185,6 +185,33 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `nic_number` (`nic_number`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_privilege`
+--
+
+CREATE TABLE IF NOT EXISTS `user_privilege` (
+  `User_Name` varchar(100) NOT NULL,
+  `add_user` int(1) DEFAULT NULL,
+  `remove_User` int(1) DEFAULT NULL,
+  `add_station` int(1) DEFAULT NULL,
+  `remove_station` int(1) DEFAULT NULL,
+  `add_train` int(1) DEFAULT NULL,
+  `remove_train` int(1) DEFAULT NULL,
+  `add_category` int(1) DEFAULT NULL,
+  `remove_category` int(1) DEFAULT NULL,
+  `add_customer` int(1) DEFAULT NULL,
+  `remove_customer` int(1) DEFAULT NULL,
+  `add_parcel` int(1) DEFAULT NULL,
+  `release_parcel` int(1) DEFAULT NULL,
+  `confirm_arrival` int(1) DEFAULT NULL,
+  `check_upcoming_parcel` int(1) DEFAULT NULL,
+  `select_train` int(1) DEFAULT NULL,
+  PRIMARY KEY (`User_Name`),
+  KEY `userPrivilige_idx` (`User_Name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Constraints for dumped tables
 --
@@ -217,12 +244,12 @@ ALTER TABLE `device`
 -- Constraints for table `parcel`
 --
 ALTER TABLE `parcel`
-  ADD CONSTRAINT `stationFK3` FOREIGN KEY (`status`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `addByUser` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `receiverFK` FOREIGN KEY (`receiver`) REFERENCES `customer` (`custID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `senderFK` FOREIGN KEY (`sender`) REFERENCES `customer` (`custID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `stationFK1` FOREIGN KEY (`start`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `stationFK2` FOREIGN KEY (`destination`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `stationFK2` FOREIGN KEY (`destination`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `stationFK3` FOREIGN KEY (`status`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `station`
@@ -237,6 +264,12 @@ ALTER TABLE `train`
   ADD CONSTRAINT `finishStation` FOREIGN KEY (`finish`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `startStation` FOREIGN KEY (`start`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `trainAdmin` FOREIGN KEY (`addBy`) REFERENCES `admin` (`adminID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `user_privilege`
+--
+ALTER TABLE `user_privilege`
+  ADD CONSTRAINT `userPrivilige` FOREIGN KEY (`User_Name`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
