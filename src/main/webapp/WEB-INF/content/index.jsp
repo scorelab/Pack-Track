@@ -85,7 +85,7 @@
         <div class="row" align="center">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                 <font color="blue">Pack Track</font>
+                 <font color="blue"></font>
                 </h1>
             </div>
 		    <a href=" Track Parcel"><b><font size=4 color="gray"><input type="image" src="images/track.png" alt="submit" value="Track Parcel" style="height: 90px; width: 90px" ></button></font></b></a>
