@@ -12,13 +12,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Full Width Pics - Start Bootstrap Template</title>
-
-    <!-- Bootstrap Core CSS -->
+    <title>Home</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/full-width-pics.css" rel="stylesheet">
+    <link href="css/home.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,7 +27,6 @@
 
 <body>
 
-    <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -44,7 +39,7 @@
                 </button>
                 <a class="navbar-brand" href="#">Hi <s:property value="#session['userName']" /> </a>
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
+
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
@@ -54,7 +49,7 @@
                         <a href="#">Settings</a>
                     </li>
                     <li>
-                        <a href="#">Logout</a>
+                        <a href="<s:url action="logout"/>">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -63,27 +58,9 @@
         <!-- /.container -->
     </nav>
 
-    <!-- Full Width Image Header with Logo -->
-    <!-- Image backgrounds are set within the full-width-pics.css file. -->
     <header class="image-bg-fluid-height">
         
     </header>
-
-    <!-- Content Section -->
-	<!--
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                </div>
-            </div>
-        </div>
-    </section>
-	-->
-	
-
-    <!-- Fixed Height Image Aside -->
-    <!-- Image backgrounds are set within the full-width-pics.css file. -->
 
 <ul class="nav nav-tabs" role="tablist" id="myTab">
   <li class="active"><a href="#home" role="tab" data-toggle="tab">Home</a></li>
@@ -106,8 +83,6 @@
   })
 </script>
 
-
-    <!-- Content Section -->
     <section>
         <div class="container">
             <div class="row">
@@ -119,7 +94,6 @@
         <!-- /.container -->
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="row">
@@ -132,10 +106,7 @@
         <!-- /.container -->
     </footer>
 
-    <!-- jQuery Version 1.11.0 -->
     <script src="js/jquery-1.11.0.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
 </body>
