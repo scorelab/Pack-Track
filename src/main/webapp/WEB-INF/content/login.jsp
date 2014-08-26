@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en"><head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
@@ -23,10 +26,10 @@
       <div class="modal-body">
           <form class="form col-md-12 center-block" action="login" method="post">
             <div class="form-group">
-              <input type="text" class="form-control input-lg" placeholder="User name" name="userName">
+              <s:textfield cssClass="form-control input-lg" placeholder="User name" name="userName"/>
             </div>
             <div class="form-group">
-              <input type="password" class="form-control input-lg" placeholder="Password" name="password">
+              <s:password cssClass="form-control input-lg" placeholder="Password" name="password"/>
             </div>
             <div class="form-group">
 			<span class="pull-left"><a href=#>Forgot password</></span>
@@ -35,7 +38,7 @@
               <button class="btn btn-primary btn-lg btn-block">Sign In</button>
               
             </div>
-          </form>
+          <form>
       </div>
       <div class="modal-footer">
           <div class="col-md-12">

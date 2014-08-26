@@ -46,7 +46,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		return SUCCESS;
 	}
 
-	@org.apache.struts2.convention.annotation.Action(value = "logout", results = { @Result(name = "success", location = "login", type = "redirect") })
+	@org.apache.struts2.convention.annotation.Action(value = "logout", results = { @Result(name = "success", location = "index", type = "redirect") })
 	public String logout() {
 		
 		session.clear();
