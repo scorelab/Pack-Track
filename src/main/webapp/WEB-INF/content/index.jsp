@@ -40,59 +40,65 @@
 <body>
 
 
+<div>
+	    <div class="carousel slide" id="myCarousel">
+        <div class="carousel-inner">
+ 
+            <div class="item active">
+            
+                <div class="bannerImage">
+                    <img src="images/train1.png" alt="">
+                </div>
+                
+                                                         
+            </div><!-- /Slide1 --> 
 
-	<!-- Header Carousel -->
-	<header id="myCarousel" class="carousel slide"> <!-- Indicators -->
-	<ol class="carousel-indicators">
-		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-		<li data-target="#myCarousel" data-slide-to="1"></li>
-		<li data-target="#myCarousel" data-slide-to="2"></li>
-	</ol>
+            <div class="item">
+            
+                <div class="bannerImage">
+                    <img src="images/train2.png" alt="">
+                </div>                    
+            </div><!-- /Slide2 -->             
 
-	<!-- Wrapper for slides -->
-	<div class="carousel-inner">
-		<div class="item active">
-			<div class="fill" style="background-image: url('images/train1.png');">
-			</div>
-		</div>
-		<div class="item">
-			<div class="fill" style="background-image: url('images/train2.png')">
-			</div>
-		</div>
-		<div class="item">
-			<div class="fill" style="background-image: url('images/train3.png');">
-			</div>
-		</div>
-	</div>
-
-	<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-
-		<span class="icon-prev"> </span>
-	</a> <a class="right carousel-control" href="#myCarousel" data-slide="next">
-		<span class="icon-next"> </span>
-	</a> </header>
+            <div class="item">
+            
+                <div class="bannerImage">
+                    <img src="images/train3.png" alt="">
+                </div>
+                                                         
+            </div><!-- /Slide2 -->                      
+ 
+        </div>
+        
+        <div class="control-box">                            
+            <a data-slide="prev" href="#myCarousel" class="carousel-control left"></a>
+            <a data-slide="next" href="#myCarousel" class="carousel-control right"></a>
+        </div><!-- /.control-box -->   
+                              
+    </div>
+    </div>
 
 	<div class="container">
 
 		<div class="row" align="center">
-			<div class="col-lg-12">
+			<div class="col-lg-12" style="margin: 20px 0 30px 0;">
 				<h1 class="page-header">
 					<font color="blue"> </font>
 				</h1>
 			</div>
 			<a href=" Track Parcel"> <font size=4 color="gray"> <input
-					type="image" src="images/track.png" alt="submit"
-					value="<s:url action="login"/>"
+					type="image" src="images/track.png" alt="Track parcel"
+					value="<s:url action="login"/>" title="Track parcel"
 					style="height: 100%; width: 20%; min-height: 90px; margin: 0 6% 0 0;">
 			</font>
 			</a> <a href="Calculate Transport Cost"> <font size=4 color="gray">
-					<input type="image" src="images/cost.png" alt="submit"
-					value="Calculate Transport cost"
+					<input type="image" src="images/cost.png" alt="Parcel cost"
+					value="Calculate Transport cost" title="Parcel cost"
 					style="height: 100%; width: 20%; min-height: 90px; margin: 0 6% 0 0;">
 			</font>
 			</a> <a href="/PackTrack/login.action"> <font size=4 color="gray">
-					<input type="image" src="images/login.png" alt="submit"
-					value="Log in" style="height: 100%; width: 20%; min-height: 90px;">
+					<input type="image" src="images/login.png" alt="Log in"
+					value="Log in" title="Log in"style="height: 100%; width: 20%; min-height: 90px;">
 			</font>
 			</a>
 

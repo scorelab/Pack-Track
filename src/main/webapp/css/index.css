@@ -19,7 +19,7 @@ body {
 /* Home Page Carousel */
 
 header.carousel {
-    height: 50%;
+    height: auto;
 }
 
 header.carousel .item,
@@ -67,3 +67,41 @@ footer {
   margin: 10px 0 20px;
   border-bottom: 1px solid #eee;
 }
+
+.container-fluid {
+ background: #ffffff; 
+ margin: 40px 0 0 0; 
+ padding: 0 0 0 0; 
+ box-shadow: none;
+width: 100%;
+}
+
+.carousel-control.right {
+right: 0;
+left: auto;
+background-image: none;
+background-image: none;
+}
+
+.carousel-control.left {
+background-image: none;
+background-image: none;
+} 
+
+div { word-break: break-all; }
+
+img { max-width:100%; }
+
+a {
+	-webkit-transition: all 150ms ease;
+	-moz-transition: all 150ms ease;
+	-ms-transition: all 150ms ease;
+	-o-transition: all 150ms ease;
+	transition: all 150ms ease; 
+	}
+    a:hover {
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; /* IE 8 */
+        filter: alpha(opacity=50); /* IE7 */
+        opacity: 0.6;
+        text-decoration: none;
+    }
