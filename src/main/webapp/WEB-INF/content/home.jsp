@@ -58,9 +58,9 @@
         <!-- /.container -->
     </nav>
 
-    <header class="image-bg-fluid-height">
-        
-    </header>
+    <div>
+  <img src="images/home.png" class="img-responsive">
+    </div>
 
 <ul class="nav nav-tabs" role="tablist" id="myTab">
   <li class="active"><a href="#home" role="tab" data-toggle="tab">Home</a></li>
