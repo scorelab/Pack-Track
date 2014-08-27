@@ -89,16 +89,16 @@
 			<a href=" Track Parcel"> <font size=4 color="gray"> <input
 					type="image" src="images/track.png" alt="Track parcel"
 					value="<s:url action="login"/>" title="Track parcel"
-					style="height: 100%; width: 20%; min-height: 90px; margin: 0 6% 0 0;">
+					style="height: 100%; width: 16%; min-height: 90px; margin: 0 7% 0 0;">
 			</font>
 			</a> <a href="Calculate Transport Cost"> <font size=4 color="gray">
 					<input type="image" src="images/cost.png" alt="Parcel cost"
 					value="Calculate Transport cost" title="Parcel cost"
-					style="height: 100%; width: 20%; min-height: 90px; margin: 0 6% 0 0;">
+					style="height: 100%; width: 16%; min-height: 90px; margin: 0 7% 0 0;">
 			</font>
 			</a> <a href="/PackTrack/login.action"> <font size=4 color="gray">
 					<input type="image" src="images/login.png" alt="Log in"
-					value="Log in" title="Log in"style="height: 100%; width: 20%; min-height: 90px;">
+					value="Log in" title="Log in"style="height: 100%; width: 16%; min-height: 90px;">
 			</font>
 			</a>
 
