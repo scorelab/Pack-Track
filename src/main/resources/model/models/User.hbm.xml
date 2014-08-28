@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 28, 2014 5:43:59 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="model.models.User" table="USER">
+        <id name="userName" type="java.lang.String">
+            <column name="USERNAME" />
+            <generator class="assigned" />
+        </id>
+        <property name="password" type="java.lang.String">
+            <column name="PASSWORD" />
+        </property>
+        <property name="designation" type="java.lang.String">
+            <column name="DESIGNATION" />
+        </property>
+        <property name="role" type="java.lang.String">
+            <column name="ROLE" />
+        </property>
+        <property name="shed" type="java.lang.String">
+            <column name="SHED" />
+        </property>
+        <property name="subDept" type="java.lang.String">
+            <column name="SUB_DEPT" />
+        </property>
+        <property name="nicNumber" type="java.lang.String">
+            <column name="NIC_NUMBER" />
+        </property>
+        <one-to-one name="userPrivilege" class="model.models.UserPrivilege" cascade="all"></one-to-one>
+        <property name="addBy" type="java.lang.String">
+            <column name="ADDBY" />
+        </property>
+    </class>
+</hibernate-mapping>
