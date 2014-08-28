@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
                                          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
- <session-factory >
+ <session-factory>
   <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
   <property name="hibernate.connection.password">dbpassword</property>
   <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/pack_track</property>
@@ -11,5 +11,9 @@
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
   <property name="hibernate.show_sql">true</property>
   <mapping resource="model/models/User.hbm.xml"/>
+  <mapping resource="model/models/Station.hbm.xml"/>
+  <mapping resource="model/models/Train.hbm.xml"/>
+  <mapping resource="model/models/Device.hbm.xml"/>
+  
  </session-factory>
 </hibernate-configuration>
