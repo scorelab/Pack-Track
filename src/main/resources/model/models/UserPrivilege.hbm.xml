@@ -14,7 +14,7 @@
         <property name="add_user" type="boolean">
             <column name="ADD_USER" />
         </property>
-        <property name="remove_User" type="boolean">
+        <property name="remove_user" type="boolean">
             <column name="REMOVE_USER" />
         </property>
         <property name="add_station" type="boolean">

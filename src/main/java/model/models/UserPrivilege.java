@@ -4,7 +4,7 @@ public class UserPrivilege {
 	String userName;
 	User user;
 	boolean add_user;
-	boolean remove_User;
+	boolean remove_user;
 	boolean add_station;
 	boolean remove_station;
 	boolean add_train;
@@ -18,6 +18,8 @@ public class UserPrivilege {
 	boolean confirm_arrival;
 	boolean check_upcoming_parcel;
 	boolean select_train;
+	boolean add_device;
+	boolean remove_device;
 	
 	public UserPrivilege() {
 		super();
@@ -29,10 +31,10 @@ public class UserPrivilege {
 			boolean remove_category, boolean add_customer,
 			boolean remove_customer, boolean add_parcel,
 			boolean release_parcel, boolean confirm_arrival,
-			boolean check_upcoming_parcel, boolean select_train) {
+			boolean check_upcoming_parcel, boolean select_train, boolean add_device, boolean remove_device) {
 		super();
 		this.add_user = add_user;
-		this.remove_User = remove_User;
+		this.remove_user = remove_User;
 		this.add_station = add_station;
 		this.remove_station = remove_station;
 		this.add_train = add_train;
@@ -47,6 +49,8 @@ public class UserPrivilege {
 		this.check_upcoming_parcel = check_upcoming_parcel;
 		this.select_train = select_train;
 		this.user=user;
+		this.add_device=add_device;
+		this.remove_device=remove_device;
 	}
 
 	public boolean isAdd_user() {
@@ -57,12 +61,12 @@ public class UserPrivilege {
 		this.add_user = add_user;
 	}
 
-	public boolean isRemove_User() {
-		return remove_User;
+	public boolean isRemove_user() {
+		return remove_user;
 	}
 
-	public void setRemove_User(boolean remove_User) {
-		this.remove_User = remove_User;
+	public void setRemove_user(boolean remove_user) {
+		this.remove_user = remove_user;
 	}
 
 	public boolean isAdd_station() {
@@ -183,6 +187,22 @@ public class UserPrivilege {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public boolean isAdd_device() {
+		return add_device;
+	}
+
+	public void setAdd_device(boolean add_device) {
+		this.add_device = add_device;
+	}
+
+	public boolean isRemove_device() {
+		return remove_device;
+	}
+
+	public void setRemove_device(boolean remove_device) {
+		this.remove_device = remove_device;
 	}
 	
 }
