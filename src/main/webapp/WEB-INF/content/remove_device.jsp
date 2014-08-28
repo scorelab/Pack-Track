@@ -68,7 +68,7 @@ body {
 <body>
 >
 <div id="login">
-<h1 class="hedinh-tag">Remove Device</h1
+<h1 class="hedinh-tag">Remove Device</h1>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
     <tr>
       <td>&nbsp;</td>
