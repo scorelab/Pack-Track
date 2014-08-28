@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 28, 2014 5:43:59 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="model.models.UserPrivilege" table="USER_PRIVILEGE">
+        <id name="userName" type="java.lang.String">
+            <column name="USER_NAME" />
+            <generator class="foreign" >
+            	<param name="property">user</param>
+            </generator>
+        </id>
+        <one-to-one name="user" class="model.models.User" constrained="true"/>
+        <property name="add_user" type="boolean">
+            <column name="ADD_USER" />
+        </property>
+        <property name="remove_User" type="boolean">
+            <column name="REMOVE_USER" />
+        </property>
+        <property name="add_station" type="boolean">
+            <column name="ADD_STATION" />
+        </property>
+        <property name="remove_station" type="boolean">
+            <column name="REMOVE_STATION" />
+        </property>
+        <property name="add_train" type="boolean">
+            <column name="ADD_TRAIN" />
+        </property>
+        <property name="remove_train" type="boolean">
+            <column name="REMOVE_TRAIN" />
+        </property>
+        <property name="add_category" type="boolean">
+            <column name="ADD_CATEGORY" />
+        </property>
+        <property name="remove_category" type="boolean">
+            <column name="REMOVE_CATEGORY" />
+        </property>
+        <property name="add_customer" type="boolean">
+            <column name="ADD_CUSTOMER" />
+        </property>
+        <property name="remove_customer" type="boolean">
+            <column name="REMOVE_CUSTOMER" />
+        </property>
+        <property name="add_parcel" type="boolean">
+            <column name="ADD_PARCEL" />
+        </property>
+        <property name="release_parcel" type="boolean">
+            <column name="RELEASE_PARCEL" />
+        </property>
+        <property name="confirm_arrival" type="boolean">
+            <column name="CONFIRM_ARRIVAL" />
+        </property>
+        <property name="check_upcoming_parcel" type="boolean">
+            <column name="CHECK_UPCOMING_PARCEL" />
+        </property>
+        <property name="select_train" type="boolean">
+            <column name="SELECT_TRAIN" />
+        </property>
+    </class>
+</hibernate-mapping>

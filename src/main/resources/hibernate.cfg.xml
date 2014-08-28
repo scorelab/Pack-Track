@@ -9,7 +9,8 @@
   <property name="hibernate.connection.username">dbuser</property>
   <property name="hibernate.default_schema">pack_track</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-  <property name="hibernate.show_sql">true</property>
+  <property name="hibernate.show_sql">false</property>
   <mapping resource="model/models/User.hbm.xml"/>
+  <mapping resource="model/models/UserPrivilege.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>

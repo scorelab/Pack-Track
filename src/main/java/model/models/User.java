@@ -9,14 +9,35 @@ package model.models;
 public class User {
 	String userName;
 	String password;
-	String email;
 	String designation;
 	String role;
 	String shed;
-	String sub_dept;
-	String nic_number;
-	int authLevel;
-	int privilegeLevel;
+	String subDept;
+	String nicNumber;
+	UserPrivilege userPrivilege;
+	String addBy;
+	
+	
+
+	public User() {
+		super();
+		this.userPrivilege = new UserPrivilege();
+	}
+
+	public User(String userName, String password,
+			String designation, String role, String shed, String subDept,
+			String nicNumber, UserPrivilege userPrivilege, String addBy) {
+		super();
+		this.userName = userName;
+		this.password = password;
+		this.designation = designation;
+		this.role = role;
+		this.shed = shed;
+		this.subDept = subDept;
+		this.nicNumber = nicNumber;
+		this.userPrivilege = userPrivilege;
+		this.addBy=addBy;
+	}
 
 	public String getUserName() {
 		return userName;
@@ -58,44 +79,37 @@ public class User {
 		this.shed = shed;
 	}
 
-	public String getSub_dept() {
-		return sub_dept;
+	public String getSubDept() {
+		return subDept;
 	}
 
-	public void setSub_dept(String sub_dept) {
-		this.sub_dept = sub_dept;
+	public void setSubDept(String sub_dept) {
+		this.subDept = sub_dept;
 	}
 
-	public String getNic_number() {
-		return nic_number;
+	public String getNicNumber() {
+		return nicNumber;
 	}
 
-	public void setNic_number(String nic_number) {
-		this.nic_number = nic_number;
+	public void setNicNumber(String nicNumber) {
+		this.nicNumber = nicNumber;
 	}
 
-	public int getAuthLevel() {
-		return authLevel;
+	public UserPrivilege getUserPrivilege() {
+		return userPrivilege;
 	}
 
-	public void setAuthLevel(int authLevel) {
-		this.authLevel = authLevel;
+	public void setUserPrivilege(UserPrivilege userPrivilege) {
+		this.userPrivilege = userPrivilege;
+		userPrivilege.setUser(this);
 	}
 
-	public int getPrivilegeLevel() {
-		return privilegeLevel;
+	public String getAddBy() {
+		return addBy;
 	}
 
-	public void setPrivilegeLevel(int privilegeLevel) {
-		this.privilegeLevel = privilegeLevel;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
+	public void setAddBy(String addBy) {
+		this.addBy = addBy;
 	}
 
 }
