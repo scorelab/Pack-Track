@@ -4,14 +4,14 @@
 <!-- Generated Aug 27, 2014 4:53:48 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
 	<class name="model.models.Station" table="STATION">
-		<id name="stationID" type="int">
+		<id name="ID" type="int">
 			<column name="ID" />
 			<generator class="identity" />
 		</id>
-		<property name="stationName" type="java.lang.String">
+		<property name="Name" type="java.lang.String">
 			<column name="NAME" />
 		</property>
-		<property name="telNo" type="java.lang.String">
+		<property name="contactNum" type="java.lang.String">
 			<column name="CONTACTNUM" />
 		</property>
 		<property name="addBy" type="java.lang.String">
