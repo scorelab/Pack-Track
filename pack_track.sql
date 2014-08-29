@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 28, 2014 at 05:02 PM
+-- Generation Time: Aug 29, 2014 at 04:51 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -19,6 +19,9 @@ SET time_zone = "+00:00";
 --
 -- Database: `pack_track`
 --
+
+CREATE DATABASE IF NOT EXISTS `pack_track` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `pack_track`;
 
 -- --------------------------------------------------------
 
@@ -187,13 +190,6 @@ CREATE TABLE IF NOT EXISTS `user` (
   KEY `userAddBy_idx` (`addBy`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`UserName`, `password`, `designation`, `role`, `home_page`, `shed`, `sub_dept`, `nic_number`, `addBy`) VALUES
-('Rand', 'd74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1', 'jil', 'bil', 'gdg', 'gggg', 'gg', 'gfgfg', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -245,30 +241,35 @@ CREATE TABLE IF NOT EXISTS `user_privilege` (
 --
 -- Constraints for table `admin`
 --
+
 ALTER TABLE `admin`
   ADD CONSTRAINT `adminAdmin` FOREIGN KEY (`addBy`) REFERENCES `admin` (`adminID`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `category`
 --
+
 ALTER TABLE `category`
   ADD CONSTRAINT `categoryAdmin` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `customer`
 --
+
 ALTER TABLE `customer`
   ADD CONSTRAINT `custAddUser` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `device`
 --
+
 ALTER TABLE `device`
   ADD CONSTRAINT `deviceAdmin` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `parcel`
 --
+
 ALTER TABLE `parcel`
   ADD CONSTRAINT `addByUser` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `receiverFK` FOREIGN KEY (`receiver`) REFERENCES `customer` (`custID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -280,12 +281,14 @@ ALTER TABLE `parcel`
 --
 -- Constraints for table `station`
 --
+
 ALTER TABLE `station`
   ADD CONSTRAINT `stationAdmin` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `train`
 --
+
 ALTER TABLE `train`
   ADD CONSTRAINT `finishStation` FOREIGN KEY (`finish`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `startStation` FOREIGN KEY (`start`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -294,12 +297,14 @@ ALTER TABLE `train`
 --
 -- Constraints for table `user`
 --
+
 ALTER TABLE `user`
   ADD CONSTRAINT `userAddBy` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `user_detail`
 --
+
 ALTER TABLE `user_detail`
   ADD CONSTRAINT `userDetail` FOREIGN KEY (`UserName`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `userStation` FOREIGN KEY (`station`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -307,6 +312,7 @@ ALTER TABLE `user_detail`
 --
 -- Constraints for table `user_privilege`
 --
+
 ALTER TABLE `user_privilege`
   ADD CONSTRAINT `userPrivilige` FOREIGN KEY (`User_Name`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
