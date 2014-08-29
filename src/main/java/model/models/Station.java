@@ -8,15 +8,27 @@ package model.models;
  */
 
 public class Station {
-	String ID;
+	int ID;
 	String name;
 	String contactNum;
+	String addBy;
 
-	public String getID() {
+	public Station() {
+
+	}
+
+	public Station(int id, String Name, String contactnum, String addby) {
+		ID = id;
+		name = Name;
+		contactNum = contactnum;
+		addBy = addby;
+	}
+
+	public int getID() {
 		return ID;
 	}
 
-	public void setID(String iD) {
+	public void setID(int iD) {
 		ID = iD;
 	}
 
@@ -34,6 +46,14 @@ public class Station {
 
 	public void setContactNum(String contactNum) {
 		this.contactNum = contactNum;
+	}
+
+	public String getAddBy() {
+		return addBy;
+	}
+
+	public void setAddBy(String addBy) {
+		this.addBy = addBy;
 	}
 
 }

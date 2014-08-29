@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 29, 2014 12:03:04 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="model.models.Device" table="DEVICE">
+        <id name="ID" type="int">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="IMEI" type="java.lang.String">
+            <column name="IMEI" />
+        </property>
+        <property name="Assigned" type="java.lang.String">
+            <column name="ASSIGNED" />
+        </property>
+        <property name="addBy" type="java.lang.String">
+            <column name="ADDBY" />
+        </property>
+    </class>
+</hibernate-mapping>
