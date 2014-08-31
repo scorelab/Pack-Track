@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 25, 2014 at 05:44 PM
+-- Generation Time: Aug 29, 2014 at 04:51 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -19,6 +19,9 @@ SET time_zone = "+00:00";
 --
 -- Database: `pack_track`
 --
+
+CREATE DATABASE IF NOT EXISTS `pack_track` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `pack_track`;
 
 -- --------------------------------------------------------
 
@@ -48,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   `catID` int(5) NOT NULL AUTO_INCREMENT,
   `catName` varchar(20) NOT NULL,
   `unitCost` int(5) NOT NULL,
-  `addBy` int(5) NOT NULL,
+  `addBy` varchar(100) NOT NULL,
   PRIMARY KEY (`catID`),
   UNIQUE KEY `catID_UNIQUE` (`catID`),
   UNIQUE KEY `catName_UNIQUE` (`catName`),
@@ -91,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `device` (
   `devID` int(11) NOT NULL AUTO_INCREMENT,
   `imei` varchar(15) NOT NULL,
   `brand` varchar(15) DEFAULT NULL,
-  `addBy` int(5) NOT NULL,
+  `addBy` varchar(100) NOT NULL,
   PRIMARY KEY (`devID`),
   UNIQUE KEY `imei_UNIQUE` (`imei`),
   UNIQUE KEY `devID_UNIQUE` (`devID`),
@@ -139,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `station` (
   `stationID` int(5) NOT NULL AUTO_INCREMENT,
   `stationName` varchar(20) NOT NULL,
   `telNo` varchar(10) NOT NULL,
-  `addBy` int(5) NOT NULL,
+  `addBy` varchar(100) NOT NULL,
   PRIMARY KEY (`stationID`),
   UNIQUE KEY `stationID_UNIQUE` (`stationID`),
   UNIQUE KEY `telNo_UNIQUE` (`telNo`),
@@ -157,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `train` (
   `trainName` varchar(45) NOT NULL,
   `start` int(5) NOT NULL,
   `finish` int(5) NOT NULL,
-  `addBy` int(5) NOT NULL,
+  `addBy` varchar(100) NOT NULL,
   PRIMARY KEY (`trainID`),
   UNIQUE KEY `trainID_UNIQUE` (`trainID`),
   KEY `trainAdmin_idx` (`addBy`),
@@ -180,9 +183,28 @@ CREATE TABLE IF NOT EXISTS `user` (
   `shed` varchar(40) DEFAULT NULL,
   `sub_dept` varchar(20) DEFAULT NULL,
   `nic_number` varchar(30) DEFAULT NULL,
+  `addBy` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`UserName`),
   UNIQUE KEY `UserName` (`UserName`),
-  UNIQUE KEY `nic_number` (`nic_number`)
+  UNIQUE KEY `nic_number` (`nic_number`),
+  KEY `userAddBy_idx` (`addBy`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_detail`
+--
+
+CREATE TABLE IF NOT EXISTS `user_detail` (
+  `UserName` varchar(100) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `Email` varchar(50) NOT NULL,
+  `station` int(5) DEFAULT NULL,
+  `phone` varchar(12) DEFAULT NULL,
+  PRIMARY KEY (`UserName`),
+  KEY `userDetail_idx` (`UserName`),
+  KEY `userStation_idx` (`station`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -219,30 +241,35 @@ CREATE TABLE IF NOT EXISTS `user_privilege` (
 --
 -- Constraints for table `admin`
 --
+
 ALTER TABLE `admin`
   ADD CONSTRAINT `adminAdmin` FOREIGN KEY (`addBy`) REFERENCES `admin` (`adminID`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `category`
 --
+
 ALTER TABLE `category`
-  ADD CONSTRAINT `categoryAdmin` FOREIGN KEY (`addBy`) REFERENCES `admin` (`adminID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `categoryAdmin` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `customer`
 --
+
 ALTER TABLE `customer`
   ADD CONSTRAINT `custAddUser` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `device`
 --
+
 ALTER TABLE `device`
-  ADD CONSTRAINT `deviceAdmin` FOREIGN KEY (`addBy`) REFERENCES `admin` (`adminID`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `deviceAdmin` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `parcel`
 --
+
 ALTER TABLE `parcel`
   ADD CONSTRAINT `addByUser` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `receiverFK` FOREIGN KEY (`receiver`) REFERENCES `customer` (`custID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -254,20 +281,38 @@ ALTER TABLE `parcel`
 --
 -- Constraints for table `station`
 --
+
 ALTER TABLE `station`
-  ADD CONSTRAINT `stationAdmin` FOREIGN KEY (`addBy`) REFERENCES `admin` (`adminID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `stationAdmin` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `train`
 --
+
 ALTER TABLE `train`
   ADD CONSTRAINT `finishStation` FOREIGN KEY (`finish`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `startStation` FOREIGN KEY (`start`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `trainAdmin` FOREIGN KEY (`addBy`) REFERENCES `admin` (`adminID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `trainAdmin` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `user`
+--
+
+ALTER TABLE `user`
+  ADD CONSTRAINT `userAddBy` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `user_detail`
+--
+
+ALTER TABLE `user_detail`
+  ADD CONSTRAINT `userDetail` FOREIGN KEY (`UserName`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `userStation` FOREIGN KEY (`station`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `user_privilege`
 --
+
 ALTER TABLE `user_privilege`
   ADD CONSTRAINT `userPrivilige` FOREIGN KEY (`User_Name`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 

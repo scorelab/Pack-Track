@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 27, 2014 4:53:48 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="model.models.Station" table="STATION">
+		<id name="ID" type="int">
+			<column name="ID" />
+			<generator class="identity" />
+		</id>
+		<property name="name" type="java.lang.String">
+			<column name="NAME" />
+		</property>
+		<property name="telNo" type="java.lang.String">
+			<column name="CONTACTNUM" />
+		</property>
+		<property name="addBy" type="java.lang.String">
+			<column name="ADDBY" />
+		</property>
+	</class>
+</hibernate-mapping>

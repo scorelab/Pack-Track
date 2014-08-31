@@ -52,7 +52,7 @@ public class UserManager {
 	public boolean loginCheck(String userName, String password){
 		
 		Session session=HibernateUtil.getSessionFactory().openSession();
-		session.beginTransaction();
+	   	session.beginTransaction();
 		Query query=session.createQuery("from User where username=:userName and password=:password");
 		query.setString("userName",userName);
 		query.setString("password", password);
