@@ -1,4 +1,4 @@
-package control.actions;
+package model.db;
 
 import java.security.MessageDigest;
 

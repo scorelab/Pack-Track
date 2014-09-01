@@ -30,5 +30,6 @@
         <property name="addBy" type="java.lang.String">
             <column name="ADDBY" />
         </property>
+        <one-to-one name="userDetail" class="model.models.UserDetail" cascade="all"></one-to-one>
     </class>
 </hibernate-mapping>

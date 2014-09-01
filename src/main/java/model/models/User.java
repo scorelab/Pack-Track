@@ -16,6 +16,7 @@ public class User {
 	String nicNumber;
 	UserPrivilege userPrivilege;
 	String addBy;
+	UserDetail userDetail;
 	
 	
 
@@ -26,7 +27,7 @@ public class User {
 
 	public User(String userName, String password,
 			String designation, String role, String shed, String subDept,
-			String nicNumber, UserPrivilege userPrivilege, String addBy) {
+			String nicNumber, UserPrivilege userPrivilege, String addBy, UserDetail userDetail) {
 		super();
 		this.userName = userName;
 		this.password = password;
@@ -37,6 +38,7 @@ public class User {
 		this.nicNumber = nicNumber;
 		this.userPrivilege = userPrivilege;
 		this.addBy=addBy;
+		this.userDetail=userDetail;
 	}
 
 	public String getUserName() {
@@ -110,6 +112,15 @@ public class User {
 
 	public void setAddBy(String addBy) {
 		this.addBy = addBy;
+	}
+
+	public UserDetail getUserDetail() {
+		return userDetail;
+	}
+
+	public void setUserDetail(UserDetail userDetail) {
+		this.userDetail = userDetail;
+		userDetail.setUser(this);
 	}
 
 }
