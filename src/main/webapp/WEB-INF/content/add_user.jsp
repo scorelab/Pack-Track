@@ -3,73 +3,22 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/my.css" rel="stylesheet">
+	
     <title>Pack Track Add User</title>
 
     <!-- Bootstrap Core CSS -->
-   
-
-   
-
-<style type="text/css">
-body {
-    background-color:#b0c4de;
-}
-#login {
-	width:400px;
-	height:auto;
-	-webkit-border-radius: 22px 20px 20px 27px;
-	-moz-border-radius: 22px 20px 20px 27px;
-	border-radius: 22px 20px 20px 27px;
-	background-color: #909090 ;
-	-webkit-box-shadow: #b3b3b3 4px 4px 4px;
-	-moz-box-shadow: #b3b3b3 4px 4px 4px; 
-	box-shadow: #b3b3b3 4px 4px 4px;
-	margin-left:auto;
-	margin-right:auto;
-	 margin-top:100px;
-	 padding:15px;
-}
-
-.hedinh-tag{
-	text-align:center;
-	font-family: "Times New Roman", Times, serif;
-	font-size:20px;
-	text-transform:uppercase;
-	color: #000000;
-}
-.main-table{
-	width:100%;
-	border-top-width: 1px;
-	border-top-style: solid;
-	border-top-color: #999;
-	color: #383838 ;
-	font-family:"Times New Roman", Times, serif;
-	font-size: 15px;
-	font-weight: normal;
-}
-#col-lg-12{
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color: #FFFFFF;
-	text-align: center;
-	margin-right: auto;
-	margin-left: auto;
-	width: 100%;
-}
-</style>
+  
 </head>
 
 <body>
 
 	
 <div id="login">
-<h1 class="hedinh-tag">User Details</h1>
+<h3 >Add User</h3>
   <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
     <tr>
       <td>&nbsp;</td>
@@ -78,29 +27,10 @@ body {
     </tr>
     <tr>
     <td><b><font color=#000000>Name<b></td></font>
-    <td>:</td>
-    <td><input type="text" name="first_name2" size="40"maxlength="50" value="Name"></td>
+    <td></td>
+    <td><input type="text" name="first_name2" size="40"maxlength="50"></td>
   </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>  </td>
-    <td>:</td>
-    <td><input type="text" name="first_name3" size="40"maxlength="50" value="NIC"></td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>  </td>
-    <td>:</td>
-    <td><input type="text" name="first_name4" size="40"maxlength="50" value="E-mail"></td>
-  </tr>
+
   <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -108,7 +38,28 @@ body {
   </tr>
   <tr>
     <td><b><font color=#000000>Phone </td></b></font>
-    <td>:</td>
+    <td></td>
+    <td><input type="text" name="name" size="40"></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+ <tr>
+    <td><b><font color=#000000>Station </td></b></font>
+
+    <td></td>
+    <td><input type="text" name="name" size="40"></td>
+  </tr> 
+<tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><b><font color=#000000>E-mail </td></b></font>
+    <td></td>
     <td><input type="text" name="name" size="40"></td>
   </tr>
   <tr>
@@ -117,26 +68,55 @@ body {
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><b><font color=#000000>Create User Name:</td></b></font>
+    <td><b><font color=#000000> User Name</td></b></font>
     <td>&nbsp;</td>
     <td><input type="text" name="first_name5" size="40"maxlength="60"></td>
   </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td><input type="submit" name="submit2" value="Create User Account"></td>
-  </tr>
+  
   <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
 </table>
+<h4><font color="blue">User Privileges</font></h4>
+<b>
+<input type="checkbox" name="" value="Bike"> Add user
+<input type="checkbox" name="" value="Car"> Remove user 
+&nbsp;&nbsp;
+<input type="checkbox" name="" value="Bike"> Add train
+<input type="checkbox" name="" value="Car"> Remove train 
+<br><br>
+<input type="checkbox" name="" value="Bike"> Add station
+<input type="checkbox" name="" value="Car"> Remove station 
+&nbsp;&nbsp;
+<input type="checkbox" name="" value="Bike"> Add category
+<input type="checkbox" name="" value="Car"> Remove category
+<br><br>
+<input type="checkbox" name="" value="Bike"> Add customer
+<input type="checkbox" name="" value="Car"> Remove customer
+&nbsp;&nbsp;
+<input type="checkbox" name="" value="Bike"> Add parcel
+<input type="checkbox" name="" value="Car"> Release parcel
+&nbsp;&nbsp;
+<br><br>
+<input type="checkbox" name="" value="Bike"> Confirm arrival
+<input type="checkbox" name="" value="Car"> Check upcoming parcels
+&nbsp;&nbsp;
+<input type="checkbox" name="" value="Bike"> Select train
+</b>
+<tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <div class="wrapper">
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><br><input type="submit" name="submit2" value="Create User"></td></div>
+	<br>
+  </tr>
 </div>
     
   
@@ -153,4 +133,4 @@ body {
 </body>
 
 </html>
-      
+
