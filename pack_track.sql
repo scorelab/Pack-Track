@@ -6,30 +6,19 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
-CREATE DATABASE IF NOT EXISTS `pack_track` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `pack_track`;
-
-CREATE TABLE IF NOT EXISTS `admin` (
-  `adminID` int(5) NOT NULL AUTO_INCREMENT,
-  `adminName` varchar(45) NOT NULL,
-  `adminAddress` varchar(45) NOT NULL,
-  `adminEmail` varchar(30) NOT NULL,
-  `addBy` int(5) DEFAULT NULL,
-  PRIMARY KEY (`adminID`),
-  UNIQUE KEY `adminID_UNIQUE` (`adminID`),
-  UNIQUE KEY `adminEmail_UNIQUE` (`adminEmail`),
-  KEY `FAdmin_idx` (`addBy`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `category` (
   `catID` int(5) NOT NULL AUTO_INCREMENT,
   `catName` varchar(20) NOT NULL,
   `unitCost` int(5) NOT NULL,
   `addBy` varchar(100) NOT NULL,
+  `delete` tinyint(1) DEFAULT '0',
+  `deleteBy` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`catID`),
   UNIQUE KEY `catID_UNIQUE` (`catID`),
   UNIQUE KEY `catName_UNIQUE` (`catName`),
-  KEY `categoryAdmin_idx` (`addBy`)
+  KEY `categoryAdmin_idx` (`addBy`),
+  KEY `categoryDeleteBy_idx` (`deleteBy`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `customer` (
@@ -41,6 +30,8 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `custAddress` varchar(45) DEFAULT NULL,
   `custNIC` varchar(10) DEFAULT NULL,
   `addBy` varchar(100) NOT NULL,
+  `delete` tinyint(1) DEFAULT '0',
+  `deleteBy` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`custID`),
   UNIQUE KEY `custID_UNIQUE` (`custID`),
   UNIQUE KEY `custNIC_UNIQUE` (`custNIC`),
@@ -49,18 +40,23 @@ CREATE TABLE IF NOT EXISTS `customer` (
   UNIQUE KEY `custTel_UNIQUE` (`custTel`),
   UNIQUE KEY `custAddress_UNIQUE` (`custAddress`),
   KEY `customerAdmin_idx` (`addBy`),
-  KEY `custAddUser_idx` (`addBy`)
+  KEY `custAddUser_idx` (`addBy`),
+  KEY `custDeleteBy_idx` (`deleteBy`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `device` (
   `devID` int(11) NOT NULL AUTO_INCREMENT,
   `imei` varchar(15) NOT NULL,
-  `brand` varchar(15) DEFAULT NULL,
+  `assignTo` varchar(100) DEFAULT NULL,
   `addBy` varchar(100) NOT NULL,
+  `delete` tinyint(1) DEFAULT '0',
+  `deleteBy` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`devID`),
   UNIQUE KEY `imei_UNIQUE` (`imei`),
   UNIQUE KEY `devID_UNIQUE` (`devID`),
-  KEY `FAdmin_idx` (`addBy`)
+  KEY `FAdmin_idx` (`addBy`),
+  KEY `deviceUser_idx` (`assignTo`),
+  KEY `deviceDeleteBy_idx` (`deleteBy`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `parcel` (
@@ -77,6 +73,8 @@ CREATE TABLE IF NOT EXISTS `parcel` (
   `dateReceived` datetime NOT NULL,
   `dateDeliverd` datetime NOT NULL,
   `addBy` varchar(100) NOT NULL,
+  `delete` tinyint(1) DEFAULT '0',
+  `deleteBy` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`parcelID`),
   UNIQUE KEY `parcelID_UNIQUE` (`parcelID`),
   KEY `st_idx` (`start`),
@@ -85,7 +83,8 @@ CREATE TABLE IF NOT EXISTS `parcel` (
   KEY `stationFK_idx` (`status`),
   KEY `senderFK_idx` (`sender`),
   KEY `receiverFK_idx` (`receiver`),
-  KEY `addByUser_idx` (`addBy`)
+  KEY `addByUser_idx` (`addBy`),
+  KEY `deleteBy_idx` (`deleteBy`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `station` (
@@ -93,10 +92,13 @@ CREATE TABLE IF NOT EXISTS `station` (
   `stationName` varchar(20) NOT NULL,
   `telNo` varchar(10) NOT NULL,
   `addBy` varchar(100) NOT NULL,
+  `delete` tinyint(1) DEFAULT '0',
+  `deleteBy` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`stationID`),
   UNIQUE KEY `stationID_UNIQUE` (`stationID`),
   UNIQUE KEY `telNo_UNIQUE` (`telNo`),
-  KEY `stationAdmin_idx` (`addBy`)
+  KEY `stationAdmin_idx` (`addBy`),
+  KEY `stationDeleteBy_idx` (`deleteBy`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `train` (
@@ -105,11 +107,14 @@ CREATE TABLE IF NOT EXISTS `train` (
   `start` int(5) NOT NULL,
   `finish` int(5) NOT NULL,
   `addBy` varchar(100) NOT NULL,
+  `delete` tinyint(1) DEFAULT '0',
+  `deleteBy` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`trainID`),
   UNIQUE KEY `trainID_UNIQUE` (`trainID`),
   KEY `trainAdmin_idx` (`addBy`),
   KEY `startStation_idx` (`start`),
-  KEY `finishStation_idx` (`finish`)
+  KEY `finishStation_idx` (`finish`),
+  KEY `trainDeleteBy_idx` (`deleteBy`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `user` (
@@ -164,19 +169,21 @@ CREATE TABLE IF NOT EXISTS `user_privilege` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-ALTER TABLE `admin`
-  ADD CONSTRAINT `adminAdmin` FOREIGN KEY (`addBy`) REFERENCES `admin` (`adminID`) ON UPDATE CASCADE;
-
 ALTER TABLE `category`
-  ADD CONSTRAINT `categoryAdmin` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `categoryAddBy` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `categoryDeleteBy` FOREIGN KEY (`deleteBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 ALTER TABLE `customer`
-  ADD CONSTRAINT `custAddUser` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `custDeleteBy` FOREIGN KEY (`deleteBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `custAddBy` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 ALTER TABLE `device`
-  ADD CONSTRAINT `deviceAdmin` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `deviceAddBy` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `deviceDeleteBy` FOREIGN KEY (`deleteBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `deviceUser` FOREIGN KEY (`assignTo`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 ALTER TABLE `parcel`
+  ADD CONSTRAINT `parcelDeleteBy` FOREIGN KEY (`deleteBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `addByUser` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `receiverFK` FOREIGN KEY (`receiver`) REFERENCES `customer` (`custID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `senderFK` FOREIGN KEY (`sender`) REFERENCES `customer` (`custID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -185,9 +192,11 @@ ALTER TABLE `parcel`
   ADD CONSTRAINT `stationFK3` FOREIGN KEY (`status`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 ALTER TABLE `station`
+  ADD CONSTRAINT `stationDeleteBy` FOREIGN KEY (`deleteBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `stationAdmin` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 ALTER TABLE `train`
+  ADD CONSTRAINT `trainDeleteBy` FOREIGN KEY (`deleteBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `finishStation` FOREIGN KEY (`finish`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `startStation` FOREIGN KEY (`start`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `trainAdmin` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
