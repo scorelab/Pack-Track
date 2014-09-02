@@ -1,0 +1,56 @@
+body {
+    background-color:#D8D8D8;
+}
+#login {
+	width:550px;
+	height:auto;
+	font-family: "Times New Roman", Times, serif;
+	-webkit-border-radius: 22px 20px 20px 27px;
+	-moz-border-radius: 22px 20px 20px 27px;
+	border-radius: 22px 20px 20px 27px;
+	background-color: #909090 ;
+	-webkit-box-shadow: #b3b3b3 4px 4px 4px;
+	-moz-box-shadow: #b3b3b3 4px 4px 4px; 
+	box-shadow: #b3b3b3 4px 4px 4px;
+	margin-left:auto;
+	margin-right:auto;
+	 margin-top:90px;
+	 padding:15px;
+}
+
+.hedinh-tag{
+	text-align:center;
+	font-family: "Times New Roman", Times, serif;
+	font-size:20px;
+	text-transform:uppercase;
+	color: #000000;
+}
+.main-table{
+	width:100%;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #999;
+	color: #383838 ;
+	font-family:"Times New Roman", Times, serif;
+	font-size: 14px;
+	font-weight: normal;
+}
+#col-lg-12{
+	font-family: "Times New Roman", Times, serif;
+	font-size: 11px;
+	color: #FFFFFF;
+	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
+	width: 100%;
+}
+
+
+.wrapper {
+    text-align: center;
+}
+
+.button {
+    position: absolute:
+    top: 50%;
+}
