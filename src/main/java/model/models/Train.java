@@ -11,14 +11,14 @@ public class Train {
 	int ID;
 	String name;
 	String addBy;
-	String start;
-	String finish;
+	int start;
+	int finish;
 
 	public Train() {
 
 	}
 
-	public Train(int id, String Name, String addby, String Start, String Finish) {
+	public Train(int id, String Name, String addby, int Start, int Finish) {
 		ID = id;
 		name = Name;
 		start = Start;
@@ -50,20 +50,22 @@ public class Train {
 		this.addBy = addBy;
 	}
 
-	public String getStart() {
+	public int getStart() {
 		return start;
 	}
 
-	public void setStart(String start) {
+	public void setStart(int start) {
 		this.start = start;
 	}
 
-	public String getFinish() {
+	public int getFinish() {
 		return finish;
 	}
 
-	public void setFinish(String finish) {
+	public void setFinish(int finish) {
 		this.finish = finish;
 	}
+
+	
 
 }

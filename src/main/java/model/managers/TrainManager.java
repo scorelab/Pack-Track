@@ -9,7 +9,7 @@ public class TrainManager {
 	public void addTrain(Train train) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		session.save(train);
+		session.saveOrUpdate(train);
 		session.getTransaction().commit();
 		session.close();
 		HibernateUtil.getSessionFactory().close();
