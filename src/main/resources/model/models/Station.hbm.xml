@@ -11,11 +11,11 @@
 		<property name="name" type="java.lang.String">
 			<column name="NAME" />
 		</property>
-		<property name="telNo" type="java.lang.String">
-			<column name="CONTACTNUM" />
+		<property name="contactNum" type="java.lang.String">
+			<column name="telNo" />
 		</property>
 		<property name="addBy" type="java.lang.String">
-			<column name="ADDBY" />
+			<column name="addBy" />
 		</property>
 	</class>
 </hibernate-mapping>
