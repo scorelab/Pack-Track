@@ -12,7 +12,7 @@
             <column name="IMEI" />
         </property>
         <property name="Assigned" type="java.lang.String">
-            <column name="ASSIGNED" />
+            <column name="assign_to" />
         </property>
         <property name="addBy" type="java.lang.String">
             <column name="ADDBY" />

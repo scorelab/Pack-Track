@@ -5,17 +5,17 @@
 <hibernate-mapping>
 	<class name="model.models.Station" table="STATION">
 		<id name="ID" type="int">
-			<column name="ID" />
+			<column name="stationID" />
 			<generator class="identity" />
 		</id>
-		<property name="Name" type="java.lang.String">
-			<column name="NAME" />
+		<property name="name" type="java.lang.String">
+			<column name="stationNAME" />
 		</property>
 		<property name="contactNum" type="java.lang.String">
-			<column name="CONTACTNUM" />
+			<column name="telNo" />
 		</property>
 		<property name="addBy" type="java.lang.String">
-			<column name="ADDBY" />
+			<column name="addBy" />
 		</property>
 	</class>
 </hibernate-mapping>

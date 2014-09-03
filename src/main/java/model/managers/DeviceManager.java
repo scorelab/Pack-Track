@@ -8,12 +8,15 @@ import org.hibernate.Session;
 public class DeviceManager {
 	
 	public void addDevice(Device device){
+		
 	Session session =HibernateUtil.getSessionFactory().openSession();
 	session.beginTransaction();
-	session.save(device);
+	session.saveOrUpdate(device);
 	session.getTransaction().commit();
 	session.close();
 	HibernateUtil.getSessionFactory().close();
 	}
+	
+	
 
 }

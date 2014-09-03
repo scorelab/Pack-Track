@@ -9,15 +9,15 @@
             <generator class="identity" />
         </id>
         <property name="name" type="java.lang.String">
-            <column name="NAME" />
+            <column name="trainName" />
         </property>
         <property name="addBy" type="java.lang.String">
             <column name="ADDBY" />
         </property>
-        <property name="start" type="java.lang.String">
+        <property name="start" type="int">
             <column name="START" />
         </property>
-        <property name="finish" type="java.lang.String">
+        <property name="finish" type="int">
             <column name="FINISH" />
         </property>
     </class>
