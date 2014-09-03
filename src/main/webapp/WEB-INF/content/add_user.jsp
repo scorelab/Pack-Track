@@ -38,7 +38,7 @@
 				</b>
 				</font>
 				<td></td>
-				<td><input class='input_class_short' type="text" name="name" size="40"></td>
+				<td><input class='input_class_short' type="text" name="nasame" size="40"></td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
