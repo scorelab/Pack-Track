@@ -10,17 +10,25 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+/**
+ * Action that manages login page
+ *
+ */
 public class LoginAction extends ActionSupport implements SessionAware {
 	private String userName;
 	private String password;
 	private Map<String, Object> session;
 
-	@Override
+	/**
+	 * Method to log in the user in to the system by checking credentials.
+	 * @return
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "login", results = {
 			@Result(name = "done", location = "home", type = "redirect"),
 			@Result(name = "error", location = "login", type = "redirect") })
-	public String execute() throws Exception {
-		
+	public String login() throws Exception {
+
 		if (userName != null) {
 			UserManager uManager = new UserManager();
 			User user;
@@ -34,19 +42,22 @@ public class LoginAction extends ActionSupport implements SessionAware {
 				return ERROR;
 			}
 		}
-		
+
 		if (session.get("status") != null) {
-			System.out.println("fail");
 			addFieldError("userName", "UserName or password is incorrect");
 			session.clear();
 		}
-		
+
 		return SUCCESS;
 	}
 
+	/**
+	 * Method to log out the user from system. 
+	 * @return
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "logout", results = { @Result(name = "success", location = "index", type = "redirect") })
 	public String logout() {
-		
+
 		session.clear();
 		return SUCCESS;
 	}

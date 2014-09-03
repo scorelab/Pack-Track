@@ -11,11 +11,12 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class AddRemoveStationAction extends ActionSupport implements SessionAware{
+public class AddRemoveStationAction extends ActionSupport implements
+		SessionAware {
 
 	private Map<String, Object> session;
 	private String tableRows;
-	
+
 	@org.apache.struts2.convention.annotation.Action(value = "add-remove-station", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String execute() throws Exception {
 

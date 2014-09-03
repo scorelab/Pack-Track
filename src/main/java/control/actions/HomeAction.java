@@ -10,13 +10,22 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+/**
+ * Action to manage user home screen
+ *
+ */
 public class HomeAction extends ActionSupport implements SessionAware {
 
 	private Map<String, Object> session;
 	private String tabs;
 
+	/**
+	 * Method to generate tabs for user according to privileges
+	 * @return
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "home", results = { @Result(name = "error", location = "login", type = "redirect") })
-	public String execute() throws Exception {
+	public String authCheck() throws Exception {
 
 		UserManager uManager = new UserManager();
 		User user = (User) session.get("user");

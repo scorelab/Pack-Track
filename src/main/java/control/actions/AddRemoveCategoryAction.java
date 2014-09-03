@@ -11,7 +11,8 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class AddRemoveCategoryAction extends ActionSupport implements SessionAware{
+public class AddRemoveCategoryAction extends ActionSupport implements
+		SessionAware {
 	private Map<String, Object> session;
 	private String tableRows;
 
