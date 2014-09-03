@@ -25,11 +25,9 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			UserManager uManager = new UserManager();
 			User user;
 			if ((user = uManager.login(userName, password)) != null) {
-				System.out.println(user.getUserName());
 				session.put("userName", user.getUserName());
 				session.put("password", user.getPassword());
-				session.put("authLevel", user.getAuthLevel());
-				session.put("privilegeLevel", user.getPrivilegeLevel());
+				session.put("user", user);
 				return "done";
 			} else {
 				session.put("status", false);
