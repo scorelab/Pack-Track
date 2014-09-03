@@ -11,12 +11,11 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-@org.apache.struts2.convention.annotation.Action(value = "add-user-home", results = { @Result(name = "error", location = "login", type = "redirect") })
-public class AddUserHomeAction extends ActionSupport implements SessionAware {
-
+public class AddRemoveTrainAction extends ActionSupport implements SessionAware{
 	private Map<String, Object> session;
 	private String tableRows;
 
+	@org.apache.struts2.convention.annotation.Action(value = "add-remove-train", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String execute() throws Exception {
 
 		UserManager uManager = new UserManager();
@@ -30,11 +29,17 @@ public class AddUserHomeAction extends ActionSupport implements SessionAware {
 			List<User> list = um.getUserList();
 			StringBuilder sb = new StringBuilder();
 			for (User users : list) {
-				String temp = "<tr><td>" + user.getUserDetail().getName()
-						+ "</td><td>" + user.getUserName() + "</td><td>"
-						+ user.getUserDetail().getEmail() + "</td><td>"
-						+ user.getRole() + "</td><td>" + user.getNicNumber()
-						+ "</td></tr>";
+				String temp = "<tr><td>"
+						+ user.getUserDetail().getName()
+						+ "</td><td>"
+						+ user.getUserName()
+						+ "</td><td>"
+						+ user.getUserDetail().getEmail()
+						+ "</td><td>"
+						+ user.getRole()
+						+ "</td><td>"
+						+ user.getNicNumber()
+						+ "</td><td><button type='button' class='btn btn-default btn-lg'><span class='glyphicon glyphicon-pencil'></span> Change</button></td><td><button type='button' class='btn btn-default btn-lg'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>";
 				sb.append(temp);
 			}
 			tableRows = sb.toString();

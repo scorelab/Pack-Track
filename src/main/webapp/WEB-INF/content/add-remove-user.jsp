@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
 </head>
 <body>
 	<div class="input-group"
@@ -17,7 +16,7 @@
 		<thead>
 			<tr>
 				<th style="width: 22%;">Name</th>
-				<thstyle="width: 15%;">User Name</th>
+				<th style="width: 15%;">User Name</th>
 				<th style="width: 22%;">email</th>
 				<th style="width: 13%;">Role</th>
 				<th style="width: 20%;">NIC</th>

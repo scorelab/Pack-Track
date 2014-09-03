@@ -11,12 +11,11 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-@org.apache.struts2.convention.annotation.Action(value = "add-user-home", results = { @Result(name = "error", location = "login", type = "redirect") })
-public class AddUserHomeAction extends ActionSupport implements SessionAware {
-
+public class AddCategoryHomeAction extends ActionSupport implements SessionAware{
 	private Map<String, Object> session;
 	private String tableRows;
-
+	
+	@org.apache.struts2.convention.annotation.Action(value = "add-category-home", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String execute() throws Exception {
 
 		UserManager uManager = new UserManager();
