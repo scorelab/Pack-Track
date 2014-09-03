@@ -157,6 +157,8 @@ CREATE TABLE IF NOT EXISTS `user_privilege` (
   `remove_train` tinyint(1) DEFAULT '0',
   `add_category` tinyint(1) DEFAULT '0',
   `remove_category` tinyint(1) DEFAULT '0',
+  `add_device` tinyint(1) DEFAULT '0',
+  `remove_device` tinyint(1) DEFAULT '0',
   `add_customer` tinyint(1) DEFAULT '0',
   `remove_customer` tinyint(1) DEFAULT '0',
   `add_parcel` tinyint(1) DEFAULT '0',
