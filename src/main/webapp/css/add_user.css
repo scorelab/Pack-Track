@@ -1,21 +1,8 @@
-body {
-    background-color:#D8D8D8;
-}
-#login {
-	width:550px;
-	height:auto;
+#form {
 	font-family: "Times New Roman", Times, serif;
-	-webkit-border-radius: 22px 20px 20px 27px;
-	-moz-border-radius: 22px 20px 20px 27px;
-	border-radius: 22px 20px 20px 27px;
-	background-color: #909090 ;
-	-webkit-box-shadow: #b3b3b3 4px 4px 4px;
-	-moz-box-shadow: #b3b3b3 4px 4px 4px; 
-	box-shadow: #b3b3b3 4px 4px 4px;
 	margin-left:auto;
 	margin-right:auto;
-	 margin-top:90px;
-	 padding:15px;
+	padding:15px;
 }
 
 .hedinh-tag{
@@ -53,4 +40,12 @@ body {
 .button {
     position: absolute:
     top: 50%;
+}
+
+.input_class_long {
+	width: 75%;
+}
+
+.input_class_short {
+	width: 35%;
 }
