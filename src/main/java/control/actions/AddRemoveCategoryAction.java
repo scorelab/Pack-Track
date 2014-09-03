@@ -23,7 +23,7 @@ public class AddRemoveCategoryAction extends ActionSupport implements SessionAwa
 		if (uManager.loginCheck((String) session.get("userName"),
 				(String) session.get("password"))
 				&& user != null
-				&& user.getUserPrivilege().isAdd_user()) {
+				&& user.getUserPrivilege().isRemove_category()) {
 
 			UserManager um = new UserManager();
 			List<User> list = um.getUserList();

@@ -23,7 +23,7 @@ public class AddCategoryHomeAction extends ActionSupport implements SessionAware
 		if (uManager.loginCheck((String) session.get("userName"),
 				(String) session.get("password"))
 				&& user != null
-				&& user.getUserPrivilege().isAdd_user()) {
+				&& user.getUserPrivilege().isAdd_category()) {
 
 			UserManager um = new UserManager();
 			List<User> list = um.getUserList();

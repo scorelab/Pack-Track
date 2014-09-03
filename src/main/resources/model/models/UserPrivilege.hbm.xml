@@ -35,6 +35,12 @@
         <property name="remove_category" type="boolean">
             <column name="REMOVE_CATEGORY" />
         </property>
+         <property name="add_device" type="boolean">
+            <column name="ADD_DEVICE" />
+        </property>
+        <property name="remove_device" type="boolean">
+            <column name="REMOVE_DEVICE" />
+        </property>
         <property name="add_customer" type="boolean">
             <column name="ADD_CUSTOMER" />
         </property>

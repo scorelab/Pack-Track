@@ -11,12 +11,12 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class AddTrainHomeAction extends ActionSupport implements SessionAware{
-	
+public class AddRemoveStationAction extends ActionSupport implements SessionAware{
+
 	private Map<String, Object> session;
 	private String tableRows;
 	
-	@org.apache.struts2.convention.annotation.Action(value = "add-train-home", results = { @Result(name = "error", location = "login", type = "redirect") })
+	@org.apache.struts2.convention.annotation.Action(value = "add-remove-station", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String execute() throws Exception {
 
 		UserManager uManager = new UserManager();
@@ -24,17 +24,23 @@ public class AddTrainHomeAction extends ActionSupport implements SessionAware{
 		if (uManager.loginCheck((String) session.get("userName"),
 				(String) session.get("password"))
 				&& user != null
-				&& user.getUserPrivilege().isAdd_train()) {
+				&& user.getUserPrivilege().isRemove_station()) {
 
 			UserManager um = new UserManager();
 			List<User> list = um.getUserList();
 			StringBuilder sb = new StringBuilder();
 			for (User users : list) {
-				String temp = "<tr><td>" + user.getUserDetail().getName()
-						+ "</td><td>" + user.getUserName() + "</td><td>"
-						+ user.getUserDetail().getEmail() + "</td><td>"
-						+ user.getRole() + "</td><td>" + user.getNicNumber()
-						+ "</td></tr>";
+				String temp = "<tr><td>"
+						+ user.getUserDetail().getName()
+						+ "</td><td>"
+						+ user.getUserName()
+						+ "</td><td>"
+						+ user.getUserDetail().getEmail()
+						+ "</td><td>"
+						+ user.getRole()
+						+ "</td><td>"
+						+ user.getNicNumber()
+						+ "</td><td><button type='button' class='btn btn-default btn-lg'><span class='glyphicon glyphicon-pencil'></span> Change</button></td><td><button type='button' class='btn btn-default btn-lg'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>";
 				sb.append(temp);
 			}
 			tableRows = sb.toString();

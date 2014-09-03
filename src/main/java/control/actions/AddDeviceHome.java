@@ -11,12 +11,11 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class AddTrainHomeAction extends ActionSupport implements SessionAware{
-	
+public class AddDeviceHome extends ActionSupport implements SessionAware{
 	private Map<String, Object> session;
 	private String tableRows;
 	
-	@org.apache.struts2.convention.annotation.Action(value = "add-train-home", results = { @Result(name = "error", location = "login", type = "redirect") })
+	@org.apache.struts2.convention.annotation.Action(value = "add-device-home", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String execute() throws Exception {
 
 		UserManager uManager = new UserManager();
@@ -24,7 +23,7 @@ public class AddTrainHomeAction extends ActionSupport implements SessionAware{
 		if (uManager.loginCheck((String) session.get("userName"),
 				(String) session.get("password"))
 				&& user != null
-				&& user.getUserPrivilege().isAdd_train()) {
+				&& user.getUserPrivilege().isAdd_device()) {
 
 			UserManager um = new UserManager();
 			List<User> list = um.getUserList();
@@ -58,5 +57,4 @@ public class AddTrainHomeAction extends ActionSupport implements SessionAware{
 	public void setTableRows(String tableRows) {
 		this.tableRows = tableRows;
 	}
-
 }
