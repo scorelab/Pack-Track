@@ -2,8 +2,6 @@
 
 <head>
 
-  
-   
  <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/add_dev.css" rel="stylesheet">
@@ -23,7 +21,7 @@
     <tr>
     <td><b>Device ID<b></td>
     <td></td>
-    <td><input type="text" name="first_name2" size="40"maxlength="50"></td></tr>
+    <td><input type="text" name="device_id" size="40"maxlength="50"></td></tr>
     <tr>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
@@ -32,7 +30,7 @@
     <tr>
     <td><b>IMEI<b></td>
     <td></td>
-    <td><input type="text" name="first_name2" size="40"maxlength="50"></td>
+    <td><input type="text" name="IMEI" size="40"maxlength="50"></td>
   </tr>
    <tr>
       <td>&nbsp;</td>
@@ -42,7 +40,7 @@
     <tr>
     <td><b>Assign To<b></td>
     <td></td>
-    <td><input type="text" name="first_name2" size="40"maxlength="50"></td>
+    <td><input type="text" name="assign_to" size="40"maxlength="50"></td>
   
   </tr>
    <tr>
@@ -53,7 +51,7 @@
     <tr>
     <td><b>Add By<b></td>
     <td></td>
-    <td><input type="text" name="first_name2" size="40"maxlength="50"></td>
+    <td><input type="text" name="add_by" size="40"maxlength="50"></td>
    </tr>
     <tr>
       <td>&nbsp;</td>
@@ -64,7 +62,7 @@
     <tr>
     <td><b>Delete<b></td>
     <td></td>
-    <td><input type="text" name="first_name2" size="40"maxlength="50"></td>
+    <td><input type="text" name="delete" size="40"maxlength="50"></td>
 	</tr>
 	 <tr>
       <td>&nbsp;</td>
@@ -74,7 +72,7 @@
     <tr>
     <td><b>Delete By<b></td>
     <td><b><b></td>
-    <td><input type="text" name="first_name2" size="40"maxlength="50"></td></tr>
+    <td><input type="text" name="delete_by" size="40"maxlength="50"></td></tr>
   
    <tr>
     <td>&nbsp;</td>
