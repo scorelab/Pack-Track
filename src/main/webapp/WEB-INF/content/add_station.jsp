@@ -60,9 +60,9 @@
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><font color=#000000><b>Create Station Name<b></td></font>
+    <td><font color=#000000><b>Delete<b></td></font>
     <td>&nbsp;</td>
-    <td><input type="text" name="Station_name" size="40"maxlength="60"></td>
+    <td><input type="text" name="delete" size="40"maxlength="60"></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
@@ -70,9 +70,14 @@
     <td>&nbsp;</td>
   </tr>
   <tr>
+    <td><font color=#000000><b>Delete By<b></td></font>
+    <td>&nbsp;</td>
+    <td><input type="text" name="delete_by" size="40"maxlength="60"></td>
+  </tr>
+  <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td><input type="submit" name="submit" value="Create Station Account"></td>
+    <td><br><input type="submit" name="submit" value="Create Station Account"></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
@@ -85,7 +90,7 @@
    <div id="col-lg-12">
                     <p><font color=blue>Copyright &copy; Pack Track 2014</p></font>
    </div>
-  </form>         
+ </form>          
 </body>
 
 </html>
