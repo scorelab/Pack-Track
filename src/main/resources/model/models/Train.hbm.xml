@@ -5,7 +5,7 @@
 <hibernate-mapping>
     <class name="model.models.Train" table="TRAIN">
         <id name="ID" type="int">
-            <column name="ID" />
+            <column name="trainID" />
             <generator class="identity" />
         </id>
         <property name="name" type="java.lang.String">
