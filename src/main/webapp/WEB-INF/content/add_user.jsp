@@ -14,31 +14,32 @@
 
 <form action="#" method="post">
 	<div id="form">
-		<h3>Add User</h3>
+	<h1 class="hedinh-tag">Add User</h1>
 		<table width="100%" border="0" cellspacing="0" cellpadding="0"
 			class="main-table">
-			<tr>
+		<tr>
 				<td>&nbsp;</td>
 				<td>&nbsp;</td>
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
-				<td><b><font color=#000000>Name<b></td>
+				<td><b><font color=#000000>User Name<b></td>
 				<td></td>
-				<td><input class='input_class_long' type="text" name="name" id='name'></td>
-			</tr>
-
-			<tr>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
+				<td><input class='input_class_long' type="text" name="name" id='name' size="40"></td>
+				</font><t></td>
+				<td><input class='input_class_short' type="text" name="nasame" size="20" value="Phone"></td>
 			</tr>
 			<tr>
-				<td><b><font color=#000000>Phone </td>
-				</b>
-				</font>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td><b><font color=#000000>E-mail<b></td>
 				<td></td>
-				<td><input class='input_class_short' type="text" name="nasame" size="40"></td>
+				<td><input class='input_class_long' type="text" name="name" id='name' size="40"></td>
+				</font></td>
+				<td><input class='input_class_short' type="text" name="nasame" size="20" value="NIC No"></td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
@@ -46,7 +47,7 @@
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
-				<td><b><font color=#000000>Station </td>
+				<td><b><font color=#000000>Designation</td>
 				</b>
 				</font>
 
@@ -59,7 +60,7 @@
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
-				<td><b><font color=#000000>E-mail </td>
+				<td><b><font color=#000000>Role</td>
 				</b>
 				</font>
 				<td></td>
@@ -71,7 +72,7 @@
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
-				<td><b><font color=#000000> User Name</td>
+				<td><b><font color=#000000> Home page</td>
 				</b>
 				</font>
 				<td>&nbsp;</td>
@@ -84,6 +85,35 @@
 				<td>&nbsp;</td>
 				<td>&nbsp;</td>
 			</tr>
+			<tr>
+				<td><b><font color=#000000> Shed</td>
+				</b>
+				</font>
+				<td>&nbsp;</td>
+				<td><input type="text" name="first_name5" size="40"</td>
+				<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td><b><font color=#000000> Sub Dept.</td>
+				</b>
+				</font>
+				<td>&nbsp;</td>
+				<td><input type="text" name="first_name5" size="40"</td>
+				<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+				<tr>
+				<td><b><font color=#000000>Add By</td>
+				</b>
+				</font>
+				<td>&nbsp;</td>
+				<td><input type="text" name="first_name5" size="40"</td>
+				</tr>
 		</table>
 		<h4>
 			<font>User Privileges</font>
