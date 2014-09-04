@@ -1,10 +1,7 @@
-body {
-    background-color: #D8D8D8;
-}
-#login {
-	width:500px;
+
+#form {
+	width:400px;
 	height:auto;
-        font-family: "Times New Roman", Times, serif;
 	-webkit-border-radius: 22px 20px 20px 27px;
 	-moz-border-radius: 22px 20px 20px 27px;
 	border-radius: 22px 20px 20px 27px;
