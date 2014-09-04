@@ -12,9 +12,9 @@
 
 <body>
 
-	
-<div id="login">
-<h3>Remove User</h3>
+<form>	
+<div id="form">
+<h1 class="hedinh-tag">Remove User</h1>
   <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
     <tr>
       <td>&nbsp;</td>
@@ -24,7 +24,7 @@
     <td><font color=black><b>Enter User ID<b></td></font>
     <td></td>
 	
-    <td><input type="text" name="first_name2" size="40"maxlength="50" ></td>
+    <td><input type="text" name="user_id" size="40"maxlength="50" ></td>
 	
   </tr>
   
@@ -33,8 +33,9 @@
     <td>&nbsp;</td>
     <td>&nbsp;</td>
 	
-    <td><br><input type="submit" name="submit2" value="Remove"></td>
+    <td><br><input type="submit" name="submit" value="Remove"></td>
   </tr>
 </table>
+</form>
 </body>
 </html>
