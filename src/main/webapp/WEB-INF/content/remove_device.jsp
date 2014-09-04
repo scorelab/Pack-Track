@@ -20,10 +20,9 @@
 </head>
 
 <body>
-
-	
-<div id="login">
-<h3>Remove Device</h3>
+<form>	
+<div id="form">
+<h1 class="hedinh-tag">Remove Device</h1>
   <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
     <tr>
       <td>&nbsp;</td>
@@ -33,7 +32,7 @@
     <tr>
     <td><b>IMEI Number OF Device<b></td>
     <td></td>
-    <td><input type="text" name="first_name2" size="40"maxlength="50" ></td>
+    <td><input type="text" name="Number_of_device" size="40"maxlength="50" ></td>
   </tr>
   
   
@@ -51,7 +50,7 @@
 	
 	</td>
     <td></td>
-    <td><input type="text" name="first_name2" size="40"maxlength="50"></td>
+    <td><input type="text" name="select_device" size="40"maxlength="50"></td>
   </tr>
   
    <tr>
@@ -62,7 +61,7 @@
   <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td><input type="submit" name="submit2" value="Remove"></td>
+    <td><input type="submit" name="submit" value="Remove"></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
@@ -81,7 +80,7 @@
    </div>
             
 
-   
+</form>   
 
 </body>
 
