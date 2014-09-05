@@ -90,7 +90,7 @@
 				</b>
 				</font>
 				<td>&nbsp;</td>
-				<td><input type="text" name="shed" size="40"</td>
+				<td><input type="text" name="shed" size="40"></td>
 				<tr>
 				<td>&nbsp;</td>
 				<td>&nbsp;</td>
@@ -101,7 +101,7 @@
 				</b>
 				</font>
 				<td>&nbsp;</td>
-				<td><input type="text" name="sub_dpt" size="40"</td>
+				<td><input type="text" name="sub_dpt" size="40"></td>
 				<tr>
 				<td>&nbsp;</td>
 				<td>&nbsp;</td>
@@ -112,7 +112,7 @@
 				</b>
 				</font>
 				<td>&nbsp;</td>
-				<td><input type="text" name="add_by" size="40"</td>
+				<td><input type="text" name="add_by" size="40"></td>
 				</tr>
 		</table>
 		<h4>

@@ -11,19 +11,50 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class AddRemoveTrainAction extends ActionSupport implements SessionAware {
+
+public class UserAction extends ActionSupport implements SessionAware {
+
 	private Map<String, Object> session;
 	private String tableRows;
 
-	@org.apache.struts2.convention.annotation.Action(value = "add-remove-train", results = { @Result(name = "error", location = "login", type = "redirect") })
-	public String execute() throws Exception {
+	@org.apache.struts2.convention.annotation.Action(value = "add-user-home", results = { @Result(name = "error", location = "login", type = "redirect") })
+	public String addUser() throws Exception {
 
 		UserManager uManager = new UserManager();
 		User user = (User) session.get("user");
 		if (uManager.loginCheck((String) session.get("userName"),
 				(String) session.get("password"))
 				&& user != null
-				&& user.getUserPrivilege().isRemove_train()) {
+				&& user.getUserPrivilege().isAdd_user()) {
+
+			UserManager um = new UserManager();
+			List<User> list = um.getUserList();
+			StringBuilder sb = new StringBuilder();
+			for (User users : list) {
+				String temp = "<tr><td>" + user.getUserDetail().getName()
+						+ "</td><td>" + user.getUserName() + "</td><td>"
+						+ user.getUserDetail().getEmail() + "</td><td>"
+						+ user.getRole() + "</td><td>" + user.getNicNumber()
+						+ "</td></tr>";
+				sb.append(temp);
+			}
+			tableRows = sb.toString();
+			return SUCCESS;
+		} else {
+			return ERROR;
+		}
+
+	}
+	
+	@org.apache.struts2.convention.annotation.Action(value = "add-remove-user", results = { @Result(name = "error", location = "login", type = "redirect") })
+	public String addRemoveUser() throws Exception {
+
+		UserManager uManager = new UserManager();
+		User user = (User) session.get("user");
+		if (uManager.loginCheck((String) session.get("userName"),
+				(String) session.get("password"))
+				&& user != null
+				&& user.getUserPrivilege().isRemove_user()) {
 
 			UserManager um = new UserManager();
 			List<User> list = um.getUserList();

@@ -25,7 +25,6 @@
 			</tr>
 		</thead>
 		<tbody class="searchable">
-
 			<s:property escape="false" value="tableRows"></s:property>
 		</tbody>
 	</table>
