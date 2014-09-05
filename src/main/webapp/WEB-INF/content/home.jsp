@@ -62,26 +62,13 @@
   <img src="images/home.png" class="img-responsive">
     </div>
 
-<ul class="nav nav-tabs" role="tablist" id="myTab">
-  <li class="active"><a href="#home" role="tab" data-toggle="tab">Home</a></li>
-  <li><a href="#profile" role="tab" data-toggle="tab">Profile</a></li>
-  <li><a href="#messages" role="tab" data-toggle="tab">Messages</a></li>
-  <li><a href="#settings" role="tab" data-toggle="tab">Settings</a></li>
-</ul>
-
-<div class="tab-content">
-  <div class="tab-pane active" id="home">Home Tab Content</div>
-  <div class="tab-pane" id="profile">Profile Tab Content</div>
-  <div class="tab-pane" id="messages">Message Tab Content</div>
-  <div class="tab-pane" id="settings">Settings Tab Content</div>
-</div>
-
-
-<script>
-  $(function () {
-    $('#myTab a:last').tab('show')
-  })
-</script>
+  <ul class="nav nav-tabs" id="myTab">
+  <s:property escape="false" value="tabs"></s:property>
+  </ul>
+  
+  <div class="tab-content">
+    <div class="tab-pane active" id="home"></div>
+  </div>
 
     <section>
         <div class="container">
@@ -108,7 +95,7 @@
 
     <script src="js/jquery-1.11.0.js"></script>
     <script src="js/bootstrap.min.js"></script>
-
+	<script type="text/javascript" src="js/home.js"></script>
 </body>
 
 </html>

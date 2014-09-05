@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 2, 2014 12:34:14 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="model.models.UserDetail" table="USER_DETAIL">
+         <id name="userName" type="java.lang.String">
+            <column name="USERNAME" />
+            <generator class="foreign" >
+            	<param name="property">user</param>
+            </generator>
+        </id>
+        <one-to-one name="user" class="model.models.User" constrained="true"/>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="email" type="java.lang.String">
+            <column name="EMAIL" />
+        </property>
+        <property name="station" type="int">
+            <column name="STATION" />
+        </property>
+        <property name="phone" type="java.lang.String">
+            <column name="PHONE" />
+        </property>
+    </class>
+</hibernate-mapping>

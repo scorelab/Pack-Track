@@ -20,3 +20,16 @@ $(document).ready(function () {
     }(jQuery));
 
 });
+
+$('#add').click(function (e) {
+	e.preventDefault();
+  
+	var href = $(this).attr("data-url");
+  	var url = this.hash;
+  	var pane = $(this);
+	
+	// ajax load from data-url
+	$(href).load(url,function(result){      
+	    pane.tab('show');
+	});
+});

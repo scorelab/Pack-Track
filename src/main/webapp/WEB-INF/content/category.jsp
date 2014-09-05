@@ -1,17 +1,16 @@
 <html lang="en">
 
-<head>
-
+<head> 
  <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/add_dev.css" rel="stylesheet">
+<link href="css/category.css" rel="stylesheet">
 </head>
 
 <body>
 
 <form>	
 <div id="form">
-<h1 class="hedinh-tag">Add Device</h1>
+<h1 class="hedinh-tag">Category Details</h1>
   <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
    <tr>
       <td>&nbsp;</td>
@@ -19,18 +18,18 @@
       <td>&nbsp;</td>
     </tr>
     <tr>
-    <td><b>Device ID<b></td>
+    <td><b>Category ID<b></td>
     <td></td>
-    <td><input type="text" name="device_id" size="40"maxlength="50"></td></tr>
+    <td><input type="text" name="category_Id" size="40"maxlength="50"></td></tr>
     <tr>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
     </tr>
     <tr>
-    <td><b>IMEI<b></td>
+    <td><b>Category Name<b></td>
     <td></td>
-    <td><input type="text" name="IMEI" size="40"maxlength="50"></td>
+    <td><input type="text" name="Category Name" size="40"maxlength="50"></td>
   </tr>
    <tr>
       <td>&nbsp;</td>
@@ -38,9 +37,9 @@
       <td>&nbsp;</td>
     </tr>
     <tr>
-    <td><b>Assign To<b></td>
+    <td><b>Unit Cost<b></td>
     <td></td>
-    <td><input type="text" name="assign_to" size="40"maxlength="50"></td>
+    <td><input type="text" name="Cost" size="40"maxlength="50"></td>
   
   </tr>
    <tr>
@@ -51,7 +50,7 @@
     <tr>
     <td><b>Add By<b></td>
     <td></td>
-    <td><input type="text" name="add_by" size="40"maxlength="50"></td>
+    <td><input type="text" name="add" size="40"maxlength="50"></td>
    </tr>
     <tr>
       <td>&nbsp;</td>
@@ -82,7 +81,7 @@
   <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td><input type="submit" name="submit2" value="Add Device"></td>
+    <td><input type="submit" name="submit" value="Add Category"></td>
   </tr>
   <tr>
     <td>&nbsp;</td>

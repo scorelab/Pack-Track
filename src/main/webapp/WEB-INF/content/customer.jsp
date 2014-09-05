@@ -2,16 +2,18 @@
 
 <head>
 
+  
+   
  <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/add_dev.css" rel="stylesheet">
+<link href="css/customer.css" rel="stylesheet">
 </head>
 
 <body>
 
 <form>	
 <div id="form">
-<h1 class="hedinh-tag">Add Device</h1>
+<h1 class="hedinh-tag">Customer Details</h1>
   <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
    <tr>
       <td>&nbsp;</td>
@@ -19,39 +21,39 @@
       <td>&nbsp;</td>
     </tr>
     <tr>
-    <td><b>Device ID<b></td>
+    <td><b>Customer ID<b></td>
     <td></td>
-    <td><input type="text" name="device_id" size="40"maxlength="50"></td></tr>
+    <td><input type="text" name="customer_Id" size="40"maxlength="50"></td></tr>
     <tr>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
     </tr>
     <tr>
-    <td><b>IMEI<b></td>
+    <td><b>Customer Name<b></td>
     <td></td>
-    <td><input type="text" name="IMEI" size="40"maxlength="50"></td>
+    <td><input type="text" name="Customer Name" size="40"maxlength="50"></td>
   </tr>
    <tr>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
     </tr>
-    <tr>
-    <td><b>Assign To<b></td>
-    <td></td>
-    <td><input type="text" name="assign_to" size="40"maxlength="50"></td>
-  
-  </tr>
+   <tr>
+				<td><b><font color=#000000>Customer E-mail<b></td>
+				<td></td>
+				<td><input class='input_class_long' type="text" name="E-mail" id='name' size="40"></td>
+				</font></td> <td><input class='input_class_short' type="text" name="phone" size="20" value="Phone"> </td>
+			</tr>
    <tr>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
     </tr>
     <tr>
-    <td><b>Add By<b></td>
+    <td><b>Customer Mobile No<b></td>
     <td></td>
-    <td><input type="text" name="add_by" size="40"maxlength="50"></td>
+    <td><input type="text" name="mobile" size="40"maxlength="50"></td>
    </tr>
     <tr>
       <td>&nbsp;</td>
@@ -60,9 +62,9 @@
     </tr>
 
     <tr>
-    <td><b>Delete<b></td>
+    <td><b>Customer Tele. No<b></td>
     <td></td>
-    <td><input type="text" name="delete" size="40"maxlength="50"></td>
+    <td><input type="text" name="telephone" size="40"maxlength="50"></td>
 	</tr>
 	 <tr>
       <td>&nbsp;</td>
@@ -70,9 +72,9 @@
       <td>&nbsp;</td>
     </tr>
     <tr>
-    <td><b>Delete By<b></td>
+    <td><b>Address<b></td>
     <td><b><b></td>
-    <td><input type="text" name="delete_by" size="40"maxlength="50"></td></tr>
+    <td><input type="text" name="address" size="40"maxlength="50"></td></tr>
   
    <tr>
     <td>&nbsp;</td>
@@ -80,10 +82,16 @@
     <td>&nbsp;</td>
   </tr>
   <tr>
+    <td><b>Add By<b></td>
+    <td><b><b></td>
+    <td><input type="text" name="addby" size="40"maxlength="50"></td></tr>
+  <br>
+  <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td><input type="submit" name="submit2" value="Add Device"></td>
+    <td><br><input type="submit" name="submit" value="Add Customer"></td>
   </tr>
+  
   <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
