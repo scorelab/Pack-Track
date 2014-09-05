@@ -1,51 +1,36 @@
 #form {
-	font-family: "Times New Roman", Times, serif;
-	margin-left:auto;
-	margin-right:auto;
-	padding:15px;
+    font-family: "Times New Roman", Times, serif;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
 }
-
-.hedinh-tag{
-	text-align:center;
-	font-family: "Times New Roman", Times, serif;
-	font-size:20px;
-	text-transform:uppercase;
-	color: #000000;
+.hedinh-tag {
+    text-align: center;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #000000;
 }
-.main-table{
-	width:100%;
-	border-top-width: 1px;
-	border-top-style: solid;
-	border-top-color: #999;
-	color: #383838 ;
-	font-family:"Times New Roman", Times, serif;
-	font-size: 14px;
-	font-weight: normal;
+.main-table {
+    width: 100%;
+    min-width: 250px;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: #999;
+    color: #383838;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 14px;
+    font-weight: normal;
 }
-#col-lg-12{
-	font-family: "Times New Roman", Times, serif;
-	font-size: 11px;
-	color: #FFFFFF;
-	text-align: center;
-	margin-right: auto;
-	margin-left: auto;
-	width: 100%;
-}
-
-
 .wrapper {
     text-align: center;
 }
-
 .button {
-    position: absolute:
-    top: 50%;
+    position: absolute: top: 50%;
 }
-
-.input_class_long {
-	width: 75%;
+.input_class {
+    width: 100%;
 }
-
-.input_class_short {
-	width: 35%;
+td {
+    padding-top: 2%;
 }

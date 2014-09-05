@@ -1,159 +1,108 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/add_user.css" rel="stylesheet">
-
-</head>
-
-<body>
-
-<form action="#" method="post">
-	<div id="form">
-	<h1 class="hedinh-tag">Add User</h1>
-		<table width="100%" border="0" cellspacing="0" cellpadding="0"
-			class="main-table">
-		<tr>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td><b><font color=#000000>User Name<b></td>
-				<td></td>
-				<td><input class='input_class_long' type="text" name="name" id='name' size="40"></td>
-				</font><t></td>
-				<td><input class='input_class_short' type="text" name="name" size="20" value="Phone"></td>
-			</tr>
-			<tr>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td><b><font color=#000000>E-mail<b></td>
-				<td></td>
-				<td><input class='input_class_long' type="text" name="name" id='name' size="40"></td>
-				</font></td>
-				<td><input class='input_class_short' type="text" name="name" size="20" value="NIC No"></td>
-			</tr>
-			<tr>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td><b><font color=#000000>Designation</td>
-				</b>
-				</font>
-
-				<td></td>
-				<td><input type="text" name="name" size="40"></td>
-			</tr>
-			<tr>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td><b><font color=#000000>Role</td>
-				</b>
-				</font>
-				<td></td>
-				<td><input type="text" name="role" size="40"></td>
-			</tr>
-			<tr>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td><b><font color=#000000> Home page</td>
-				</b>
-				</font>
-				<td>&nbsp;</td>
-				<td><input type="text" name="home_page" size="40"
-					maxlength="60"></td>
-			</tr>
-
-			<tr>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td><b><font color=#000000> Shed</td>
-				</b>
-				</font>
-				<td>&nbsp;</td>
-				<td><input type="text" name="shed" size="40"></td>
-				<tr>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td><b><font color=#000000> Sub Dept.</td>
-				</b>
-				</font>
-				<td>&nbsp;</td>
-				<td><input type="text" name="sub_dpt" size="40"></td>
-				<tr>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			</tr>
-				<tr>
-				<td><b><font color=#000000>Add By</td>
-				</b>
-				</font>
-				<td>&nbsp;</td>
-				<td><input type="text" name="add_by" size="40"></td>
-				</tr>
-		</table>
-		<h4>
-			<font>User Privileges</font>
-		</h4>
-		<b> <input type="checkbox" name="" value="value"> Add user
-			<input type="checkbox" name="" value="value"> Remove user
-			&nbsp;&nbsp; <input type="checkbox" name="" value="value"> Addtrain 
-			<input type="checkbox" name="" value="value"> Removetrain
-			<br>
-		<br> <input type="checkbox" name="" value="value"> Addstation 
-		     <input type="checkbox" name="" value="value"> Remove station &nbsp;&nbsp; 
-		     <input type="checkbox" name="" value="value">Add category
-		     <input type="checkbox" name="" value="Car">Remove category 
-		     <br>
-		<br> <input type="checkbox" name="" value="value"> Add customer 
-		     <input type="checkbox" name="" value="value"> Remove customer &nbsp;&nbsp; 
-		     <input type="checkbox" name="" value="value">Add parcel 
-		     <input type="checkbox" name="" value="value">Release parcel &nbsp;&nbsp; <br>
-		<br> <input type="checkbox" name="" value="value"> Confirm arrival 
-		     <input type="checkbox" name="" value="value"> Check upcoming parcels &nbsp;&nbsp; 
-		     <input type="checkbox" name=""value="value"> Select train
-		</b>
-		<tr>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-		</tr>
-		<div class="wrapper">
-			<tr>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td><br>
-				<input type="submit" name="submit2" value="Create User"></td>
-		</div>
-		<br>
-		</tr>
-		
-	</div>
-</form>
-</body>
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang='en'>
+   <head>
+      <meta name='viewport' content='width=device-width, initial-scale=1'>
+      <link href='css/add_user.css' rel='stylesheet'>
+   </head>
+   <body>
+      <s:form action='#' method='post' theme='simple'>
+         <div id='form'>
+            <h1 class='hedinh-tag'>Add User</h1>
+            <table class='main-table'>
+               <tr>
+                  <td><b>Name</b></td>
+                  <td colspan='3'>
+                    <s:textfield cssClass='input_class' type='text' name='name' id='name'/>
+                  </td>
+               </tr>
+               <tr>
+                  <td><b>UserName</b></td>
+                  <td colspan='3'>
+                     <s:textfield cssClass='input_class' type='text' name='userName' id='userName'/>
+                  </td>
+               </tr>
+               <tr>
+                  <td><b>Email</b></td>
+                  <td colspan='3'>
+                     <s:textfield cssClass='input_class' type='text' name='email' id='email'/>
+                  </td>
+               </tr>
+               <tr>
+                  <td><b>NIC</b></td>
+                  <td>
+                     <s:textfield cssClass='input_class' type='text' name='nic' id='nic'/>
+                  </td>
+                  <td style="padding:5px;"><b>Phone</b></td>
+                  <td>
+                     <s:textfield cssClass='input_class' type='text' name='phone' id='phone'/>
+                  </td>
+               </tr>
+               <tr>
+                  <td><b>Designation</b></td>
+                  <td>
+                     <s:textfield cssClass='input_class' type='text' name='designation' id='designation'/>
+                  </td>
+                  <td style="padding:5px;"><b>Role</b></td>
+                  <td>
+                     <s:textfield cssClass='input_class' type='text' name='role' id='role'/>
+                  </td>
+               </tr>
+               <tr>
+                  <td><b>Shed</b></td>
+                  <td>
+                     <s:textfield cssClass='input_class' type='text' name='shed' id='shed'/>
+                  </td>
+                  <td style="padding:5px;"><b>Sub Dept.</b></td>
+                  <td>
+                     <s:textfield cssClass='input_class' type='text' name='sub_dept' id='sub_dept'/>
+                  </td>
+               </tr>
+               <tr>
+                  <td><b>Station</b></td>
+                  <td>
+                     <select class='input_class' name='station' id='station'></select>
+                  </td>
+               </tr>
+            </table>
+            <br/>
+            <p><b>User Privileges</b></p>
+            <table style="width:85%; margin-left:10px;">
+               <tr>
+                  <td><input type='checkbox' name='add_user' value='value'> Add user</td>
+                  <td><input type='checkbox' name='remove_user' value='value'> Add/Remove user</td>
+                  <td><input type='checkbox' name='add_train' value='value'> Add train</td>
+                  <td><input type='checkbox' name='remove_train' value='value'> Add/Remove train</td>
+               </tr>
+               <tr>
+                  <td><input type='checkbox' name='add_station' value='value'> Add station</td>
+                  <td><input type='checkbox' name='remove_station' value='value'> Add/Remove station</td>
+                  <td><input type='checkbox' name='add_category' value='value'>Add category</td>
+                  <td><input type='checkbox' name='remove_category' value='value'>Add/Remove category</td>
+               </tr>
+               <tr>
+                   <td><input type='checkbox' name='add_device' value='value'>Add device</td>
+                  <td><input type='checkbox' name='remove_device' value='value'>Add/Remove device</td>
+                  <td><input type='checkbox' name='' value='value'> Add customer</td>
+                  <td><input type='checkbox' name='' value='value'>Add parcel</td>
+               </tr>
+               <tr>
+                  <td><input type='checkbox' name='' value='value'>Release parcel</td>
+                  <td><input type='checkbox' name='' value='value'> Confirm arrival</td>
+                  <td><input type='checkbox' name='' value='value'> Check upcoming parcels &nbsp;&nbsp;</td>
+                  <td><input type='checkbox' name=''value='value'> Select train</td>
+               </tr>
+            </table>
+            <br/>
+            <div class='wrapper'>
+                     <input type='submit' name='create' value='Create User'>
+                  </td>
+            </div>
+            <br>
+            </tr>
+         </div>
+      </s:form>
+   </body>
 </html>
-
