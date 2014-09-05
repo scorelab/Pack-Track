@@ -89,7 +89,7 @@
   <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td><br><input type="submit" name="add_device" value="Add Customer"></td>
+    <td><br><input type="submit" name="add_customer" value="Add Customer"></td>
   </tr>
   
   <tr>
