@@ -3,14 +3,20 @@ package control.actions;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.constraints.NotNull;
+
+import model.managers.StationManager;
 import model.managers.UserManager;
+import model.models.Station;
 import model.models.User;
 
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
-
+import com.opensymphony.xwork2.validator.annotations.EmailValidator;
+import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
+import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
 public class UserAction extends ActionSupport implements SessionAware {
 
@@ -45,7 +51,7 @@ public class UserAction extends ActionSupport implements SessionAware {
 		}
 
 	}
-	
+
 	@org.apache.struts2.convention.annotation.Action(value = "add-remove-user", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String addRemoveUser() throws Exception {
 
@@ -80,7 +86,7 @@ public class UserAction extends ActionSupport implements SessionAware {
 		}
 
 	}
-
+	
 	@Override
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
@@ -94,5 +100,6 @@ public class UserAction extends ActionSupport implements SessionAware {
 	public void setTableRows(String tableRows) {
 		this.tableRows = tableRows;
 	}
+
 
 }

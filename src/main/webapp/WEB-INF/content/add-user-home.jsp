@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div>
-		<a id='add' href="add_user" data-toggle="modal" data-target="#myModal">
+		<a href="<s:url action="add-user-input"/>" >
 Add new user
 </a>
 	</div>
@@ -36,18 +36,6 @@ Add new user
 			</tbody>
 		</table>
 	</div>
-	
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" style="min-width: 450px;">
-    <div class="modal-content">
-      <div id="container" class="modal-body">
-      </div>
-    </div>
-  </div>
-</div>
-
-	<script src="js/jquery-1.11.0.js"></script>
-	<script src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/tabs.js"></script>
 
 </body>

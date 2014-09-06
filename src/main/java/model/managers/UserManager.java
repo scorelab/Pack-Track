@@ -83,5 +83,22 @@ public class UserManager {
 		session.close();
 		return list;
 	}
+	
+	public boolean isUser(String userName){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query = session
+				.createQuery("from User where username=:userName");
+		query.setString("userName", userName);
+		List<User> list = query.list();
+		session.getTransaction().commit();
+		session.close();
+
+		if (list.size() == 0) {
+			return false;
+		}
+
+		return true;
+	}
 
 }
