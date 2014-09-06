@@ -23,7 +23,7 @@
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
-				<td><b><font color=#000000>User Name<b></td>
+				<td><b><font color=#000000>User Name</font></b></td>
 				<td></td>
 				<td><input class='input_class_long' type="text" name="name" id='name' size="40"></td>
 				</font><t></td>
@@ -90,7 +90,7 @@
 				</b>
 				</font>
 				<td>&nbsp;</td>
-				<td><input type="text" name="shed" size="40"</td>
+				<td><input type="text" name="shed" size="40"></td>
 				<tr>
 				<td>&nbsp;</td>
 				<td>&nbsp;</td>
@@ -101,7 +101,7 @@
 				</b>
 				</font>
 				<td>&nbsp;</td>
-				<td><input type="text" name="sub_dpt" size="40"</td>
+				<td><input type="text" name="sub_dpt" size="40"></td>
 				<tr>
 				<td>&nbsp;</td>
 				<td>&nbsp;</td>
@@ -112,7 +112,7 @@
 				</b>
 				</font>
 				<td>&nbsp;</td>
-				<td><input type="text" name="add_by" size="40"</td>
+				<td><input type="text" name="add_by" size="40"></td>
 				</tr>
 		</table>
 		<h4>
