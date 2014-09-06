@@ -2,10 +2,13 @@ package control.actions;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
 import model.managers.UserManager;
 import model.models.User;
 
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -14,10 +17,11 @@ import com.opensymphony.xwork2.ActionSupport;
  * Action to manage user home screen
  *
  */
-public class HomeAction extends ActionSupport implements SessionAware {
+public class HomeAction extends ActionSupport implements SessionAware, ServletResponseAware {
 
 	private Map<String, Object> session;
 	private String tabs;
+	HttpServletResponse response;
 
 	/**
 	 * Method to generate tabs for user according to privileges
@@ -26,7 +30,9 @@ public class HomeAction extends ActionSupport implements SessionAware {
 	 */
 	@org.apache.struts2.convention.annotation.Action(value = "home", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String authCheck() throws Exception {
-
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+		response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+		response.setDateHeader("Expires", 0);
 		UserManager uManager = new UserManager();
 		User user = (User) session.get("user");
 		if (uManager.loginCheck((String) session.get("userName"),
@@ -92,4 +98,10 @@ public class HomeAction extends ActionSupport implements SessionAware {
 		this.tabs = tabs;
 	}
 
+	public void setServletResponse(HttpServletResponse response) {
+		this.response = response;
+	}
+	public HttpServletResponse getServletResponse() {
+		return this.response;
+	}
 }
