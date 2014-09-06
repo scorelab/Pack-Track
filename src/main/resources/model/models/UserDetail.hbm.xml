@@ -17,9 +17,9 @@
         <property name="email" type="java.lang.String">
             <column name="EMAIL" />
         </property>
-        <property name="station" type="int">
-            <column name="STATION" />
-        </property>
+        <many-to-one name="station" class="model.models.Station" not-null="true" lazy="false">
+        	<column name="STATION" />
+        </many-to-one>
         <property name="phone" type="java.lang.String">
             <column name="PHONE" />
         </property>
