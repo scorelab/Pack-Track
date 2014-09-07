@@ -22,6 +22,8 @@ import com.opensymphony.xwork2.validator.annotations.EmailValidator;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
+import control.message.Email;
+
 @InterceptorRef(value="secureStack")
 public class AddUserAction extends ActionSupport implements SessionAware {
 
@@ -111,6 +113,7 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 			}
 			temp.setPassword(password);
 			if(uManager.addUser(temp)){
+				Email.send("PackTrack Account", "Hi,\n You user name at PackTrack is : "+userName+"\n You password is : "+sb.toString());
 				session.put("message", temp.getUserName()+" added successfully!");
 				return "done";
 			}
