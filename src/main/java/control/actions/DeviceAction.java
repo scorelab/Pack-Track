@@ -6,11 +6,13 @@ import java.util.Map;
 import model.managers.UserManager;
 import model.models.User;
 
+import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+@InterceptorRef(value="secureStack")
 public class DeviceAction extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
 	private String tableRows;
@@ -18,12 +20,8 @@ public class DeviceAction extends ActionSupport implements SessionAware {
 	@org.apache.struts2.convention.annotation.Action(value = "add-device-home", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String addDevice() throws Exception {
 
-		UserManager uManager = new UserManager();
 		User user = (User) session.get("user");
-		if (uManager.loginCheck((String) session.get("userName"),
-				(String) session.get("password"))
-				&& user != null
-				&& user.getUserPrivilege().isAdd_device()) {
+		if (user != null && user.getUserPrivilege().isAdd_device()) {
 
 			UserManager um = new UserManager();
 			List<User> list = um.getUserList();
@@ -47,12 +45,8 @@ public class DeviceAction extends ActionSupport implements SessionAware {
 	@org.apache.struts2.convention.annotation.Action(value = "add-remove-device", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String addRemoveDevice() throws Exception {
 
-		UserManager uManager = new UserManager();
 		User user = (User) session.get("user");
-		if (uManager.loginCheck((String) session.get("userName"),
-				(String) session.get("password"))
-				&& user != null
-				&& user.getUserPrivilege().isRemove_device()) {
+		if (user != null && user.getUserPrivilege().isRemove_device()) {
 
 			UserManager um = new UserManager();
 			List<User> list = um.getUserList();

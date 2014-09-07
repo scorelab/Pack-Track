@@ -6,11 +6,13 @@ import java.util.Map;
 import model.managers.UserManager;
 import model.models.User;
 
+import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+@InterceptorRef(value="secureStack")
 public class CategoryAction extends ActionSupport implements
 		SessionAware {
 	private Map<String, Object> session;
@@ -19,12 +21,8 @@ public class CategoryAction extends ActionSupport implements
 	@org.apache.struts2.convention.annotation.Action(value = "add-category-home", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String addCategory() throws Exception {
 
-		UserManager uManager = new UserManager();
 		User user = (User) session.get("user");
-		if (uManager.loginCheck((String) session.get("userName"),
-				(String) session.get("password"))
-				&& user != null
-				&& user.getUserPrivilege().isAdd_category()) {
+		if (user != null && user.getUserPrivilege().isAdd_category()) {
 
 			UserManager um = new UserManager();
 			List<User> list = um.getUserList();
@@ -48,12 +46,8 @@ public class CategoryAction extends ActionSupport implements
 	@org.apache.struts2.convention.annotation.Action(value = "add-remove-category", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String addRemoveCategory() throws Exception {
 
-		UserManager uManager = new UserManager();
 		User user = (User) session.get("user");
-		if (uManager.loginCheck((String) session.get("userName"),
-				(String) session.get("password"))
-				&& user != null
-				&& user.getUserPrivilege().isRemove_category()) {
+		if (user != null && user.getUserPrivilege().isRemove_category()) {
 
 			UserManager um = new UserManager();
 			List<User> list = um.getUserList();

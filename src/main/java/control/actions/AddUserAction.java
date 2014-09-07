@@ -18,7 +18,6 @@ import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
 @InterceptorRef(value="secureStack")
-@org.apache.struts2.convention.annotation.ParentPackage(value ="default")
 public class AddUserAction extends ActionSupport implements SessionAware {
 
 	private Map<String, Object> session;

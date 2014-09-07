@@ -10,6 +10,7 @@ import model.managers.UserManager;
 import model.models.Station;
 import model.models.User;
 
+import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -18,6 +19,7 @@ import com.opensymphony.xwork2.validator.annotations.EmailValidator;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
+@InterceptorRef(value="secureStack")
 public class UserAction extends ActionSupport implements SessionAware {
 
 	private Map<String, Object> session;
@@ -26,12 +28,8 @@ public class UserAction extends ActionSupport implements SessionAware {
 	@org.apache.struts2.convention.annotation.Action(value = "add-user-home", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String addUser() throws Exception {
 
-		UserManager uManager = new UserManager();
 		User user = (User) session.get("user");
-		if (uManager.loginCheck((String) session.get("userName"),
-				(String) session.get("password"))
-				&& user != null
-				&& user.getUserPrivilege().isAdd_user()) {
+		if (user!=null && user.getUserPrivilege().isAdd_user()) {
 
 			UserManager um = new UserManager();
 			List<User> list = um.getUserList();
@@ -55,12 +53,8 @@ public class UserAction extends ActionSupport implements SessionAware {
 	@org.apache.struts2.convention.annotation.Action(value = "add-remove-user", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String addRemoveUser() throws Exception {
 
-		UserManager uManager = new UserManager();
 		User user = (User) session.get("user");
-		if (uManager.loginCheck((String) session.get("userName"),
-				(String) session.get("password"))
-				&& user != null
-				&& user.getUserPrivilege().isRemove_user()) {
+		if (user!=null && user.getUserPrivilege().isRemove_user()) {
 
 			UserManager um = new UserManager();
 			List<User> list = um.getUserList();

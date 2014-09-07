@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.managers.UserManager;
 import model.models.User;
 
+import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
@@ -17,6 +18,7 @@ import com.opensymphony.xwork2.ActionSupport;
  * Action to manage user home screen
  *
  */
+@InterceptorRef(value="secureStack")
 public class HomeAction extends ActionSupport implements SessionAware, ServletResponseAware {
 
 	private Map<String, Object> session;
@@ -33,10 +35,9 @@ public class HomeAction extends ActionSupport implements SessionAware, ServletRe
 		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
 		response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
 		response.setDateHeader("Expires", 0);
+		
 		UserManager uManager = new UserManager();
 		User user = (User) session.get("user");
-		if (uManager.loginCheck((String) session.get("userName"),
-				(String) session.get("password")) && user != null) {
 
 			StringBuilder sbTab = new StringBuilder();
 			if (user.getUserPrivilege().isRemove_user()) {
@@ -79,9 +80,6 @@ public class HomeAction extends ActionSupport implements SessionAware, ServletRe
 			setTabs(sbTab.toString());
 			
 			return SUCCESS;
-		} else {
-			return ERROR;
-		}
 	}
 
 	@Override
