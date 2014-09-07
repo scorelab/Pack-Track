@@ -18,11 +18,12 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 @InterceptorRef(value = "secureStack")
-public class ChangeUserAction extends ActionSupport implements SessionAware, ServletRequestAware{
-	
+public class ChangeUserAction extends ActionSupport implements SessionAware,
+		ServletRequestAware {
+
 	private HttpServletRequest response;
 	private Map<String, Object> session;
-	List<Station> stationList= new StationManager().getStationList();
+	List<Station> stationList = new StationManager().getStationList();
 	private User temp;
 
 	public void setsId(int sId) {
@@ -45,31 +46,61 @@ public class ChangeUserAction extends ActionSupport implements SessionAware, Ser
 		this.temp = temp;
 	}
 
-	@org.apache.struts2.convention.annotation.Action(value = "change_user", results = { @Result(name = "error", location = "login", type = "redirect"),  @Result(name = "done", location = "home", type = "redirect") })
+	@org.apache.struts2.convention.annotation.Action(value = "change_user", results = {
+			@Result(name = "error", location = "login", type = "redirect"),
+			@Result(name = "done", location = "home", type = "redirect") })
 	public String changeUser() throws Exception {
-		UserManager um=new UserManager();
-		String param = getServletRequest().getParameter("userName");
-		temp=um.getUser(param);
-		if(temp==null){
-			return "done";
+		User user = (User) session.get("user");
+		if (user != null && user.getUserPrivilege().isRemove_user()) {
+			UserManager um = new UserManager();
+			String param = getServletRequest().getParameter("userName");
+			temp = um.getUser(param);
+			if (temp == null) {
+				return "done";
+			}
+			session.put("change", temp.getPassword());
+			return SUCCESS;
+		} else {
+			return ERROR;
 		}
-		session.put("change", temp.getPassword());
-		return SUCCESS;
 	}
-	
+
+	@org.apache.struts2.convention.annotation.Action(value = "delete_user", results = {
+			@Result(name = "error", location = "login", type = "redirect"),
+			@Result(name = "done", location = "home", type = "redirect") })
+	public String deleteUser() throws Exception {
+		User user = (User) session.get("user");
+		if (user != null && user.getUserPrivilege().isRemove_user()) {
+			UserManager um = new UserManager();
+			String param = getServletRequest().getParameter("id");
+			if (temp == null) {
+				return "done";
+			}
+			if (um.deleteUser(param, user.getUserName())) {
+				session.put("message", temp.getUserName()
+						+ " deleted successfully!");
+				session.remove("change");
+			}
+			return "done";
+		} else {
+			return ERROR;
+		}
+	}
+
 	public void setServletRequest(HttpServletRequest response) {
 		this.response = response;
 	}
+
 	public HttpServletRequest getServletRequest() {
 		return this.response;
 	}
-	
+
 	@Override
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
 
 	}
-	
+
 	public List<Station> getStationList() {
 		return stationList;
 	}

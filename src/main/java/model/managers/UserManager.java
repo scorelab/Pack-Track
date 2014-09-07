@@ -8,6 +8,7 @@ import model.models.Train;
 import model.models.User;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 
 public class UserManager {
@@ -138,6 +139,24 @@ public class UserManager {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
 			session.update(user);
+			session.getTransaction().commit();
+			session.close();
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean deleteUser(String userName, String by) {
+		try {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			SQLQuery query = session.createSQLQuery("update User set deleted=1, deleteby=:by where username=:userName");
+			query.setString("userName", userName);
+			query.setString("by", by);
+			query.executeUpdate();
 			session.getTransaction().commit();
 			session.close();
 			return true;
