@@ -4,6 +4,7 @@ import java.util.List;
 
 import model.db.HibernateUtil;
 import model.db.SHACheckSum;
+import model.models.Train;
 import model.models.User;
 
 import org.hibernate.Query;
@@ -72,6 +73,7 @@ public class UserManager {
 
 	/**
 	 * Returns a list of Users
+	 * 
 	 * @return
 	 */
 	public List<User> getUserList() {
@@ -83,12 +85,11 @@ public class UserManager {
 		session.close();
 		return list;
 	}
-	
-	public boolean isUser(String userName){
+
+	public boolean isUser(String userName) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Query query = session
-				.createQuery("from User where username=:userName");
+		Query query = session.createQuery("from User where username=:userName");
 		query.setString("userName", userName);
 		List<User> list = query.list();
 		session.getTransaction().commit();
@@ -99,6 +100,20 @@ public class UserManager {
 		}
 
 		return true;
+	}
+
+	public boolean addUser(User user) {
+		try {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			session.saveOrUpdate(user);
+			session.getTransaction().commit();
+			session.close();
+			return true;
+
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 }

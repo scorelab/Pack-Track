@@ -23,7 +23,9 @@ public class HomeAction extends ActionSupport implements SessionAware, ServletRe
 
 	private Map<String, Object> session;
 	private String tabs;
-	HttpServletResponse response;
+	private HttpServletResponse response;
+	private String message;
+	
 
 	/**
 	 * Method to generate tabs for user according to privileges
@@ -79,6 +81,11 @@ public class HomeAction extends ActionSupport implements SessionAware, ServletRe
 			sbTab.insert(index + 1, " class=\"active\"");
 			setTabs(sbTab.toString());
 			
+			if(session.get("message")!=null){
+				message=(String)session.get("message");
+				session.remove("message");
+			}
+			
 			return SUCCESS;
 	}
 
@@ -101,5 +108,13 @@ public class HomeAction extends ActionSupport implements SessionAware, ServletRe
 	}
 	public HttpServletResponse getServletResponse() {
 		return this.response;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 }

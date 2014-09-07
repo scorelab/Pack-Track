@@ -35,10 +35,10 @@ public class UserAction extends ActionSupport implements SessionAware {
 			List<User> list = um.getUserList();
 			StringBuilder sb = new StringBuilder();
 			for (User users : list) {
-				String temp = "<tr><td>" + user.getUserDetail().getName()
-						+ "</td><td>" + user.getUserName() + "</td><td>"
-						+ user.getUserDetail().getEmail() + "</td><td>"
-						+ user.getRole() + "</td><td>" + user.getNicNumber()
+				String temp = "<tr><td>" + users.getUserDetail().getName()
+						+ "</td><td>" + users.getUserName() + "</td><td>"
+						+ users.getUserDetail().getEmail() + "</td><td>"
+						+ users.getRole() + "</td><td>" + user.getNicNumber()
 						+ "</td></tr>";
 				sb.append(temp);
 			}
@@ -61,15 +61,15 @@ public class UserAction extends ActionSupport implements SessionAware {
 			StringBuilder sb = new StringBuilder();
 			for (User users : list) {
 				String temp = "<tr><td>"
-						+ user.getUserDetail().getName()
+						+ users.getUserDetail().getName()
 						+ "</td><td>"
-						+ user.getUserName()
+						+ users.getUserName()
 						+ "</td><td>"
-						+ user.getUserDetail().getEmail()
+						+ users.getUserDetail().getEmail()
 						+ "</td><td>"
-						+ user.getRole()
+						+ users.getRole()
 						+ "</td><td>"
-						+ user.getNicNumber()
+						+ users.getNicNumber()
 						+ "</td><td><button type='button' class='btn btn-default btn-lg'><span class='glyphicon glyphicon-pencil'></span> Change</button></td><td><button type='button' class='btn btn-default btn-lg'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>";
 				sb.append(temp);
 			}
