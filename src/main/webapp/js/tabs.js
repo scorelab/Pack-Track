@@ -30,17 +30,15 @@ $('.change').click(
 		});
 
 $('.deletes').click(function() {
-	alert("sdds");
 	var id = $(this).attr("name");
 	var text='Are sure want to delete '+id+' ?';
 	$('<div title="Are you sure?"/>').html(text).dialog({
 		buttons : {
 			'Delete' : function() {
-				$.ajax({
-	                url: 'delete_user',
-	                type: 'POST',
-	                data: {'id':id}
-	            });  
+				var form = $('<form action="delete_user" method="post">'
+						+ '<input type="text" name="id" value="' + id
+						+ '" />' + '</form>');
+				$(form).submit();
 				$(this).dialog('close');
 			},
 			'Cancel' : function() {
