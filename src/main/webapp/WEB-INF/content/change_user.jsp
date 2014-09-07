@@ -70,21 +70,21 @@
       <div id="container" class="modal-body">
            <s:form action="add_user">
          <div id='form'>
-            <h1 class='hedinh-tag'>Add User</h1>
+            <h1 class='hedinh-tag'>Change User</h1>
             <table class='main-table'>
                <tr>
                   <td><b>Name</b></td>
                   <td colspan='3'>
                   <table style="width:100%">
-                    <s:textfield cssClass='input_class' type='text' name='name' id='name'/>
+                    <s:textfield cssClass='input_class' type='text' name='name' id='name' value="%{temp.userDetail.name}"/>
                     </table>
                   </td>
                </tr>
-               <tr>
+               <tr style="display:none;">
                   <td><b>UserName</b></td>
                   <td colspan='3'>
                   <table style="width:100%">
-                     <s:textfield cssClass='input_class' type='text' name='userName' id='userName'/>
+                     <s:textfield cssClass='input_class' type='text' name='userName' id='userName' value="%{temp.userName}"/>
                      </table>
                   </td>
                </tr>
@@ -92,7 +92,7 @@
                   <td><b>Email</b></td>
                   <td colspan='3'>
                   <table style="width:100%">
-                     <s:textfield cssClass='input_class' type='text' name='email' id='email'/>
+                     <s:textfield cssClass='input_class' type='text' name='email' id='email' value="%{temp.userDetail.email}"/>
                      </table>
                   </td>
                </tr>
@@ -100,13 +100,13 @@
                   <td><b>NIC</b></td>
                   <td>
                   <table style="width:100%">
-                     <s:textfield cssClass='input_class' type='text' name='nic' id='nic'/>
+                     <s:textfield cssClass='input_class' type='text' name='nic' id='nic' value="%{temp.nicNumber}"/>
                      </table>
                   </td>
                   <td style="padding:5px;"><b>Phone</b></td>
                   <td>
                   <table style="width:100%">
-                     <s:textfield cssClass='input_class' type='text' name='phone' id='phone'/>
+                     <s:textfield cssClass='input_class' type='text' name='phone' id='phone' value="%{temp.userDetail.phone}"/>
                      </table>
                   </td>
                </tr>
@@ -114,13 +114,13 @@
                   <td><b>Designation</b></td>
                   <td>
                   <table style="width:100%">
-                     <s:textfield cssClass='input_class' type='text' name='designation' id='designation'/>
+                     <s:textfield cssClass='input_class' type='text' name='designation' id='designation' value="%{temp.designation}"/>
                      </table>
                   </td>
                   <td style="padding:5px;"><b>Role</b></td>
                   <td>
                   <table style="width:100%">
-                     <s:textfield cssClass='input_class' type='text' name='role' id='role'/>
+                     <s:textfield cssClass='input_class' type='text' name='role' id='role' value="%{temp.role}"/>
                      </table>
                   </td>
                </tr>
@@ -128,13 +128,13 @@
                   <td><b>Shed</b></td>
                   <td>
                   <table style="width:100%">
-                     <s:textfield cssClass='input_class' type='text' name='shed' id='shed'/>
+                     <s:textfield cssClass='input_class' type='text' name='shed' id='shed' value="%{temp.shed}"/>
                      </table>
                   </td>
                   <td style="padding:5px;"><b>Sub Dept.</b></td>
                   <td>
                   <table style="width:100%">
-                     <s:textfield cssClass='input_class' type='text' name='sub_dept' id='sub_dept'/>
+                     <s:textfield cssClass='input_class' type='text' name='sub_dept' id='sub_dept' value="%{temp.subDept}"/>
                      </table>
                   </td>
                </tr>
@@ -142,7 +142,7 @@
                   <td><b>Station</b></td>
                   <td>
                   <table style="width:100%">
-                     <s:select cssClass='input_class' name='station' id='station' list="stationList" listValue="name" listKey="ID"></s:select>
+                     <s:select cssClass='input_class' name='station' id='station' list="stationList" listValue="name" listKey="ID" value="%{temp.userDetail.station.ID}"></s:select>
                      </table>
                   </td>
                </tr>
@@ -151,20 +151,20 @@
             <p><b>User Privileges</b></p>
             <table style=" margin-left:10px;">
                <tr>
-                  <td><table style="width:100%"><s:checkbox name="add_user"  label="Add user"/></table></td>
-                  <td><table style="width:100%"><s:checkbox name='remove_user' label="Add/Remove user"/></table></td>
-                  <td><table style="width:100%"><s:checkbox name='add_train' label="Add train"/></table></td>
-                  <td><table style="width:100%"><s:checkbox name='remove_train' label=" Add/Remove train"/></table></td>
+                  <td><table style="width:100%"><s:checkbox name="add_user"  label="Add user" value="%{temp.userPrivilege.add_user}"/></table></td>
+                  <td><table style="width:100%"><s:checkbox name='remove_user' label="Add/Remove user" value="%{temp.userPrivilege.remove_user}"/></table></td>
+                  <td><table style="width:100%"><s:checkbox name='add_train' label="Add train" value="%{temp.userPrivilege.add_train}"/></table></td>
+                  <td><table style="width:100%"><s:checkbox name='remove_train' label=" Add/Remove train" value="%{temp.userPrivilege.remove_train}"/></table></td>
                </tr>
                <tr>
-                  <td><table style="width:100%"><s:checkbox name='add_station' label=" Add station"/></table></td>
-                  <td><table style="width:100%"><s:checkbox name='remove_station' label=" Add/Remove station"/></table></td>
-                  <td><table style="width:100%"><s:checkbox name='add_category' label="Add category"/></table></td>
-                  <td><table style="width:100%"><s:checkbox name='remove_category' label="Add/Remove category"/></table></td>
+                  <td><table style="width:100%"><s:checkbox name='add_station' label=" Add station" value="%{temp.userPrivilege.add_station}"/></table></td>
+                  <td><table style="width:100%"><s:checkbox name='remove_station' label=" Add/Remove station" value="%{temp.userPrivilege.remove_station}"/></table></td>
+                  <td><table style="width:100%"><s:checkbox name='add_category' label="Add category" value="%{temp.userPrivilege.add_category}"/></table></td>
+                  <td><table style="width:100%"><s:checkbox name='remove_category' label="Add/Remove category" value="%{temp.userPrivilege.remove_category}"/></table></td>
                </tr>
                <tr>
-                   <td><table style="width:100%"><s:checkbox name='add_device' label="Add device"/></table></td>
-                  <td><table style="width:100%"><s:checkbox name='remove_device' label="Add/Remove device"/></table></td>
+                   <td><table style="width:100%"><s:checkbox name='add_device' label="Add device" value="%{temp.userPrivilege.add_device}"/></table></td>
+                  <td><table style="width:100%"><s:checkbox name='remove_device' label="Add/Remove device" value="%{temp.userPrivilege.remove_device}"/></table></td>
                   <td><table style="width:100%"><s:checkbox name='' label=" Add customer"/></table></td>
                   <td><table style="width:100%"><s:checkbox name='' label="Add parcel"/></table></td>
                </tr>
@@ -202,9 +202,9 @@
     </footer>
 
     <script src="js/jquery-1.11.0.js"></script>
+    <script src="js/jquery.redirect.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/home.js"></script>
-
 </body>
 
 </html>

@@ -17,17 +17,15 @@ public class User {
 	UserPrivilege userPrivilege;
 	String addBy;
 	UserDetail userDetail;
-	
-	
 
 	public User() {
 		super();
 		this.userPrivilege = new UserPrivilege();
 	}
 
-	public User(String userName, String password,
-			String designation, String role, String shed, String subDept,
-			String nicNumber, UserPrivilege userPrivilege, String addBy, UserDetail userDetail) {
+	public User(String userName, String password, String designation,
+			String role, String shed, String subDept, String nicNumber,
+			UserPrivilege userPrivilege, String addBy, UserDetail userDetail) {
 		super();
 		this.userName = userName;
 		this.password = password;
@@ -37,8 +35,8 @@ public class User {
 		this.subDept = subDept;
 		this.nicNumber = nicNumber;
 		this.userPrivilege = userPrivilege;
-		this.addBy=addBy;
-		this.userDetail=userDetail;
+		this.addBy = addBy;
+		this.userDetail = userDetail;
 	}
 
 	public String getUserName() {

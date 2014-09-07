@@ -108,11 +108,8 @@ footer {
 position: absolute;
 }
 
-
-
-
-
-
-
+.ui-dialog-titlebar-close {
+  visibility: hidden;
+}
 
 
