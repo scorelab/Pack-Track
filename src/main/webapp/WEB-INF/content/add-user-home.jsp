@@ -8,9 +8,7 @@
 </head>
 <body>
 	<div>
-		<a href="<s:url action="add-user-input"/>" >
-Add new user
-</a>
+		<a href="<s:url action="add-user-input"/>"> Add new user </a>
 	</div>
 	<div class="input-group"
 		style="width: 80%; margin: 10px auto auto auto;">

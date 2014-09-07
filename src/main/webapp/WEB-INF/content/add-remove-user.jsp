@@ -7,6 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
 <body>
+	<div>
+		<a href="<s:url action="add-user-input"/>"> Add new user </a>
+	</div>
 	<div class="input-group"
 		style="width: 80%; margin: 10px auto auto auto;">
 		<span class="input-group-addon">Filter</span> <input id="filter"

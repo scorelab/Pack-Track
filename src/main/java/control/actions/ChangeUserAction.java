@@ -10,12 +10,14 @@ import model.managers.UserManager;
 import model.models.Station;
 import model.models.User;
 
+import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+@InterceptorRef(value = "secureStack")
 public class ChangeUserAction extends ActionSupport implements SessionAware, ServletRequestAware{
 	
 	private HttpServletRequest response;
@@ -48,7 +50,10 @@ public class ChangeUserAction extends ActionSupport implements SessionAware, Ser
 		UserManager um=new UserManager();
 		String param = getServletRequest().getParameter("userName");
 		temp=um.getUser(param);
-		session.put("change", "true");
+		if(temp==null){
+			return "done";
+		}
+		session.put("change", temp.getPassword());
 		return SUCCESS;
 	}
 	

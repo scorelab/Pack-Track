@@ -107,7 +107,6 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 			temp.setUserPrivilege(userPrivilege);
 
 			if (change == null) {
-				System.out.println("shtiD");
 				char[] chars = "abcdefghijklmnopqrstuvwxyzQWERTYUIOPASDFGHJKLZXCVBNM!@#$%^&*()1234567890"
 						.toCharArray();
 				StringBuilder sb = new StringBuilder();
@@ -134,10 +133,13 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 					return "done";
 				}
 			} else {
-				System.out.println("SDSDGDFGDFGD");
+				temp.getUserPrivilege().setUserName(userName);
+				temp.getUserDetail().setUserName(userName);
+				temp.setPassword(change);
 				if (uManager.updateUser(temp)) {
 					session.put("message", temp.getUserName()
 							+ " updated successfully!");
+					session.remove("change");
 					return "done";
 				}
 			}
@@ -152,7 +154,9 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 
 		UserManager uManager = new UserManager();
 		User user = (User) session.get("user");
-		if (user != null && user.getUserPrivilege().isAdd_user()) {
+		if (user != null
+				&& (user.getUserPrivilege().isAdd_user() || user
+						.getUserPrivilege().isRemove_user())) {
 
 			return "add_user";
 		} else {

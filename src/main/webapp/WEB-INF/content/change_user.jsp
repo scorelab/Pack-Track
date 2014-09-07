@@ -80,7 +80,7 @@
                     </table>
                   </td>
                </tr>
-               <tr>
+               <tr style="display:none;">
                   <td><b>UserName</b></td>
                   <td colspan='3'>
                   <table style="width:100%">
@@ -152,19 +152,19 @@
             <table style=" margin-left:10px;">
                <tr>
                   <td><table style="width:100%"><s:checkbox name="add_user"  label="Add user" value="%{temp.userPrivilege.add_user}"/></table></td>
-                  <td><table style="width:100%"><s:checkbox name='remove_user' label="Add/Remove user"/></table></td>
-                  <td><table style="width:100%"><s:checkbox name='add_train' label="Add train"/></table></td>
-                  <td><table style="width:100%"><s:checkbox name='remove_train' label=" Add/Remove train"/></table></td>
+                  <td><table style="width:100%"><s:checkbox name='remove_user' label="Add/Remove user" value="%{temp.userPrivilege.remove_user}"/></table></td>
+                  <td><table style="width:100%"><s:checkbox name='add_train' label="Add train" value="%{temp.userPrivilege.add_train}"/></table></td>
+                  <td><table style="width:100%"><s:checkbox name='remove_train' label=" Add/Remove train" value="%{temp.userPrivilege.remove_train}"/></table></td>
                </tr>
                <tr>
-                  <td><table style="width:100%"><s:checkbox name='add_station' label=" Add station"/></table></td>
-                  <td><table style="width:100%"><s:checkbox name='remove_station' label=" Add/Remove station"/></table></td>
-                  <td><table style="width:100%"><s:checkbox name='add_category' label="Add category"/></table></td>
-                  <td><table style="width:100%"><s:checkbox name='remove_category' label="Add/Remove category"/></table></td>
+                  <td><table style="width:100%"><s:checkbox name='add_station' label=" Add station" value="%{temp.userPrivilege.add_station}"/></table></td>
+                  <td><table style="width:100%"><s:checkbox name='remove_station' label=" Add/Remove station" value="%{temp.userPrivilege.remove_station}"/></table></td>
+                  <td><table style="width:100%"><s:checkbox name='add_category' label="Add category" value="%{temp.userPrivilege.add_category}"/></table></td>
+                  <td><table style="width:100%"><s:checkbox name='remove_category' label="Add/Remove category" value="%{temp.userPrivilege.remove_category}"/></table></td>
                </tr>
                <tr>
-                   <td><table style="width:100%"><s:checkbox name='add_device' label="Add device"/></table></td>
-                  <td><table style="width:100%"><s:checkbox name='remove_device' label="Add/Remove device"/></table></td>
+                   <td><table style="width:100%"><s:checkbox name='add_device' label="Add device" value="%{temp.userPrivilege.add_device}"/></table></td>
+                  <td><table style="width:100%"><s:checkbox name='remove_device' label="Add/Remove device" value="%{temp.userPrivilege.remove_device}"/></table></td>
                   <td><table style="width:100%"><s:checkbox name='' label=" Add customer"/></table></td>
                   <td><table style="width:100%"><s:checkbox name='' label="Add parcel"/></table></td>
                </tr>

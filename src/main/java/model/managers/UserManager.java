@@ -32,7 +32,7 @@ public class UserManager {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		Query query = session
-				.createQuery("from User where username=:userName and password=:password");
+				.createQuery("from User where username=:userName and password=:password and deleted='false'");
 		query.setString("userName", userName);
 		query.setString("password", passwordEnc);
 		List<User> list = query.list();
@@ -57,7 +57,7 @@ public class UserManager {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		Query query = session
-				.createQuery("from User where username=:userName and password=:password");
+				.createQuery("from User where username=:userName and password=:password and deleted='false'");
 		query.setString("userName", userName);
 		query.setString("password", password);
 		List<User> list = query.list();
@@ -79,7 +79,7 @@ public class UserManager {
 	public List<User> getUserList() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Query query = session.createQuery("from User");
+		Query query = session.createQuery("from User where deleted='false'");
 		List<User> list = query.list();
 		session.getTransaction().commit();
 		session.close();
@@ -137,8 +137,7 @@ public class UserManager {
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
-			User temp=(User) session.get(user.getUserName(),User.class);
-			temp=user;
+			session.update(user);
 			session.getTransaction().commit();
 			session.close();
 			return true;
