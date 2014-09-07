@@ -113,7 +113,7 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 			}
 			temp.setPassword(password);
 			if(uManager.addUser(temp)){
-				Email.send("PackTrack Account", "Hi,\n You user name at PackTrack is : "+userName+"\n You password is : "+sb.toString());
+				Email.send("PackTrack Account", "Hi,\n You user name at PackTrack is : "+userName+"\n You password is : "+sb.toString(), email);
 				session.put("message", temp.getUserName()+" added successfully!");
 				return "done";
 			}

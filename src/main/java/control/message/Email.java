@@ -11,7 +11,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class Email {
-	   public static void send(String subject, String body){   
+	   public static void send(String subject, String body, String to){   
 		   final String username = "packtrack.ucsc@gmail.com";
 			final String password = "packtrackucsc1234";
 	 
@@ -33,7 +33,7 @@ public class Email {
 				Message message = new MimeMessage(session);
 				message.setFrom(new InternetAddress("packtrack.ucsc@gmail.com"));
 				message.setRecipients(Message.RecipientType.TO,
-					InternetAddress.parse("paarandika@gmail.com"));
+					InternetAddress.parse(to));
 				message.setSubject(subject);
 				message.setText(body);
 	 
