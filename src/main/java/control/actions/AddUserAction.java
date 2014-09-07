@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import model.db.SHACheckSum;
 import model.managers.StationManager;
 import model.managers.UserManager;
@@ -15,6 +18,7 @@ import model.models.UserPrivilege;
 import org.apache.struts2.components.template.TemplateEngineManager;
 import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -24,11 +28,11 @@ import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
 import control.message.Email;
 
-@InterceptorRef(value="secureStack")
+@InterceptorRef(value = "secureStack")
 public class AddUserAction extends ActionSupport implements SessionAware {
 
 	private Map<String, Object> session;
-	List<Station> stationList= new StationManager().getStationList();
+	List<Station> stationList = new StationManager().getStationList();
 	private String name;
 	private String userName;
 	private String nic;
@@ -50,27 +54,32 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 	private boolean add_device;
 	private boolean remove_device;
 
-	@org.apache.struts2.convention.annotation.Action(value = "add_user", results = { @Result(name = "error", location = "login", type = "redirect"),  @Result(name = "done", location = "home", type = "redirect") })
+	@org.apache.struts2.convention.annotation.Action(value = "add_user", results = {
+			@Result(name = "error", location = "login", type = "redirect"),
+			@Result(name = "done", location = "home", type = "redirect") })
 	public String createUser() throws Exception {
 
 		User user = (User) session.get("user");
-		if (user != null && user.getUserPrivilege().isAdd_user()) {
+		if (user != null
+				&& (user.getUserPrivilege().isAdd_user() || user
+						.getUserPrivilege().isRemove_user())) {
 
+			String change = (String) session.get("change");
 			UserManager uManager = new UserManager();
-			if (uManager.isUser(userName)) {
+			if (uManager.isUser(userName) && change == null) {
 				addFieldError("userName", "UserName already exist");
 				return SUCCESS;
 			}
-			
-			User temp=new User();
-			UserDetail userdetail=new UserDetail();
-			UserPrivilege userPrivilege=new UserPrivilege();
+
+			User temp = new User();
+			UserDetail userdetail = new UserDetail();
+			UserPrivilege userPrivilege = new UserPrivilege();
 			userdetail.setName(name);
 			userdetail.setEmail(email);
 			userdetail.setPhone(phone);
 			userdetail.setUser(temp);
-			for(Station st: stationList){
-				if(st.getID()==station){
+			for (Station st : stationList) {
+				if (st.getID() == station) {
 					userdetail.setStation(st);
 					break;
 				}
@@ -86,7 +95,7 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 			userPrivilege.setRemove_device(remove_device);
 			userPrivilege.setRemove_station(remove_station);
 			userPrivilege.setRemove_train(remove_train);
-			
+
 			temp.setUserName(userName);
 			temp.setNicNumber(nic);
 			temp.setDesignation(designation);
@@ -96,26 +105,41 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 			temp.setAddBy(user.getUserName());
 			temp.setUserDetail(userdetail);
 			temp.setUserPrivilege(userPrivilege);
-			
-			char[] chars = "abcdefghijklmnopqrstuvwxyzQWERTYUIOPASDFGHJKLZXCVBNM!@#$%^&*()1234567890".toCharArray();
-			StringBuilder sb = new StringBuilder();
-			Random random = new Random();
-			for (int i = 0; i < 8; i++) {
-			    char c = chars[random.nextInt(chars.length)];
-			    sb.append(c);
-			}
-			SHACheckSum shaCheckSum = new SHACheckSum(sb.toString());
-			String password = null;
-			try {
-				password = shaCheckSum.getEncrValue();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			temp.setPassword(password);
-			if(uManager.addUser(temp)){
-				Email.send("PackTrack Account", "Hi,\n You user name at PackTrack is : "+userName+"\n You password is : "+sb.toString(), email);
-				session.put("message", temp.getUserName()+" added successfully!");
-				return "done";
+
+			if (change == null) {
+				System.out.println("shtiD");
+				char[] chars = "abcdefghijklmnopqrstuvwxyzQWERTYUIOPASDFGHJKLZXCVBNM!@#$%^&*()1234567890"
+						.toCharArray();
+				StringBuilder sb = new StringBuilder();
+				Random random = new Random();
+				for (int i = 0; i < 8; i++) {
+					char c = chars[random.nextInt(chars.length)];
+					sb.append(c);
+				}
+				SHACheckSum shaCheckSum = new SHACheckSum(sb.toString());
+				String password = null;
+				try {
+					password = shaCheckSum.getEncrValue();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				temp.setPassword(password);
+				if (uManager.addUser(temp)) {
+					Email.send("PackTrack Account",
+							"Hi,\n You user name at PackTrack is : " + userName
+									+ "\n You password is : " + sb.toString(),
+							email);
+					session.put("message", temp.getUserName()
+							+ " added successfully!");
+					return "done";
+				}
+			} else {
+				System.out.println("SDSDGDFGDFGD");
+				if (uManager.updateUser(temp)) {
+					session.put("message", temp.getUserName()
+							+ " updated successfully!");
+					return "done";
+				}
 			}
 			return SUCCESS;
 		} else {
@@ -128,10 +152,7 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 
 		UserManager uManager = new UserManager();
 		User user = (User) session.get("user");
-		if (uManager.loginCheck((String) session.get("userName"),
-				(String) session.get("password"))
-				&& user != null
-				&& user.getUserPrivilege().isAdd_user()) {
+		if (user != null && user.getUserPrivilege().isAdd_user()) {
 
 			return "add_user";
 		} else {

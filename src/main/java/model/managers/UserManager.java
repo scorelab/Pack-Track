@@ -106,12 +106,45 @@ public class UserManager {
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
-			session.saveOrUpdate(user);
+			session.save(user);
 			session.getTransaction().commit();
 			session.close();
 			return true;
 
 		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public User getUser(String userName) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query = session.createQuery("from User where username=:userName");
+		query.setString("userName", userName);
+		List<User> list = query.list();
+		session.getTransaction().commit();
+		session.close();
+
+		if (list.size() == 0) {
+			return null;
+		}
+
+		return list.get(0);
+	}
+	
+	public boolean updateUser(User user) {
+		try {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			User temp=(User) session.get(user.getUserName(),User.class);
+			temp=user;
+			session.getTransaction().commit();
+			session.close();
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
 			return false;
 		}
 	}

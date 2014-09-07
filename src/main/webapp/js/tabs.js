@@ -1,8 +1,3 @@
-/*!
- * Bootstrap v3.2.0 (http://getbootstrap.com)
- * Copyright 2011-2014 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
 $(document).ready(function () {
 
     (function ($) {
@@ -19,4 +14,16 @@ $(document).ready(function () {
 
     }(jQuery));
 
+});
+
+$(".btn").mouseup(function(){
+    $(this).blur();
+});
+
+$('.change').click(function() { 
+	var id=$(this).attr("name");
+	var form = $('<form action="change_user" method="post">' +
+			  '<input type="text" name="userName" value="' + id + '" />' +
+			  '</form>');
+			$(form).submit();
 });
