@@ -7,8 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
 <body>
-	<div>
-		<a href="<s:url action="add-user-input"/>"> Add new user </a>
+	<div style="width: 80%; margin: 10px auto;">
+		<a href="<s:url action="add-user-input"/>" class="btn btn-default btn-s"><span class='glyphicon glyphicon-plus-sign'></span> Add new user </a>
 	</div>
 	<div class="input-group"
 		style="width: 80%; margin: 10px auto auto auto;">

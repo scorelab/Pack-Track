@@ -70,7 +70,7 @@ public class UserAction extends ActionSupport implements SessionAware {
 						+ users.getRole()
 						+ "</td><td>"
 						+ users.getNicNumber()
-						+ "</td><td><button type='button' class='btn btn-default btn-lg change' name='"+users.getUserName()+"'><span class='glyphicon glyphicon-pencil'></span> Change</button></td><td><button type='button' class='btn btn-default btn-lg deletes' name='"+users.getUserName()+"'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>";
+						+ "</td><td><button type='button' class='btn btn-default btn-s change' name='"+users.getUserName()+"'><span class='glyphicon glyphicon-pencil'></span> Change</button></td><td><button type='button' class='btn btn-default btn-s deletes' name='"+users.getUserName()+"'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>";
 				sb.append(temp);
 			}
 			tableRows = sb.toString();
