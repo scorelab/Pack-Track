@@ -6,8 +6,11 @@ import org.junit.Test;
 
 public class DeviceTest {
 	
+	User user1=new User();
+	User user2=new User();
+	
 	Device deviceDefault=new Device(); //default constructor
-	Device deviceParameter=new Device(1,"100100","Dilanka","Rand");
+	Device deviceParameter=new Device(1,"100100", user1 ,"Rand");
 
 	@Test
 	public void getIDTest() {
@@ -21,7 +24,7 @@ public class DeviceTest {
 	
 	@Test
 	public void getAssignedTest() {
-		assertEquals("Dilanka",deviceParameter.getAssigned());
+		assertEquals(user1 ,deviceParameter.getAssigned());
 	}
 	
 	@Test
@@ -43,8 +46,8 @@ public class DeviceTest {
 	
 	@Test
 	public void setAssignedTest() {
-		deviceDefault.setAssigned("Manee");;
-		assertEquals("Manee",deviceDefault.getAssigned());
+		deviceDefault.setAssigned(user2);;
+		assertEquals(user2,deviceDefault.getAssigned());
 	}
 	
 	@Test
