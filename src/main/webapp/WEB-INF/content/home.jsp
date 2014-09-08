@@ -90,6 +90,7 @@
 	<!-- /.container --> </footer>
 
 	<script src="js/jquery-1.11.0.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/home.js"></script>
 	<s:if test="%{#message!=''}">

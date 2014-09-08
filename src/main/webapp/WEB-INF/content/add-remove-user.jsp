@@ -35,7 +35,6 @@
 
 	</div>
 	<script type="text/javascript" src="js/tabs.js"></script>
-	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
 
 </body>
 </html>
