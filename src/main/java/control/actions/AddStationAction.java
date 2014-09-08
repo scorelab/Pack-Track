@@ -15,6 +15,8 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
+import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
 import control.message.Email;
 
@@ -51,8 +53,9 @@ public class AddStationAction extends ActionSupport implements SessionAware {
 					return "done";
 				}
 			} else {
-
-				if (sm.addStation(temp)) {
+				
+				temp.setID(Integer.parseInt(change));
+				if (sm.updateStation(temp)) {
 					session.put("message", "Station " + temp.getName()
 							+ " updated successfully!");
 					session.remove("change");
@@ -91,6 +94,7 @@ public class AddStationAction extends ActionSupport implements SessionAware {
 		return name;
 	}
 
+	@RequiredStringValidator(type = ValidatorType.FIELD, message = "Name cannot be empty")
 	public void setName(String name) {
 		this.name = name;
 	}

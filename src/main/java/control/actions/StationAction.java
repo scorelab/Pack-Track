@@ -59,7 +59,7 @@ public class StationAction extends ActionSupport implements SessionAware {
 						+ stations.getName()
 						+ "</td><td>"
 						+ stations.getContactNum()
-						+ "</td><td><button type='button' class='btn btn-default btn-s change' name='"+stations.getID()+"'><span class='glyphicon glyphicon-pencil'></span> Change</button></td><td><button type='button' class='btn btn-default btn-s deletes' name='"+stations.getID()+"'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>";
+						+ "</td><td><button type='button' class='btn btn-default btn-s change_st' name='"+stations.getID()+"'><span class='glyphicon glyphicon-pencil'></span> Change</button></td><td><button type='button' class='btn btn-default btn-s deletes_st' name='"+stations.getID()+"'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>";
 				sb.append(temp);
 			}
 			tableRows = sb.toString();
