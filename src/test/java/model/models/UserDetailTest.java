@@ -34,11 +34,11 @@ public class UserDetailTest {
 		assertEquals("thamali@gmail.com", userDetailDefault.getEmail());
 	}
 	
-	@Test
-	public void setStationTest() {
-		userDetailDefault.setStation(10);
-		assertEquals(10, userDetailDefault.getStation());
-	}
+//	@Test
+//	public void setStationTest() {
+//		userDetailDefault.setStation(10);
+//		assertEquals(10, userDetailDefault.getStation());
+//	}
 	
 	@Test
 	public void setPhoneTest() {
