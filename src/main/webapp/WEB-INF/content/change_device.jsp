@@ -68,7 +68,7 @@
   <div class="modal-dialog" style="min-width: 450px;">
     <div class="modal-content">
       <div id="container" class="modal-body">
-           <s:form action="add_device">
+           <s:form action="add_user">
          <div id='form'>
             <h1 class='hedinh-tag'>Device</h1>
             <table class='main-table'>

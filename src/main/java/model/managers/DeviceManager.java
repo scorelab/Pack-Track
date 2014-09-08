@@ -12,14 +12,18 @@ import org.hibernate.Session;
 
 public class DeviceManager {
 
-	public void addDevice(Device device) {
+	public boolean addDevice(Device device) {
+		try {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			session.saveOrUpdate(device);
+			session.getTransaction().commit();
+			session.close();
+			return true;
 
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		session.beginTransaction();
-		session.saveOrUpdate(device);
-		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.getSessionFactory().close();
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	public boolean removeDevice(Device device) {
@@ -39,7 +43,7 @@ public class DeviceManager {
 		}
 
 	}
-	
+
 	/**
 	 * Returns a list of Device
 	 * 
@@ -71,12 +75,13 @@ public class DeviceManager {
 
 		return list.get(0);
 	}
-	
+
 	public boolean deleteDevice(int id, String by) {
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
-			SQLQuery query = session.createSQLQuery("update Device set deleted=1, deleteby=:by where devnid=:id");
+			SQLQuery query = session
+					.createSQLQuery("update Device set deleted=1, deleteby=:by where devnid=:id");
 			query.setInteger("id", id);
 			query.setString("by", by);
 			query.executeUpdate();
@@ -89,7 +94,7 @@ public class DeviceManager {
 			return false;
 		}
 	}
-	
+
 	public boolean updateDevice(Device device) {
 
 		try {

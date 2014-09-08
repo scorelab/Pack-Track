@@ -7,6 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
 <body>
+<div style="width: 80%; margin: 10px auto;">
+		<a href="<s:url action="add-device-input"/>" class="btn btn-default btn-s"><span class='glyphicon glyphicon-plus-sign'></span>  Add new device </a>
+	</div>
 	<div class="input-group"
 		style="width: 80%; margin: 10px auto auto auto;">
 		<span class="input-group-addon">Filter</span> <input id="filter"
