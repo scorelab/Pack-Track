@@ -3,22 +3,21 @@ package model.managers;
 import java.util.List;
 
 import model.db.HibernateUtil;
-import model.models.Device;
+import model.models.Category;
 import model.models.Station;
-import model.models.User;
 
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 
-public class StationManager {
+public class CategoryManager {
 
-	public boolean addStation(Station station) {
+	public boolean addCategory(Category cat) {
 
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
-			session.saveOrUpdate(station);
+			session.saveOrUpdate(cat);
 			session.getTransaction().commit();
 			session.close();
 			return true;
@@ -26,24 +25,6 @@ public class StationManager {
 		} catch (Exception e) {
 			return false;
 		}
-	}
-
-	public boolean removeStation(Station station) {
-
-		try {
-
-			Session session = HibernateUtil.getSessionFactory().openSession();
-			session.beginTransaction();
-			session.delete(station);
-			session.getTransaction().commit();
-			session.close();
-			HibernateUtil.getSessionFactory().close();
-			return true;
-			
-		} catch (Exception e) {
-			return false;
-		}
-
 	}
 
 	/**
@@ -51,38 +32,37 @@ public class StationManager {
 	 * 
 	 * @return
 	 */
-	public List<Station> getStationList() {
+	public List<Category> getCategoryList() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Query query = session.createQuery("from Station where deleted='false'");
-		List<Station> list = query.list();
+		Query query = session.createQuery("from Category where deleted='false'");
+		List<Category> list = query.list();
 		session.getTransaction().commit();
 		session.close();
 		return list;
 	}
 
-	public Station getStation(int id) {
+	public Category getCategory(int id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Query query = session.createQuery("from Station where stationid=:id");
+		Query query = session.createQuery("from Category where catid=:id");
 		query.setInteger("id", id);
-		List<Station> list = query.list();
+		List<Category> list = query.list();
 		session.getTransaction().commit();
 		session.close();
 
 		if (list.size() == 0) {
-			System.out.println("null");
 			return null;
 		}
 
 		return list.get(0);
 	}
 	
-	public boolean deleteStation(int id, String by) {
+	public boolean deleteCategory(int id, String by) {
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
-			SQLQuery query = session.createSQLQuery("update Station set deleted=1, deleteby=:by where stationid=:id");
+			SQLQuery query = session.createSQLQuery("update Category set deleted=1, deleteby=:by where catid=:id");
 			query.setInteger("id", id);
 			query.setString("by", by);
 			query.executeUpdate();
@@ -96,12 +76,12 @@ public class StationManager {
 		}
 	}
 	
-	public boolean updateStation(Station station) {
+	public boolean updateCategory(Category cat) {
 
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
-			session.update(station);
+			session.update(cat);
 			session.getTransaction().commit();
 			session.close();
 			return true;

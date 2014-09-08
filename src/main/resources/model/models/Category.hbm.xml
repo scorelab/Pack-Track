@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 8, 2014 4:24:26 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="model.models.Category" table="CATEGORY">
+        <id name="ID" type="int" access="field">
+            <column name="catID" />
+            <generator class="identity" />
+        </id>
+        <property name="catName" type="java.lang.String">
+            <column name="CATNAME" />
+        </property>
+        <property name="unitCost" type="int">
+            <column name="UNITCOST" />
+        </property>
+        <property name="addBy" type="java.lang.String">
+            <column name="ADDBY" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -3,7 +3,9 @@ package control.actions;
 import java.util.List;
 import java.util.Map;
 
+import model.managers.CategoryManager;
 import model.managers.UserManager;
+import model.models.Category;
 import model.models.User;
 
 import org.apache.struts2.convention.annotation.InterceptorRef;
@@ -24,14 +26,12 @@ public class CategoryAction extends ActionSupport implements
 		User user = (User) session.get("user");
 		if (user != null && user.getUserPrivilege().isAdd_category()) {
 
-			UserManager um = new UserManager();
-			List<User> list = um.getUserList();
+			CategoryManager um = new CategoryManager();
+			List<Category> list = um.getCategoryList();
 			StringBuilder sb = new StringBuilder();
-			for (User users : list) {
-				String temp = "<tr><td>" + user.getUserDetail().getName()
-						+ "</td><td>" + user.getUserName() + "</td><td>"
-						+ user.getUserDetail().getEmail() + "</td><td>"
-						+ user.getRole() + "</td><td>" + user.getNicNumber()
+			for (Category category : list) {
+				String temp = "<tr><td>" + category.getCatName()
+						+ "</td><td>" + category.getUnitCost()
 						+ "</td></tr>";
 				sb.append(temp);
 			}
@@ -49,21 +49,13 @@ public class CategoryAction extends ActionSupport implements
 		User user = (User) session.get("user");
 		if (user != null && user.getUserPrivilege().isRemove_category()) {
 
-			UserManager um = new UserManager();
-			List<User> list = um.getUserList();
+			CategoryManager um = new CategoryManager();
+			List<Category> list = um.getCategoryList();
 			StringBuilder sb = new StringBuilder();
-			for (User users : list) {
-				String temp = "<tr><td>"
-						+ user.getUserDetail().getName()
-						+ "</td><td>"
-						+ user.getUserName()
-						+ "</td><td>"
-						+ user.getUserDetail().getEmail()
-						+ "</td><td>"
-						+ user.getRole()
-						+ "</td><td>"
-						+ user.getNicNumber()
-						+ "</td><td><button type='button' class='btn btn-default btn-lg'><span class='glyphicon glyphicon-pencil'></span> Change</button></td><td><button type='button' class='btn btn-default btn-lg'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>";
+			for (Category category : list) {
+				String temp = "<tr><td>" + category.getCatName()
+						+ "</td><td>" + category.getUnitCost()
+						+ "</td><td><button type='button' class='btn btn-default btn-s change_ca' name='"+category.getID()+"'><span class='glyphicon glyphicon-pencil'></span> Change</button></td><td><button type='button' class='btn btn-default btn-s deletes_ca' name='"+category.getID()+"'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>";
 				sb.append(temp);
 			}
 			tableRows = sb.toString();
