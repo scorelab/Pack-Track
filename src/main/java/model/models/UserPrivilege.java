@@ -49,6 +49,7 @@ public class UserPrivilege {
 		this.check_upcoming_parcel = check_upcoming_parcel;
 		this.select_train = select_train;
 		this.user=user;
+		this.userName=userName;
 		this.add_device=add_device;
 		this.remove_device=remove_device;
 	}

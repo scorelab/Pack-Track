@@ -8,7 +8,7 @@ package model.models;
  */
 public class User {
 	String userName;
-	String password;
+	private String password;
 	String designation;
 	String role;
 	String shed;
