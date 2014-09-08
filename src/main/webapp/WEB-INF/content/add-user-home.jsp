@@ -7,10 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
 <body>
-	<div>
-		<a id='add' href="add_user" data-toggle="modal" data-target="#myModal">
-Add new user
-</a>
+	<div style="width: 80%; margin: 10px auto;">
+		<a href="<s:url action="add-user-input"/>" class="btn btn-default btn-s"><span class='glyphicon glyphicon-plus-sign'></span> Add new user </a>
 	</div>
 	<div class="input-group"
 		style="width: 80%; margin: 10px auto auto auto;">
@@ -36,18 +34,6 @@ Add new user
 			</tbody>
 		</table>
 	</div>
-	
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" style="min-width: 450px;">
-    <div class="modal-content">
-      <div id="container" class="modal-body">
-      </div>
-    </div>
-  </div>
-</div>
-
-	<script src="js/jquery-1.11.0.js"></script>
-	<script src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/tabs.js"></script>
 
 </body>

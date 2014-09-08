@@ -7,6 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
 <body>
+	<div style="width: 80%; margin: 10px auto;">
+		<a href="<s:url action="add-user-input"/>" class="btn btn-default btn-s"><span class='glyphicon glyphicon-plus-sign'></span>  Add new user </a>
+	</div>
 	<div class="input-group"
 		style="width: 80%; margin: 10px auto auto auto;">
 		<span class="input-group-addon">Filter</span> <input id="filter"
@@ -25,16 +28,14 @@
 			</tr>
 		</thead>
 		<tbody class="searchable">
-
 			<s:property escape="false" value="tableRows"></s:property>
 		</tbody>
 	</table>
 
 
 	</div>
-	<script src="js/jquery-1.11.0.js"></script>
-	<script src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/tabs.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
 
 </body>
 </html>

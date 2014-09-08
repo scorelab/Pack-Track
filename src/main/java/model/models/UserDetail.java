@@ -5,8 +5,9 @@ public class UserDetail {
 	User user;
 	String name;
 	String email;
-	int station;
 	String phone;
+	Station station;
+	private boolean deleted;
 	
 	public String getUserName() {
 		return userName;
@@ -32,16 +33,24 @@ public class UserDetail {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getStation() {
-		return station;
-	}
-	public void setStation(int station) {
-		this.station = station;
-	}
 	public String getPhone() {
 		return phone;
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	
+	public Station getStation() {
+		return station;
+	}
+
+	public void setStation(Station station) {
+		this.station = station;
+	}
+	public boolean isDeleted() {
+		return deleted;
+	}
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 }

@@ -4,9 +4,11 @@ import java.util.List;
 
 import model.db.HibernateUtil;
 import model.db.SHACheckSum;
+import model.models.Train;
 import model.models.User;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 
 public class UserManager {
@@ -31,7 +33,7 @@ public class UserManager {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		Query query = session
-				.createQuery("from User where username=:userName and password=:password");
+				.createQuery("from User u where u.userName=:userName and u.password=:password and u.userDetail.deleted='false'");
 		query.setString("userName", userName);
 		query.setString("password", passwordEnc);
 		List<User> list = query.list();
@@ -56,7 +58,7 @@ public class UserManager {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		Query query = session
-				.createQuery("from User where username=:userName and password=:password");
+				.createQuery("from User u where u.userName=:userName and u.password=:password and u.userDetail.deleted='false'");
 		query.setString("userName", userName);
 		query.setString("password", password);
 		List<User> list = query.list();
@@ -72,16 +74,97 @@ public class UserManager {
 
 	/**
 	 * Returns a list of Users
+	 * 
 	 * @return
 	 */
 	public List<User> getUserList() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Query query = session.createQuery("from User");
+		Query query = session.createQuery("from User u where u.userDetail.deleted='false'");
 		List<User> list = query.list();
 		session.getTransaction().commit();
 		session.close();
 		return list;
+	}
+
+	public boolean isUser(String userName) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query = session.createQuery("from User where username=:userName");
+		query.setString("userName", userName);
+		List<User> list = query.list();
+		session.getTransaction().commit();
+		session.close();
+
+		if (list.size() == 0) {
+			return false;
+		}
+
+		return true;
+	}
+
+	public boolean addUser(User user) {
+		try {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			session.save(user);
+			session.getTransaction().commit();
+			session.close();
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public User getUser(String userName) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query = session.createQuery("from User where username=:userName");
+		query.setString("userName", userName);
+		List<User> list = query.list();
+		session.getTransaction().commit();
+		session.close();
+
+		if (list.size() == 0) {
+			return null;
+		}
+
+		return list.get(0);
+	}
+	
+	public boolean updateUser(User user) {
+		try {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			session.update(user);
+			session.getTransaction().commit();
+			session.close();
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean deleteUser(String userName, String by) {
+		try {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			SQLQuery query = session.createSQLQuery("update User_detail set deleted=1, deleteby=:by where username=:userName");
+			query.setString("userName", userName);
+			query.setString("by", by);
+			query.executeUpdate();
+			session.getTransaction().commit();
+			session.close();
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }
