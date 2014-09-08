@@ -8,21 +8,20 @@ package model.models;
  */
 public class Device {
 
-	int ID;
-	String IMEI;
-	String Assigned;
-	String addBy;
+	private int ID;
+	private String IMEI;
+	private User assigned;
+	private String addBy;
 
 	public Device() {
 
 	}
 
-	public Device(int id, String imei, String name, String addby) {
-		ID = id;
-		IMEI = imei;
-		Assigned = name;
-
-		addBy = addby;
+	public Device(int id, String imei, User name, String addby) {
+		this.ID = id;
+		this.IMEI = imei;
+		this.assigned = name;
+		this.addBy = addby;
 	}
 
 	public int getID() {
@@ -41,12 +40,12 @@ public class Device {
 		IMEI = iMEI;
 	}
 
-	public String getAssigned() {
-		return Assigned;
+	public User getAssigned() {
+		return assigned;
 	}
 
-	public void setAssigned(String assigned) {
-		Assigned = assigned;
+	public void setAssigned(User assigned) {
+		this.assigned = assigned;
 	}
 
 	public String getAddBy() {

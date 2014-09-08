@@ -16,13 +16,8 @@
 	<table class="table table-striped" style="width: 80%;" align="center">
 		<thead>
 			<tr>
-				<th style="width: 22%;">Name</th>
-				<th style="width: 15%;">User Name</th>
-				<th style="width: 22%;">email</th>
-				<th style="width: 13%;">Role</th>
-				<th style="width: 20%;">NIC</th>
-				<th></th>
-				<th></th>
+				<th style="width: 55%;">IMEI</th>
+				<th style="width: 40%;">Assigned user</th>
 			</tr>
 		</thead>
 		<tbody class="searchable">

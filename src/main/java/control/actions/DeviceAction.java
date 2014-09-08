@@ -3,7 +3,9 @@ package control.actions;
 import java.util.List;
 import java.util.Map;
 
+import model.managers.DeviceManager;
 import model.managers.UserManager;
+import model.models.Device;
 import model.models.User;
 
 import org.apache.struts2.convention.annotation.InterceptorRef;
@@ -23,14 +25,12 @@ public class DeviceAction extends ActionSupport implements SessionAware {
 		User user = (User) session.get("user");
 		if (user != null && user.getUserPrivilege().isAdd_device()) {
 
-			UserManager um = new UserManager();
-			List<User> list = um.getUserList();
+			DeviceManager dm = new DeviceManager();
+			List<Device> list = dm.getDeviceList();
 			StringBuilder sb = new StringBuilder();
-			for (User users : list) {
-				String temp = "<tr><td>" + user.getUserDetail().getName()
-						+ "</td><td>" + user.getUserName() + "</td><td>"
-						+ user.getUserDetail().getEmail() + "</td><td>"
-						+ user.getRole() + "</td><td>" + user.getNicNumber()
+			for (Device device : list) {
+				String temp = "<tr><td>" + device.getIMEI()
+						+ "</td><td>" + device.getAssigned().getUserName()
 						+ "</td></tr>";
 				sb.append(temp);
 			}
@@ -48,21 +48,13 @@ public class DeviceAction extends ActionSupport implements SessionAware {
 		User user = (User) session.get("user");
 		if (user != null && user.getUserPrivilege().isRemove_device()) {
 
-			UserManager um = new UserManager();
-			List<User> list = um.getUserList();
+			DeviceManager dm = new DeviceManager();
+			List<Device> list = dm.getDeviceList();
 			StringBuilder sb = new StringBuilder();
-			for (User users : list) {
-				String temp = "<tr><td>"
-						+ user.getUserDetail().getName()
-						+ "</td><td>"
-						+ user.getUserName()
-						+ "</td><td>"
-						+ user.getUserDetail().getEmail()
-						+ "</td><td>"
-						+ user.getRole()
-						+ "</td><td>"
-						+ user.getNicNumber()
-						+ "</td><td><button type='button' class='btn btn-default btn-lg'><span class='glyphicon glyphicon-pencil'></span> Change</button></td><td><button type='button' class='btn btn-default btn-lg'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>";
+			for (Device device : list) {
+				String temp = "<tr><td>" + device.getIMEI()
+						+ "</td><td>" + device.getAssigned().getUserName()
+						+ "</td><td><button type='button' class='btn btn-default btn-s change_di' name='"+device.getID()+"'><span class='glyphicon glyphicon-pencil'></span> Change</button></td><td><button type='button' class='btn btn-default btn-s deletes_di' name='"+device.getID()+"'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>";
 				sb.append(temp);
 			}
 			tableRows = sb.toString();
