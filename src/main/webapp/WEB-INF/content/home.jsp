@@ -58,7 +58,7 @@
 	<div>
 		<img src="images/home.png" class="img-responsive">
 	</div>
-<div class='error' style='display: none'><s:property value="message"/></div>
+<div class='error' style='display: none; margin: 5px auto auto auto;width: 30%;text-align: center;border: solid gray 1px;'><s:property value="message"/></div>
 	<ul class="nav nav-tabs" id="myTab">
 		<s:property escape="false" value="tabs"></s:property>
 	</ul>
@@ -75,7 +75,7 @@
 		<!-- /.row -->
 	</div>
 	<!-- /.container --> </section>
-	<s:set name="message" value="message" />
+	<s:set name="message" value="%{message}" />
 
 
 	<footer>
@@ -93,7 +93,7 @@
 	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/home.js"></script>
-	<s:if test="%{#message!=''}">
+	<s:if test="%{#message!=null}">
 		<script>
 			$(document).ready(function() {
 				$('.error').fadeIn(400).delay(3000).fadeOut(400);
