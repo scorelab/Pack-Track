@@ -166,5 +166,21 @@ public class UserManager {
 			return false;
 		}
 	}
+	
+	public User getUserByEmail(String email) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query = session.createQuery("from User u where u.userDetail.email=:email and  u.userDetail.deleted='false'");
+		query.setString("email", email);
+		List<User> list = query.list();
+		session.getTransaction().commit();
+		session.close();
+
+		if (list.size() == 0) {
+			return null;
+		}
+
+		return list.get(0);
+	}
 
 }

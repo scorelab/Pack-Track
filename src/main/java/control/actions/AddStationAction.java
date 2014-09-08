@@ -11,6 +11,7 @@ import model.models.User;
 import model.models.UserDetail;
 import model.models.UserPrivilege;
 
+import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -20,6 +21,7 @@ import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
 import control.message.Email;
 
+@InterceptorRef(value = "secureStack")
 public class AddStationAction extends ActionSupport implements SessionAware {
 
 	private Map<String, Object> session;
