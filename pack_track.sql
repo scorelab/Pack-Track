@@ -153,14 +153,16 @@ CREATE TABLE IF NOT EXISTS `user_detail` (
   `station` int(5) DEFAULT NULL,
   `phone` varchar(12) DEFAULT NULL,
   `deleted` tinyint(1) DEFAULT '0',
+  `deleteBy` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`UserName`),
   KEY `userDetail_idx` (`UserName`),
-  KEY `userStation_idx` (`station`)
+  KEY `userStation_idx` (`station`),
+  KEY `deleteByUser_idx` (`deleteBy`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `user_detail` (`UserName`, `name`, `Email`, `station`, `phone`, `deleted`) VALUES
-('Lahiru', 'Rangana', 'lahiru.rangana54@gmail.com', 2, '754129659', 0),
-('Rand', 'Randika', 'lahiru.rangana77@gmail.com', 1, '713823479', 0);
+INSERT INTO `user_detail` (`UserName`, `name`, `Email`, `station`, `phone`, `deleted`, `deleteBy`) VALUES
+('Lahiru', 'Rangana', 'lahiru.rangana54@gmail.com', 2, '754129659', 0, NULL),
+('Rand', 'Randika', 'lahiru.rangana77@gmail.com', 1, '713823479', 0, NULL);
 
 CREATE TABLE IF NOT EXISTS `user_privilege` (
   `User_Name` varchar(100) NOT NULL,
@@ -226,6 +228,7 @@ ALTER TABLE `user`
   ADD CONSTRAINT `userAddBy` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 ALTER TABLE `user_detail`
+  ADD CONSTRAINT `deleteByUser` FOREIGN KEY (`deleteBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `userDetail` FOREIGN KEY (`UserName`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `userStation` FOREIGN KEY (`station`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
