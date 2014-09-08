@@ -1,97 +1,130 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 
 <head>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Home</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/add_station.css" rel="stylesheet">
+<link href="css/home.css" rel="stylesheet">
+<link href="css/add_user.css" rel="stylesheet">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
 
 <body>
-<form>
-<div id="form">
-<h1 class="hedinh-tag">Station Details</h1>
-  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
-    <tr>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-    <td><font color=#000000><b>Station Name<b></td></font>
-    <td>:</td>
-    <td><input type="text" name="name" size="40"maxlength="50"></td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td><font color=#000000><b>Station ID<b></td></font>
-    <td>:</td>
-    <td><input type="text" name="station_ID" size="40"maxlength="50"></td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td><font color=#000000><b>Telephone No<b></td></font>
-    <td>:</td>
-    <td><input type="text" name="Telephone" size="40"maxlength="50"></td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td><font color=#000000><b>Add By<b></td></font>
-    <td>:</td>
-    <td><input type="text" name="add" size="40"maxlength="50"></td>
-  </tr>
-  
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td><font color=#000000><b>Delete<b></td></font>
-    <td>&nbsp;</td>
-    <td><input type="text" name="delete" size="40"maxlength="60"></td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td><font color=#000000><b>Delete By<b></td></font>
-    <td>&nbsp;</td>
-    <td><input type="text" name="delete_by" size="40"maxlength="60"></td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td><br><input type="submit" name="submit" value="Create Station Account"></td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-</table>
-</div>
-       
-   <div id="col-lg-12">
-                    <p><font color=blue>Copyright &copy; Pack Track 2014</p></font>
-   </div>
- </form>          
+
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Hi <s:property
+					value="#session['userName']" />
+			</a>
+		</div>
+
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a href="<s:url action="home"/>">Home</a></li>
+				<li><a href="#">Settings</a></li>
+				<li><a href="<s:url action="logout"/>">Logout</a></li>
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<!-- /.container --> </nav>
+
+	<div>
+		<img src="images/home.png" class="img-responsive">
+	</div>
+
+
+
+	<div class="modal-dialog" style="min-width: 450px;">
+		<div class="modal-content">
+			<div id="container" class="modal-body">
+				<s:form action="add_train">
+					<div id='form'>
+						<h1 class='hedinh-tag'>Train</h1>
+						<table class='main-table'>
+							<tr>
+								<td><b>Train name</b></td>
+								<td colspan='3'>
+									<table style="width: 100%">
+										<s:textfield cssClass='input_class' type='text' name='name'
+											id='name' />
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td><b>Start at</b></td>
+								<td>
+									<table style="width: 100%">
+										<s:select cssClass='input_class' name='start' id='start'
+											list="stationList" listValue="name" listKey="ID"></s:select>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td><b>Destination</b></td>
+								<td>
+									<table style="width: 100%">
+										<s:select cssClass='input_class' name='end' id='end'
+											list="stationList" listValue="name" listKey="ID"></s:select>
+									</table>
+								</td>
+							</tr>
+						</table>
+						<br />
+						<div class='wrapper'>
+							<input type='submit' name='create' value='Save'>
+							</td>
+						</div>
+						<br>
+						</tr>
+					</div>
+				</s:form>
+			</div>
+		</div>
+	</div>
+
+
+	<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<p>Copyright &copy; Pack Track 2014</p>
+			</div>
+		</div>
+		<!-- /.row -->
+	</div>
+	<!-- /.container --> </footer>
+
+	<script src="js/jquery-1.11.0.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/home.js"></script>
+
 </body>
 
 </html>
-      
