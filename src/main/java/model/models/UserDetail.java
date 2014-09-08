@@ -7,6 +7,7 @@ public class UserDetail {
 	String email;
 	String phone;
 	Station station;
+	private boolean deleted;
 	
 	public String getUserName() {
 		return userName;
@@ -45,5 +46,11 @@ public class UserDetail {
 
 	public void setStation(Station station) {
 		this.station = station;
+	}
+	public boolean isDeleted() {
+		return deleted;
+	}
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 }

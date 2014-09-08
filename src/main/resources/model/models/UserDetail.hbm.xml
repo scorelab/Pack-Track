@@ -23,5 +23,8 @@
         <property name="phone" type="java.lang.String">
             <column name="PHONE" />
         </property>
+        <property name="deleted" type="boolean">
+            <column name="DELETED" />
+        </property>
     </class>
 </hibernate-mapping>
