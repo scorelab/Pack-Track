@@ -131,3 +131,31 @@ $('.deletes_di').click(function() {
 		}
 	});
 });
+
+$('.change_tr').click(
+		function() {
+			var id = $(this).attr("name");
+			var form = $('<form action="change_train" method="post">'
+					+ '<input type="text" name="id" value="' + id
+					+ '" />' + '</form>');
+			$(form).submit();
+		});
+
+$('.deletes_tr').click(function() {
+	var id = $(this).attr("name");
+	var text='Are sure want to delete this Device ?';
+	$('<div title="Are you sure?"/>').html(text).dialog({
+		buttons : {
+			'Delete' : function() {
+				var form = $('<form action="delete_train" method="post">'
+						+ '<input type="text" name="id" value="' + id
+						+ '" />' + '</form>');
+				$(form).submit();
+				$(this).dialog('close');
+			},
+			'Cancel' : function() {
+				$(this).dialog('close');
+			}
+		}
+	});
+});

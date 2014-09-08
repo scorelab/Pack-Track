@@ -7,6 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
 <body>
+<div style="width: 80%; margin: 10px auto;">
+		<a href="<s:url action="add-train-input"/>" class="btn btn-default btn-s"><span class='glyphicon glyphicon-plus-sign'></span> Add new train </a>
+	</div>
 	<div class="input-group"
 		style="width: 80%; margin: 10px auto auto auto;">
 		<span class="input-group-addon">Filter</span> <input id="filter"
@@ -15,11 +18,9 @@
 	<table class="table table-striped" style="width: 80%;" align="center">
 		<thead>
 			<tr>
-				<th style="width: 22%;">Name</th>
-				<th style="width: 15%;">User Name</th>
-				<th style="width: 22%;">email</th>
-				<th style="width: 13%;">Role</th>
-				<th style="width: 20%;">NIC</th>
+				<th style="width: 35%;">Name</th>
+				<th style="width: 28%;">Starting from</th>
+				<th style="width: 28%;">Destination</th>
 				<th></th>
 				<th></th>
 			</tr>

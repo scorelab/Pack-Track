@@ -14,11 +14,11 @@
         <property name="addBy" type="java.lang.String">
             <column name="ADDBY" />
         </property>
-        <property name="start" type="int">
-            <column name="START" />
-        </property>
-        <property name="finish" type="int">
-            <column name="FINISH" />
-        </property>
+        <many-to-one name="start" class="model.models.Station"  lazy="false">
+        	<column name="START" />
+        </many-to-one>
+        <many-to-one name="finish" class="model.models.Station" lazy="false">
+        	<column name="FINISH" />
+        </many-to-one>
     </class>
 </hibernate-mapping>

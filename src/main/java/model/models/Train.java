@@ -8,22 +8,22 @@ package model.models;
  */
 public class Train {
 
-	int ID;
-	String name;
-	String addBy;
-	int start;
-	int finish;
+	private int ID;
+	private String name;
+	private String addBy;
+	private Station start;
+	private Station finish;
 
 	public Train() {
 
 	}
 
-	public Train(int id, String Name, String addby, int Start, int Finish) {
-		ID = id;
-		name = Name;
-		start = Start;
-		finish = Finish;
-		addBy = addby;
+	public Train(int id, String Name, String addby, Station Start, Station Finish) {
+		this.ID = id;
+		this.name = Name;
+		this.start = Start;
+		this.finish = Finish;
+		this.addBy = addby;
 	}
 
 	public int getID() {
@@ -50,19 +50,19 @@ public class Train {
 		this.addBy = addBy;
 	}
 
-	public int getStart() {
+	public Station getStart() {
 		return start;
 	}
 
-	public void setStart(int start) {
+	public void setStart(Station start) {
 		this.start = start;
 	}
 
-	public int getFinish() {
+	public Station getFinish() {
 		return finish;
 	}
 
-	public void setFinish(int finish) {
+	public void setFinish(Station finish) {
 		this.finish = finish;
 	}
 
