@@ -81,7 +81,7 @@ public class DeviceManager {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
 			SQLQuery query = session
-					.createSQLQuery("update Device set deleted=1, deleteby=:by where devnid=:id");
+					.createSQLQuery("update Device set deleted=1, deleteby=:by where devid=:id");
 			query.setInteger("id", id);
 			query.setString("by", by);
 			query.executeUpdate();
