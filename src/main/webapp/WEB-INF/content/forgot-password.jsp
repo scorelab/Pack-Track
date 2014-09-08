@@ -21,21 +21,16 @@
   <div class="modal-content">
       <div class="modal-header">
           
-          <h1 class="text-center">Login</h1>
+          <h1 class="text-center">Reset password</h1>
       </div>
       <div class="modal-body">
-          <form class="form col-md-12 center-block" action="login" method="post">
+          <form class="form col-md-12 center-block" action="forgot-password" method="post">
             <div class="form-group">
-              <s:textfield cssClass="form-control input-lg" placeholder="User name" name="userName"/>
+              <s:textfield cssClass="form-control input-lg" placeholder="Email Address" name="email"/>
             </div>
             <div class="form-group">
-              <s:password cssClass="form-control input-lg" placeholder="Password" name="password"/>
-            </div>
-            <div class="form-group">
-			<span class="pull-left"><a href="<s:url action="forgot-password-input"/>">Forgot password</></span>
 			<br/>
-			<br/>
-              <button class="btn btn-primary btn-lg btn-block">Sign In</button>
+              <button class="btn btn-primary btn-lg btn-block">Reset password</button>
               
             </div>
           </form>
@@ -48,8 +43,8 @@
   </div>
   </div>
 </div>
-	<!-- script references -->
 		<script src="js/jquery-1.11.0.js"></script>
 		<script src="js/bootstrap.min.js"></script>
+		<script type="text/javascript"></script>
 	
 </body></html>
