@@ -29,7 +29,7 @@ public class ChangeTrainAction extends ActionSupport implements SessionAware,Ser
 			@Result(name = "done", location = "home", type = "redirect") })
 	public String changeUser() throws Exception {
 		User user = (User) session.get("user");
-		if (user != null && user.getUserPrivilege().isRemove_user()) {
+		if (user != null && user.getUserPrivilege().isRemove_train()) {
 			TrainManager sm = new TrainManager();
 			String param = getServletRequest().getParameter("id");
 			System.out.println(param);
@@ -50,7 +50,7 @@ public class ChangeTrainAction extends ActionSupport implements SessionAware,Ser
 			@Result(name = "done", location = "home", type = "redirect") })
 	public String deleteUser() throws Exception {
 		User user = (User) session.get("user");
-		if (user != null && user.getUserPrivilege().isRemove_user()) {
+		if (user != null && user.getUserPrivilege().isRemove_train()) {
 			TrainManager sm = new TrainManager();
 			String param = getServletRequest().getParameter("id");
 			if (sm.deleteTrain(Integer.parseInt(param), user.getUserName())) {

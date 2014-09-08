@@ -37,8 +37,8 @@ public class AddTrainAction extends ActionSupport implements SessionAware{
 		TrainManager tm = new TrainManager();
 		User user = (User) session.get("user");
 		if (user != null
-				&& (user.getUserPrivilege().isAdd_user() || user
-						.getUserPrivilege().isRemove_user())) {
+				&& (user.getUserPrivilege().isAdd_train() || user
+						.getUserPrivilege().isRemove_train())) {
 
 			String change = (String) session.get("change");
 
@@ -88,8 +88,8 @@ public class AddTrainAction extends ActionSupport implements SessionAware{
 		UserManager uManager = new UserManager();
 		User user = (User) session.get("user");
 		if (user != null
-				&& (user.getUserPrivilege().isAdd_user() || user
-						.getUserPrivilege().isRemove_user())) {
+				&& (user.getUserPrivilege().isAdd_train() || user
+						.getUserPrivilege().isRemove_train())) {
 
 			return "add_train";
 		} else {

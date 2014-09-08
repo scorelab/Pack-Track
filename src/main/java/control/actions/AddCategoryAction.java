@@ -31,8 +31,8 @@ public class AddCategoryAction extends ActionSupport implements SessionAware {
 		CategoryManager cm = new CategoryManager();
 		User user = (User) session.get("user");
 		if (user != null
-				&& (user.getUserPrivilege().isAdd_user() || user
-						.getUserPrivilege().isRemove_user())) {
+				&& (user.getUserPrivilege().isAdd_category() || user
+						.getUserPrivilege().isAdd_category())) {
 
 			String change = (String) session.get("change");
 
@@ -71,8 +71,8 @@ public class AddCategoryAction extends ActionSupport implements SessionAware {
 
 		User user = (User) session.get("user");
 		if (user != null
-				&& (user.getUserPrivilege().isAdd_user() || user
-						.getUserPrivilege().isRemove_user())) {
+				&& (user.getUserPrivilege().isAdd_category() || user
+						.getUserPrivilege().isRemove_category())) {
 
 			return "add_category";
 		} else {

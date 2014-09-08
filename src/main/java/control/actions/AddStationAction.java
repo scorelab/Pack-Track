@@ -36,8 +36,8 @@ public class AddStationAction extends ActionSupport implements SessionAware {
 		StationManager sm = new StationManager();
 		User user = (User) session.get("user");
 		if (user != null
-				&& (user.getUserPrivilege().isAdd_user() || user
-						.getUserPrivilege().isRemove_user())) {
+				&& (user.getUserPrivilege().isAdd_station() || user
+						.getUserPrivilege().isRemove_station())) {
 
 			String change = (String) session.get("change");
 
@@ -76,8 +76,8 @@ public class AddStationAction extends ActionSupport implements SessionAware {
 		UserManager uManager = new UserManager();
 		User user = (User) session.get("user");
 		if (user != null
-				&& (user.getUserPrivilege().isAdd_user() || user
-						.getUserPrivilege().isRemove_user())) {
+				&& (user.getUserPrivilege().isAdd_station() || user
+						.getUserPrivilege().isRemove_station())) {
 
 			return "add_station";
 		} else {

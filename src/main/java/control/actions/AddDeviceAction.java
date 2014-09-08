@@ -34,8 +34,8 @@ public class AddDeviceAction extends ActionSupport implements SessionAware{
 		DeviceManager dm = new DeviceManager();
 		User user = (User) session.get("user");
 		if (user != null
-				&& (user.getUserPrivilege().isAdd_user() || user
-						.getUserPrivilege().isRemove_user())) {
+				&& (user.getUserPrivilege().isAdd_device() || user
+						.getUserPrivilege().isRemove_device())) {
 
 			String change = (String) session.get("change");
 
@@ -81,8 +81,8 @@ public class AddDeviceAction extends ActionSupport implements SessionAware{
 		UserManager uManager = new UserManager();
 		User user = (User) session.get("user");
 		if (user != null
-				&& (user.getUserPrivilege().isAdd_user() || user
-						.getUserPrivilege().isRemove_user())) {
+				&& (user.getUserPrivilege().isAdd_device() || user
+						.getUserPrivilege().isRemove_device())) {
 
 			return "add_device";
 		} else {

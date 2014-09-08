@@ -30,7 +30,7 @@ public class ChangeCategoryAction extends ActionSupport implements
 			@Result(name = "done", location = "home", type = "redirect") })
 	public String changeCategory() throws Exception {
 		User user = (User) session.get("user");
-		if (user != null && user.getUserPrivilege().isRemove_user()) {
+		if (user != null && user.getUserPrivilege().isRemove_category()) {
 			CategoryManager cm = new CategoryManager();
 			String param = getServletRequest().getParameter("id");
 			System.out.println(param);
@@ -51,7 +51,7 @@ public class ChangeCategoryAction extends ActionSupport implements
 			@Result(name = "done", location = "home", type = "redirect") })
 	public String deleteUser() throws Exception {
 		User user = (User) session.get("user");
-		if (user != null && user.getUserPrivilege().isRemove_user()) {
+		if (user != null && user.getUserPrivilege().isRemove_category()) {
 			CategoryManager cm = new CategoryManager();
 			String param = getServletRequest().getParameter("id");
 			System.out.println(param);
