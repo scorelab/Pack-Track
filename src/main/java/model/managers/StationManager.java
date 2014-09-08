@@ -12,14 +12,19 @@ import org.hibernate.Session;
 
 public class StationManager {
 
-	public void addStation(Station station) {
+	public boolean addStation(Station station) {
 
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		session.beginTransaction();
-		session.saveOrUpdate(station);
-		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.getSessionFactory().close();
+		try {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			session.saveOrUpdate(station);
+			session.getTransaction().commit();
+			session.close();
+			return true;
+
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	public boolean removeStation(Station station) {
@@ -33,15 +38,16 @@ public class StationManager {
 			session.close();
 			HibernateUtil.getSessionFactory().close();
 			return true;
-
+			
 		} catch (Exception e) {
 			return false;
 		}
 
 	}
-	
+
 	/**
 	 * Returns a list of Stations
+	 * 
 	 * @return
 	 */
 	public List<Station> getStationList() {
