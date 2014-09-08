@@ -33,7 +33,7 @@ public class UserManager {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		Query query = session
-				.createQuery("from User where username=:userName and password=:password and deleted='false'");
+				.createQuery("from User u where u.userName=:userName and u.password=:password and u.userDetail.deleted='false'");
 		query.setString("userName", userName);
 		query.setString("password", passwordEnc);
 		List<User> list = query.list();
@@ -58,7 +58,7 @@ public class UserManager {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		Query query = session
-				.createQuery("from User where username=:userName and password=:password and deleted='false'");
+				.createQuery("from User u where u.userName=:userName and u.password=:password and u.userDetail.deleted='false'");
 		query.setString("userName", userName);
 		query.setString("password", password);
 		List<User> list = query.list();
@@ -80,7 +80,7 @@ public class UserManager {
 	public List<User> getUserList() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Query query = session.createQuery("from User where deleted='false'");
+		Query query = session.createQuery("from User u where u.userDetail.deleted='false'");
 		List<User> list = query.list();
 		session.getTransaction().commit();
 		session.close();
@@ -153,7 +153,7 @@ public class UserManager {
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
-			SQLQuery query = session.createSQLQuery("update User set deleted=1, deleteby=:by where username=:userName");
+			SQLQuery query = session.createSQLQuery("update User_detail set deleted=1, deleteby=:by where username=:userName");
 			query.setString("userName", userName);
 			query.setString("by", by);
 			query.executeUpdate();
