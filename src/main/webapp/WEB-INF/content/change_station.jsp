@@ -66,14 +66,14 @@
 			<div id="container" class="modal-body">
 				<s:form action="add_station">
 					<div id='form'>
-					<h1 class='hedinh-tag'>Add Station</h1>
+					<h1 class='hedinh-tag'>Change Station</h1>
 						<table class='main-table'>
 							<tr>
 								<td><b>Station name</b></td>
 								<td colspan='3'>
 									<table style="width: 100%">
 										<s:textfield cssClass='input_class' type='text' name='name'
-											id='name' />
+											id='name' value="%{temp.name}"/>
 									</table>
 								</td>
 							</tr>
@@ -82,14 +82,14 @@
 								<td colspan='3'>
 									<table style="width: 100%">
 										<s:textfield cssClass='input_class' type='text'
-											name='contactNum' id='contactNum' />
+											name='contactNum' id='contactNum' value="%{temp.contactNum}"/>
 									</table>
 								</td>
 							</tr>
 						</table>
 						<br />
 						<div class='wrapper'>
-							<input type='submit' name='create' value='Create Station'>
+							<input type='submit' name='create' value='Save'>
 							</td>
 						</div>
 						<br>

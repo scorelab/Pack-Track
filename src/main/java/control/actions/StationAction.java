@@ -3,7 +3,9 @@ package control.actions;
 import java.util.List;
 import java.util.Map;
 
+import model.managers.StationManager;
 import model.managers.UserManager;
+import model.models.Station;
 import model.models.User;
 
 import org.apache.struts2.convention.annotation.InterceptorRef;
@@ -24,14 +26,14 @@ public class StationAction extends ActionSupport implements SessionAware {
 		User user = (User) session.get("user");
 		if (user != null && user.getUserPrivilege().isAdd_station()) {
 
-			UserManager um = new UserManager();
-			List<User> list = um.getUserList();
+			StationManager sm = new StationManager();
+			List<Station> list = sm.getStationList();
 			StringBuilder sb = new StringBuilder();
-			for (User users : list) {
-				String temp = "<tr><td>" + user.getUserDetail().getName()
-						+ "</td><td>" + user.getUserName() + "</td><td>"
-						+ user.getUserDetail().getEmail() + "</td><td>"
-						+ user.getRole() + "</td><td>" + user.getNicNumber()
+			for (Station stations : list) {
+				String temp = "<tr><td>"
+						+ stations.getName()
+						+ "</td><td>"
+						+ stations.getContactNum()
 						+ "</td></tr>";
 				sb.append(temp);
 			}
@@ -49,21 +51,15 @@ public class StationAction extends ActionSupport implements SessionAware {
 		User user = (User) session.get("user");
 		if (user != null && user.getUserPrivilege().isRemove_station()) {
 
-			UserManager um = new UserManager();
-			List<User> list = um.getUserList();
+			StationManager sm = new StationManager();
+			List<Station> list = sm.getStationList();
 			StringBuilder sb = new StringBuilder();
-			for (User users : list) {
+			for (Station stations : list) {
 				String temp = "<tr><td>"
-						+ user.getUserDetail().getName()
+						+ stations.getName()
 						+ "</td><td>"
-						+ user.getUserName()
-						+ "</td><td>"
-						+ user.getUserDetail().getEmail()
-						+ "</td><td>"
-						+ user.getRole()
-						+ "</td><td>"
-						+ user.getNicNumber()
-						+ "</td><td><button type='button' class='btn btn-default btn-lg'><span class='glyphicon glyphicon-pencil'></span> Change</button></td><td><button type='button' class='btn btn-default btn-lg'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>";
+						+ stations.getContactNum()
+						+ "</td><td><button type='button' class='btn btn-default btn-s change_st' name='"+stations.getID()+"'><span class='glyphicon glyphicon-pencil'></span> Change</button></td><td><button type='button' class='btn btn-default btn-s deletes_st' name='"+stations.getID()+"'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>";
 				sb.append(temp);
 			}
 			tableRows = sb.toString();
