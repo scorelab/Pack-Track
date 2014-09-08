@@ -6,6 +6,7 @@ import model.managers.CategoryManager;
 import model.models.Category;
 import model.models.User;
 
+import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -15,6 +16,7 @@ import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
+@InterceptorRef(value = "secureStack")
 public class AddCategoryAction extends ActionSupport implements SessionAware {
 
 	private Map<String, Object> session;

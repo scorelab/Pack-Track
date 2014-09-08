@@ -54,7 +54,7 @@ public class StationManager {
 	public List<Station> getStationList() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Query query = session.createQuery("from Station");
+		Query query = session.createQuery("from Station where deleted='false'");
 		List<Station> list = query.list();
 		session.getTransaction().commit();
 		session.close();

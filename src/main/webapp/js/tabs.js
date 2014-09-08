@@ -75,3 +75,31 @@ $('.deletes_st').click(function() {
 		}
 	});
 });
+
+$('.change_ca').click(
+		function() {
+			var id = $(this).attr("name");
+			var form = $('<form action="change_category" method="post">'
+					+ '<input type="text" name="id" value="' + id
+					+ '" />' + '</form>');
+			$(form).submit();
+		});
+
+$('.deletes_ca').click(function() {
+	var id = $(this).attr("name");
+	var text='Are sure want to delete this Category ?';
+	$('<div title="Are you sure?"/>').html(text).dialog({
+		buttons : {
+			'Delete' : function() {
+				var form = $('<form action="delete_category" method="post">'
+						+ '<input type="text" name="id" value="' + id
+						+ '" />' + '</form>');
+				$(form).submit();
+				$(this).dialog('close');
+			},
+			'Cancel' : function() {
+				$(this).dialog('close');
+			}
+		}
+	});
+});

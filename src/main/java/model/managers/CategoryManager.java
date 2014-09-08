@@ -35,7 +35,7 @@ public class CategoryManager {
 	public List<Category> getCategoryList() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Query query = session.createQuery("from Category");
+		Query query = session.createQuery("from Category where deleted='false'");
 		List<Category> list = query.list();
 		session.getTransaction().commit();
 		session.close();
@@ -62,7 +62,7 @@ public class CategoryManager {
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
-			SQLQuery query = session.createSQLQuery("update Category set deleted=1, deleteby=:by where stationid=:id");
+			SQLQuery query = session.createSQLQuery("update Category set deleted=1, deleteby=:by where catid=:id");
 			query.setInteger("id", id);
 			query.setString("by", by);
 			query.executeUpdate();
