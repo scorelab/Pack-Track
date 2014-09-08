@@ -76,7 +76,7 @@
                   <td><b>Device IMEI</b></td>
                   <td colspan='3'>
                   <table style="width:100%">
-                    <s:textfield cssClass='input_class' type='text' name='IMEI' id='IMEI'/>
+                    <s:textfield cssClass='input_class' type='text' name='IMEI' id='IMEI' value="%{temp.IMEI}"/>
                     </table>
                   </td>
                </tr>
@@ -84,7 +84,7 @@
                   <td><b>Assigned user</b></td>
                   <td>
                   <table style="width:100%">
-                     <s:select cssClass='input_class' name='assigned' id='assigned' list="userList" listValue="userName" listKey="userName"></s:select>
+                     <s:select cssClass='input_class' name='assigned' id='assigned' list="userList" listValue="userName" listKey="userName" value="%{temp.assigned.userName}"></s:select>
                      </table>
                   </td>
                </tr>
