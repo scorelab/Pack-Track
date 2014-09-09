@@ -7,8 +7,11 @@ import org.junit.Test;
 
 public class TrainTest {
 	
+	Station station1=new Station();
+	Station station2=new Station();
+	
 	Train trainDefault=new Train();
-	Train trainParameter=new Train(1, "Podi_Manike", "Rand", 1, 10);
+	Train trainParameter=new Train(1, "Podi_Manike", "Rand", station1, station2);
 
 	@Test
 	public void getIDTest() {
@@ -22,12 +25,12 @@ public class TrainTest {
 	
 	@Test
 	public void getStartTest() {
-		assertEquals(1, trainParameter.getStart());
+		assertEquals(station1, trainParameter.getStart());
 	}
 	
 	@Test
 	public void getFinishTest() {
-		assertEquals(10, trainParameter.getFinish());
+		assertEquals(station2, trainParameter.getFinish());
 	}
 	
 	@Test
@@ -49,14 +52,14 @@ public class TrainTest {
 	
 	@Test
 	public void setStartTest() {
-		trainDefault.setStart(5);;
-		assertEquals(5, trainDefault.getStart());
+		trainDefault.setStart(station2);;
+		assertEquals(station2, trainDefault.getStart());
 	}
 	
 	@Test
 	public void setFinishTest() {
-		trainDefault.setFinish(20);;
-		assertEquals(20, trainDefault.getFinish());
+		trainDefault.setFinish(station1);;
+		assertEquals(station1, trainDefault.getFinish());
 	}
 	
 	@Test
