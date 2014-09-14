@@ -10,7 +10,7 @@ $(document).ready(function() {
 				return rex.test($(this).text());
 			}).show();
 
-		})
+		});
 
 	}(jQuery));
 
@@ -26,7 +26,7 @@ $('.change').click(
 			var form = $('<form action="change_user" method="post">'
 					+ '<input type="text" name="userName" value="' + id
 					+ '" />' + '</form>');
-			$(form).submit();
+			form.appendTo("body").submit();
 		});
 
 $('.deletes').click(function() {
@@ -38,7 +38,7 @@ $('.deletes').click(function() {
 				var form = $('<form action="delete_user" method="post">'
 						+ '<input type="text" name="id" value="' + id
 						+ '" />' + '</form>');
-				$(form).submit();
+				form.appendTo("body").submit();
 				$(this).dialog('close');
 			},
 			'Cancel' : function() {
@@ -54,7 +54,7 @@ $('.change_st').click(
 			var form = $('<form action="change_station" method="post">'
 					+ '<input type="text" name="id" value="' + id
 					+ '" />' + '</form>');
-			$(form).submit();
+			form.appendTo("body").submit();
 		});
 
 $('.deletes_st').click(function() {
@@ -66,7 +66,7 @@ $('.deletes_st').click(function() {
 				var form = $('<form action="delete_station" method="post">'
 						+ '<input type="text" name="id" value="' + id
 						+ '" />' + '</form>');
-				$(form).submit();
+				form.appendTo("body").submit();
 				$(this).dialog('close');
 			},
 			'Cancel' : function() {
@@ -82,7 +82,7 @@ $('.change_ca').click(
 			var form = $('<form action="change_category" method="post">'
 					+ '<input type="text" name="id" value="' + id
 					+ '" />' + '</form>');
-			$(form).submit();
+			form.appendTo("body").submit();
 		});
 
 $('.deletes_ca').click(function() {
@@ -94,7 +94,7 @@ $('.deletes_ca').click(function() {
 				var form = $('<form action="delete_category" method="post">'
 						+ '<input type="text" name="id" value="' + id
 						+ '" />' + '</form>');
-				$(form).submit();
+				form.appendTo("body").submit();
 				$(this).dialog('close');
 			},
 			'Cancel' : function() {
@@ -110,7 +110,7 @@ $('.change_di').click(
 			var form = $('<form action="change_device" method="post">'
 					+ '<input type="text" name="id" value="' + id
 					+ '" />' + '</form>');
-			$(form).submit();
+			form.appendTo("body").submit();
 		});
 
 $('.deletes_di').click(function() {
@@ -122,7 +122,7 @@ $('.deletes_di').click(function() {
 				var form = $('<form action="delete_device" method="post">'
 						+ '<input type="text" name="id" value="' + id
 						+ '" />' + '</form>');
-				$(form).submit();
+				form.appendTo("body").submit();
 				$(this).dialog('close');
 			},
 			'Cancel' : function() {
@@ -138,7 +138,7 @@ $('.change_tr').click(
 			var form = $('<form action="change_train" method="post">'
 					+ '<input type="text" name="id" value="' + id
 					+ '" />' + '</form>');
-			$(form).submit();
+			form.appendTo("body").submit();
 		});
 
 $('.deletes_tr').click(function() {
@@ -150,7 +150,7 @@ $('.deletes_tr').click(function() {
 				var form = $('<form action="delete_train" method="post">'
 						+ '<input type="text" name="id" value="' + id
 						+ '" />' + '</form>');
-				$(form).submit();
+				form.appendTo("body").submit();
 				$(this).dialog('close');
 			},
 			'Cancel' : function() {
