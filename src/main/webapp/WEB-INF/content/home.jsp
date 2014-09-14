@@ -58,7 +58,7 @@
 	<div>
 		<img src="images/home.png" class="img-responsive">
 	</div>
-<div class='error' style='display: none; margin: 5px auto auto auto;width: 30%;text-align: center;border: solid gray 1px;'><s:property value="message"/></div>
+<div class='error' style='display: none; margin: 5px auto auto auto;width: 30%;text-align: center;border: 1px solid green; color: green;background: rgb(189, 248, 189);'><s:property value="message"/></div>
 	<ul class="nav nav-tabs" id="myTab">
 		<s:property escape="false" value="tabs"></s:property>
 	</ul>
