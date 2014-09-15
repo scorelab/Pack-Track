@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `device` (
 CREATE TABLE IF NOT EXISTS `parcel` (
   `parcelID` varchar(5) NOT NULL,
   `weight` int(3) NOT NULL,
-  `status` int(5) NOT NULL,
+  `currentStation` int(5) NOT NULL,
   `sender` int(6) NOT NULL,
   `receiver` int(6) NOT NULL,
   `start` int(5) NOT NULL,
@@ -77,16 +77,20 @@ CREATE TABLE IF NOT EXISTS `parcel` (
   `addBy` varchar(100) NOT NULL,
   `deleted` tinyint(1) DEFAULT '0',
   `deleteBy` varchar(100) DEFAULT NULL,
+  `train` int(11) DEFAULT NULL,
+  `release` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`parcelID`),
   UNIQUE KEY `parcelID_UNIQUE` (`parcelID`),
   KEY `st_idx` (`start`),
   KEY `stationFK1_idx` (`start`),
-  KEY `stationFK2_idx` (`destination`),
-  KEY `stationFK_idx` (`status`),
   KEY `senderFK_idx` (`sender`),
   KEY `receiverFK_idx` (`receiver`),
   KEY `addByUser_idx` (`addBy`),
-  KEY `deleteBy_idx` (`deleteBy`)
+  KEY `deleteBy_idx` (`deleteBy`),
+  KEY `startStation_idx` (`start`),
+  KEY `finish_idx` (`destination`),
+  KEY `current_idx` (`currentStation`),
+  KEY `assignTrain_idx` (`train`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `station` (
@@ -188,8 +192,8 @@ CREATE TABLE IF NOT EXISTS `user_privilege` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `user_privilege` (`User_Name`, `add_user`, `remove_User`, `add_station`, `remove_station`, `add_train`, `remove_train`, `add_category`, `remove_category`, `add_customer`, `remove_customer`, `add_parcel`, `release_parcel`, `confirm_arrival`, `check_upcoming_parcel`, `select_train`, `add_device`, `remove_device`) VALUES
-('Lahiru', 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-('Rand', 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+('Lahiru', 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('Rand', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 
 
 ALTER TABLE `category`
@@ -206,13 +210,14 @@ ALTER TABLE `device`
   ADD CONSTRAINT `deviceUser` FOREIGN KEY (`assignTo`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 ALTER TABLE `parcel`
+  ADD CONSTRAINT `assignTrain` FOREIGN KEY (`train`) REFERENCES `train` (`trainID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `addByUser` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `current` FOREIGN KEY (`currentStation`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `finish` FOREIGN KEY (`destination`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `parcelDeleteBy` FOREIGN KEY (`deleteBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `receiverFK` FOREIGN KEY (`receiver`) REFERENCES `customer` (`custID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `senderFK` FOREIGN KEY (`sender`) REFERENCES `customer` (`custID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `stationFK1` FOREIGN KEY (`start`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `stationFK2` FOREIGN KEY (`destination`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `stationFK3` FOREIGN KEY (`status`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `start` FOREIGN KEY (`start`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 ALTER TABLE `station`
   ADD CONSTRAINT `stationAdmin` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
