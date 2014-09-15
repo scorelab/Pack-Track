@@ -11,8 +11,7 @@ public class UserPrivilege {
 	boolean remove_train;
 	boolean add_category;
 	boolean remove_category;
-	boolean add_customer;
-	boolean remove_customer;
+	boolean edit_customer;
 	boolean add_parcel;
 	boolean release_parcel;
 	boolean confirm_arrival;
@@ -28,7 +27,7 @@ public class UserPrivilege {
 	public UserPrivilege(User user, String userName, boolean add_user,
 			boolean remove_User, boolean add_station, boolean remove_station,
 			boolean add_train, boolean remove_train, boolean add_category,
-			boolean remove_category, boolean add_customer,
+			boolean remove_category,
 			boolean remove_customer, boolean add_parcel,
 			boolean release_parcel, boolean confirm_arrival,
 			boolean check_upcoming_parcel, boolean select_train, boolean add_device, boolean remove_device) {
@@ -41,8 +40,7 @@ public class UserPrivilege {
 		this.remove_train = remove_train;
 		this.add_category = add_category;
 		this.remove_category = remove_category;
-		this.add_customer = add_customer;
-		this.remove_customer = remove_customer;
+		this.edit_customer = remove_customer;
 		this.add_parcel = add_parcel;
 		this.release_parcel = release_parcel;
 		this.confirm_arrival = confirm_arrival;
@@ -118,20 +116,12 @@ public class UserPrivilege {
 		this.remove_category = remove_category;
 	}
 
-	public boolean isAdd_customer() {
-		return add_customer;
+	public boolean isEdit_customer() {
+		return edit_customer;
 	}
 
-	public void setAdd_customer(boolean add_customer) {
-		this.add_customer = add_customer;
-	}
-
-	public boolean isRemove_customer() {
-		return remove_customer;
-	}
-
-	public void setRemove_customer(boolean remove_customer) {
-		this.remove_customer = remove_customer;
+	public void setEdit_customer(boolean remove_customer) {
+		this.edit_customer = remove_customer;
 	}
 
 	public boolean isAdd_parcel() {

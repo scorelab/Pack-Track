@@ -41,10 +41,7 @@
         <property name="remove_device" type="boolean">
             <column name="REMOVE_DEVICE" />
         </property>
-        <property name="add_customer" type="boolean">
-            <column name="ADD_CUSTOMER" />
-        </property>
-        <property name="remove_customer" type="boolean">
+        <property name="edit_customer" type="boolean">
             <column name="REMOVE_CUSTOMER" />
         </property>
         <property name="add_parcel" type="boolean">

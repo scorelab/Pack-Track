@@ -165,14 +165,14 @@
                <tr>
                    <td><table style="width:100%"><s:checkbox name='add_device' label="Add device" value="%{temp.userPrivilege.add_device}"/></table></td>
                   <td><table style="width:100%"><s:checkbox name='remove_device' label="Add/Remove device" value="%{temp.userPrivilege.remove_device}"/></table></td>
-                  <td><table style="width:100%"><s:checkbox name='' label=" Add customer"/></table></td>
-                  <td><table style="width:100%"><s:checkbox name='' label="Add parcel"/></table></td>
+                 <td><table style="width:100%"><s:checkbox name='edit_customer' label="Edit customers" value="%{temp.userPrivilege.edit_customer}"/></table></td>
+                  <td><table style="width:100%"><s:checkbox name='add_parcel' label="Add parcel" value="%{temp.userPrivilege.add_parcel}"/></table></td>
                </tr>
                <tr>
-                  <td><table style="width:100%"><s:checkbox name='' label="Release parcel"/></table></td>
-                  <td><table style="width:100%"><s:checkbox name='' label="Confirm arrival"/></table></td>
-                  <td><table style="width:100%"><s:checkbox name='' label="Check upcoming parcels"/></table></td>
-                  <td><table style="width:100%"><s:checkbox name='' label="Select train"/></table></td>
+                  <td><table style="width:100%"><s:checkbox name='release_parcel' label="Release parcel" value="%{temp.userPrivilege.release_parcel}"/></table></td>
+                  <td><table style="width:100%"><s:checkbox name='confirm_arrival' label="Confirm arrival" value="%{temp.userPrivilege.confirm_arrival}"/></table></td>
+                  <td><table style="width:100%"><s:checkbox name='check_upcoming' label="Check upcoming parcels" value="%{temp.userPrivilege.check_upcoming_parcel}"/></table></td>
+                  <td><table style="width:100%"><s:checkbox name='select_train' label="Select train" value="%{temp.userPrivilege.select_train}"/></table></td>
                </tr>
             </table>
             <br/>

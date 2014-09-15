@@ -165,14 +165,14 @@
                <tr>
                    <td><table style="width:100%"><s:checkbox name='add_device' label="Add device"/></table></td>
                   <td><table style="width:100%"><s:checkbox name='remove_device' label="Add/Remove device"/></table></td>
-                  <td><table style="width:100%"><s:checkbox name='' label=" Add customer"/></table></td>
-                  <td><table style="width:100%"><s:checkbox name='' label="Add parcel"/></table></td>
+                  <td><table style="width:100%"><s:checkbox name='edit_customer' label="Edit customers"/></table></td>
+                  <td><table style="width:100%"><s:checkbox name='add_parcel' label="Add parcel"/></table></td>
                </tr>
                <tr>
-                  <td><table style="width:100%"><s:checkbox name='' label="Release parcel"/></table></td>
-                  <td><table style="width:100%"><s:checkbox name='' label="Confirm arrival"/></table></td>
-                  <td><table style="width:100%"><s:checkbox name='' label="Check upcoming parcels"/></table></td>
-                  <td><table style="width:100%"><s:checkbox name='' label="Select train"/></table></td>
+                  <td><table style="width:100%"><s:checkbox name='release_parcel' label="Release parcel"/></table></td>
+                  <td><table style="width:100%"><s:checkbox name='confirm_arrival' label="Confirm arrival"/></table></td>
+                  <td><table style="width:100%"><s:checkbox name='check_upcoming' label="Check upcoming parcels"/></table></td>
+                  <td><table style="width:100%"><s:checkbox name='select_train' label="Select train"/></table></td>
                </tr>
             </table>
             <br/>

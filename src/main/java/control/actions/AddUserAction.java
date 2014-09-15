@@ -53,6 +53,12 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 	private boolean remove_category;
 	private boolean add_device;
 	private boolean remove_device;
+	private boolean edit_customer;
+	private boolean add_parcel;
+	private boolean release_parcel;
+	private boolean confirm_arrival;
+	private boolean check_upcoming;
+	private boolean select_train;
 
 	@org.apache.struts2.convention.annotation.Action(value = "add_user", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
@@ -95,6 +101,12 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 			userPrivilege.setRemove_device(remove_device);
 			userPrivilege.setRemove_station(remove_station);
 			userPrivilege.setRemove_train(remove_train);
+			userPrivilege.setAdd_parcel(add_parcel);
+			userPrivilege.setRelease_parcel(release_parcel);
+			userPrivilege.setCheck_upcoming_parcel(check_upcoming);
+			userPrivilege.setConfirm_arrival(confirm_arrival);
+			userPrivilege.setSelect_train(select_train);
+			userPrivilege.setEdit_customer(edit_customer);
 
 			temp.setUserName(userName);
 			temp.setNicNumber(nic);
@@ -342,6 +354,54 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 
 	public void setRemove_device(boolean remove_device) {
 		this.remove_device = remove_device;
+	}
+
+	public boolean isEdit_customer() {
+		return edit_customer;
+	}
+
+	public void setEdit_customer(boolean edit_customer) {
+		this.edit_customer = edit_customer;
+	}
+
+	public boolean isAdd_parcel() {
+		return add_parcel;
+	}
+
+	public void setAdd_parcel(boolean add_parcel) {
+		this.add_parcel = add_parcel;
+	}
+
+	public boolean isRelease_parcel() {
+		return release_parcel;
+	}
+
+	public void setRelease_parcel(boolean release_parcel) {
+		this.release_parcel = release_parcel;
+	}
+
+	public boolean isConfirm_arrival() {
+		return confirm_arrival;
+	}
+
+	public void setConfirm_arrival(boolean confirm_arrival) {
+		this.confirm_arrival = confirm_arrival;
+	}
+
+	public boolean isCheck_upcoming() {
+		return check_upcoming;
+	}
+
+	public void setCheck_upcoming(boolean check_upcoming) {
+		this.check_upcoming = check_upcoming;
+	}
+
+	public boolean isSelect_train() {
+		return select_train;
+	}
+
+	public void setSelect_train(boolean select_train) {
+		this.select_train = select_train;
 	}
 
 }
