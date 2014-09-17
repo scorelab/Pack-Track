@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `parcel` (
   `currentStation` int(5) NOT NULL,
   `sender` int(6) NOT NULL,
   `receiver` int(6) NOT NULL,
-  `start` int(5) NOT NULL,
+  `starts` int(5) NOT NULL,
   `destination` int(5) NOT NULL,
   `qr` varchar(45) NOT NULL,
   `totalCost` int(5) NOT NULL,
@@ -75,19 +75,16 @@ CREATE TABLE IF NOT EXISTS `parcel` (
   `dateReceived` datetime NOT NULL,
   `dateDeliverd` datetime NOT NULL,
   `addBy` varchar(100) NOT NULL,
-  `deleted` tinyint(1) DEFAULT '0',
-  `deleteBy` varchar(100) DEFAULT NULL,
   `train` int(11) DEFAULT NULL,
-  `release` tinyint(1) DEFAULT NULL,
+  `released` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`parcelID`),
   UNIQUE KEY `parcelID_UNIQUE` (`parcelID`),
-  KEY `st_idx` (`start`),
-  KEY `stationFK1_idx` (`start`),
+  KEY `st_idx` (`starts`),
+  KEY `stationFK1_idx` (`starts`),
   KEY `senderFK_idx` (`sender`),
   KEY `receiverFK_idx` (`receiver`),
   KEY `addByUser_idx` (`addBy`),
-  KEY `deleteBy_idx` (`deleteBy`),
-  KEY `startStation_idx` (`start`),
+  KEY `startStation_idx` (`starts`),
   KEY `finish_idx` (`destination`),
   KEY `current_idx` (`currentStation`),
   KEY `assignTrain_idx` (`train`)
@@ -212,12 +209,11 @@ ALTER TABLE `device`
 ALTER TABLE `parcel`
   ADD CONSTRAINT `assignTrain` FOREIGN KEY (`train`) REFERENCES `train` (`trainID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `addByUser` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `current` FOREIGN KEY (`currentStation`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `currentS` FOREIGN KEY (`currentStation`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `finish` FOREIGN KEY (`destination`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `parcelDeleteBy` FOREIGN KEY (`deleteBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `receiverFK` FOREIGN KEY (`receiver`) REFERENCES `customer` (`custID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `senderFK` FOREIGN KEY (`sender`) REFERENCES `customer` (`custID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `start` FOREIGN KEY (`start`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `starts` FOREIGN KEY (`starts`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 ALTER TABLE `station`
   ADD CONSTRAINT `stationAdmin` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
