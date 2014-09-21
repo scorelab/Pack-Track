@@ -3,19 +3,23 @@ package control.actions;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import model.managers.ParcelManager;
 import model.models.Parcel;
 import model.models.User;
 
 import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 @InterceptorRef(value = "secureStack")
-public class ParcelAction extends ActionSupport implements SessionAware {
+public class ParcelAction extends ActionSupport implements SessionAware,ServletRequestAware {
 
+	private HttpServletRequest response;
 	private Map<String, Object> session;
 	private String tableRows;
 	private String options;
@@ -40,6 +44,12 @@ public class ParcelAction extends ActionSupport implements SessionAware {
 		return SUCCESS;
 	}
 
+	@org.apache.struts2.convention.annotation.Action(value = "parcel-search", results = { @Result(name = "error", location = "login", type = "redirect") })
+	public String searchParcelAction() throws Exception {
+		System.out.println(getServletRequest().getParameter("name"));
+		
+		return SUCCESS;
+	}
 	@Override
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
@@ -60,5 +70,13 @@ public class ParcelAction extends ActionSupport implements SessionAware {
 
 	public void setOptions(String options) {
 		this.options = options;
+	}
+	
+	public void setServletRequest(HttpServletRequest response) {
+		this.response = response;
+	}
+
+	public HttpServletRequest getServletRequest() {
+		return this.response;
 	}
 }
