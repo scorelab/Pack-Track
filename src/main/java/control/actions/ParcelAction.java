@@ -14,40 +14,32 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 @InterceptorRef(value = "secureStack")
-public class ParcelAction extends ActionSupport implements SessionAware{
+public class ParcelAction extends ActionSupport implements SessionAware {
 
 	private Map<String, Object> session;
 	private String tableRows;
 	private String options;
-	
-	
+
 	@org.apache.struts2.convention.annotation.Action(value = "parcel-home", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String addRemoveParcelAction() throws Exception {
 
 		User user = (User) session.get("user");
-		if (user != null && user.getUserPrivilege().isRemove_train()) {
-
-			ParcelManager tm = new ParcelManager();
-			List<Parcel> list = tm.getParcelList();
-			StringBuilder sb = new StringBuilder();
-			for (Parcel train : list) {
-				String temp = "<tr><td>" 
-						+ train.getID() 
-						+ "</td><td>"
-						+ train.getSender().getName()
-						+ "</td><td>"
-						+ train.getDestination().getName()
-						+ "</td><td><button type='button' class='btn btn-default btn-s change_tr' name='"+train.getID()+"'><span class='glyphicon glyphicon-pencil'></span> Change</button></td><td><button type='button' class='btn btn-default btn-s deletes_tr' name='"+train.getID()+"'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>";
-				sb.append(temp);
-			}
-			tableRows = sb.toString();
-			return SUCCESS;
-		} else {
+		StringBuilder sb = new StringBuilder();
+		if (user != null && user.getUserPrivilege().isAdd_parcel()) {
+			sb.append("<a href='add-station-input' class='btn btn-default btn-s' style='margin-right: 10px;'><span class='glyphicon glyphicon-plus-sign'></span> Add Parcel </a>");
+		}
+		if (user != null && user.getUserPrivilege().isSelect_train()) {
+			sb.append("<a href='add-station-input' class='btn btn-default btn-s'><span class='glyphicon glyphicon-tag'></span> Assign Train </a>");
+		}
+		if (user == null
+				&& (user.getUserPrivilege().isSelect_train() || user
+						.getUserPrivilege().isAdd_parcel())) {
 			return ERROR;
 		}
-
+		options = sb.toString();
+		return SUCCESS;
 	}
-	
+
 	@Override
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
