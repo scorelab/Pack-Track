@@ -16,11 +16,11 @@
 <!-- 		<form class="navbar-form"> -->
 			<div class="input-group" style="width: 100%;">
 				<input type="text" class="form-control" placeholder="Search">
-<!-- 				<div class="input-group-btn" style="width: 5%;"> -->
-					<button id="btn" style="width: 100%;">
+				<div class="input-group-btn" style="width: 5%;">
+					<button id="btn" class="btn btn-default" style="width: 100%;">
 						<i class="glyphicon glyphicon-search" style="line-height:inherit;"></i>
 					</button>
-<!-- 				</div> -->
+				</div>
 			</div>
 <!-- 		</form> -->
 	</div>
