@@ -31,7 +31,7 @@ public class ParcelAction extends ActionSupport implements SessionAware,ServletR
 		User user = (User) session.get("user");
 		StringBuilder sb = new StringBuilder();
 		if (user != null && user.getUserPrivilege().isAdd_parcel()) {
-			sb.append("<a href='add-station-input' class='btn btn-default btn-s' style='margin-right: 10px;'><span class='glyphicon glyphicon-plus-sign'></span> Add Parcel </a>");
+			sb.append("<a href='add_parcel' class='btn btn-default btn-s' style='margin-right: 10px;'><span class='glyphicon glyphicon-plus-sign'></span> Add Parcel </a>");
 		}
 		if (user != null && user.getUserPrivilege().isSelect_train()) {
 			sb.append("<a href='add-station-input' class='btn btn-default btn-s'><span class='glyphicon glyphicon-tag'></span> Assign Train </a>");
