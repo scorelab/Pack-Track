@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import model.managers.ParcelManager;
+import model.managers.UserManager;
 import model.models.Parcel;
 import model.models.User;
 
@@ -46,8 +47,20 @@ public class ParcelAction extends ActionSupport implements SessionAware,ServletR
 
 	@org.apache.struts2.convention.annotation.Action(value = "parcel-search", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String searchParcelAction() throws Exception {
-		System.out.println(getServletRequest().getParameter("name"));
-		
+		String param=getServletRequest().getParameter("searchText");
+		ParcelManager pm=new ParcelManager();
+		List<Parcel> list = pm.search(param);
+		StringBuilder sb = new StringBuilder();
+		for (Parcel parcels : list) {
+			String temp = "<tr><td>" + parcels.getID()+ "</td><td>"
+					+ parcels.getStarts().getName() + "</td><td>"
+					+ parcels.getDestination().getName() + "</td><td>"
+					+ parcels.getSender().getNic() + "</td><td>"
+					+ parcels.getReceiver().getNic() + "</td><td>"
+					+ "</td></tr>";
+			sb.append(temp);
+		}
+		tableRows = sb.toString();
 		return SUCCESS;
 	}
 	@Override

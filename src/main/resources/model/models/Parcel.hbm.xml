@@ -17,7 +17,7 @@
         <many-to-one name="sender" class="model.models.Customer" lazy="false">
             <column name="SENDER" />
         </many-to-one>
-        <many-to-one name="reciever" class="model.models.Customer" lazy="false">
+        <many-to-one name="receiver" class="model.models.Customer" lazy="false">
             <column name="RECEIVER" />
         </many-to-one>
         <many-to-one name="starts" class="model.models.Station" lazy="false">
@@ -38,10 +38,10 @@
         <many-to-one name="train" class="model.models.Train" lazy="false">
             <column name="TRAIN" />
         </many-to-one>
-        <property name="dateRecieved" type="java.util.Date">
+        <property name="dateRecieved" type="long">
             <column name="DATERECEIVED" />
         </property>
-        <property name="dateDelivered" type="java.util.Date">
+        <property name="dateDelivered" type="long">
             <column name="DATEDELIVERED" />
         </property>
         <property name="addBy" type="java.lang.String">

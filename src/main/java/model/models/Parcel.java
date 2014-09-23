@@ -13,15 +13,15 @@ public class Parcel {
 	private float weight;
 	private Station currentStation;
 	private Customer sender;
-	private Customer reciever;
+	private Customer receiver;
 	private Station starts;
 	private Station destination;
 	private float totalCost;
 	private boolean express;
 	private boolean released;
 	private Train train;
-	private Date dateRecieved;
-	private Date dateDelivered;
+	private long dateRecieved;
+	private long dateDelivered;
 	private String addBy;
 	public int getID() {
 		return ID;
@@ -47,11 +47,11 @@ public class Parcel {
 	public void setSender(Customer sender) {
 		this.sender = sender;
 	}
-	public Customer getReciever() {
-		return reciever;
+	public Customer getReceiver() {
+		return receiver;
 	}
-	public void setReciever(Customer reciever) {
-		this.reciever = reciever;
+	public void setReceiver(Customer reciever) {
+		this.receiver = reciever;
 	}
 	public Station getStarts() {
 		return starts;
@@ -89,16 +89,16 @@ public class Parcel {
 	public void setTrain(Train train) {
 		this.train = train;
 	}
-	public Date getDateRecieved() {
+	public long getDateRecieved() {
 		return dateRecieved;
 	}
-	public void setDateRecieved(Date dateRecieved) {
+	public void setDateRecieved(long dateRecieved) {
 		this.dateRecieved = dateRecieved;
 	}
-	public Date getDateDelivered() {
+	public long getDateDelivered() {
 		return dateDelivered;
 	}
-	public void setDateDelivered(Date dateDelivered) {
+	public void setDateDelivered(long dateDelivered) {
 		this.dateDelivered = dateDelivered;
 	}
 	public String getAddBy() {

@@ -44,7 +44,7 @@ public class ParcelManager {
 	}
 
 	/**
-	 * Returns a list of Parcel
+	 * Returns a list of Parcels
 	 * 
 	 * @return
 	 */
@@ -89,6 +89,17 @@ public class ParcelManager {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	public List<Parcel> search(String searchText) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query = session.createQuery("from Parcel p WHERE p.ID=:searchText or p.receiver.nic=:searchText");
+		query.setString("searchText", searchText);
+		List<Parcel> list = query.list();
+		session.getTransaction().commit();
+		session.close();
+		return list;
 	}
 
 }

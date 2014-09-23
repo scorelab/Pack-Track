@@ -13,18 +13,30 @@
 	</div>
 	<div class="input-group"
 		style="width: 80%; margin: 10px auto auto auto;">
-<!-- 		<form class="navbar-form"> -->
 			<div class="input-group" style="width: 100%;">
-				<input type="text" class="form-control" placeholder="Search">
+				<input type="text" class="form-control" placeholder="Search" id="searchText">
 				<div class="input-group-btn" style="width: 5%;">
 					<button id="btn" class="btn btn-default" style="width: 100%;">
 						<i class="glyphicon glyphicon-search" style="line-height:inherit;"></i>
 					</button>
 				</div>
 			</div>
-<!-- 		</form> -->
 	</div>
-	<div id="result"></div>
+	<div id="result">
+	<table class="table table-striped" style="width: 80%;" align="center">
+		<thead>
+			<tr>
+				<th style="width: 10%;">ID</th>
+				<th style="width: 20%;">Start</th>
+				<th style="width: 20%;">Destination</th>
+				<th style="width: 20%;">Receiver NIC</th>
+				<th style="width: 20%;">Sender NIC</th>
+			</tr>
+		</thead>
+		<tbody class="searchable">
+		</tbody>
+	</table>
+	</div>
 	<script type="text/javascript" src="js/tabs.js"></script>
 	<script type="text/javascript" src="js/parcel.js"></script>
 </body>

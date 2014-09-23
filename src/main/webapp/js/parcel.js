@@ -1,11 +1,10 @@
 $("#btn").click(function(){
-	alert("sdfsd");
+	var text=$("#searchText").val();
     $.post("parcel-search",
     	    {
-    	      name:"Donald Duckpoo",
-    	      city:"Duckburg"
+    	      searchText:text
     	    },
     	    function(data){
-    	     $("#result").html("Data: " + data);
+    	     $("#result").html(data);
     	    });
   });
