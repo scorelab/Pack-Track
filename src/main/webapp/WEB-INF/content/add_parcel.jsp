@@ -98,8 +98,10 @@ function change(){
 								<a id='getReceiver' class='btn btn-default btn-xs' style='margin-left: 10px;'>get</a>
 								</td>
 							</tr>
-							<tr id='receiver'>
-							</tr>
+							</table>
+							<table class='main-table' id='receiver'>
+							</table>
+							<table class='main-table'>
 							<tr>
 								<td><b>Start</b></td>
 								<td>

@@ -23,10 +23,11 @@ public class GetCustomerAction extends ActionSupport implements SessionAware, Se
 	private Map<String, Object> session;
 	private HttpServletRequest response;
 	private String data;
+	private Customer customer;
 	
 	@org.apache.struts2.convention.annotation.Action(value = "get_customer", results = {
 			@Result(name = "error", location = "login", type = "redirect")})
-	public String getCustomer() throws Exception {
+	public String getCustomerDetail() throws Exception {
 
 		User user = (User) session.get("user");
 		if (user != null
@@ -34,13 +35,7 @@ public class GetCustomerAction extends ActionSupport implements SessionAware, Se
 			String param= getServletRequest().getParameter("nic");
 			System.out.println(param);
 			CustomerManager cm=new CustomerManager();
-			Customer customer=cm.getCustomer(param);
-			if(customer==null){
-				setData("nope");
-			}else{
-				setData("yes");
-			}
-			
+			customer=cm.getCustomer(param);
 			return SUCCESS;
 		} else {
 			return ERROR;
@@ -69,5 +64,13 @@ public class GetCustomerAction extends ActionSupport implements SessionAware, Se
 
 	public void setData(String data) {
 		this.data = data;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public Customer getCustomer() {
+		return customer;
 	}
 }
