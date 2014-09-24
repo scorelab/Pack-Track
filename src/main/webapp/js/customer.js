@@ -8,3 +8,6 @@ $("#getReceiver").click(function(){
     	     $("#receiver").html(data);
     	    });
   });
+$(document).ready(function() {
+
+});

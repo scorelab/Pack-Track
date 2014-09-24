@@ -23,7 +23,13 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+<script>
+function change(){
+    var el1 = document.getElementById("weight");
+    var el2 = document.getElementById("cost");
+    el2.innerHTML = el1.value;
+}
+</script>
 </head>
 
 <body>
@@ -113,12 +119,27 @@
 								</td>
 							</tr>
 							<tr>
-								<td><b>Destination</b></td>
+								<td><b>Category</b></td>
 								<td>
 									<table style="width: 100%">
 										<s:select cssClass='input_class' name='end' id='end'
-											list="stationList" listValue="name" listKey="ID"></s:select>
+											list="categoryList" listValue="catName" listKey="ID"></s:select>
 									</table>
+								</td>
+								<td style="padding-left:10px;"><table style="width:100%"><s:checkbox name='express' label="Express"/></table></td>
+							</tr>
+							<tr>
+								<td><b>Weight</b></td>
+								<td>
+									<table style="width: 100%">
+										<s:textfield cssClass='input_class' type='text' name='weight'
+											id='weight' onkeyup="change()"/>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td><b>Cost</b></td>
+								<td id='cost' >
 								</td>
 							</tr>
 						</table>
