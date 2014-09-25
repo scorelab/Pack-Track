@@ -21,7 +21,10 @@ CREATE TABLE IF NOT EXISTS `category` (
   UNIQUE KEY `catName_UNIQUE` (`catName`),
   KEY `categoryAdmin_idx` (`addBy`),
   KEY `categoryDeleteBy_idx` (`deleteBy`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+INSERT INTO `category` (`catID`, `catName`, `unitCost`, `addBy`, `deleted`, `deleteBy`) VALUES
+(1, 'Normal', 12, 'Rand', 0, NULL);
 
 CREATE TABLE IF NOT EXISTS `customer` (
   `custID` int(6) NOT NULL AUTO_INCREMENT,
@@ -44,7 +47,10 @@ CREATE TABLE IF NOT EXISTS `customer` (
   KEY `customerAdmin_idx` (`addBy`),
   KEY `custAddUser_idx` (`addBy`),
   KEY `custDeleteBy_idx` (`deleteBy`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+INSERT INTO `customer` (`custID`, `custName`, `custEmail`, `custMobile`, `custTel`, `custAddress`, `custNIC`, `addBy`, `deleted`, `deleteBy`) VALUES
+(1, 'boo', 'booo', '456', '456', 'fgghfhdf', 'dfgdfg4', 'Rand', 0, NULL);
 
 CREATE TABLE IF NOT EXISTS `device` (
   `devID` int(11) NOT NULL AUTO_INCREMENT,
@@ -62,18 +68,18 @@ CREATE TABLE IF NOT EXISTS `device` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `parcel` (
-  `parcelID` varchar(5) NOT NULL,
-  `weight` int(3) NOT NULL,
+  `parcelID` int(11) NOT NULL AUTO_INCREMENT,
+  `weight` float NOT NULL,
   `currentStation` int(5) NOT NULL,
   `sender` int(6) NOT NULL,
   `receiver` int(6) NOT NULL,
   `starts` int(5) NOT NULL,
   `destination` int(5) NOT NULL,
   `qr` varchar(45) NOT NULL,
-  `totalCost` int(5) NOT NULL,
+  `totalCost` float NOT NULL,
   `express` varchar(1) NOT NULL,
-  `dateReceived` datetime NOT NULL,
-  `dateDeliverd` datetime NOT NULL,
+  `dateReceived` bigint(20) NOT NULL,
+  `dateDelivered` bigint(20) NOT NULL,
   `addBy` varchar(100) NOT NULL,
   `train` int(11) DEFAULT NULL,
   `released` tinyint(1) DEFAULT NULL,
@@ -88,7 +94,10 @@ CREATE TABLE IF NOT EXISTS `parcel` (
   KEY `finish_idx` (`destination`),
   KEY `current_idx` (`currentStation`),
   KEY `assignTrain_idx` (`train`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+INSERT INTO `parcel` (`parcelID`, `weight`, `currentStation`, `sender`, `receiver`, `starts`, `destination`, `qr`, `totalCost`, `express`, `dateReceived`, `dateDelivered`, `addBy`, `train`, `released`) VALUES
+(5, 34.2, 1, 1, 1, 1, 2, '', 345.8, '0', 20140916000000, 20140918000000, 'Rand', NULL, 0);
 
 CREATE TABLE IF NOT EXISTS `station` (
   `stationID` int(5) NOT NULL AUTO_INCREMENT,
@@ -145,7 +154,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`UserName`, `password`, `designation`, `role`, `home_page`, `shed`, `sub_dept`, `nic_number`, `addBy`) VALUES
 ('Lahiru', 'd74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1', 'sith', 'pith', 'gdgd', 'ddd', 'dd', '123456789V', 'Rand'),
-('Rand', 'd74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1', 'jil', 'bil', 'gdg', 'gggg', 'gg', '911672375V', 'Rand');
+('Rand', 'd74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1', 'jil', 'bil', 'gdg', 'gggg', 'gg', '911672375V', 'Rand'),
+('thamali', 'fcba89201226b0bc0feac29ed8a07a20559a62c5ea776042fd15877d4b301387', 'Ms', 'SM', NULL, 'No1', '', '12345v', 'Rand');
 
 CREATE TABLE IF NOT EXISTS `user_detail` (
   `UserName` varchar(100) NOT NULL,
@@ -163,7 +173,8 @@ CREATE TABLE IF NOT EXISTS `user_detail` (
 
 INSERT INTO `user_detail` (`UserName`, `name`, `Email`, `station`, `phone`, `deleted`, `deleteBy`) VALUES
 ('Lahiru', 'Rangana', 'lahiru.rangana54@gmail.com', 2, '754129659', 0, NULL),
-('Rand', 'Randika', 'lahiru.rangana77@gmail.com', 1, '713823479', 0, NULL);
+('Rand', 'Randika', 'lahiru.rangana77@gmail.com', 1, '713823479', 0, NULL),
+('thamali', 'Thamali', 'ravingae@gmail.com', 2, '1245', 0, NULL);
 
 CREATE TABLE IF NOT EXISTS `user_privilege` (
   `User_Name` varchar(100) NOT NULL,
@@ -190,7 +201,8 @@ CREATE TABLE IF NOT EXISTS `user_privilege` (
 
 INSERT INTO `user_privilege` (`User_Name`, `add_user`, `remove_User`, `add_station`, `remove_station`, `add_train`, `remove_train`, `add_category`, `remove_category`, `add_customer`, `remove_customer`, `add_parcel`, `release_parcel`, `confirm_arrival`, `check_upcoming_parcel`, `select_train`, `add_device`, `remove_device`) VALUES
 ('Lahiru', 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-('Rand', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+('Rand', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1),
+('thamali', 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 
 ALTER TABLE `category`
@@ -207,8 +219,8 @@ ALTER TABLE `device`
   ADD CONSTRAINT `deviceUser` FOREIGN KEY (`assignTo`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 ALTER TABLE `parcel`
-  ADD CONSTRAINT `assignTrain` FOREIGN KEY (`train`) REFERENCES `train` (`trainID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `addByUser` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `assignTrain` FOREIGN KEY (`train`) REFERENCES `train` (`trainID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `currentS` FOREIGN KEY (`currentStation`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `finish` FOREIGN KEY (`destination`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `receiverFK` FOREIGN KEY (`receiver`) REFERENCES `customer` (`custID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
