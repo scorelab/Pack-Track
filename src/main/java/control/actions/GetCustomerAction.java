@@ -23,19 +23,37 @@ public class GetCustomerAction extends ActionSupport implements SessionAware, Se
 	private Map<String, Object> session;
 	private HttpServletRequest response;
 	private String data;
-	private Customer customer;
+	private Customer receiver;
+	private Customer sender;
 	
-	@org.apache.struts2.convention.annotation.Action(value = "get_customer", results = {
+	@org.apache.struts2.convention.annotation.Action(value = "get_receiver", results = {
 			@Result(name = "error", location = "login", type = "redirect")})
-	public String getCustomerDetail() throws Exception {
+	public String getReceiverDetail() throws Exception {
 
 		User user = (User) session.get("user");
 		if (user != null
 				&& (user.getUserPrivilege().isAdd_parcel())) {
-			String param= getServletRequest().getParameter("nic");
+			String param= getServletRequest().getParameter("receiver_nic");
 			System.out.println(param);
 			CustomerManager cm=new CustomerManager();
-			customer=cm.getCustomer(param);
+			receiver=cm.getCustomer(param);
+			return SUCCESS;
+		} else {
+			return ERROR;
+		}
+	}
+	
+	@org.apache.struts2.convention.annotation.Action(value = "get_sender", results = {
+			@Result(name = "error", location = "login", type = "redirect")})
+	public String getSenderDetail() throws Exception {
+
+		User user = (User) session.get("user");
+		if (user != null
+				&& (user.getUserPrivilege().isAdd_parcel())) {
+			String param= getServletRequest().getParameter("sender_nic");
+			System.out.println(param);
+			CustomerManager cm=new CustomerManager();
+			sender=cm.getCustomer(param);
 			return SUCCESS;
 		} else {
 			return ERROR;
@@ -66,11 +84,19 @@ public class GetCustomerAction extends ActionSupport implements SessionAware, Se
 		this.data = data;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setReceiver(Customer customer) {
+		this.receiver = customer;
 	}
 
-	public Customer getCustomer() {
-		return customer;
+	public Customer getReceiver() {
+		return receiver;
+	}
+
+	public Customer getSender() {
+		return sender;
+	}
+
+	public void setSender(Customer sender) {
+		this.sender = sender;
 	}
 }

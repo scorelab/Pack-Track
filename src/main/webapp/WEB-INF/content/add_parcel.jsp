@@ -70,7 +70,7 @@ function change(){
 	<div class="modal-dialog" style="min-width: 450px;">
 		<div class="modal-content">
 			<div id="container" class="modal-body">
-				<s:form action="add_train">
+				<s:form action="add_parcel">
 					<div id='form'>
 						<h1 class='hedinh-tag'>Train</h1>
 						<table class='main-table'>
@@ -86,6 +86,10 @@ function change(){
 								<a id='getSender' class='btn btn-default btn-xs' style='margin-left: 10px;'>get</a>
 								</td>
 							</tr>
+							</table>
+							<table class='main-table' id='sender'>
+							</table>
+							<table class='main-table'>
 							<tr>
 								<td><b>Receiver NIC</b></td>
 								<td colspan='3'>
@@ -124,8 +128,8 @@ function change(){
 								<td><b>Category</b></td>
 								<td>
 									<table style="width: 100%">
-										<s:select cssClass='input_class' name='end' id='end'
-											list="categoryList" listValue="catName" listKey="ID"></s:select>
+										<s:select cssClass='input_class' name='category' id='category'
+											list="categoryList" listValue="catName" listKey="unitCost"></s:select>
 									</table>
 								</td>
 								<td style="padding-left:10px;"><table style="width:100%"><s:checkbox name='express' label="Express"/></table></td>
