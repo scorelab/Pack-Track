@@ -1,5 +1,6 @@
 package control.actions;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -83,6 +84,7 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 			parcel.setWeight(weight);
 			parcel.setExpress(express);
 			parcel.setAddBy(user.getUserName());
+			parcel.setDateRecieved( (new Date().getTime())/1000);
 
 			cost = category * 5 * weight;
 			parcel.setTotalCost(cost);
