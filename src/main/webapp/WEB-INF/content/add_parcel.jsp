@@ -79,11 +79,8 @@ function change(){
 								<td colspan='3'>
 									<table style="width: 100%">
 										<s:textfield cssClass='input_class' type='text' name='senderNIC'
-											id='senderNIC' />
+											id='senderNIC' onblur="getSender()" value="%{senderNIC}"/>
 									</table>
-								</td>
-								<td>
-								<a id='getSender' class='btn btn-default btn-xs' style='margin-left: 10px;'>get</a>
 								</td>
 							</tr>
 							</table>
@@ -95,7 +92,7 @@ function change(){
 								<td colspan='3'>
 									<table style="width: 100%">
 										<s:textfield cssClass='input_class' type='text' name='receiverNIC'
-											id='receiverNIC' />
+											id='receiverNIC' onblur="getReceiver()" value="%{receiverNIC}"/>
 									</table>
 								</td>
 								<td>

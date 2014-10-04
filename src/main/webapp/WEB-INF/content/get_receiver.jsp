@@ -4,27 +4,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <s:set name="customer" value="%{receiver}" />
 <s:if test="%{#customer==null}">
-	<td><b>Receiver Name</b></td>
-		<td>
-			<table style="width: 100%">
-				<s:textfield cssClass='input_class' type='text' name='receiver_name'
-											id='receiver_name' />
-			</table>
-		</td>
-		<td><b>Receiver Address</b></td>
-		<td>
-			<table style="width: 100%">
-				<s:textfield cssClass='input_class' type='text' name='receiver_address'
-											id='receiver_address' />
-			</table>
-		</td>
-		<td><b>Receiver email</b></td>
-		<td>
-			<table style="width: 100%">
-				<s:textfield cssClass='input_class' type='text' name='receiver_email'
-											id='receiver_email' />
-			</table>
-		</td>
+	<p>Customer dose not exist</p>
+<div style="width: 80%; margin: 10px auto;">
+		<a href="<s:url action="add_customer-input"/>"
+			class="btn btn-default btn-s"><span
+			class='glyphicon glyphicon-plus-sign'></span> Add customer </a>
+	</div>
 </s:if>
 <s:else>
 <tr>

@@ -8,9 +8,6 @@ $("#getReceiver").click(function(){
     	     $("#receiver").html(data);
     	    });
   });
-$(document).ready(function() {
-
-});
 $("#getSender").click(function(){
 	var text=$("#senderNIC").val();
     $.post("get_sender",
@@ -21,6 +18,30 @@ $("#getSender").click(function(){
     	     $("#sender").html(data);
     	    });
   });
-$(document).ready(function() {
 
-});
+function getSender(){
+	var text=$("#senderNIC").val();
+	if(text===""){
+		return
+	}
+    $.post("get_sender",
+    	    {
+    	      sender_nic:text
+    	    },
+    	    function(data){
+    	     $("#sender").html(data);
+    	    });
+}
+function getReceiver(){
+	var text=$("#receiverNIC").val();
+	if(text===""){
+		return
+	}
+    $.post("get_receiver",
+    	    {
+    	      sender_nic:text
+    	    },
+    	    function(data){
+    	     $("#receiver").html(data);
+    	    });
+}

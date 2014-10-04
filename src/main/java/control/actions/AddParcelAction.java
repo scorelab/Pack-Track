@@ -45,7 +45,8 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 			@Result(name = "done", location = "home", type = "redirect") })
 	public String createUser() throws Exception {
 
-		DeviceManager dm = new DeviceManager();
+		session.remove("sender");
+		session.remove("receiver");
 		User user = (User) session.get("user");
 		start = user.getUserDetail().getStation().getID();
 		if (user != null && user.getUserPrivilege().isAdd_parcel()) {
@@ -104,7 +105,10 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 			@Result(name = "error", location = "login", type = "redirect")})
 	public String input() throws Exception {
 
-		DeviceManager dm = new DeviceManager();
+		senderNIC=(String) session.get("sender");
+		receiverNIC=(String) session.get("receiver");
+		session.remove("sender");
+		session.remove("receiver");
 		User user = (User) session.get("user");
 		start=user.getUserDetail().getStation().getID();
 		if (user != null && user.getUserPrivilege().isAdd_parcel()) {

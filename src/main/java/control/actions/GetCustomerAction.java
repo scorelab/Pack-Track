@@ -37,6 +37,9 @@ public class GetCustomerAction extends ActionSupport implements SessionAware, Se
 			System.out.println(param);
 			CustomerManager cm=new CustomerManager();
 			receiver=cm.getCustomer(param);
+			if(receiver==null){
+				session.put("receiver",param);
+			}
 			return SUCCESS;
 		} else {
 			return ERROR;
@@ -54,6 +57,9 @@ public class GetCustomerAction extends ActionSupport implements SessionAware, Se
 			System.out.println(param);
 			CustomerManager cm=new CustomerManager();
 			sender=cm.getCustomer(param);
+			if(sender==null){
+				session.put("sender",param);
+			}
 			return SUCCESS;
 		} else {
 			return ERROR;
