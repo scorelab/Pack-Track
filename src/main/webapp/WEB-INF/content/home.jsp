@@ -15,6 +15,8 @@
 <title>Home</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/jquery-ui.min.css" rel="stylesheet">
+<link href="css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
+ <link href="css/pt-main.css" rel="stylesheet">
 <link href="css/home.css" rel="stylesheet">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -27,35 +29,15 @@
 </head>
 
 <body>
+<div id="wrapper">
 
-	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-	<div class="container">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">Hi <s:property
-					value="#session['userName']" />
-			</a>
-		</div>
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <s:include value="navbar.jsp"></s:include>
+ </nav>
 
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li><a href="#">SLR Home</a></li>
-				<li><a href="<s:url action="settings-input"/>">Settings</a></li>
-				<li><a href="<s:url action="logout"/>">Logout</a></li>
-			</ul>
-		</div>
-		<!-- /.navbar-collapse -->
-	</div>
-	<!-- /.container --> </nav>
-
-	<div>
+        <div id="page-wrapper">
+            <div class="row">
 		<img src="images/home.png" class="img-responsive">
 	</div>
 <div class='error' style='display: none; margin: 5px auto auto auto;width: 30%;text-align: center;border: 1px solid green; color: green;background: rgb(189, 248, 189);'><s:property value="message"/></div>
@@ -88,11 +70,9 @@
 		<!-- /.row -->
 	</div>
 	<!-- /.container --> </footer>
-
-	<script src="js/jquery-1.11.0.js"></script>
-	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/home.js"></script>
+</div>
+</div>
+</div>
 	<s:if test="%{#message!=null}">
 		<script>
 			$(document).ready(function() {
@@ -100,6 +80,19 @@
 			});
 		</script>
 	</s:if>
+
+    <!-- jQuery Version 1.11.0 -->
+    <script src="js/jquery-1.11.0.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="js/plugins/metisMenu/metisMenu.min.js"></script>
+
+	<script type="text/javascript" src="js/home.js"></script>
+    <script src="js/pt-main.js"></script>
 </body>
 
 </html>
