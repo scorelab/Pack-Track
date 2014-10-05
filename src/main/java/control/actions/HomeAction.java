@@ -77,6 +77,11 @@ public class HomeAction extends ActionSupport implements SessionAware, ServletRe
 				sbTab.append("<li><a href=\"#home\" data-url=\"add-category-home\">Categories</a></li>");
 			}
 			
+			if (user.getUserPrivilege().isAdd_parcel() || user.getUserPrivilege().isRelease_parcel() || user.getUserPrivilege().isSelect_train()) {
+				sbTab.append("<li><a href=\"#home\" data-url=\"parcel-home\">Parcel</a></li>");
+
+			}
+			
 			int index = sbTab.indexOf("i");
 			sbTab.insert(index + 1, " class=\"active\"");
 			setTabs(sbTab.toString());

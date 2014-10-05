@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 17, 2014 7:49:23 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="model.models.Parcel" table="PARCEL">
+        <id name="ID" type="int">
+            <column name="parcelID" />
+            <generator class="assigned" />
+        </id>
+        <property name="weight" type="float">
+            <column name="WEIGHT" />
+        </property>
+        <many-to-one name="currentStation" class="model.models.Station" lazy="false">
+            <column name="CURRENTSTATION" />
+        </many-to-one>
+        <many-to-one name="sender" class="model.models.Customer" lazy="false">
+            <column name="SENDER" />
+        </many-to-one>
+        <many-to-one name="receiver" class="model.models.Customer" lazy="false">
+            <column name="RECEIVER" />
+        </many-to-one>
+        <many-to-one name="starts" class="model.models.Station" lazy="false">
+            <column name="STARTS" />
+        </many-to-one>
+        <many-to-one name="destination" class="model.models.Station" lazy="false">
+            <column name="DESTINATION" />
+        </many-to-one>
+        <property name="totalCost" type="float">
+            <column name="TOTALCOST" />
+        </property>
+        <property name="express" type="boolean">
+            <column name="EXPRESS" />
+        </property>
+        <property name="released" type="boolean">
+            <column name="RELEASED" />
+        </property>
+        <many-to-one name="train" class="model.models.Train" lazy="false">
+            <column name="TRAIN" />
+        </many-to-one>
+        <property name="dateRecieved" type="long">
+            <column name="DATERECEIVED" />
+        </property>
+        <property name="dateDelivered" type="long">
+            <column name="DATEDELIVERED" />
+        </property>
+        <property name="addBy" type="java.lang.String">
+            <column name="ADDBY" />
+        </property>
+    </class>
+</hibernate-mapping>
