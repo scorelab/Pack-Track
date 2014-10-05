@@ -25,10 +25,12 @@ public class AddDeviceAction extends ActionSupport implements SessionAware{
 	private List<User> userList = new UserManager().getUserList();
 	private String IMEI;
 	private String assigned;
+	private String message;
 
 	@org.apache.struts2.convention.annotation.Action(value = "add_device", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
-			@Result(name = "done", location = "home", type = "redirect") })
+			@Result(name = "done", location = "add-device-input", type = "redirect"),
+			@Result(name = "change", location = "add-remove-device", type = "redirect") })
 	public String createUser() throws Exception {
 
 		DeviceManager dm = new DeviceManager();
@@ -66,7 +68,7 @@ public class AddDeviceAction extends ActionSupport implements SessionAware{
 				if (dm.updateDevice(temp)) {
 					session.put("message", "Device updated successfully!");
 					session.remove("change");
-					return "done";
+					return "change";
 				}
 			}
 			return SUCCESS;
@@ -83,6 +85,11 @@ public class AddDeviceAction extends ActionSupport implements SessionAware{
 		if (user != null
 				&& (user.getUserPrivilege().isAdd_device() || user
 						.getUserPrivilege().isRemove_device())) {
+			
+			if(session.get("message")!=null){
+				setMessage((String)session.get("message"));
+				session.remove("message");
+			}
 
 			return "add_device";
 		} else {
@@ -119,5 +126,13 @@ public class AddDeviceAction extends ActionSupport implements SessionAware{
 
 	public void setAssigned(String assigned) {
 		this.assigned = assigned;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 }

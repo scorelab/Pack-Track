@@ -47,7 +47,7 @@ public class ChangeDeviceAction extends ActionSupport implements SessionAware, S
 	
 	@org.apache.struts2.convention.annotation.Action(value = "delete_device", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
-			@Result(name = "done", location = "home", type = "redirect") })
+			@Result(name = "done", location = "add-remove-device", type = "redirect") })
 	public String deleteUser() throws Exception {
 		User user = (User) session.get("user");
 		if (user != null && user.getUserPrivilege().isRemove_device()) {
