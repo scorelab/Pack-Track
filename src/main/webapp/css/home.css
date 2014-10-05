@@ -108,4 +108,6 @@ position: absolute;
   visibility: hidden;
 }
 
-
+body{
+	min-height:400px;
+}

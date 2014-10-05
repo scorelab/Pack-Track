@@ -17,9 +17,8 @@ import com.opensymphony.xwork2.ActionSupport;
 @InterceptorRef(value="secureStack")
 public class NavbarAction extends ActionSupport implements SessionAware, ServletResponseAware{
 	private Map<String, Object> session;
-	private String tabs;
+	private String items;
 	private HttpServletResponse response;
-	private String message;
 	
 
 	/**
@@ -38,24 +37,10 @@ public class NavbarAction extends ActionSupport implements SessionAware, Servlet
 
 			StringBuilder sbTab = new StringBuilder();
 			if (user.getUserPrivilege().isRemove_user()) {
-				sbTab.append("<li><a href=\"#home\" data-url=\"add-remove-user\">Users</a></li>");
+				sbTab.append("<li id=\"users\"><a href=\"#\">Users<span class=\"fa arrow\"></span></a><ul class=\"nav nav-second-level\"><li><a href=\"add-user-home\" id=\"add-user-home\">User List</a></li><li><a href=\"add_user\" id=\"add_user\">Add User</a></li></ul></li>");
 
 			} else if (user.getUserPrivilege().isAdd_user()) {
-				sbTab.append("<li><a href=\"#\">Users<span class=\"fa arrow\"></span></a></li>");
-			}
-
-			if (user.getUserPrivilege().isRemove_train()) {
-				sbTab.append("<li><a href=\"#home\" data-url=\"add-remove-train\">Trains</a></li>");
-
-			} else if (user.getUserPrivilege().isAdd_train()) {
-				sbTab.append("<li><a href=\"#home\" data-url=\"add-train-home\">Trains</a></li>");
-			}
-			
-			if (user.getUserPrivilege().isRemove_station()) {
-				sbTab.append("<li><a href=\"#home\" data-url=\"add-remove-station\">Stations</a></li>");
-
-			} else if (user.getUserPrivilege().isAdd_station()) {
-				sbTab.append("<li><a href=\"#home\" data-url=\"add-station-home\">Stations</a></li>");
+				sbTab.append("<li id=\"users\"><a href=\"#\">Users<span class=\"fa arrow\"></span></a><ul class=\"nav nav-second-level\"><li><a href=\"add-user-home\" id=\"add-user-home\">User List</a></li><li><a href=\"add_user\" id=\"add_user\">Add User</a></li></ul></li>");
 			}
 			
 			if (user.getUserPrivilege().isRemove_device()) {
@@ -78,14 +63,7 @@ public class NavbarAction extends ActionSupport implements SessionAware, Servlet
 			}
 			
 			int index = sbTab.indexOf("i");
-			sbTab.insert(index + 1, " class=\"active\"");
-			setTabs(sbTab.toString());
-			
-			if(session.get("message")!=null){
-				message=(String)session.get("message");
-				session.remove("message");
-			}
-			
+			setItems(sbTab.toString());
 			return SUCCESS;
 	}
 
@@ -95,12 +73,12 @@ public class NavbarAction extends ActionSupport implements SessionAware, Servlet
 
 	}
 
-	public String getTabs() {
-		return tabs;
+	public String getItems() {
+		return items;
 	}
 
-	public void setTabs(String tabs) {
-		this.tabs = tabs;
+	public void setItems(String tabs) {
+		this.items = tabs;
 	}
 
 	public void setServletResponse(HttpServletResponse response) {
@@ -108,14 +86,6 @@ public class NavbarAction extends ActionSupport implements SessionAware, Servlet
 	}
 	public HttpServletResponse getServletResponse() {
 		return this.response;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
 	}
 
 }
