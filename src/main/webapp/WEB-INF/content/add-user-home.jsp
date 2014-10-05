@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Home</title>
+<title>User list</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/jquery-ui.min.css" rel="stylesheet">
 <link href="css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
@@ -64,24 +64,25 @@
 
 				</div>
 			</div>
+		</div>
+	</div>
 
-			<!-- jQuery Version 1.11.0 -->
-			<script src="js/jquery-1.11.0.js"></script>
-			<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+	<!-- jQuery Version 1.11.0 -->
+	<script src="js/jquery-1.11.0.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
 
-			<!-- Bootstrap Core JavaScript -->
-			<script src="js/bootstrap.min.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
 
-			<!-- Metis Menu Plugin JavaScript -->
-			<script src="js/plugins/metisMenu/metisMenu.min.js"></script>
+	<!-- Metis Menu Plugin JavaScript -->
+	<script src="js/plugins/metisMenu/metisMenu.min.js"></script>
 
-			<script type="text/javascript" src="js/home.js"></script>
-			<script src="js/pt-main.js"></script>
+	<script src="js/pt-main.js"></script>
 
-			<script type="text/javascript" src="js/tabs.js"></script>
-			<script type="text/javascript">
-				$('#users').addClass('active');
-				$('#add-user-home').addClass('active');
-			</script>
+	<script type="text/javascript" src="js/tabs.js"></script>
+	<script type="text/javascript">
+		$('#users').addClass('active');
+		$('#add-user-home').addClass('active');
+	</script>
 </body>
 </html>

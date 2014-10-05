@@ -59,10 +59,11 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 	private boolean confirm_arrival;
 	private boolean check_upcoming;
 	private boolean select_train;
+	private String message;
 
 	@org.apache.struts2.convention.annotation.Action(value = "add_user", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
-			@Result(name = "done", location = "home", type = "redirect") })
+			@Result(name = "done", location = "add-user-input", type = "redirect") })
 	public String createUser() throws Exception {
 
 		User user = (User) session.get("user");
@@ -169,6 +170,11 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 		if (user != null
 				&& (user.getUserPrivilege().isAdd_user() || user
 						.getUserPrivilege().isRemove_user())) {
+			
+			if(session.get("message")!=null){
+				setMessage((String)session.get("message"));
+				session.remove("message");
+			}
 
 			return "add_user";
 		} else {
@@ -402,6 +408,14 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 
 	public void setSelect_train(boolean select_train) {
 		this.select_train = select_train;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 }

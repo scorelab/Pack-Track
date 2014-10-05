@@ -37,10 +37,10 @@ public class NavbarAction extends ActionSupport implements SessionAware, Servlet
 
 			StringBuilder sbTab = new StringBuilder();
 			if (user.getUserPrivilege().isRemove_user()) {
-				sbTab.append("<li id=\"users\"><a href=\"#\">Users<span class=\"fa arrow\"></span></a><ul class=\"nav nav-second-level\"><li><a href=\"add-user-home\" id=\"add-user-home\">User List</a></li><li><a href=\"add_user\" id=\"add_user\">Add User</a></li></ul></li>");
+				sbTab.append("<li id=\"users\"><a href=\"#\">Users<span class=\"fa arrow\"></span></a><ul class=\"nav nav-second-level\"><li><a href=\"add-user-home\" id=\"add-user-home\">User List</a></li><li><a href=\"add-user-input\" id=\"add_user\">Add User</a></li></ul></li>");
 
 			} else if (user.getUserPrivilege().isAdd_user()) {
-				sbTab.append("<li id=\"users\"><a href=\"#\">Users<span class=\"fa arrow\"></span></a><ul class=\"nav nav-second-level\"><li><a href=\"add-user-home\" id=\"add-user-home\">User List</a></li><li><a href=\"add_user\" id=\"add_user\">Add User</a></li></ul></li>");
+				sbTab.append("<li id=\"users\"><a href=\"#\">Users<span class=\"fa arrow\"></span></a><ul class=\"nav nav-second-level\"><li><a href=\"add-user-home\" id=\"add-user-home\">User List</a></li><li><a href=\"add-user-input\" id=\"add_user\">Add User</a></li></ul></li>");
 			}
 			
 			if (user.getUserPrivilege().isRemove_device()) {
