@@ -44,10 +44,10 @@ public class NavbarAction extends ActionSupport implements SessionAware, Servlet
 			}
 			
 			if (user.getUserPrivilege().isRemove_device()) {
-				sbTab.append("<li id=\"users\"><a href=\"#\">Device<span class=\"fa arrow\"></span></a><ul class=\"nav nav-second-level\"><li><a href=\"add-device-home\" id=\"add-device-home\">Device List</a></li><li><a href=\"add-device-input\" id=\"add_device\">Add Device</a></li><li><a href=\"add-remove-device\" id=\"add-remove-device\">Edit/Deactivate Device</a></li></ul></li>");
+				sbTab.append("<li id=\"device\"><a href=\"#\">Device<span class=\"fa arrow\"></span></a><ul class=\"nav nav-second-level\"><li><a href=\"add-device-home\" id=\"add-device-home\">Device List</a></li><li><a href=\"add-device-input\" id=\"add_device\">Add Device</a></li><li><a href=\"add-remove-device\" id=\"add-remove-device\">Edit/Deactivate Device</a></li></ul></li>");
 
 			} else if (user.getUserPrivilege().isAdd_device()) {
-				sbTab.append("<li id=\"users\"><a href=\"#\">Device<span class=\"fa arrow\"></span></a><ul class=\"nav nav-second-level\"><li><a href=\"add-device-home\" id=\"add-device-home\">Device List</a></li><li><a href=\"add-device-input\" id=\"add_device\">Add Device</a></li>");
+				sbTab.append("<li id=\"device\"><a href=\"#\">Device<span class=\"fa arrow\"></span></a><ul class=\"nav nav-second-level\"><li><a href=\"add-device-home\" id=\"add-device-home\">Device List</a></li><li><a href=\"add-device-input\" id=\"add_device\">Add Device</a></li>");
 			}
 			
 			if (user.getUserPrivilege().isRemove_category()) {
