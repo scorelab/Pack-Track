@@ -34,7 +34,7 @@
 		<!-- Navigation -->
 		<nav class="navbar navbar-default navbar-static-top" role="navigation"
 			style="margin-bottom: 0"> <s:action name="navbar" flush="true"
-			executeResult="true" namespace="/secure" /> </nav>
+			executeResult="true" namespace="/" /> </nav>
 
 		<div id="page-wrapper">
 			<div class="row">
@@ -45,7 +45,7 @@
 				<s:property value="message" />
 			</div>
 			<ul class="nav nav-tabs" id="myTab">
-				<s:property escape="false" value="tabs"></s:property>
+<%-- 				<s:property escape="false" value="tabs"></s:property> --%>
 			</ul>
 
 			<div class="tab-content">

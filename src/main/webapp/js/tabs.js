@@ -30,7 +30,6 @@ $('.change').click(
 		});
 
 $('.deletes').click(function() {
-	alert("sdfsdf");
 	var id = $(this).attr("name");
 	var text='Are sure want to delete '+id+' ?';
 	$('<div title="Are you sure?"/>').html(text).dialog({

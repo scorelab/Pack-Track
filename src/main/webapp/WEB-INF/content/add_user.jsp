@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>User list</title>
+<title>Add User</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/jquery-ui.min.css" rel="stylesheet">
 <link href="css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
@@ -36,7 +36,7 @@
 		<!-- Navigation -->
 		<nav class="navbar navbar-default navbar-static-top" role="navigation"
 			style="margin-bottom: 0"> <s:action name="navbar" flush="true"
-			executeResult="true" namespace="/secure" /> </nav>
+			executeResult="true" namespace="/" /> </nav>
 
 		<div id="page-wrapper">
 			<div class="row">
