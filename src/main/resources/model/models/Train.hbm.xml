@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 6, 2014 2:23:42 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="model.models.Train" table="TRAIN_MAPPING">
+        <id name="train_num" type="java.lang.String">
+            <column name="TRAIN_NUM" />
+            <generator class="assigned" />
+        </id>
+        <property name="train_name" type="java.lang.String">
+            <column name="TRAIN_NAME" />
+        </property>
+        <property name="start_station" type="java.lang.String">
+            <column name="START_STATION" />
+        </property>
+        <property name="destination" type="java.lang.String">
+            <column name="DESTINATION" />
+        </property>
+        <property name="train_type" type="java.lang.String">
+            <column name="TRAIN_TYPE" />
+        </property>
+        <property name="train_run" type="java.lang.String">
+            <column name="TRAIN_RUN" />
+        </property>
+        <property name="train_direction" type="java.lang.String">
+            <column name="TRAIN_DIRECTION" />
+        </property>
+    </class>
+</hibernate-mapping>
