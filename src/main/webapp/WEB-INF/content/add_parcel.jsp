@@ -12,8 +12,11 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Home</title>
+<title>Add Parcel</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/jquery-ui.min.css" rel="stylesheet">
+<link href="css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
+<link href="css/pt-main.css" rel="stylesheet">
 <link href="css/home.css" rel="stylesheet">
 <link href="css/add_user.css" rel="stylesheet">
 
@@ -24,158 +27,167 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 <script>
-function change(){
-    var el1 = document.getElementById("weight");
-    var el2 = document.getElementById("cost");
-    el2.innerHTML = el1.value;
-}
+	function change() {
+		var el1 = document.getElementById("weight");
+		var el2 = document.getElementById("cost");
+		el2.innerHTML = el1.value;
+	}
 </script>
 </head>
 
 <body>
 
-	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-	<div class="container">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">Hi <s:property
-					value="#session['userName']" />
-			</a>
-		</div>
+	<div id="wrapper">
 
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li><a href="<s:url action="home"/>">Home</a></li>
-				<li><a href="#">Settings</a></li>
-				<li><a href="<s:url action="logout"/>">Logout</a></li>
-			</ul>
-		</div>
-		<!-- /.navbar-collapse -->
-	</div>
-	<!-- /.container --> </nav>
+		<!-- Navigation -->
+		<nav class="navbar navbar-default navbar-static-top" role="navigation"
+			style="margin-bottom: 0"> <s:action name="navbar" flush="true"
+			executeResult="true" namespace="/" /> </nav>
 
-	<div>
-		<img src="images/home.png" class="img-responsive">
-	</div>
-
-
-
-	<div class="modal-dialog" style="min-width: 450px;">
-		<div class="modal-content">
-			<div id="container" class="modal-body">
-				<s:form action="add_parcel">
-					<div id='form'>
-						<h1 class='hedinh-tag'>Train</h1>
-						<table class='main-table'>
-							<tr>
-								<td><b>Sender NIC</b></td>
-								<td colspan='3'>
-									<table style="width: 100%">
-										<s:textfield cssClass='input_class' type='text' name='senderNIC'
-											id='senderNIC' onblur="getSender()" value="%{senderNIC}"/>
+		<div id="page-wrapper">
+			<div class="row">
+				<div class='error'
+					style='display: none; margin: 5px auto auto auto; width: 30%; text-align: center; border: 1px solid green; color: green; background: rgb(189, 248, 189);'>
+					<s:property value="message" />
+				</div>
+				<div class="modal-dialog" style="min-width: 450px;">
+					<div class="modal-content">
+						<div id="container" class="modal-body">
+							<s:form action="add_parcel">
+								<div id='form'>
+									<h1 class='hedinh-tag'>Train</h1>
+									<table class='main-table'>
+										<tr>
+											<td><b>Sender NIC</b></td>
+											<td colspan='3'>
+												<table style="width: 100%">
+													<s:textfield cssClass='input_class' type='text'
+														name='senderNIC' id='senderNIC' onblur="getSender()"
+														value="%{senderNIC}" />
+												</table>
+											</td>
+										</tr>
 									</table>
-								</td>
-							</tr>
-							</table>
-							<table class='main-table' id='sender'>
-							</table>
-							<table class='main-table'>
-							<tr>
-								<td><b>Receiver NIC</b></td>
-								<td colspan='3'>
-									<table style="width: 100%">
-										<s:textfield cssClass='input_class' type='text' name='receiverNIC'
-											id='receiverNIC' onblur="getReceiver()" value="%{receiverNIC}"/>
+									<table class='main-table' id='sender'>
 									</table>
-								</td>
-								<td>
-								<a id='getReceiver' class='btn btn-default btn-xs' style='margin-left: 10px;'>get</a>
-								</td>
-							</tr>
-							</table>
-							<table class='main-table' id='receiver'>
-							</table>
-							<table class='main-table'>
-							<tr>
-								<td><b>Start</b></td>
-								<td>
-									<table style="width: 100%">
-										<s:select cssClass='input_class' name='start' id='start'
-											list="stationList" listValue="name" listKey="ID" value="%{start}"></s:select>
+									<table class='main-table'>
+										<tr>
+											<td><b>Receiver NIC</b></td>
+											<td colspan='3'>
+												<table style="width: 100%">
+													<s:textfield cssClass='input_class' type='text'
+														name='receiverNIC' id='receiverNIC' onblur="getReceiver()"
+														value="%{receiverNIC}" />
+												</table>
+											</td>
+											<td><a id='getReceiver' class='btn btn-default btn-xs'
+												style='margin-left: 10px;'>get</a></td>
+										</tr>
 									</table>
-								</td>
-							</tr>
-							<tr>
-								<td><b>Destination</b></td>
-								<td>
-									<table style="width: 100%">
-										<s:select cssClass='input_class' name='destination' id='destination'
-											list="stationList" listValue="name" listKey="ID"></s:select>
+									<table class='main-table' id='receiver'>
 									</table>
-								</td>
-							</tr>
-							<tr>
-								<td><b>Category</b></td>
-								<td>
-									<table style="width: 100%">
-										<s:select cssClass='input_class' name='category' id='category'
-											list="categoryList" listValue="catName" listKey="unitCost"></s:select>
+									<table class='main-table'>
+										<tr>
+											<td><b>Start</b></td>
+											<td>
+												<table style="width: 100%">
+													<s:select cssClass='input_class' name='start' id='start'
+														list="stationList" listValue="name" listKey="ID"
+														value="%{start}"></s:select>
+												</table>
+											</td>
+										</tr>
+										<tr>
+											<td><b>Destination</b></td>
+											<td>
+												<table style="width: 100%">
+													<s:select cssClass='input_class' name='destination'
+														id='destination' list="stationList" listValue="name"
+														listKey="ID"></s:select>
+												</table>
+											</td>
+										</tr>
+										<tr>
+											<td><b>Category</b></td>
+											<td>
+												<table style="width: 100%">
+													<s:select cssClass='input_class' name='category'
+														id='category' list="categoryList" listValue="catName"
+														listKey="unitCost"></s:select>
+												</table>
+											</td>
+											<td style="padding-left: 10px;"><table
+													style="width: 100%">
+													<s:checkbox name='express' label="Express" />
+												</table></td>
+										</tr>
+										<tr>
+											<td><b>Weight</b></td>
+											<td>
+												<table style="width: 100%">
+													<s:textfield cssClass='input_class' type='text'
+														name='weight' id='weight' onkeyup="change()" />
+												</table>
+											</td>
+										</tr>
+										<tr>
+											<td><b>Cost</b></td>
+											<td id='cost'></td>
+										</tr>
 									</table>
-								</td>
-								<td style="padding-left:10px;"><table style="width:100%"><s:checkbox name='express' label="Express"/></table></td>
-							</tr>
-							<tr>
-								<td><b>Weight</b></td>
-								<td>
-									<table style="width: 100%">
-										<s:textfield cssClass='input_class' type='text' name='weight'
-											id='weight' onkeyup="change()"/>
-									</table>
-								</td>
-							</tr>
-							<tr>
-								<td><b>Cost</b></td>
-								<td id='cost' >
-								</td>
-							</tr>
-						</table>
-						<br />
-						<div class='wrapper'>
-							<input type='submit' name='create' value='Save'>
-							</td>
+									<br />
+									<div class='wrapper'>
+										<input type='submit' name='create' value='Save'>
+										</td>
+									</div>
+									<br>
+									</tr>
+								</div>
+							</s:form>
 						</div>
-						<br>
-						</tr>
 					</div>
-				</s:form>
-			</div>
-		</div>
-	</div>
+				</div>
 
 
-	<footer>
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<p>Copyright &copy; Pack Track 2014</p>
-			</div>
-		</div>
-		<!-- /.row -->
-	</div>
-	<!-- /.container --> </footer>
-
+				<footer>
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<p>Copyright &copy; Pack Track 2014</p>
+						</div>
+					</div>
+				</div>
+</footer>
+</div>
+</div>
+</div>
+	<s:set name="message" value="%{message}" />
+	
+	<!-- jQuery Version 1.11.0 -->
 	<script src="js/jquery-1.11.0.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/home.js"></script>
-	<script type="text/javascript" src="js/customer.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
 
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
+
+	<!-- Metis Menu Plugin JavaScript -->
+	<script src="js/plugins/metisMenu/metisMenu.min.js"></script>
+
+	<script src="js/pt-main.js"></script>
+
+	<script type="text/javascript" src="js/tabs.js"></script>
+	<script type="text/javascript">
+		$('#parcel').addClass('active');
+		$('#add-parcel').addClass('active');
+	</script>
+	<s:if test="%{#message!=null}">
+		<script>
+			$(document).ready(function() {
+				$('.error').fadeIn(400).delay(3000).fadeOut(400);
+			});
+		</script>
+	</s:if>
+	<script type="text/javascript" src="js/customer.js"></script>
 </body>
 
 </html>

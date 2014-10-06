@@ -57,6 +57,8 @@ public class ParcelAction extends ActionSupport implements SessionAware,ServletR
 					+ parcels.getDestination().getName() + "</td><td>"
 					+ parcels.getSender().getNic() + "</td><td>"
 					+ parcels.getReceiver().getNic() + "</td><td>"
+					+ parcels.getCurrentStation().getName() + "</td><td>"
+					+ parcels.isReleased() + "</td><td>"
 					+ "</td></tr>";
 			sb.append(temp);
 		}

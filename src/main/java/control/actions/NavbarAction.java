@@ -54,12 +54,25 @@ public class NavbarAction extends ActionSupport implements SessionAware, Servlet
 				sbTab.append("<li id=\"category\"><a href=\"#\">Category<span class=\"fa arrow\"></span></a><ul class=\"nav nav-second-level\"><li><a href=\"add-category-home\" id=\"add-category-home\">Category List</a></li><li><a href=\"add-category-input\" id=\"add_category\">Add Catgory</a></li><li><a href=\"add-remove-category\" id=\"add-remove-category\">Edit/Deactivate Catgory</a></li></ul></li>");
 
 			} else if (user.getUserPrivilege().isAdd_category()) {
-				sbTab.append("<li><a href=\"#home\" data-url=\"add-category-home\">Categories</a></li>");
+				sbTab.append("<li id=\"category\"><a href=\"#\">Category<span class=\"fa arrow\"></span></a><ul class=\"nav nav-second-level\"><li><a href=\"add-category-home\" id=\"add-category-home\">Category List</a></li><li><a href=\"add-category-input\" id=\"add_category\">Add Catgory</a></li>");
 			}
 			
 			if (user.getUserPrivilege().isAdd_parcel() || user.getUserPrivilege().isRelease_parcel() || user.getUserPrivilege().isSelect_train()) {
-				sbTab.append("<li><a href=\"#home\" data-url=\"parcel-home\">Parcel</a></li>");
+				sbTab.append("<li id=\"parcel\"><a href=\"#\">Parcel<span class=\"fa arrow\"></span></a><ul class=\"nav nav-second-level\">");
 
+				if (user.getUserPrivilege().isAdd_parcel()) {
+					sbTab.append("<li><a href=\"parcel-home\" id=\"parcel-home\">Parcel Search</a></li>");
+
+				}
+				if (user.getUserPrivilege().isRelease_parcel()) {
+					sbTab.append("<li><a href=\"add_parcel-input\" id=\"add-parcel\">Add Parcel</a></li>");
+
+				}
+				if (user.getUserPrivilege().isSelect_train()) {
+					sbTab.append("<li><a href=\"parcel-home\" id=\"parcel-home\">Category List</a></li>");
+
+				}
+				sbTab.append("</ul></li>");
 			}
 			
 			int index = sbTab.indexOf("i");
