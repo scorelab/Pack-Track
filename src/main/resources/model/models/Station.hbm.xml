@@ -3,19 +3,16 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Aug 27, 2014 4:53:48 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-	<class name="model.models.Station" table="STATION">
+	<class name="model.models.Station" table="STATION_MAPPING">
 		<id name="ID" type="int">
-			<column name="STATIONID" />
+			<column name="ID" />
 			<generator class="identity" />
 		</id>
 		<property name="name" type="java.lang.String">
-			<column name="stationName" />
+			<column name="station_name" />
 		</property>
-		<property name="contactNum" type="java.lang.String">
-			<column name="telNo" />
-		</property>
-		<property name="addBy" type="java.lang.String">
-			<column name="addBy" />
+		<property name="code" type="java.lang.String">
+			<column name="station_code" />
 		</property>
 	</class>
 </hibernate-mapping>

@@ -54,7 +54,7 @@ public class StationManager {
 	public List<Station> getStationList() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Query query = session.createQuery("from Station where deleted='false'");
+		Query query = session.createQuery("from Station");
 		List<Station> list = query.list();
 		session.getTransaction().commit();
 		session.close();
@@ -64,7 +64,7 @@ public class StationManager {
 	public Station getStation(int id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Query query = session.createQuery("from Station where stationid=:id");
+		Query query = session.createQuery("from Station where id=:id");
 		query.setInteger("id", id);
 		List<Station> list = query.list();
 		session.getTransaction().commit();
@@ -78,23 +78,23 @@ public class StationManager {
 		return list.get(0);
 	}
 	
-	public boolean deleteStation(int id, String by) {
-		try {
-			Session session = HibernateUtil.getSessionFactory().openSession();
-			session.beginTransaction();
-			SQLQuery query = session.createSQLQuery("update Station set deleted=1, deleteby=:by where stationid=:id");
-			query.setInteger("id", id);
-			query.setString("by", by);
-			query.executeUpdate();
-			session.getTransaction().commit();
-			session.close();
-			return true;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
+//	public boolean deleteStation(int id, String by) {
+//		try {
+//			Session session = HibernateUtil.getSessionFactory().openSession();
+//			session.beginTransaction();
+//			SQLQuery query = session.createSQLQuery("update Station set deleted=1, deleteby=:by where stationid=:id");
+//			query.setInteger("id", id);
+//			query.setString("by", by);
+//			query.executeUpdate();
+//			session.getTransaction().commit();
+//			session.close();
+//			return true;
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return false;
+//		}
+//	}
 	
 	public boolean updateStation(Station station) {
 
