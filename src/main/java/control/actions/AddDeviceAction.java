@@ -16,11 +16,12 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
+import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
 @InterceptorRef(value = "secureStack")
-public class AddDeviceAction extends ActionSupport implements SessionAware{
-	
+public class AddDeviceAction extends ActionSupport implements SessionAware {
+
 	private Map<String, Object> session;
 	private List<User> userList = new UserManager().getUserList();
 	private String IMEI;
@@ -42,10 +43,21 @@ public class AddDeviceAction extends ActionSupport implements SessionAware{
 			String change = (String) session.get("change");
 
 			Device temp = new Device();
-			if(IMEI.equals("")){
+			if (IMEI.equals("")) {
 				addFieldError("IMEI", "IMEI cannot be null");
 				return SUCCESS;
 			}
+			if (IMEI.length() > 15) {
+				addFieldError("IMEI",
+						"IMEI lenght cannot exceed 15 digits.(Do not add \"/\" or \"-\") ");
+				return SUCCESS;
+			}
+			if (!isNumeric(IMEI)) {
+				addFieldError("IMEI",
+						"IMEI should consist 15 digits.(Do not add \"/\" or \"-\") ");
+				return SUCCESS;
+			}
+
 			temp.setIMEI(IMEI);
 			for (User u : userList) {
 				if (u.getUserName().equals(assigned)) {
@@ -63,7 +75,7 @@ public class AddDeviceAction extends ActionSupport implements SessionAware{
 					return "done";
 				}
 			} else {
-				
+
 				temp.setID(Integer.parseInt(change));
 				if (dm.updateDevice(temp)) {
 					session.put("message", "Device updated successfully!");
@@ -85,9 +97,9 @@ public class AddDeviceAction extends ActionSupport implements SessionAware{
 		if (user != null
 				&& (user.getUserPrivilege().isAdd_device() || user
 						.getUserPrivilege().isRemove_device())) {
-			
-			if(session.get("message")!=null){
-				setMessage((String)session.get("message"));
+
+			if (session.get("message") != null) {
+				setMessage((String) session.get("message"));
 				session.remove("message");
 			}
 
@@ -96,6 +108,15 @@ public class AddDeviceAction extends ActionSupport implements SessionAware{
 			return ERROR;
 		}
 
+	}
+
+	public static boolean isNumeric(String str) {
+		try {
+			double d = Double.parseDouble(str);
+		} catch (NumberFormatException nfe) {
+			return false;
+		}
+		return true;
 	}
 
 	@Override

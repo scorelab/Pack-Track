@@ -48,7 +48,7 @@ public class ChangeCategoryAction extends ActionSupport implements
 
 	@org.apache.struts2.convention.annotation.Action(value = "delete_category", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
-			@Result(name = "done", location = "home", type = "redirect") })
+			@Result(name = "done", location = "add-remove-category", type = "redirect") })
 	public String deleteUser() throws Exception {
 		User user = (User) session.get("user");
 		if (user != null && user.getUserPrivilege().isRemove_category()) {

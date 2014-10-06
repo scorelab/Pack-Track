@@ -51,7 +51,7 @@ public class NavbarAction extends ActionSupport implements SessionAware, Servlet
 			}
 			
 			if (user.getUserPrivilege().isRemove_category()) {
-				sbTab.append("<li><a href=\"#home\" data-url=\"add-remove-category\">Categories</a></li>");
+				sbTab.append("<li id=\"category\"><a href=\"#\">Category<span class=\"fa arrow\"></span></a><ul class=\"nav nav-second-level\"><li><a href=\"add-category-home\" id=\"add-category-home\">Category List</a></li><li><a href=\"add-category-input\" id=\"add_category\">Add Catgory</a></li><li><a href=\"add-remove-category\" id=\"add-remove-category\">Edit/Deactivate Catgory</a></li></ul></li>");
 
 			} else if (user.getUserPrivilege().isAdd_category()) {
 				sbTab.append("<li><a href=\"#home\" data-url=\"add-category-home\">Categories</a></li>");

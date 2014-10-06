@@ -213,6 +213,7 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 
 	@RequiredStringValidator(type = ValidatorType.FIELD, message = "UserName cannot be empty")
 	public void setUserName(String userName) {
+		System.out.println("rtyui234");
 		this.userName = userName;
 	}
 
