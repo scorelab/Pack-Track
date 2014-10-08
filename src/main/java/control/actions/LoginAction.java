@@ -2,10 +2,13 @@ package control.actions;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import model.managers.UserManager;
 import model.models.User;
 
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -14,10 +17,11 @@ import com.opensymphony.xwork2.ActionSupport;
  * Action that manages login page
  *
  */
-public class LoginAction extends ActionSupport implements SessionAware {
+public class LoginAction extends ActionSupport implements SessionAware,ServletRequestAware {
 	private String userName;
 	private String password;
 	private Map<String, Object> session;
+	private HttpServletRequest request;
 
 	/**
 	 * Method to log in the user in to the system by checking credentials.
@@ -59,6 +63,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	public String logout() {
 
 		session.clear();
+		request.getSession().invalidate();
 		return SUCCESS;
 	}
 
@@ -82,6 +87,12 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
 
+	}
+
+	@Override
+	public void setServletRequest(HttpServletRequest reuqest) {
+		this.request=reuqest;
+		
 	}
 
 }
