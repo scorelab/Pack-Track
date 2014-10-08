@@ -19,6 +19,7 @@ public class CategoryAction extends ActionSupport implements
 		SessionAware {
 	private Map<String, Object> session;
 	private String tableRows;
+	private String message;
 
 	@org.apache.struts2.convention.annotation.Action(value = "add-category-home", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String addCategory() throws Exception {
@@ -26,6 +27,11 @@ public class CategoryAction extends ActionSupport implements
 		User user = (User) session.get("user");
 		if (user != null && user.getUserPrivilege().isAdd_category()) {
 
+			if(session.get("message")!=null){
+				setMessage((String)session.get("message"));
+				session.remove("message");
+			}
+			
 			CategoryManager um = new CategoryManager();
 			List<Category> list = um.getCategoryList();
 			StringBuilder sb = new StringBuilder();
@@ -49,6 +55,11 @@ public class CategoryAction extends ActionSupport implements
 		User user = (User) session.get("user");
 		if (user != null && user.getUserPrivilege().isRemove_category()) {
 
+			if(session.get("message")!=null){
+				setMessage((String)session.get("message"));
+				session.remove("message");
+			}
+			
 			CategoryManager um = new CategoryManager();
 			List<Category> list = um.getCategoryList();
 			StringBuilder sb = new StringBuilder();
@@ -78,6 +89,14 @@ public class CategoryAction extends ActionSupport implements
 
 	public void setTableRows(String tableRows) {
 		this.tableRows = tableRows;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 }

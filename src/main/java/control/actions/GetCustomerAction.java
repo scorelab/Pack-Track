@@ -54,7 +54,6 @@ public class GetCustomerAction extends ActionSupport implements SessionAware, Se
 		if (user != null
 				&& (user.getUserPrivilege().isAdd_parcel())) {
 			String param= getServletRequest().getParameter("sender_nic");
-			System.out.println(param);
 			CustomerManager cm=new CustomerManager();
 			sender=cm.getCustomer(param);
 			if(sender==null){

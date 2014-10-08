@@ -16,19 +16,22 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
+import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
 @InterceptorRef(value = "secureStack")
-public class AddDeviceAction extends ActionSupport implements SessionAware{
-	
+public class AddDeviceAction extends ActionSupport implements SessionAware {
+
 	private Map<String, Object> session;
 	private List<User> userList = new UserManager().getUserList();
 	private String IMEI;
 	private String assigned;
+	private String message;
 
 	@org.apache.struts2.convention.annotation.Action(value = "add_device", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
-			@Result(name = "done", location = "home", type = "redirect") })
+			@Result(name = "done", location = "add-device-input", type = "redirect"),
+			@Result(name = "change", location = "add-remove-device", type = "redirect") })
 	public String createUser() throws Exception {
 
 		DeviceManager dm = new DeviceManager();
@@ -40,10 +43,21 @@ public class AddDeviceAction extends ActionSupport implements SessionAware{
 			String change = (String) session.get("change");
 
 			Device temp = new Device();
-			if(IMEI.equals("")){
+			if (IMEI.equals("")) {
 				addFieldError("IMEI", "IMEI cannot be null");
 				return SUCCESS;
 			}
+			if (IMEI.length() > 15) {
+				addFieldError("IMEI",
+						"IMEI lenght cannot exceed 15 digits.(Do not add \"/\" or \"-\") ");
+				return SUCCESS;
+			}
+			if (!isNumeric(IMEI)) {
+				addFieldError("IMEI",
+						"IMEI should consist 15 digits.(Do not add \"/\" or \"-\") ");
+				return SUCCESS;
+			}
+
 			temp.setIMEI(IMEI);
 			for (User u : userList) {
 				if (u.getUserName().equals(assigned)) {
@@ -61,12 +75,12 @@ public class AddDeviceAction extends ActionSupport implements SessionAware{
 					return "done";
 				}
 			} else {
-				
+
 				temp.setID(Integer.parseInt(change));
 				if (dm.updateDevice(temp)) {
 					session.put("message", "Device updated successfully!");
 					session.remove("change");
-					return "done";
+					return "change";
 				}
 			}
 			return SUCCESS;
@@ -84,11 +98,25 @@ public class AddDeviceAction extends ActionSupport implements SessionAware{
 				&& (user.getUserPrivilege().isAdd_device() || user
 						.getUserPrivilege().isRemove_device())) {
 
+			if (session.get("message") != null) {
+				setMessage((String) session.get("message"));
+				session.remove("message");
+			}
+
 			return "add_device";
 		} else {
 			return ERROR;
 		}
 
+	}
+
+	public static boolean isNumeric(String str) {
+		try {
+			double d = Double.parseDouble(str);
+		} catch (NumberFormatException nfe) {
+			return false;
+		}
+		return true;
 	}
 
 	@Override
@@ -119,5 +147,13 @@ public class AddDeviceAction extends ActionSupport implements SessionAware{
 
 	public void setAssigned(String assigned) {
 		this.assigned = assigned;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 }

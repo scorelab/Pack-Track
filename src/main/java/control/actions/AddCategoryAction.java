@@ -22,10 +22,12 @@ public class AddCategoryAction extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
 	private String catName;
 	private int unitCost;
+	private String message;
 
 	@org.apache.struts2.convention.annotation.Action(value = "add_category", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
-			@Result(name = "done", location = "home", type = "redirect") })
+			@Result(name = "done", location = "add-category-input", type = "redirect"),
+			@Result(name = "change", location = "add-remove-category", type = "redirect") })
 	public String createUser() throws Exception {
 
 		CategoryManager cm = new CategoryManager();
@@ -57,7 +59,7 @@ public class AddCategoryAction extends ActionSupport implements SessionAware {
 					session.put("message", "Category " + temp.getCatName()
 							+ " updated successfully!");
 					session.remove("change");
-					return "done";
+					return "change";
 				}
 			}
 			return SUCCESS;
@@ -73,6 +75,11 @@ public class AddCategoryAction extends ActionSupport implements SessionAware {
 		if (user != null
 				&& (user.getUserPrivilege().isAdd_category() || user
 						.getUserPrivilege().isRemove_category())) {
+			
+			if (session.get("message") != null) {
+				setMessage((String) session.get("message"));
+				session.remove("message");
+			}
 
 			return "add_category";
 		} else {
@@ -103,5 +110,13 @@ public class AddCategoryAction extends ActionSupport implements SessionAware {
 	@IntRangeFieldValidator(min = "1", message = "Positve numbers only")
 	public void setUnitCost(int unitCost) {
 		this.unitCost = unitCost;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 }

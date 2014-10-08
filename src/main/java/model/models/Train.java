@@ -8,64 +8,55 @@ package model.models;
  */
 public class Train {
 
-	private int ID;
-	private String name;
-	private String addBy;
-	private Station start;
-	private Station finish;
-
-	public Train() {
-
+	private String train_num;
+	private String train_name;
+	private String start_station;
+	private String destination;
+	private String train_type;
+	private String train_run;
+	private String train_direction;
+	public String getTrain_num() {
+		return train_num;
 	}
-
-	public Train(int id, String Name, String addby, Station Start, Station Finish) {
-		this.ID = id;
-		this.name = Name;
-		this.start = Start;
-		this.finish = Finish;
-		this.addBy = addby;
+	public void setTrain_num(String train_num) {
+		this.train_num = train_num;
 	}
-
-	public int getID() {
-		return ID;
+	public String getTrain_name() {
+		return train_name;
 	}
-
-	public void setID(int iD) {
-		ID = iD;
+	public void setTrain_name(String train_name) {
+		this.train_name = train_name;
 	}
-
-	public String getName() {
-		return name;
+	public String getStart_station() {
+		return start_station;
 	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setStart_station(String start_station) {
+		this.start_station = start_station;
 	}
-
-	public String getAddBy() {
-		return addBy;
+	public String getDestination() {
+		return destination;
 	}
-
-	public void setAddBy(String addBy) {
-		this.addBy = addBy;
+	public void setDestination(String destination) {
+		this.destination = destination;
 	}
-
-	public Station getStart() {
-		return start;
+	public String getTrain_type() {
+		return train_type;
 	}
-
-	public void setStart(Station start) {
-		this.start = start;
+	public void setTrain_type(String train_type) {
+		this.train_type = train_type;
 	}
-
-	public Station getFinish() {
-		return finish;
+	public String getTrain_run() {
+		return train_run;
 	}
-
-	public void setFinish(Station finish) {
-		this.finish = finish;
+	public void setTrain_run(String train_run) {
+		this.train_run = train_run;
 	}
-
+	public String getTrain_direction() {
+		return train_direction;
+	}
+	public void setTrain_direction(String train_direction) {
+		this.train_direction = train_direction;
+	}
 	
 
 }

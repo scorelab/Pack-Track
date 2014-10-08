@@ -48,7 +48,7 @@ public class ChangeUserAction extends ActionSupport implements SessionAware,
 
 	@org.apache.struts2.convention.annotation.Action(value = "change_user", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
-			@Result(name = "done", location = "home", type = "redirect") })
+			@Result(name = "done", location = "add-remove-user", type = "redirect") })
 	public String changeUser() throws Exception {
 		User user = (User) session.get("user");
 		if (user != null && user.getUserPrivilege().isRemove_user()) {
@@ -67,7 +67,7 @@ public class ChangeUserAction extends ActionSupport implements SessionAware,
 
 	@org.apache.struts2.convention.annotation.Action(value = "delete_user", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
-			@Result(name = "done", location = "home", type = "redirect") })
+			@Result(name = "done", location = "add-remove-user", type = "redirect") })
 	public String deleteUser() throws Exception {
 		User user = (User) session.get("user");
 		if (user != null && user.getUserPrivilege().isRemove_user()) {

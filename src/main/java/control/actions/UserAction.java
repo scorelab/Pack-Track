@@ -24,6 +24,7 @@ public class UserAction extends ActionSupport implements SessionAware {
 
 	private Map<String, Object> session;
 	private String tableRows;
+	private String message;
 
 	@org.apache.struts2.convention.annotation.Action(value = "add-user-home", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String addUser() throws Exception {
@@ -31,6 +32,11 @@ public class UserAction extends ActionSupport implements SessionAware {
 		User user = (User) session.get("user");
 		if (user!=null && user.getUserPrivilege().isAdd_user()) {
 
+			if(session.get("message")!=null){
+				setMessage((String)session.get("message"));
+				session.remove("message");
+			}
+			
 			UserManager um = new UserManager();
 			List<User> list = um.getUserList();
 			StringBuilder sb = new StringBuilder();
@@ -56,6 +62,11 @@ public class UserAction extends ActionSupport implements SessionAware {
 		User user = (User) session.get("user");
 		if (user!=null && user.getUserPrivilege().isRemove_user()) {
 
+			if(session.get("message")!=null){
+				setMessage((String)session.get("message"));
+				session.remove("message");
+			}
+			
 			UserManager um = new UserManager();
 			List<User> list = um.getUserList();
 			StringBuilder sb = new StringBuilder();
@@ -93,6 +104,14 @@ public class UserAction extends ActionSupport implements SessionAware {
 
 	public void setTableRows(String tableRows) {
 		this.tableRows = tableRows;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 

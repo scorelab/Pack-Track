@@ -4,10 +4,6 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-body {
-    margin-top: 50px; /* Required margin for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-}
-
 .image-bg-fluid-height,
 .image-bg-fixed-height {
     text-align: center;
@@ -112,4 +108,6 @@ position: absolute;
   visibility: hidden;
 }
 
-
+body{
+	min-height:400px;
+}

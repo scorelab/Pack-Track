@@ -10,18 +10,10 @@ package model.models;
 public class Station {
 	int ID;
 	String name;
-	String contactNum;
-	String addBy;
+	String code;
 
 	public Station() {
 
-	}
-
-	public Station(int id, String Name, String contactnum, String addby) {
-		ID = id;
-		name = Name;
-		contactNum = contactnum;
-		addBy = addby;
 	}
 
 	public int getID() {
@@ -40,20 +32,12 @@ public class Station {
 		this.name = name;
 	}
 
-	public String getContactNum() {
-		return contactNum;
+	public String getCode() {
+		return code;
 	}
 
-	public void setContactNum(String contactNum) {
-		this.contactNum = contactNum;
-	}
-
-	public String getAddBy() {
-		return addBy;
-	}
-
-	public void setAddBy(String addBy) {
-		this.addBy = addBy;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 }

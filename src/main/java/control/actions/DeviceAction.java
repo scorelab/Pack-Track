@@ -18,12 +18,18 @@ import com.opensymphony.xwork2.ActionSupport;
 public class DeviceAction extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
 	private String tableRows;
+	private String message;
 
 	@org.apache.struts2.convention.annotation.Action(value = "add-device-home", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String addDevice() throws Exception {
 
 		User user = (User) session.get("user");
 		if (user != null && user.getUserPrivilege().isAdd_device()) {
+			
+			if(session.get("message")!=null){
+				setMessage((String)session.get("message"));
+				session.remove("message");
+			}
 
 			DeviceManager dm = new DeviceManager();
 			List<Device> list = dm.getDeviceList();
@@ -47,6 +53,11 @@ public class DeviceAction extends ActionSupport implements SessionAware {
 
 		User user = (User) session.get("user");
 		if (user != null && user.getUserPrivilege().isRemove_device()) {
+			
+			if(session.get("message")!=null){
+				setMessage((String)session.get("message"));
+				session.remove("message");
+			}
 
 			DeviceManager dm = new DeviceManager();
 			List<Device> list = dm.getDeviceList();
@@ -77,5 +88,13 @@ public class DeviceAction extends ActionSupport implements SessionAware {
 
 	public void setTableRows(String tableRows) {
 		this.tableRows = tableRows;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 }

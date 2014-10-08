@@ -1,24 +1,30 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Aug 29, 2014 12:03:04 AM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated Oct 6, 2014 2:23:42 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="model.models.Train" table="TRAIN">
-        <id name="ID" type="int">
-            <column name="trainID" />
-            <generator class="identity" />
+    <class name="model.models.Train" table="TRAIN_MAPPING">
+        <id name="train_num" type="java.lang.String">
+            <column name="TRAIN_NUM" />
+            <generator class="assigned" />
         </id>
-        <property name="name" type="java.lang.String">
-            <column name="trainName" />
+        <property name="train_name" type="java.lang.String">
+            <column name="TRAIN_NAME" />
         </property>
-        <property name="addBy" type="java.lang.String">
-            <column name="ADDBY" />
+        <property name="start_station" type="java.lang.String">
+            <column name="START_STATION" />
         </property>
-        <many-to-one name="start" class="model.models.Station"  lazy="false">
-        	<column name="START" />
-        </many-to-one>
-        <many-to-one name="finish" class="model.models.Station" lazy="false">
-        	<column name="FINISH" />
-        </many-to-one>
+        <property name="destination" type="java.lang.String">
+            <column name="DESTINATION" />
+        </property>
+        <property name="train_type" type="java.lang.String">
+            <column name="TRAIN_TYPE" />
+        </property>
+        <property name="train_run" type="java.lang.String">
+            <column name="TRAIN_RUN" />
+        </property>
+        <property name="train_direction" type="java.lang.String">
+            <column name="TRAIN_DIRECTION" />
+        </property>
     </class>
 </hibernate-mapping>
