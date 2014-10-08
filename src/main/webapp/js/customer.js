@@ -39,7 +39,7 @@ function getReceiver(){
 	}
     $.post("get_receiver",
     	    {
-    	      sender_nic:text
+    	receiver_nic:text
     	    },
     	    function(data){
     	     $("#receiver").html(data);

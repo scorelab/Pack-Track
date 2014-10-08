@@ -55,7 +55,7 @@
 						<div id="container" class="modal-body">
 							<s:form action="add_parcel">
 								<div id='form'>
-									<h1 class='hedinh-tag'>Train</h1>
+									<h1 class='hedinh-tag'>Parcel</h1>
 									<table class='main-table'>
 										<tr>
 											<td><b>Sender NIC</b></td>

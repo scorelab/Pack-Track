@@ -50,6 +50,8 @@ public class AddCustomerAction extends ActionSupport implements SessionAware {
 			}
 			customer.setAddBy(user.getUserName());
 			if(cm.addCustomer(customer)){
+				session.put("message", "Customer "+customer.getName()
+						+ " added successfully!");
 				return "done";
 			}
 			return SUCCESS;

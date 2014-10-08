@@ -39,10 +39,11 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 	private boolean express;
 	private float category;
 	private String receiver_name;
+	private String message;
 
 	@org.apache.struts2.convention.annotation.Action(value = "add_parcel", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
-			@Result(name = "done", location = "home", type = "redirect") })
+			@Result(name = "done", location = "add_parcel-input", type = "redirect") })
 	public String createUser() throws Exception {
 
 		session.remove("sender");
@@ -112,6 +113,10 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 		User user = (User) session.get("user");
 		start=user.getUserDetail().getStation().getID();
 		if (user != null && user.getUserPrivilege().isAdd_parcel()) {
+			if(session.get("message")!=null){
+				setMessage((String)session.get("message"));
+				session.remove("message");
+			}
 			return "add_parcel";
 		}else{
 			return ERROR;
@@ -216,6 +221,14 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 	// "Name cannot be empty")
 	public void setReceiver_name(String receiver_name) {
 		this.receiver_name = receiver_name;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 }
