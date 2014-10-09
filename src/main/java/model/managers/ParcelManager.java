@@ -101,5 +101,34 @@ public class ParcelManager {
 		session.close();
 		return list;
 	}
+	
+	public List<Parcel> getParcelsToSelectTrain(int myStation) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query = session.createQuery("from Parcel p WHERE p.currentStation=:searchText and p.train is null and p.destination!=:searchText");
+		query.setInteger("searchText", myStation);
+		List<Parcel> list = query.list();
+		session.getTransaction().commit();
+		session.close();
+		return list;
+	}
+	
+	public boolean selectTrain(String train, int id) {
+	try {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		SQLQuery query = session.createSQLQuery("update Parcel set train=:train where parcelID=:id");
+		query.setInteger("id", id);
+		query.setString("train", train);
+		query.executeUpdate();
+		session.getTransaction().commit();
+		session.close();
+		return true;
+
+	} catch (Exception e) {
+		e.printStackTrace();
+		return false;
+	}
+}
 
 }

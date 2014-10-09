@@ -131,7 +131,7 @@
 											<td>
 												<table style="width: 100%">
 													<s:select cssClass='input_class' name='station'
-														id='station' list="stationList" listValue="name"
+														id='station' list="stationList" listValue="name+'-'+code"
 														listKey="ID"></s:select>
 												</table>
 											</td>

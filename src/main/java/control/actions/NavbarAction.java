@@ -61,15 +61,15 @@ public class NavbarAction extends ActionSupport implements SessionAware, Servlet
 				sbTab.append("<li id=\"parcel\"><a href=\"#\">Parcel<span class=\"fa arrow\"></span></a><ul class=\"nav nav-second-level\">");
 
 				if (user.getUserPrivilege().isAdd_parcel()) {
-					sbTab.append("<li><a href=\"parcel-home\" id=\"parcel-home\">Parcel Search</a></li>");
+					sbTab.append("<li><a href=\"parcel-home\" id=\"parcel-home\">Parcel Search</a></li><li><a href=\"add_parcel-input\" id=\"add-parcel\">Add Parcel</a></li><li><a href=\"confirm_parcel-input\" id=\"confirm-parcel\">Confirm Arrival</a></li>");
 
 				}
 				if (user.getUserPrivilege().isRelease_parcel()) {
-					sbTab.append("<li><a href=\"add_parcel-input\" id=\"add-parcel\">Add Parcel</a></li>");
+					sbTab.append("<li><a href=\"release_parcel-input\" id=\"release-parcel\">Release Parcel</a></li>");
 
 				}
 				if (user.getUserPrivilege().isSelect_train()) {
-					sbTab.append("<li><a href=\"parcel-home\" id=\"parcel-home\">Category List</a></li>");
+					sbTab.append("<li><a href=\"select-train\" id=\"select-train\">Select Train</a></li>");
 
 				}
 				sbTab.append("</ul></li>");
