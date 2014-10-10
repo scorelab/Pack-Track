@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Add Category</title>
+<title>Confirm Arrivals</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/jquery-ui.min.css" rel="stylesheet">
 <link href="css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
@@ -47,32 +47,27 @@
 				<div class="modal-dialog" style="min-width: 450px;">
 					<div class="modal-content">
 						<div id="container" class="modal-body">
-							<s:form action="add_category">
+							<s:form action="confirm-arrival">
 								<div id='form'>
-									<h1 class='hedinh-tag'>Category</h1>
+									<h1 class='hedinh-tag'>Confirm Arrivals</h1>
 									<table class='main-table'>
 										<tr>
-											<td><b>Category name</b></td>
-											<td colspan='3'>
-												<table style="width: 100%">
-													<s:textfield cssClass='input_class' type='text'
-														name='catName' id='catName' />
-												</table>
-											</td>
+											<td><b>Station</b></td>
+											<td colspan='3'><s:property value="myStation" /></td>
 										</tr>
 										<tr>
-											<td><b>Unit cost (Rs. per 1kg)</b></td>
+											<td><b>Parcel ID</b></td>
 											<td colspan='3'>
 												<table style="width: 100%">
-													<s:textfield cssClass='input_class' type='text'
-														name='unitCost' id='unitCost' />
+													<s:textfield cssClass='input_class' type='text' name='pid'
+														id='pid' />
 												</table>
 											</td>
 										</tr>
 									</table>
 									<br />
 									<div class='wrapper'>
-										<input type='submit' name='create' value='Save'>
+										<input type='submit' name='create' value='Confirm'>
 										</td>
 									</div>
 									<br>
@@ -97,8 +92,8 @@
 		</div>
 	</div>
 
-<s:set name="message" value="%{message}" />
-	
+	<s:set name="message" value="%{message}" />
+
 	<!-- jQuery Version 1.11.0 -->
 	<script src="js/jquery-1.11.0.js"></script>
 	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
@@ -113,8 +108,8 @@
 
 	<script type="text/javascript" src="js/tabs.js"></script>
 	<script type="text/javascript">
-		$('#category').addClass('active');
-		$('#add_category').addClass('active');
+		$('#parcel').addClass('active');
+		$('#confirm-arrival').addClass('active');
 	</script>
 	<s:if test="%{#message!=null}">
 		<script>

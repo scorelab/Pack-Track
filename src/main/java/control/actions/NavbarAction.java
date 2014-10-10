@@ -61,7 +61,7 @@ public class NavbarAction extends ActionSupport implements SessionAware, Servlet
 				sbTab.append("<li id=\"parcel\"><a href=\"#\">Parcel<span class=\"fa arrow\"></span></a><ul class=\"nav nav-second-level\">");
 
 				if (user.getUserPrivilege().isAdd_parcel()) {
-					sbTab.append("<li><a href=\"parcel-home\" id=\"parcel-home\">Parcel Search</a></li><li><a href=\"add_parcel-input\" id=\"add-parcel\">Add Parcel</a></li><li><a href=\"confirm_parcel-input\" id=\"confirm-parcel\">Confirm Arrival</a></li>");
+					sbTab.append("<li><a href=\"parcel-home\" id=\"parcel-home\">Parcel Search</a></li><li><a href=\"add_parcel-input\" id=\"add-parcel\">Add Parcel</a></li><li><a href=\"confirm-arrival-input\" id=\"confirm-arrival\">Confirm Arrival</a></li>");
 
 				}
 				if (user.getUserPrivilege().isRelease_parcel()) {
