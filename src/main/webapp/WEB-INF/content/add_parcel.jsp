@@ -80,8 +80,6 @@
 														value="%{receiverNIC}" />
 												</table>
 											</td>
-											<td><a id='getReceiver' class='btn btn-default btn-xs'
-												style='margin-left: 10px;'>get</a></td>
 										</tr>
 									</table>
 									<table class='main-table' id='receiver'>

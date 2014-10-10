@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Add Category</title>
+<title>Select Train</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/jquery-ui.min.css" rel="stylesheet">
 <link href="css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
@@ -47,37 +47,59 @@
 				<div class="modal-dialog" style="min-width: 450px;">
 					<div class="modal-content">
 						<div id="container" class="modal-body">
-							<s:form action="add_category">
+							<s:form action="add_user">
 								<div id='form'>
-									<h1 class='hedinh-tag'>Category</h1>
+									<h1 class='hedinh-tag'>Select Train</h1>
 									<table class='main-table'>
 										<tr>
-											<td><b>Category name</b></td>
-											<td colspan='3'>
-												<table style="width: 100%">
-													<s:textfield cssClass='input_class' type='text'
-														name='catName' id='catName' />
-												</table>
-											</td>
+											<td><b>Station</b></td>
+											<td colspan='3'><s:property value="myStation" /></td>
 										</tr>
 										<tr>
-											<td><b>Unit cost (Rs. per 1kg)</b></td>
-											<td colspan='3'>
+											<td><b>Train</b></td>
+											<td>
 												<table style="width: 100%">
-													<s:textfield cssClass='input_class' type='text'
-														name='unitCost' id='unitCost' />
+													<tr errorfor="train">
+														<td align="center" valign="top" colspan="2" style="display:none;" id='errorMsg'><span
+															class="errorMessage">No parcels selected</span></td>
+													</tr>
+													<s:select cssClass='input_class' name='train' id='train'
+														list="trainList"
+														listValue="train_name+'-'+train_direction+'-'+train_run"
+														listKey="train_num"></s:select>
 												</table>
 											</td>
 										</tr>
 									</table>
+
+									<div class="input-group"
+										style="width: 80%; margin: 30px auto 30px auto;">
+										<span class="input-group-addon">Filter</span> <input
+											id="filter" type="text" class="form-control"
+											placeholder="Type here...">
+									</div>
+									<div>
+										<table class="table table-striped" style="width: 80%;"
+											align="center">
+											<thead>
+												<tr>
+													<th style="width: 10%;"></th>
+													<th style="width: 25%;">ID</th>
+													<th style="width: 40%;">Destination</th>
+													<th style="width: 25%;">Express</th>
+												</tr>
+											</thead>
+											<tbody class="searchable">
+												<s:property escape="false" value="pList"></s:property>
+											</tbody>
+										</table>
+									</div>
 									<br />
 									<div class='wrapper'>
-										<input type='submit' name='create' value='Save'>
+										<input class="btn btn-default" type='button' id='select'
+											value='Confirm selection'>
 										</td>
 									</div>
-									<br>
-									</tr>
-								</div>
 							</s:form>
 						</div>
 					</div>
@@ -91,14 +113,15 @@
 							<p>Copyright &copy; Pack Track 2014</p>
 						</div>
 					</div>
+					<!-- /.row -->
 				</div>
 				</footer>
 			</div>
 		</div>
 	</div>
 
-<s:set name="message" value="%{message}" />
-	
+	<s:set name="message" value="%{message}" />
+
 	<!-- jQuery Version 1.11.0 -->
 	<script src="js/jquery-1.11.0.js"></script>
 	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
@@ -112,9 +135,10 @@
 	<script src="js/pt-main.js"></script>
 
 	<script type="text/javascript" src="js/tabs.js"></script>
+	<script type="text/javascript" src="js/select-train.js"></script>
 	<script type="text/javascript">
-		$('#category').addClass('active');
-		$('#add_category').addClass('active');
+		$('#parcel').addClass('active');
+		$('#select-train').addClass('active');
 	</script>
 	<s:if test="%{#message!=null}">
 		<script>

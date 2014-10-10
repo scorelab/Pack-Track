@@ -90,16 +90,84 @@ public class ParcelManager {
 			return false;
 		}
 	}
-	
+
 	public List<Parcel> search(String searchText) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Query query = session.createQuery("from Parcel p WHERE p.ID=:searchText or p.receiver.nic=:searchText");
+		Query query = session
+				.createQuery("from Parcel p WHERE p.ID=:searchText or p.receiver.nic=:searchText or p.sender.nic=:searchText");
 		query.setString("searchText", searchText);
 		List<Parcel> list = query.list();
 		session.getTransaction().commit();
 		session.close();
 		return list;
+	}
+
+	public List<Parcel> getParcelsToSelectTrain(int myStation) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query = session
+				.createQuery("from Parcel p WHERE p.currentStation=:searchText and p.train is null and p.destination!=:searchText");
+		query.setInteger("searchText", myStation);
+		List<Parcel> list = query.list();
+		session.getTransaction().commit();
+		session.close();
+		return list;
+	}
+
+	public boolean selectTrain(String train, int id) {
+		try {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			SQLQuery query = session
+					.createSQLQuery("update Parcel set train=:train where parcelID=:id");
+			query.setInteger("id", id);
+			query.setString("train", train);
+			query.executeUpdate();
+			session.getTransaction().commit();
+			session.close();
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean confirmArrival(int stationID, Long id) {
+		try {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			SQLQuery query = session
+					.createSQLQuery("update Parcel set currentStation=:station, train=null where parcelID=:id");
+			query.setLong("id", id);
+			query.setInteger("station", stationID);
+			query.executeUpdate();
+			session.getTransaction().commit();
+			session.close();
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean getParcelsToConfirm(long id) {
+		System.out.println("ght boo");
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query = session
+				.createQuery("from Parcel p WHERE p.released=0 and p.train is not null and p.ID=:searchText");
+		query.setLong("searchText", id);
+		List<Parcel> list = query.list();
+		session.getTransaction().commit();
+		session.close();
+		if(list.size()>0){
+			System.out.println("rtbb d3e3");
+			return true;
+		}
+		return false;
 	}
 
 }
