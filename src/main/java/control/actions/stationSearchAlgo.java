@@ -1,4 +1,3 @@
-package control.actions;
 import java.util.PriorityQueue;
 import java.util.HashSet;
 import java.util.Set;
@@ -8,107 +7,89 @@ import java.util.ArrayList;
 import java.util.Collections;
  
 public class stationSearchAlgo{
+	
+	private static Node root=null;
+	private static List<Node> s = new ArrayList<Node>();
  
  
         //h scores is the stright-line distance from the current city to Bucharest
         public static void main(String[] args){
- 
-                //initialize the graph base on the Romania map
-                Node n1 = new Node("colombo");
-                Node n2 = new Node("maradana");
-                Node n3 = new Node("galle");
-                Node n4 = new Node("ragama");
-                Node n5 = new Node("polgahawela");
-                Node n6 = new Node("negambo");
-                Node n7 = new Node("pera");
-                Node n8 = new Node("maho");
-                Node n9 = new Node("kandy");
-                Node n10 = new Node("badulla");
-                //Node n11 = new Node("apura",0);
-                //Node n12 = new Node("galoya",0);
-                //Node n13 = new Node("trinco",0);
-                //Node n14 = new Node("batclow",77);
- 
-                //initialize the edges
- 
-                //colombo
-                n1.adjacencies = new Edge[]{
-                        new Edge(n2,10),
-                        new Edge(n3,300)
-                };
-                 
-                 //maradana
-                n2.adjacencies = new Edge[]{
-                        new Edge(n1,10),
-                        new Edge(n4,50)
-                };
-                 
- 
-                 //galle
-                n3.adjacencies = new Edge[]{
-                        new Edge(n1,300)
-                };
-                 
-                 //ragama
-                n4.adjacencies = new Edge[]{
-                        new Edge(n2,50),
-                        new Edge(n5,200),
-                        new Edge(n6,100)
-                };
-                 
- 
-                 //polgahawela
-                n5.adjacencies = new Edge[]{
-                        new Edge(n4,200),
-                        new Edge(n7,250),
-                        new Edge(n8,120),
- 
-                        //178
-                        //new Edge(n13,211)
-                };
-                 
-                 //negambo
-                n6.adjacencies = new Edge[]{
-                        new Edge(n4,100)
-                        
-                };
-                 
-                 //pera
-                n7.adjacencies = new Edge[]{
-                        new Edge(n9,250),
-                        new Edge(n10,150)
-                        
-                };
-                 
-                 //maho
-                n8.adjacencies = new Edge[]{
-                        new Edge(n5,120),
-                        //new Edge(n12,50),
-                        //new Edge(n11,400),
-                };
-                 
-                 //kandy
-                n9.adjacencies = new Edge[]{
-                        new Edge(n7,250),
-                };
- 
-                 //badulla
-                n10.adjacencies = new Edge[]{
-                        new Edge(n7,150)
-                  
-                };
-                 
- 
-                stationSearch(n8,n9);
- 
-                List<Node> path = printPath(n9);
- 
-                        System.out.println("Path"+ path);
-                        System.out.println("Distance "+ n9.distance());
- 
+
+        	addStation("colombo", 0, null );
+        	addStation("gampaha", 50, "colombo");
+        	addStation("ragama", 150, "gampaha");
+        	addStation("maradana", 100, "colombo");
+        	printStation();
+        	getDistance("maradana", "ragama");
  
         }
+        
+        public static void getDistance(String start, String finish){
+        	
+        	Node n1=getStation(start);
+        	Node n2=getStation(finish);
+        	
+        	stationSearch(n1,n2);
+        	 
+            List<Node> path = printPath(n2);
+
+                    System.out.println("Path"+ path);
+                    System.out.println("Distance "+ n2.distance());        	
+                    
+        }
+        
+        public static void printStation(){
+        	
+        	if(root!=null){
+        	for (int i = 0; i < s.size(); i++) {
+    			Node n = (Node) s.get(i);
+    			System.out.println(n.value);
+    		}
+        	}
+    			
+        }
+        
+        public static Node getStation(String name){
+        	
+        	if(root!=null){
+        	for (int i = 0; i < s.size(); i++) {
+    			Node n = (Node) s.get(i);
+    			//System.out.println(n.value);
+    			if(n.value==name){
+    				return n;
+    				
+    			}
+    		
+    		}}
+        	
+        	return null;
+        	
+        	
+        }
  
+        public static void addStation(String name, int distance, String prev ){
+        	
+        	if(root==null){
+        		Node newStation=new Node(name);
+        		s.add(newStation);
+        		//System.out.println("Done1");
+        		root=s.get(0);
+        		//System.out.println("Done2");
+        		
+        	}
+        	else{
+        		//System.out.println("Done3");
+	        	Node parent=getStation(prev);
+	        	//System.out.println(parent.value);
+	        	//System.out.println("Done4");
+	        	Node newStation=new Node(name);
+	        	parent.adjacencies.add(new Edge(newStation, distance));  
+	        	newStation.adjacencies.add(new Edge(parent, distance));
+	        	s.add(newStation);
+        	}
+        	
+        }
+        
         public static List<Node> printPath(Node target){
                 List<Node> path = new ArrayList<Node>();
         
@@ -212,7 +193,7 @@ class Node{
         public double g_scores;
         public final double h_scores=0;
         public double f_scores = 0;
-        public Edge[] adjacencies;
+        public List<Edge> adjacencies = new ArrayList<Edge>();
         public Node parent;
  
         public Node(String val){
