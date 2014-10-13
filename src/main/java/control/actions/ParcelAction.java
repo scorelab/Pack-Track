@@ -23,25 +23,9 @@ public class ParcelAction extends ActionSupport implements SessionAware,ServletR
 	private HttpServletRequest response;
 	private Map<String, Object> session;
 	private String tableRows;
-	private String options;
 
 	@org.apache.struts2.convention.annotation.Action(value = "parcel-home", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String addRemoveParcelAction() throws Exception {
-
-		User user = (User) session.get("user");
-		StringBuilder sb = new StringBuilder();
-		if (user != null && user.getUserPrivilege().isAdd_parcel()) {
-			sb.append("<a href='add_parcel-input' class='btn btn-default btn-s' style='margin-right: 10px;'><span class='glyphicon glyphicon-plus-sign'></span> Add Parcel </a>");
-		}
-		if (user != null && user.getUserPrivilege().isSelect_train()) {
-			sb.append("<a href='add-station-input' class='btn btn-default btn-s'><span class='glyphicon glyphicon-tag'></span> Assign Train </a>");
-		}
-		if (user == null
-				&& (user.getUserPrivilege().isSelect_train() || user
-						.getUserPrivilege().isAdd_parcel())) {
-			return ERROR;
-		}
-		options = sb.toString();
 		return SUCCESS;
 	}
 
@@ -79,14 +63,6 @@ public class ParcelAction extends ActionSupport implements SessionAware,ServletR
 		this.tableRows = tableRows;
 	}
 
-	public String getOptions() {
-		return options;
-	}
-
-	public void setOptions(String options) {
-		this.options = options;
-	}
-	
 	public void setServletRequest(HttpServletRequest response) {
 		this.response = response;
 	}

@@ -170,4 +170,35 @@ public class ParcelManager {
 		return false;
 	}
 
+	public List<Parcel> searchRealease(String searchText,int stationID) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query = session
+				.createQuery("from Parcel p WHERE (p.ID=:searchText or p.receiver.nic=:searchText) and p.destination=:station and p.currentStation=:station");
+		query.setString("searchText", searchText);
+		query.setInteger("station", stationID);
+		List<Parcel> list = query.list();
+		session.getTransaction().commit();
+		session.close();
+		return list;
+	}
+	
+	public boolean releaseParcel(Long id, String userName) {
+		try {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			SQLQuery query = session
+					.createSQLQuery("update Parcel set released	=1, releaseBy=:user where parcelID=:id");
+			query.setLong("id", id);
+			query.setString("user", userName);
+			query.executeUpdate();
+			session.getTransaction().commit();
+			session.close();
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }

@@ -65,7 +65,7 @@ public class NavbarAction extends ActionSupport implements SessionAware, Servlet
 
 				}
 				if (user.getUserPrivilege().isRelease_parcel()) {
-					sbTab.append("<li><a href=\"release_parcel-input\" id=\"release-parcel\">Release Parcel</a></li>");
+					sbTab.append("<li><a href=\"release-parcel\" id=\"release-parcel\">Release Parcel</a></li>");
 
 				}
 				if (user.getUserPrivilege().isSelect_train()) {
