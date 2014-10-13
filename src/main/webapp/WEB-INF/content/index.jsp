@@ -149,16 +149,19 @@
 			<div class="panel-body">
 			
 				<div class="form-group">
-					<input class="form-control" placeholder="Enter NIC">
+					<input class="form-control" placeholder="Enter NIC" id="nic">
 				</div>
 
 				<div class="form-group">
-					<input class="form-control" placeholder="Enter Parcel ID"><br>
+					<input class="form-control" placeholder="Enter Parcel ID" id="id"><br>
 				</div>	
-				
-				<div class="form-group">	
-					<button class="btn btn-primary btn-md btn-block">Submit</button>
+				<div class="form-group">
+				<div id="track-result"></div>
 				</div>
+				<div class="form-group">	
+					<button class="btn btn-primary btn-md btn-block" id="track">Submit</button>
+				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -176,14 +179,12 @@
 		</div>
 	</footer> 
 	
-	<script src="js/jquery-1.11.0.js">
-		
-	</script>
+	<script src="js/jquery-1.11.0.js"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script src="js/bootstrap.min.js">
-		
-	</script>
+	<script src="js/bootstrap.min.js"></script>
+	
+	<script src="js/index.js"></script>
 
 	<!-- Script to Activate the Carousel -->
 	<script>

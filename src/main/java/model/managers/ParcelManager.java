@@ -201,4 +201,20 @@ public class ParcelManager {
 			return false;
 		}
 	}
+	
+	public String trackParcel(long id, String nic) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query = session
+				.createQuery("from Parcel p WHERE ( p.sender.nic=:user or p.receiver.nic=:user) and p.ID=:searchText");
+		query.setLong("searchText", id);
+		query.setString("user", nic);
+		List<Parcel> list = query.list();
+		session.getTransaction().commit();
+		session.close();
+		if(list.size()>0){
+			return list.get(0).getCurrentStation().getName();
+		}
+		return null;
+	}
 }
