@@ -5,11 +5,40 @@ import java.util.List;
 import java.util.Comparator;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
  
-public class stationSearchAlgo{
+public class stationSearch{
 	
 	private static Node root=null;
-	private static List<Node> s = new ArrayList<Node>();
+	private static List<Node> stationList = new ArrayList<Node>();
+	private static stationSearch instance;
+	
+	
+	private stationSearch(){
+		
+		
+		try{
+			   FileInputStream fin = new FileInputStream("station.txt");
+			   ObjectInputStream ois = new ObjectInputStream(fin);
+			   Node s = (Node) ois.readObject();
+			   stationList.add(s);
+			   ois.close();
+	 
+			   //return address;
+	 
+		   }catch(Exception ex){
+			   System.out.println("Not input");
+			   //return null;
+		   } 
+		
+	}
+	
  
  
         //h scores is the stright-line distance from the current city to Bucharest
@@ -21,7 +50,22 @@ public class stationSearchAlgo{
         	addStation("maradana", 100, "colombo");
         	printStation();
         	getDistance("maradana", "ragama");
+        	getInstance().printStation();
  
+        }
+        
+        public static stationSearch getInstance(){
+        	
+        	if(instance==null){
+        		instance=new stationSearch();
+        		return instance;
+        		
+        	}
+        	else{
+        		return instance;
+        		
+        	}
+        	
         }
         
         public static void getDistance(String start, String finish){
@@ -29,7 +73,7 @@ public class stationSearchAlgo{
         	Node n1=getStation(start);
         	Node n2=getStation(finish);
         	
-        	stationSearch(n1,n2);
+        	stationNav(n1,n2);
         	 
             List<Node> path = printPath(n2);
 
@@ -41,8 +85,8 @@ public class stationSearchAlgo{
         public static void printStation(){
         	
         	if(root!=null){
-        	for (int i = 0; i < s.size(); i++) {
-    			Node n = (Node) s.get(i);
+        	for (int i = 0; i < stationList.size(); i++) {
+    			Node n = (Node) stationList.get(i);
     			System.out.println(n.value);
     		}
         	}
@@ -52,8 +96,8 @@ public class stationSearchAlgo{
         public static Node getStation(String name){
         	
         	if(root!=null){
-        	for (int i = 0; i < s.size(); i++) {
-    			Node n = (Node) s.get(i);
+        	for (int i = 0; i < stationList.size(); i++) {
+    			Node n = (Node) stationList.get(i);
     			//System.out.println(n.value);
     			if(n.value==name){
     				return n;
@@ -69,11 +113,13 @@ public class stationSearchAlgo{
  
         public static void addStation(String name, int distance, String prev ){
         	
+        	Node newStation=new Node(name);
+        	
         	if(root==null){
-        		Node newStation=new Node(name);
-        		s.add(newStation);
+        		
+        		stationList.add(newStation);
         		//System.out.println("Done1");
-        		root=s.get(0);
+        		root=stationList.get(0);
         		//System.out.println("Done2");
         		
         	}
@@ -82,11 +128,28 @@ public class stationSearchAlgo{
 	        	Node parent=getStation(prev);
 	        	//System.out.println(parent.value);
 	        	//System.out.println("Done4");
-	        	Node newStation=new Node(name);
 	        	parent.adjacencies.add(new Edge(newStation, distance));  
 	        	newStation.adjacencies.add(new Edge(parent, distance));
-	        	s.add(newStation);
+	        	stationList.add(newStation);
         	}
+        	
+        	/*File f = new File("station.txt");
+    		try {
+    		    if(!f.exists()) f.createNewFile();
+    		} catch(IOException e) {
+    		}*/
+        	
+        	try{
+    			FileOutputStream fout = new FileOutputStream("station.obj");
+    			ObjectOutputStream oos = new ObjectOutputStream(fout);   
+    			oos.writeObject(newStation);
+    			oos.close();
+    			System.out.println("Done");
+    	 
+    		   }catch(Exception ex){
+    			   System.out.println("Not Do");
+    			   ex.printStackTrace();
+    		   }
         	
         }
         
@@ -102,7 +165,7 @@ public class stationSearchAlgo{
         return path;
         }
  
-        public static void stationSearch(Node source, Node goal){
+        public static void stationNav(Node source, Node goal){
  
                 Set<Node> explored = new HashSet<Node>();
  
@@ -187,7 +250,7 @@ public class stationSearchAlgo{
         
 }
  
-class Node{
+class Node implements Serializable{
  
         public final String value;
         public double g_scores;
@@ -213,7 +276,7 @@ class Node{
  
 }
  
-class Edge{
+class Edge implements Serializable{
         public final double cost;
         public final Node target;
  
