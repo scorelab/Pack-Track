@@ -89,9 +89,7 @@
 											<td><b>Start</b></td>
 											<td>
 												<table style="width: 100%">
-													<s:select cssClass='input_class' name='start' id='start'
-														list="stationList" listValue="name" listKey="ID"
-														value="%{start}"></s:select>
+													<s:property escape="false"  value="startName" />
 												</table>
 											</td>
 										</tr>

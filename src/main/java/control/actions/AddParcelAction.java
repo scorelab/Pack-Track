@@ -39,6 +39,7 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 	private boolean express;
 	private float category;
 	private String receiver_name;
+	private String startName;
 	private String message;
 
 	@org.apache.struts2.convention.annotation.Action(value = "add_parcel", results = {
@@ -50,11 +51,13 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 		session.remove("receiver");
 		User user = (User) session.get("user");
 		start = user.getUserDetail().getStation().getID();
+		startName=user.getUserDetail().getStation().getName();
 		if (user != null && user.getUserPrivilege().isAdd_parcel()) {
 			CustomerManager cm = new CustomerManager();
 			Customer sender = cm.getCustomer(senderNIC);
 			Customer receiver = cm.getCustomer(receiverNIC);
-			System.out.println(category);
+
+			
 			if (sender == null && receiver == null) {
 				System.out.println(1);
 				return "add-sender-receiver-parcel";
@@ -112,6 +115,7 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 		session.remove("receiver");
 		User user = (User) session.get("user");
 		start=user.getUserDetail().getStation().getID();
+		startName=user.getUserDetail().getStation().getName();
 		if (user != null && user.getUserPrivilege().isAdd_parcel()) {
 			if(session.get("message")!=null){
 				setMessage((String)session.get("message"));
@@ -229,6 +233,14 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public String getStartName() {
+		return startName;
+	}
+
+	public void setStartName(String startName) {
+		this.startName = startName;
 	}
 
 }
