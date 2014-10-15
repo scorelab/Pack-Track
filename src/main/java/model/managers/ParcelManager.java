@@ -15,7 +15,7 @@ public class ParcelManager {
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
-			session.saveOrUpdate(parcel);
+			session.persist(parcel);
 			session.getTransaction().commit();
 			session.close();
 			return true;

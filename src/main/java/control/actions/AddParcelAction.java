@@ -13,6 +13,7 @@ import model.models.Category;
 import model.models.Customer;
 import model.models.Device;
 import model.models.Parcel;
+import model.models.Reciept;
 import model.models.Station;
 import model.models.User;
 
@@ -41,6 +42,7 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 	private String receiver_name;
 	private String startName;
 	private String message;
+	private Reciept reciept;
 
 	@org.apache.struts2.convention.annotation.Action(value = "add_parcel", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
@@ -73,6 +75,7 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 			ParcelManager pm = new ParcelManager();
 			parcel.setReceiver(receiver);
 			parcel.setSender(sender);
+			Reciept r=new Reciept();
 			for (Station st : stationList) {
 				if (st.getID() == start) {
 					parcel.setStarts(st);
@@ -83,6 +86,7 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 			for (Station st : stationList) {
 				if (st.getID() == destination) {
 					parcel.setDestination(st);
+					r.setDestination(st.getName());
 					break;
 				}
 			}
@@ -96,6 +100,13 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 			if (pm.addParcel(parcel)) {
 
 				session.put("message", "Parcel added successfully!");
+				r.setId(Long.toString(parcel.getID()));
+				r.setSenderName(sender.getName());
+				r.setFee(cost);
+				r.setWeight(weight);
+				r.setStart(startName);
+				r.setUrl("http://localhost:8081/PackTrack/track-me?id="+parcel.getID()+"&nic="+senderNIC);
+				session.put("reciept",r);
 				return "done";
 			}
 
@@ -120,6 +131,10 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 			if(session.get("message")!=null){
 				setMessage((String)session.get("message"));
 				session.remove("message");
+			}
+			if(session.get("reciept")!=null){
+				setReciept((Reciept)session.get("reciept"));
+				session.remove("reciept");
 			}
 			return "add_parcel";
 		}else{
@@ -241,6 +256,14 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 
 	public void setStartName(String startName) {
 		this.startName = startName;
+	}
+
+	public Reciept getReciept() {
+		return reciept;
+	}
+
+	public void setReciept(Reciept reciept) {
+		this.reciept = reciept;
 	}
 
 }
