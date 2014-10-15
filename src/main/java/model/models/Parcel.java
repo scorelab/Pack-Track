@@ -9,7 +9,7 @@ import model.models.Train;
 
 public class Parcel {
 
-	private int ID;
+	private long ID;
 	private float weight;
 	private Station currentStation;
 	private Customer sender;
@@ -23,10 +23,10 @@ public class Parcel {
 	private long dateRecieved;
 	private long dateDelivered;
 	private String addBy;
-	public int getID() {
+	public long getID() {
 		return ID;
 	}
-	public void setID(int iD) {
+	public void setID(long iD) {
 		ID = iD;
 	}
 	public float getWeight() {

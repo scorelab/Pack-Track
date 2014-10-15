@@ -4,9 +4,9 @@
 <!-- Generated Sep 17, 2014 7:49:23 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="model.models.Parcel" table="PARCEL">
-        <id name="ID" type="int">
+        <id name="ID" type="long">
             <column name="parcelID" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="weight" type="float">
             <column name="WEIGHT" />
