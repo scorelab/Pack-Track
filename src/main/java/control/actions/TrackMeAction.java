@@ -8,40 +8,32 @@ import javax.servlet.http.HttpServletResponse;
 import model.managers.ParcelManager;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class TrackParcelAction extends ActionSupport implements SessionAware, ServletRequestAware, ServletResponseAware{
-	private HttpServletRequest request;
-	private HttpServletResponse response;
+public class TrackMeAction extends ActionSupport implements SessionAware{
+
 	private Map<String, Object> session;
 	private String res;
+	private String id;
+	private String nic;
 	
-	@org.apache.struts2.convention.annotation.Action(value = "track-parcel")
+	@org.apache.struts2.convention.annotation.Action(value = "track-me")
 	public String changeUser() throws Exception {
-		String id = request.getParameter("id");
-		String nic = request.getParameter("nic");
+
+		System.out.println(id);
 		ParcelManager pm=new ParcelManager();
-		String temp=pm.trackParcel(Long.parseLong(id), nic);
+		String temp=pm.trackParcel(Long.parseLong(getId()), getNic());
+		
 		if(temp==null){
 			res="Invalid details";
-		}else if(pm.getParcel(Long.parseLong(id)).getDestination().getName().equals(temp)){
+		}else if(pm.getParcel(Long.parseLong(getId())).getDestination().getName().equals(temp)){
 			res="Your package is at it's destination<b>("+temp+")</b>. Please pick it from there.";
 		}else {
 			res="Your package is at <b>"+temp+"</b>";
 		}
 		return SUCCESS;
-	}
-	
-	
-	public void setServletRequest(HttpServletRequest  request) {
-		this. request =  request;
-	}
-
-	public HttpServletRequest getServletRequest() {
-		return this. request;
 	}
 
 	@Override
@@ -50,14 +42,6 @@ public class TrackParcelAction extends ActionSupport implements SessionAware, Se
 
 	}
 
-
-	@Override
-	public void setServletResponse(HttpServletResponse response) {
-		this.response=response;
-		
-	}
-
-
 	public String getRes() {
 		return res;
 	}
@@ -65,5 +49,21 @@ public class TrackParcelAction extends ActionSupport implements SessionAware, Se
 
 	public void setRes(String res) {
 		this.res = res;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getNic() {
+		return nic;
+	}
+
+	public void setNic(String nic) {
+		this.nic = nic;
 	}
 }

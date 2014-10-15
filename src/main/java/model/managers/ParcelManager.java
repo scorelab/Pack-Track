@@ -58,11 +58,11 @@ public class ParcelManager {
 		return list;
 	}
 
-	public Parcel getParcel(int id) {
+	public Parcel getParcel(long id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		Query query = session.createQuery("from Parcel where parcelID=:id");
-		query.setInteger("id", id);
+		query.setLong("id", id);
 		List<Parcel> list = query.list();
 		session.getTransaction().commit();
 		session.close();
