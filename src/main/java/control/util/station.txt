@@ -1,0 +1,10 @@
+colombo galle 300
+maradana colombo 10
+ragama maradana 50
+polgahawela ragama 200
+negambo ragama 100
+maho polgahawela 120
+apura maho 400
+pera polgahawela 250
+badulla pera 150
+kandy pera 250

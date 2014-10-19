@@ -1,3 +1,5 @@
+package control.util;
+
 import java.util.PriorityQueue;
 import java.util.HashSet;
 import java.util.Set;
@@ -5,23 +7,19 @@ import java.util.List;
 import java.util.Comparator;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.BufferedReader;
+import java.io.FileReader;
  
 public class stationSearch{
 	
-	private static Node root=null;
+	//private static Node root=null;
 	private static List<Node> stationList = new ArrayList<Node>();
 	private static stationSearch instance;
 	
 	
 	private stationSearch(){
-		
+		/*
 		
 		try{
 			   FileInputStream fin = new FileInputStream("station.txt");
@@ -36,23 +34,46 @@ public class stationSearch{
 			   System.out.println("Not input");
 			   //return null;
 		   } 
+		*/
 		
-	}
+		BufferedReader br=null;
+		try {
+ 
+			String currentLine;
+			//File file=new File("station.txt");
+ 
+			br = new BufferedReader(new FileReader("station.txt"));
+ 
+			while ((currentLine = br.readLine()) != null){
+				String[] parameter = currentLine.split(" ");
+				System.out.println(parameter[0]);
+				addStation(parameter[0], parameter[1], Integer.parseInt(parameter[2]));
+				System.out.println(stationList);
+				//System.out.println(currentLine);
+				
+				//System.out.println(parameter[1]);
+				//System.out.println(parameter[2]);
+			}
+			System.out.println(stationList);
+			
+			
+ 
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (br != null)br.close();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+			}
+		}
 	
  
  
         //h scores is the stright-line distance from the current city to Bucharest
-        public static void main(String[] args){
-
-        	addStation("colombo", 0, null );
-        	addStation("gampaha", 50, "colombo");
-        	addStation("ragama", 150, "gampaha");
-        	addStation("maradana", 100, "colombo");
-        	printStation();
-        	getDistance("maradana", "ragama");
-        	getInstance().printStation();
- 
-        }
+        
+        public static int getSize(){return stationList.size();}
         
         public static stationSearch getInstance(){
         	
@@ -70,21 +91,25 @@ public class stationSearch{
         
         public static void getDistance(String start, String finish){
         	
+        	
         	Node n1=getStation(start);
         	Node n2=getStation(finish);
         	
+        	if (n1==null) {System.out.println("N1 null");}
+        	else if (n2==null ){System.out.println("N2 null");}
+        	else{
         	stationNav(n1,n2);
         	 
             List<Node> path = printPath(n2);
 
                     System.out.println("Path"+ path);
-                    System.out.println("Distance "+ n2.distance());        	
+                    System.out.println("Distance "+ n2.distance());   }     	
                     
         }
         
         public static void printStation(){
         	
-        	if(root!=null){
+        	if(stationList.size()!=0){
         	for (int i = 0; i < stationList.size(); i++) {
     			Node n = (Node) stationList.get(i);
     			System.out.println(n.value);
@@ -93,51 +118,78 @@ public class stationSearch{
     			
         }
         
-        public static Node getStation(String name){
-        	
-        	if(root!=null){
-        	for (int i = 0; i < stationList.size(); i++) {
-    			Node n = (Node) stationList.get(i);
-    			//System.out.println(n.value);
-    			if(n.value==name){
-    				return n;
-    				
-    			}
-    		
-    		}}
-        	
-        	return null;
+    public static Node getStation(String name){
+    	
+    	System.out.println(stationList);
+    	if(stationList.size()!=0){
+	    	for (int i = 0; i < stationList.size(); i++) {
+				Node n =stationList.get(i);
+				System.out.println("STATION "+n.value);
+				System.out.println("STATION NAME "+name);
+				if(n.value.equals(name)){
+					System.out.println("station return");
+					return stationList.get(i);				
+				}
+			}
+    	}
+        
+    	System.out.println("Null Return");
+        return null;
         	
         	
         }
  
-        public static void addStation(String name, int distance, String prev ){
+        public static void addStation(String name, String prev, int distance ){
         	
-        	Node newStation=new Node(name);
         	
-        	if(root==null){
+        	
+        	if(stationList.size()==0){
         		
+        		Node newStation=new Node(name);
+        		//System.out.println(name);
+        		Node prevStation=new Node(prev);
         		stationList.add(newStation);
+        		System.out.println("get Station 1 "+getStation("1"));
+        		stationList.add(prevStation);
+        		newStation=getStation(name);
+        		prevStation=getStation(prev);
+        		prevStation.adjacencies.add(new Edge(newStation, distance));  
+	        	newStation.adjacencies.add(new Edge(prevStation, distance));
+	        	
         		//System.out.println("Done1");
-        		root=stationList.get(0);
+        		
+            	//System.out.println(getStation("2"));
+        		//root=stationList.get(0);
         		//System.out.println("Done2");
         		
         	}
         	else{
-        		//System.out.println("Done3");
+        		System.out.println("Done3");
+        		Node newStation=new Node(name);
 	        	Node parent=getStation(prev);
+	        	if(parent==null){
+	        		parent=new Node(prev);
+	        		parent.adjacencies.add(new Edge(newStation, distance));  
+		        	newStation.adjacencies.add(new Edge(parent, distance));
+		        	stationList.add(newStation);
+		        	stationList.add(parent);
+	        	}
+	        	else{
+	        		parent.adjacencies.add(new Edge(newStation, distance));  
+		        	newStation.adjacencies.add(new Edge(parent, distance));
+		        	stationList.add(newStation);	
+	        	}
+	        	
 	        	//System.out.println(parent.value);
 	        	//System.out.println("Done4");
-	        	parent.adjacencies.add(new Edge(newStation, distance));  
-	        	newStation.adjacencies.add(new Edge(parent, distance));
-	        	stationList.add(newStation);
+	        	
         	}
         	
         	/*File f = new File("station.txt");
     		try {
     		    if(!f.exists()) f.createNewFile();
     		} catch(IOException e) {
-    		}*/
+    		}
         	
         	try{
     			FileOutputStream fout = new FileOutputStream("station.obj");
@@ -149,7 +201,7 @@ public class stationSearch{
     		   }catch(Exception ex){
     			   System.out.println("Not Do");
     			   ex.printStackTrace();
-    		   }
+    		   }*/
         	
         }
         
@@ -250,7 +302,7 @@ public class stationSearch{
         
 }
  
-class Node implements Serializable{
+class Node{
  
         public final String value;
         public double g_scores;
@@ -263,6 +315,7 @@ class Node implements Serializable{
                 value = val;
         }
  
+        @Override
         public String toString(){
                 return value;
         }
@@ -276,7 +329,7 @@ class Node implements Serializable{
  
 }
  
-class Edge implements Serializable{
+class Edge{
         public final double cost;
         public final Node target;
  
