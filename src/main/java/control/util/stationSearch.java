@@ -1,5 +1,7 @@
 package control.util;
 
+
+
 import java.util.PriorityQueue;
 import java.util.HashSet;
 import java.util.Set;
@@ -7,9 +9,12 @@ import java.util.List;
 import java.util.Comparator;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.PrintWriter;
  
 public class stationSearch{
 	
@@ -19,22 +24,7 @@ public class stationSearch{
 	
 	
 	private stationSearch(){
-		/*
 		
-		try{
-			   FileInputStream fin = new FileInputStream("station.txt");
-			   ObjectInputStream ois = new ObjectInputStream(fin);
-			   Node s = (Node) ois.readObject();
-			   stationList.add(s);
-			   ois.close();
-	 
-			   //return address;
-	 
-		   }catch(Exception ex){
-			   System.out.println("Not input");
-			   //return null;
-		   } 
-		*/
 		
 		BufferedReader br=null;
 		try {
@@ -47,7 +37,7 @@ public class stationSearch{
 			while ((currentLine = br.readLine()) != null){
 				String[] parameter = currentLine.split(" ");
 				System.out.println(parameter[0]);
-				addStation(parameter[0], parameter[1], Integer.parseInt(parameter[2]));
+				createStation(parameter[0], parameter[1], Integer.parseInt(parameter[2]));
 				System.out.println(stationList);
 				//System.out.println(currentLine);
 				
@@ -185,6 +175,16 @@ public class stationSearch{
 	        	
         	}
         	
+        	try(  
+        		FileWriter fw = new FileWriter("station.txt", true);
+      	        BufferedWriter bw = new BufferedWriter(fw);
+      	        PrintWriter out = new PrintWriter(bw)){
+      	     	out.println(name+" "+prev+" "+Integer.toString(distance));
+      	  }  
+      	  catch( IOException e ){
+      	      // File writing/opening failed at some stage.
+      	  }
+        	
         	/*File f = new File("station.txt");
     		try {
     		    if(!f.exists()) f.createNewFile();
@@ -203,6 +203,42 @@ public class stationSearch{
     			   ex.printStackTrace();
     		   }*/
         	
+        }
+        
+public static void createStation(String name, String prev, int distance ){
+        	
+        	
+        	//same as add station method
+        	if(stationList.size()==0){
+        		
+        		Node newStation=new Node(name);
+        		//System.out.println(name);
+        		Node prevStation=new Node(prev);
+        		stationList.add(newStation);
+        		System.out.println("get Station 1 "+getStation("1"));
+        		stationList.add(prevStation);
+        		newStation=getStation(name);
+        		prevStation=getStation(prev);
+        		prevStation.adjacencies.add(new Edge(newStation, distance));  
+	        	newStation.adjacencies.add(new Edge(prevStation, distance));
+        	}
+        	else{
+        		System.out.println("Done3");
+        		Node newStation=new Node(name);
+	        	Node parent=getStation(prev);
+	        	if(parent==null){
+	        		parent=new Node(prev);
+	        		parent.adjacencies.add(new Edge(newStation, distance));  
+		        	newStation.adjacencies.add(new Edge(parent, distance));
+		        	stationList.add(newStation);
+		        	stationList.add(parent);
+	        	}
+	        	else{
+	        		parent.adjacencies.add(new Edge(newStation, distance));  
+		        	newStation.adjacencies.add(new Edge(parent, distance));
+		        	stationList.add(newStation);	
+	        	}
+        	}
         }
         
         public static List<Node> printPath(Node target){
