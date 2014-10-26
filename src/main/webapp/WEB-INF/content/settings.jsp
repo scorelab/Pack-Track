@@ -65,7 +65,7 @@
 			<div id="container" class="modal-body">
 				<s:form action="settings">
 					<div id='form'>
-					<h1 class='hedinh-tag'>Change password</h1>
+						<h1 class='hedinh-tag'>Change password</h1>
 						<table class='main-table'>
 							<tr>
 								<td><b>Current password</b></td>
@@ -80,8 +80,8 @@
 								<td><b>New password</b></td>
 								<td colspan='3'>
 									<table style="width: 100%">
-										<s:password cssClass='input_class' type='text'
-											name='newP' id='newP' />
+										<s:password cssClass='input_class' type='text' name='newP'
+											id='newP' />
 									</table>
 								</td>
 							</tr>
@@ -89,8 +89,8 @@
 								<td><b>Repeat new password</b></td>
 								<td colspan='3'>
 									<table style="width: 100%">
-										<s:password cssClass='input_class' type='text'
-											name='repeat' id='repeat' />
+										<s:password cssClass='input_class' type='text' name='repeat'
+											id='repeat' />
 									</table>
 								</td>
 							</tr>

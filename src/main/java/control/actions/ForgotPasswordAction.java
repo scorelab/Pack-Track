@@ -20,24 +20,26 @@ import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
 import control.message.Email;
 
-public class ForgotPasswordAction extends ActionSupport implements SessionAware, ServletResponseAware{
+public class ForgotPasswordAction extends ActionSupport implements
+		SessionAware, ServletResponseAware {
 
 	private Map<String, Object> session;
 	private HttpServletResponse response;
 	private String email;
-	
+
 	@org.apache.struts2.convention.annotation.Action(value = "forgot-password", results = { @Result(name = "done", location = "reset-pass", type = "redirect") })
 	public String execute() throws Exception {
 
-		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+		response.setHeader("Cache-Control",
+				"no-cache, no-store, must-revalidate"); // HTTP 1.1.
 		response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
 		response.setDateHeader("Expires", 0);
-		UserManager um=new UserManager();
-		User user=um.getUserByEmail(email);
-		if(user==null){
+		UserManager um = new UserManager();
+		User user = um.getUserByEmail(email);
+		if (user == null) {
 			addFieldError("email", "Email does not exist in Pack Track");
 			return SUCCESS;
-		}else{
+		} else {
 			char[] chars = "abcdefghijklmnopqrstuvwxyzQWERTYUIOPASDFGHJKLZXCVBNM!@#$%^&*()1234567890"
 					.toCharArray();
 			StringBuilder sb = new StringBuilder();
@@ -54,10 +56,11 @@ public class ForgotPasswordAction extends ActionSupport implements SessionAware,
 				e.printStackTrace();
 			}
 			user.setPassword(password);
-			
+
 			if (um.updateUser(user)) {
 				Email.send("PackTrack Account",
-						"Hi,\n Your password has reset.\nYour user name at PackTrack is : " + user.getUserName()
+						"Hi,\n Your password has reset.\nYour user name at PackTrack is : "
+								+ user.getUserName()
 								+ "\n Your new password is : " + sb.toString(),
 						email);
 			}
@@ -65,23 +68,24 @@ public class ForgotPasswordAction extends ActionSupport implements SessionAware,
 		return "done";
 
 	}
-	
+
 	@org.apache.struts2.convention.annotation.Action(value = "forgot-password-input", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String input() throws Exception {
 
-			return "forgot-password";
+		return "forgot-password";
 
 	}
-	
+
 	@Override
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
 
 	}
-	
+
 	public void setServletResponse(HttpServletResponse response) {
 		this.response = response;
 	}
+
 	public HttpServletResponse getServletResponse() {
 		return this.response;
 	}

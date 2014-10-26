@@ -35,7 +35,7 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="input-group"
-					style="width: 80%;  margin: 30px auto 30px auto;">
+					style="width: 80%; margin: 30px auto 30px auto;">
 					<span class="input-group-addon">Filter</span> <input id="filter"
 						type="text" class="form-control" placeholder="Type here...">
 				</div>

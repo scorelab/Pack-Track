@@ -40,10 +40,10 @@
 
 		<div id="page-wrapper">
 			<div class="row">
-			<div class='error'
-				style='display: none; margin: 5px auto auto auto; width: 30%; text-align: center; border: 1px solid green; color: green; background: rgb(189, 248, 189);'>
-				<s:property value="message" />
-			</div>
+				<div class='error'
+					style='display: none; margin: 5px auto auto auto; width: 30%; text-align: center; border: 1px solid green; color: green; background: rgb(189, 248, 189);'>
+					<s:property value="message" />
+				</div>
 				<div class="modal-dialog" style="min-width: 450px;">
 					<div class="modal-content">
 						<div id="container" class="modal-body">
@@ -229,9 +229,9 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<s:set name="message" value="%{message}" />
-	
+
 	<!-- jQuery Version 1.11.0 -->
 	<script src="js/jquery-1.11.0.js"></script>
 	<script type="text/javascript" src="js/jquery-ui.min.js"></script>

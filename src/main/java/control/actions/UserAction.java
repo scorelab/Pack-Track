@@ -19,7 +19,7 @@ import com.opensymphony.xwork2.validator.annotations.EmailValidator;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
-@InterceptorRef(value="secureStack")
+@InterceptorRef(value = "secureStack")
 public class UserAction extends ActionSupport implements SessionAware {
 
 	private Map<String, Object> session;
@@ -30,13 +30,13 @@ public class UserAction extends ActionSupport implements SessionAware {
 	public String addUser() throws Exception {
 
 		User user = (User) session.get("user");
-		if (user!=null && user.getUserPrivilege().isAdd_user()) {
+		if (user != null && user.getUserPrivilege().isAdd_user()) {
 
-			if(session.get("message")!=null){
-				setMessage((String)session.get("message"));
+			if (session.get("message") != null) {
+				setMessage((String) session.get("message"));
 				session.remove("message");
 			}
-			
+
 			UserManager um = new UserManager();
 			List<User> list = um.getUserList();
 			StringBuilder sb = new StringBuilder();
@@ -60,13 +60,13 @@ public class UserAction extends ActionSupport implements SessionAware {
 	public String addRemoveUser() throws Exception {
 
 		User user = (User) session.get("user");
-		if (user!=null && user.getUserPrivilege().isRemove_user()) {
+		if (user != null && user.getUserPrivilege().isRemove_user()) {
 
-			if(session.get("message")!=null){
-				setMessage((String)session.get("message"));
+			if (session.get("message") != null) {
+				setMessage((String) session.get("message"));
 				session.remove("message");
 			}
-			
+
 			UserManager um = new UserManager();
 			List<User> list = um.getUserList();
 			StringBuilder sb = new StringBuilder();
@@ -81,7 +81,11 @@ public class UserAction extends ActionSupport implements SessionAware {
 						+ users.getRole()
 						+ "</td><td>"
 						+ users.getNicNumber()
-						+ "</td><td><button type='button' class='btn btn-default btn-s change' name='"+users.getUserName()+"'><span class='glyphicon glyphicon-pencil'></span> Change</button></td><td><button type='button' class='btn btn-default btn-s deletes' name='"+users.getUserName()+"'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>";
+						+ "</td><td><button type='button' class='btn btn-default btn-s change' name='"
+						+ users.getUserName()
+						+ "'><span class='glyphicon glyphicon-pencil'></span> Change</button></td><td><button type='button' class='btn btn-default btn-s deletes' name='"
+						+ users.getUserName()
+						+ "'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>";
 				sb.append(temp);
 			}
 			tableRows = sb.toString();
@@ -91,7 +95,7 @@ public class UserAction extends ActionSupport implements SessionAware {
 		}
 
 	}
-	
+
 	@Override
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
@@ -113,6 +117,5 @@ public class UserAction extends ActionSupport implements SessionAware {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-
 
 }

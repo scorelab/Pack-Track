@@ -66,14 +66,14 @@
 			<div id="container" class="modal-body">
 				<s:form action="add_category">
 					<div id='form'>
-					<h1 class='hedinh-tag'>Category</h1>
+						<h1 class='hedinh-tag'>Category</h1>
 						<table class='main-table'>
 							<tr>
 								<td><b>Category name</b></td>
 								<td colspan='3'>
 									<table style="width: 100%">
 										<s:textfield cssClass='input_class' type='text' name='catName'
-											id='catName' value="%{temp.catName}"/>
+											id='catName' value="%{temp.catName}" />
 									</table>
 								</td>
 							</tr>
@@ -82,7 +82,7 @@
 								<td colspan='3'>
 									<table style="width: 100%">
 										<s:textfield cssClass='input_class' type='text'
-											name='unitCost' id='unitCost' value="%{temp.unitCost}"/>
+											name='unitCost' id='unitCost' value="%{temp.unitCost}" />
 									</table>
 								</td>
 							</tr>

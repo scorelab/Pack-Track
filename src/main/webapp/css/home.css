@@ -3,24 +3,23 @@
  * Code licensed under the Apache License v2.0.
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
-
-.image-bg-fluid-height,
-.image-bg-fixed-height {
-    text-align: center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
+.image-bg-fluid-height,.image-bg-fixed-height {
+	text-align: center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	-o-background-size: cover;
 }
 
 .image-bg-fluid-height {
 	background: url('../images/3.png') no-repeat center center scroll;
-    padding: 100px 0;
+	padding: 100px 0;
 }
 
 .image-bg-fixed-height {
-	background: url('http://lorempixel.com/g/1920/500/') no-repeat center center scroll;
-    height: 450px;
+	background: url('http://lorempixel.com/g/1920/500/') no-repeat center
+		center scroll;
+	height: 450px;
 }
 
 .img-center {
@@ -28,86 +27,86 @@
 }
 
 section {
-    padding: 75px 0;
+	padding: 75px 0;
 }
 
 .section-heading {
-    margin: 30px 0;
-    font-size: 4em;
+	margin: 30px 0;
+	font-size: 4em;
 }
 
 .section-lead {
-    margin: 30px 0;
+	margin: 30px 0;
 }
 
 .section-paragraph {
-    margin: 30px 0;
+	margin: 30px 0;
 }
 
 footer {
-    margin: 50px 0;
+	margin: 50px 0;
 }
 
-@media(max-width:768px) {
-    section {
-        padding-top: 25px;
-        padding-bottom: 25px;
-    }
-
-    .section-heading {
-        font-size: 2em;
-    }
+@media ( max-width :768px) {
+	section {
+		padding-top: 25px;
+		padding-bottom: 25px;
+	}
+	.section-heading {
+		font-size: 2em;
+	}
 }
-@media (min-width: 768px) {
-  .navbar-nav {
-    float: right;
-    margin: 0;
-  }
-  .navbar-nav > li {
-    float: left;
-  }
-  .navbar-nav > li > a {
-    padding-top: 15px;
-    padding-bottom: 15px;
-  }
-  .navbar-nav.navbar-right:last-child {
-    margin-right: -15px;
-  }
+
+@media ( min-width : 768px) {
+	.navbar-nav {
+		float: right;
+		margin: 0;
+	}
+	.navbar-nav>li {
+		float: left;
+	}
+	.navbar-nav>li>a {
+		padding-top: 15px;
+		padding-bottom: 15px;
+	}
+	.navbar-nav.navbar-right:last-child {
+		margin-right: -15px;
+	}
 }
 
 .navbar-inverse {
-  background-color: #767676;
-  border-color: #080808;
+	background-color: #767676;
+	border-color: #080808;
 }
 
-.navbar-inverse .navbar-nav > li > a {
-  color: #00007E;
+.navbar-inverse .navbar-nav>li>a {
+	color: #00007E;
 }
 
 .navbar-inverse .navbar-brand {
-  color: #00007E;
+	color: #00007E;
 }
 
 .navbar-brand {
-  float: left;
-  height: 50px;
-  padding: 15px 15px;
-  font-size: 25px;
-  line-height: 20px;
+	float: left;
+	height: 50px;
+	padding: 15px 15px;
+	font-size: 25px;
+	line-height: 20px;
 }
 
-.nav-tabs{
+.nav-tabs {
 	margin: 20px 0 0 0;
 }
 
-.navbar-fixed-top, .navbar-fixed-bottom {
-position: absolute;
+.navbar-fixed-top,.navbar-fixed-bottom {
+	position: absolute;
 }
 
 .ui-dialog-titlebar-close {
-  visibility: hidden;
+	visibility: hidden;
 }
 
-body{
-	min-height:400px;
+body {
+	min-height: 400px;
 }

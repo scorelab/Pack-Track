@@ -243,7 +243,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- jQuery Version 1.11.0 -->
 	<script src="js/jquery-1.11.0.js"></script>
 	<script type="text/javascript" src="js/jquery-ui.min.js"></script>

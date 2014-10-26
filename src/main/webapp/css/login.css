@@ -1,24 +1,26 @@
-.modal-footer {   border-top: 0px; }
+.modal-footer {
+	border-top: 0px;
+}
 
 .btn-block {
-  display: block;
-  width: 60%;
-  margin-left: auto;
-margin-right: auto;
+	display: block;
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .modal-header {
-  min-height: 16.42857143px;
-  padding: 15px;
-  border-bottom: 1px solid #e5e5e5;
-  background:#777777;
+	min-height: 16.42857143px;
+	padding: 15px;
+	border-bottom: 1px solid #e5e5e5;
+	background: #777777;
 }
 
 h1 {
-  color:#00007e;
+	color: #00007e;
 }
 
-.modal-content{
-  -webkit-box-shadow:none;
-  box-shadow:none;
+.modal-content {
+	-webkit-box-shadow: none;
+	box-shadow: none;
 }

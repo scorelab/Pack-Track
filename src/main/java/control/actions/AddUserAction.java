@@ -64,7 +64,7 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 	@org.apache.struts2.convention.annotation.Action(value = "add_user", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
 			@Result(name = "done", location = "add-user-input", type = "redirect"),
-			@Result(name = "change", location = "add-remove-user", type = "redirect")})
+			@Result(name = "change", location = "add-remove-user", type = "redirect") })
 	public String createUser() throws Exception {
 
 		User user = (User) session.get("user");
@@ -171,9 +171,9 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 		if (user != null
 				&& (user.getUserPrivilege().isAdd_user() || user
 						.getUserPrivilege().isRemove_user())) {
-			
-			if(session.get("message")!=null){
-				setMessage((String)session.get("message"));
+
+			if (session.get("message") != null) {
+				setMessage((String) session.get("message"));
 				session.remove("message");
 			}
 

@@ -60,7 +60,8 @@
 											<td>
 												<table style="width: 100%">
 													<tr errorfor="train">
-														<td align="center" valign="top" colspan="2" style="display:none;" id='errorMsg'><span
+														<td align="center" valign="top" colspan="2"
+															style="display: none;" id='errorMsg'><span
 															class="errorMessage">No parcels selected</span></td>
 													</tr>
 													<s:select cssClass='input_class' name='train' id='train'

@@ -40,9 +40,9 @@ public class SelectTrainAction extends ActionSupport implements SessionAware,
 	public String selectTrain() throws Exception {
 		User user = (User) session.get("user");
 		if (user != null && user.getUserPrivilege().isSelect_train()) {
-			
-			if(session.get("message")!=null){
-				setMessage((String)session.get("message"));
+
+			if (session.get("message") != null) {
+				setMessage((String) session.get("message"));
 				session.remove("message");
 			}
 			myStation = user.getUserDetail().getStation().getName();
@@ -66,7 +66,7 @@ public class SelectTrainAction extends ActionSupport implements SessionAware,
 			if (jsonList != null) {
 				JSONArray parcelArray = new JSONArray(jsonList);
 				int len = parcelArray.length();
-				for(int x=0;x<len;x++){
+				for (int x = 0; x < len; x++) {
 					pm.selectTrain(train, parcelArray.getInt(x));
 				}
 				session.put("message", "Train selected successfully!");

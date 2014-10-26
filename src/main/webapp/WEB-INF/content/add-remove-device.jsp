@@ -64,7 +64,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<s:set name="message" value="%{message}" />
 
 	<!-- jQuery Version 1.11.0 -->
