@@ -25,6 +25,8 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
+import control.util.StationSearch;
+
 @InterceptorRef(value = "secureStack")
 public class AddParcelAction extends ActionSupport implements SessionAware {
 
@@ -76,6 +78,16 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 			parcel.setReceiver(receiver);
 			parcel.setSender(sender);
 			Reciept r=new Reciept();
+			if (start==destination){
+				addFieldError("destination", "Invalid destination");
+				return SUCCESS;
+			}
+			
+			if (weight<1){
+				addFieldError("weight", "Invalid weight");
+				return SUCCESS;
+			}
+			
 			for (Station st : stationList) {
 				if (st.getID() == start) {
 					parcel.setStarts(st);
@@ -94,8 +106,9 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 			parcel.setExpress(express);
 			parcel.setAddBy(user.getUserName());
 			parcel.setDateRecieved( (new Date().getTime())/1000);
-
-			cost = category * 5 * weight;
+			float dist=StationSearch.getInstance().getDistance(parcel.getStarts().getCode(), parcel.getDestination().getCode());
+			System.out.println(dist);
+			cost = category * dist * weight;
 			parcel.setTotalCost(cost);
 			if (pm.addParcel(parcel)) {
 

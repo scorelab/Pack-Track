@@ -91,7 +91,7 @@
 											<td><b>Start</b></td>
 											<td>
 												<table style="width: 100%">
-													<s:property escape="false" value="startName" />
+													<s:property value="%{session.user.userDetail.station.name}" />
 												</table>
 											</td>
 										</tr>
@@ -247,7 +247,7 @@
 						</p>
 						<p align='center'>
 							From :
-							<s:property value="%session.reciept.start}" />
+							<s:property value="%{session.user.userDetail.station.name}" />
 						</p>
 						<p align='center'>
 							Destination :

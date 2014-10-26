@@ -14,45 +14,30 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.PrintWriter;
 
-public class stationSearch {
+import model.managers.StationManager;
+import model.models.Dist;
+
+public class StationSearch {
 
 	// private static Node root=null;
 	private static List<Node> stationList = new ArrayList<Node>();
-	private static stationSearch instance;
+	private static StationSearch instance;
 
-	private stationSearch() {
+	private StationSearch() {
 
-		BufferedReader br = null;
-		try {
+		List<Dist> br = null;
+		StationManager sm=new StationManager();
 
-			String currentLine;
-			// File file=new File("station.txt");
+		br = sm.getDistList();
 
-			br = new BufferedReader(new FileReader("station.txt"));
-
-			while ((currentLine = br.readLine()) != null) {
-				String[] parameter = currentLine.split(" ");
-				System.out.println(parameter[0]);
-				createStation(parameter[0], parameter[1],
-						Integer.parseInt(parameter[2]));
-				System.out.println(stationList);
-				// System.out.println(currentLine);
-
-				// System.out.println(parameter[1]);
-				// System.out.println(parameter[2]);
-			}
+		for(Dist d : br) {
+			String[] parameter = d.getDist().split(" ");
+			System.out.println(parameter[0]);
+			createStation(parameter[0], parameter[1],
+					Double.parseDouble(parameter[2]));
 			System.out.println(stationList);
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (br != null)
-					br.close();
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
 		}
+		System.out.println(stationList); 
 	}
 
 	// h scores is the stright-line distance from the current city to Bucharest
@@ -61,10 +46,10 @@ public class stationSearch {
 		return stationList.size();
 	}
 
-	public static stationSearch getInstance() {
+	public static StationSearch getInstance() {
 
 		if (instance == null) {
-			instance = new stationSearch();
+			instance = new StationSearch();
 			return instance;
 
 		} else {
@@ -74,22 +59,23 @@ public class stationSearch {
 
 	}
 
-	public static void getDistance(String start, String finish) {
+	public static float getDistance(String start, String finish) {
 
 		Node n1 = getStation(start);
 		Node n2 = getStation(finish);
+		System.out.println(start+" "+finish);
 
 		if (n1 == null) {
-			System.out.println("N1 null");
+			return 0;
 		} else if (n2 == null) {
-			System.out.println("N2 null");
+			return 0;
 		} else {
 			stationNav(n1, n2);
 
 			List<Node> path = printPath(n2);
 
 			System.out.println("Path" + path);
-			System.out.println("Distance " + n2.distance());
+			return (float) n2.distance();
 		}
 
 	}
@@ -189,7 +175,7 @@ public class stationSearch {
 
 	}
 
-	public static void createStation(String name, String prev, int distance) {
+	public static void createStation(String name, String prev, double distance) {
 
 		// same as add station method
 		if (stationList.size() == 0) {
@@ -338,8 +324,8 @@ class Node {
 		return value;
 	}
 
-	public String distance() {
-		String val = Double.toString(g_scores);
+	public double distance() {
+		double val = g_scores;
 		return val;
 	}
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import model.db.HibernateUtil;
 import model.models.Device;
+import model.models.Dist;
 import model.models.Station;
 import model.models.User;
 
@@ -110,5 +111,15 @@ public class StationManager {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	public List<Dist> getDistList() {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query = session.createQuery("from Dist");
+		List<Dist> list = query.list();
+		session.getTransaction().commit();
+		session.close();
+		return list;
 	}
 }
