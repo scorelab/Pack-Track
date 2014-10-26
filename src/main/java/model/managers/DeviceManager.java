@@ -111,4 +111,20 @@ public class DeviceManager {
 		}
 	}
 
+	public Device getDeviceByIMEI(String imei) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query = session.createQuery("from Device where imei=:imei");
+		query.setString("imei", imei);
+		List<Device> list = query.list();
+		session.getTransaction().commit();
+		session.close();
+
+		if (list.size() == 0) {
+			System.out.println("null");
+			return null;
+		}
+
+		return list.get(0);
+	}
 }

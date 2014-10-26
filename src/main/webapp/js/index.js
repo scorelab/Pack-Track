@@ -8,6 +8,5 @@ $("#track").click(function(){
     	    },
     	    function(data){
     	     $("#track-result").html(data);
-    	     alert(data);
     	    });
   });
