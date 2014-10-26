@@ -69,25 +69,17 @@
 					<div class="form-group">
 						<div class="col-md-6">
 							<label> From :</label>
-							<select class="form-control-inline">
-							<option>Colombo</option>
-							<option>Galle</option>
-							<option>Matara</option>
-							<option>Kandy</option>
-							<option>Gampaha</option>
-							</select>
+							<s:select cssClass='form-control-inline' name='start'
+														id='start' list="stationList" listValue="name"
+														listKey="ID" onchange="change()"></s:select>
 						</div>
 						
 					
 						<div class="col-md-6">
 							<label>To :</label>
-								<select class="form-control-inline">
-									<option>Colombo</option>
-									<option>Galle</option>
-									<option>Matara</option>
-									<option>Kandy</option>
-									<option>Gampaha</option>
-								</select>
+							<s:select cssClass='form-control-inline' name='destination'
+														id='destination' list="stationList" listValue="name"
+														listKey="ID" onchange="change()"></s:select>
 						</div>
 						
 					</div><br>
@@ -96,15 +88,9 @@
 					<div class="form-group">
 						<div class="col-md-12">
 							<label> Item :</label>
-							<select class="form-control-inline">
-								<option>Chicks in Ventilated Boxes</option>
-								<option>Fish acompanied by owner</option>
-								<option>Furniture in small lots</option>
-								<option>Letters</option>
-								<option>Light weight articles which require more space</option>
-								<option>Machinery not weighing over 50kg</option>
-								<option>Other</option>
-							</select>
+							<s:select cssClass='form-control-inline' name='category'
+														id='categoryq' list="categoryList" listValue="catName"
+														listKey="unitCost" onchange="change()"></s:select>
 						</div>
 					</div><br>
 					
@@ -113,17 +99,22 @@
 						<div class="col-md-6">
 							<div class="form-group input-group">
 								<span class="input-group-addon"><b>Kg</b></span>
-								<input type="text" class="form-control" placeholder="Weight"><br>
+								<s:textfield cssClass='form-control' type='text'
+														name='weight' id='weight' onkeyup="change()" placeholder="Weight"/>
 							</div>	
 						</div>
 						
 						<div class="col-md-6">
 							<label class="checkbox-inline">
-								<input type="checkbox"><b>Express</b>
+								<s:checkbox name='express' id='express' onchange="change()"/><b>Express</b>
 							</label>
 						</div>	
 					</div>
-				
+					<br>
+					<br>
+				<div class="form-group">
+				<div id="cost"></div>
+				</div>
 		
 					<div class="form-group">
 						<button class="btn btn-primary btn-md btn-block" >Calculate</button>
@@ -155,7 +146,8 @@
 				<div class="form-group">
 					<input class="form-control" placeholder="Enter Parcel ID" id="id"><br>
 				</div>	
-				<div class="form-group">
+				
+				<div class="form-group" style="margin-bottom: 35px;">
 				<div id="track-result"></div>
 				</div>
 				<div class="form-group">	
