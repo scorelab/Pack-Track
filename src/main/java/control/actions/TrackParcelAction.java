@@ -24,7 +24,12 @@ public class TrackParcelAction extends ActionSupport implements SessionAware, Se
 		String id = request.getParameter("id");
 		String nic = request.getParameter("nic");
 		ParcelManager pm=new ParcelManager();
-		String temp=pm.trackParcel(Long.parseLong(id), nic);
+		String temp;
+		if(id.equals("")|| nic.equals("")){
+			res="Invalid details";
+			return SUCCESS;
+		}
+		temp=pm.trackParcel(Long.parseLong(id), nic);
 		if(temp==null){
 			res="Invalid details";
 		}else if(pm.getParcel(Long.parseLong(id)).getDestination().getName().equals(temp)){
