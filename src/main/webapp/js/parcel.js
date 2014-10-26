@@ -8,3 +8,9 @@ $("#btn").click(function(){
     	     $("#result").html(data);
     	    });
   });
+
+$("#searchText").keyup(function(event){
+    if(event.keyCode == 13){
+        $("#btn").click();
+    }
+});

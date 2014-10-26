@@ -41,6 +41,17 @@ public class ReleaseParcelAction extends ActionSupport implements SessionAware,S
 					+ "<td><button type='button' class='btn btn-default btn-s release' name='"+parcels.getID()+"'><span class='glyphicon glyphicon-ok'></span> Release</button></td></tr>";
 			sb.append(temp);
 		}
+		
+		if(list.size()==0){
+			String temp = "<tr><td>null</td><td>"
+					+"null</td><td>"
+					+"null</td><td>"
+					+"null</td><td>"
+					+"null</td><td>"
+					+"null</td><td>"
+					+"</td></tr>";
+			sb.append(temp);
+		}
 		tableRows = sb.toString();
 		return SUCCESS;
 	}

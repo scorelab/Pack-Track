@@ -46,6 +46,16 @@ public class ParcelAction extends ActionSupport implements SessionAware,ServletR
 					+ "</td></tr>";
 			sb.append(temp);
 		}
+		if(list.size()==0){
+			String temp = "<tr><td>null</td><td>"
+					+"null</td><td>"
+					+"null</td><td>"
+					+"null</td><td>"
+					+"null</td><td>"
+					+"null</td><td>"
+					+"</td></tr>";
+			sb.append(temp);
+		}
 		tableRows = sb.toString();
 		return SUCCESS;
 	}
