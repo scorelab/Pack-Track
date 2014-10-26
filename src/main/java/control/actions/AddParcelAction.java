@@ -1,5 +1,6 @@
 package control.actions;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
+import control.util.CostFunction;
 import control.util.StationSearch;
 
 @InterceptorRef(value = "secureStack")
@@ -107,8 +109,12 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 			parcel.setAddBy(user.getUserName());
 			parcel.setDateRecieved( (new Date().getTime())/1000);
 			float dist=StationSearch.getInstance().getDistance(parcel.getStarts().getCode(), parcel.getDestination().getCode());
-			System.out.println(dist);
-			cost = category * dist * weight;
+			
+			cost = CostFunction.calculate(dist, category, weight, express);
+			
+			BigDecimal bd = new BigDecimal(Float.toString(cost));
+		    bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
+		    cost=bd.floatValue();
 			parcel.setTotalCost(cost);
 			if (pm.addParcel(parcel)) {
 

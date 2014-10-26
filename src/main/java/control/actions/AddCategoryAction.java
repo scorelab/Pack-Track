@@ -11,6 +11,7 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.validator.annotations.DoubleRangeFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.IntRangeFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
@@ -21,7 +22,7 @@ public class AddCategoryAction extends ActionSupport implements SessionAware {
 
 	private Map<String, Object> session;
 	private String catName;
-	private int unitCost;
+	private float unitCost;
 	private String message;
 
 	@org.apache.struts2.convention.annotation.Action(value = "add_category", results = {
@@ -103,12 +104,12 @@ public class AddCategoryAction extends ActionSupport implements SessionAware {
 		this.catName = catName;
 	}
 
-	public int getUnitCost() {
+	public float getUnitCost() {
 		return unitCost;
 	}
 
-	@IntRangeFieldValidator(min = "1", message = "Positve numbers only")
-	public void setUnitCost(int unitCost) {
+	@DoubleRangeFieldValidator(minInclusive = "1", message = "Positve numbers only")
+	public void setUnitCost(float unitCost) {
 		this.unitCost = unitCost;
 	}
 
