@@ -12,26 +12,27 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class TrackMeAction extends ActionSupport implements SessionAware{
+public class TrackMeAction extends ActionSupport implements SessionAware {
 
 	private Map<String, Object> session;
 	private String res;
 	private String id;
 	private String nic;
-	
+
 	@org.apache.struts2.convention.annotation.Action(value = "track-me")
 	public String changeUser() throws Exception {
 
-		System.out.println(id);
-		ParcelManager pm=new ParcelManager();
-		String temp=pm.trackParcel(Long.parseLong(getId()), getNic());
-		
-		if(temp==null){
-			res="Invalid details";
-		}else if(pm.getParcel(Long.parseLong(getId())).getDestination().getName().equals(temp)){
-			res="Your package is at it's destination<b>("+temp+")</b>. Please pick it from there.";
-		}else {
-			res="Your package is at <b>"+temp+"</b>";
+		ParcelManager pm = new ParcelManager();
+		String temp = pm.trackParcel(Long.parseLong(getId()), getNic());
+
+		if (temp == null) {
+			res = "Invalid details";
+		} else if (pm.getParcel(Long.parseLong(getId())).getDestination()
+				.getName().equals(temp)) {
+			res = "Your package is at it's destination<b>(" + temp
+					+ ")</b>. Please pick it from there.";
+		} else {
+			res = "Your package is at <b>" + temp + "</b>";
 		}
 		return SUCCESS;
 	}
@@ -45,7 +46,6 @@ public class TrackMeAction extends ActionSupport implements SessionAware{
 	public String getRes() {
 		return res;
 	}
-
 
 	public void setRes(String res) {
 		this.res = res;

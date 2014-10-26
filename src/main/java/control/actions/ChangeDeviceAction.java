@@ -17,13 +17,14 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class ChangeDeviceAction extends ActionSupport implements SessionAware, ServletRequestAware{
+public class ChangeDeviceAction extends ActionSupport implements SessionAware,
+		ServletRequestAware {
 
 	private HttpServletRequest response;
 	private Map<String, Object> session;
 	private List<User> userList = new UserManager().getUserList();
 	private Device temp;
-	
+
 	@org.apache.struts2.convention.annotation.Action(value = "change_device", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
 			@Result(name = "done", location = "home", type = "redirect") })
@@ -32,9 +33,9 @@ public class ChangeDeviceAction extends ActionSupport implements SessionAware, S
 		if (user != null && user.getUserPrivilege().isRemove_device()) {
 			DeviceManager dm = new DeviceManager();
 			String param = getServletRequest().getParameter("id");
-			System.out.println(param);
+
 			setTemp(dm.getDevice(Integer.parseInt(param)));
-			System.out.println(getTemp().getIMEI());
+
 			if (getTemp() == null) {
 				return "done";
 			}
@@ -44,7 +45,7 @@ public class ChangeDeviceAction extends ActionSupport implements SessionAware, S
 			return ERROR;
 		}
 	}
-	
+
 	@org.apache.struts2.convention.annotation.Action(value = "delete_device", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
 			@Result(name = "done", location = "add-remove-device", type = "redirect") })
@@ -62,7 +63,7 @@ public class ChangeDeviceAction extends ActionSupport implements SessionAware, S
 			return ERROR;
 		}
 	}
-	
+
 	public void setServletRequest(HttpServletRequest response) {
 		this.response = response;
 	}

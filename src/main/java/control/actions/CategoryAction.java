@@ -14,9 +14,8 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-@InterceptorRef(value="secureStack")
-public class CategoryAction extends ActionSupport implements
-		SessionAware {
+@InterceptorRef(value = "secureStack")
+public class CategoryAction extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
 	private String tableRows;
 	private String message;
@@ -27,18 +26,17 @@ public class CategoryAction extends ActionSupport implements
 		User user = (User) session.get("user");
 		if (user != null && user.getUserPrivilege().isAdd_category()) {
 
-			if(session.get("message")!=null){
-				setMessage((String)session.get("message"));
+			if (session.get("message") != null) {
+				setMessage((String) session.get("message"));
 				session.remove("message");
 			}
-			
+
 			CategoryManager um = new CategoryManager();
 			List<Category> list = um.getCategoryList();
 			StringBuilder sb = new StringBuilder();
 			for (Category category : list) {
-				String temp = "<tr><td>" + category.getCatName()
-						+ "</td><td>" + category.getUnitCost()
-						+ "</td></tr>";
+				String temp = "<tr><td>" + category.getCatName() + "</td><td>"
+						+ category.getUnitCost() + "</td></tr>";
 				sb.append(temp);
 			}
 			tableRows = sb.toString();
@@ -48,25 +46,31 @@ public class CategoryAction extends ActionSupport implements
 		}
 
 	}
-	
+
 	@org.apache.struts2.convention.annotation.Action(value = "add-remove-category", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String addRemoveCategory() throws Exception {
 
 		User user = (User) session.get("user");
 		if (user != null && user.getUserPrivilege().isRemove_category()) {
 
-			if(session.get("message")!=null){
-				setMessage((String)session.get("message"));
+			if (session.get("message") != null) {
+				setMessage((String) session.get("message"));
 				session.remove("message");
 			}
-			
+
 			CategoryManager um = new CategoryManager();
 			List<Category> list = um.getCategoryList();
 			StringBuilder sb = new StringBuilder();
 			for (Category category : list) {
-				String temp = "<tr><td>" + category.getCatName()
-						+ "</td><td>" + category.getUnitCost()
-						+ "</td><td><button type='button' class='btn btn-default btn-s change_ca' name='"+category.getID()+"'><span class='glyphicon glyphicon-pencil'></span> Change</button></td><td><button type='button' class='btn btn-default btn-s deletes_ca' name='"+category.getID()+"'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>";
+				String temp = "<tr><td>"
+						+ category.getCatName()
+						+ "</td><td>"
+						+ category.getUnitCost()
+						+ "</td><td><button type='button' class='btn btn-default btn-s change_ca' name='"
+						+ category.getID()
+						+ "'><span class='glyphicon glyphicon-pencil'></span> Change</button></td><td><button type='button' class='btn btn-default btn-s deletes_ca' name='"
+						+ category.getID()
+						+ "'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>";
 				sb.append(temp);
 			}
 			tableRows = sb.toString();

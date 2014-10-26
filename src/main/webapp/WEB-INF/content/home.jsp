@@ -45,7 +45,7 @@
 				<s:property value="message" />
 			</div>
 			<ul class="nav nav-tabs" id="myTab">
-<%-- 				<s:property escape="false" value="tabs"></s:property> --%>
+				<%-- 				<s:property escape="false" value="tabs"></s:property> --%>
 			</ul>
 
 			<div class="tab-content">

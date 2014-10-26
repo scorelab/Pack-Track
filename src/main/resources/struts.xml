@@ -4,12 +4,12 @@
    "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 	<package name="default" extends="struts-default">
-	<interceptors>    
-            <interceptor name="authInterceptor" class="control.interceptors.AuthInterceptor" />
-            <interceptor-stack name="secureStack">
-                <interceptor-ref name="authInterceptor"/>
-                <interceptor-ref name="defaultStack" />
-            </interceptor-stack>
-        </interceptors>       
+		<interceptors>
+			<interceptor name="authInterceptor" class="control.interceptors.AuthInterceptor" />
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="authInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
 	</package>
 </struts>

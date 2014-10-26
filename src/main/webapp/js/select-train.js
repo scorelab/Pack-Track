@@ -20,7 +20,7 @@ $("#select").click(function(event){
     
 });
 
-//$("input:checkbox").check(function(event){
-//	alert("train");
-//});
+// $("input:checkbox").check(function(event){
+// alert("train");
+// });
 

@@ -12,7 +12,7 @@ import org.hibernate.Session;
 
 public class CustomerManager {
 
-	public boolean addCustomer (Customer customer) {
+	public boolean addCustomer(Customer customer) {
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
@@ -25,7 +25,7 @@ public class CustomerManager {
 			return false;
 		}
 	}
-	
+
 	public Customer getCustomer(String nic) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();

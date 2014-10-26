@@ -73,7 +73,7 @@
 								<td colspan='3'>
 									<table style="width: 100%">
 										<s:textfield cssClass='input_class' type='text' name='name'
-											id='name' value="%{temp.name}"/>
+											id='name' value="%{temp.name}" />
 									</table>
 								</td>
 							</tr>
@@ -82,7 +82,8 @@
 								<td>
 									<table style="width: 100%">
 										<s:select cssClass='input_class' name='start' id='start'
-											list="stationList" listValue="name" listKey="ID" value="%{temp.start.ID}"></s:select>
+											list="stationList" listValue="name" listKey="ID"
+											value="%{temp.start.ID}"></s:select>
 									</table>
 								</td>
 							</tr>
@@ -91,7 +92,8 @@
 								<td>
 									<table style="width: 100%">
 										<s:select cssClass='input_class' name='end' id='end'
-											list="stationList" listValue="name" listKey="ID" value="%{temp.finish.ID}"></s:select>
+											list="stationList" listValue="name" listKey="ID"
+											value="%{temp.finish.ID}"></s:select>
 									</table>
 								</td>
 							</tr>

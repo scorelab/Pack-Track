@@ -66,7 +66,7 @@
 			<div id="container" class="modal-body">
 				<s:form action="add_station">
 					<div id='form'>
-					<h1 class='hedinh-tag'>Add Station</h1>
+						<h1 class='hedinh-tag'>Add Station</h1>
 						<table class='main-table'>
 							<tr>
 								<td><b>Station name</b></td>

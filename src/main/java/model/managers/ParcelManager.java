@@ -133,7 +133,7 @@ public class ParcelManager {
 			return false;
 		}
 	}
-	
+
 	public boolean confirmArrival(int stationID, Long id) {
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -152,7 +152,7 @@ public class ParcelManager {
 			return false;
 		}
 	}
-	
+
 	public boolean getParcelsToConfirm(long id) {
 		System.out.println("ght boo");
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -163,14 +163,14 @@ public class ParcelManager {
 		List<Parcel> list = query.list();
 		session.getTransaction().commit();
 		session.close();
-		if(list.size()>0){
+		if (list.size() > 0) {
 			System.out.println("rtbb d3e3");
 			return true;
 		}
 		return false;
 	}
 
-	public List<Parcel> searchRealease(String searchText,int stationID) {
+	public List<Parcel> searchRealease(String searchText, int stationID) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		Query query = session
@@ -182,7 +182,7 @@ public class ParcelManager {
 		session.close();
 		return list;
 	}
-	
+
 	public boolean releaseParcel(Long id, String userName) {
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -201,7 +201,7 @@ public class ParcelManager {
 			return false;
 		}
 	}
-	
+
 	public String trackParcel(long id, String nic) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -212,7 +212,7 @@ public class ParcelManager {
 		List<Parcel> list = query.list();
 		session.getTransaction().commit();
 		session.close();
-		if(list.size()>0){
+		if (list.size() > 0) {
 			return list.get(0).getCurrentStation().getName();
 		}
 		return null;

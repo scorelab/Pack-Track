@@ -18,46 +18,43 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 @InterceptorRef(value = "secureStack")
-public class GetCustomerAction extends ActionSupport implements SessionAware, ServletRequestAware{
+public class GetCustomerAction extends ActionSupport implements SessionAware,
+		ServletRequestAware {
 
 	private Map<String, Object> session;
 	private HttpServletRequest response;
 	private String data;
 	private Customer receiver;
 	private Customer sender;
-	
-	@org.apache.struts2.convention.annotation.Action(value = "get_receiver", results = {
-			@Result(name = "error", location = "login", type = "redirect")})
+
+	@org.apache.struts2.convention.annotation.Action(value = "get_receiver", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String getReceiverDetail() throws Exception {
 
 		User user = (User) session.get("user");
-		if (user != null
-				&& (user.getUserPrivilege().isAdd_parcel())) {
-			String param= getServletRequest().getParameter("receiver_nic");
-			System.out.println(param);
-			CustomerManager cm=new CustomerManager();
-			receiver=cm.getCustomer(param);
-			if(receiver==null){
-				session.put("receiver",param);
+		if (user != null && (user.getUserPrivilege().isAdd_parcel())) {
+			String param = getServletRequest().getParameter("receiver_nic");
+
+			CustomerManager cm = new CustomerManager();
+			receiver = cm.getCustomer(param);
+			if (receiver == null) {
+				session.put("receiver", param);
 			}
 			return SUCCESS;
 		} else {
 			return ERROR;
 		}
 	}
-	
-	@org.apache.struts2.convention.annotation.Action(value = "get_sender", results = {
-			@Result(name = "error", location = "login", type = "redirect")})
+
+	@org.apache.struts2.convention.annotation.Action(value = "get_sender", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String getSenderDetail() throws Exception {
 
 		User user = (User) session.get("user");
-		if (user != null
-				&& (user.getUserPrivilege().isAdd_parcel())) {
-			String param= getServletRequest().getParameter("sender_nic");
-			CustomerManager cm=new CustomerManager();
-			sender=cm.getCustomer(param);
-			if(sender==null){
-				session.put("sender",param);
+		if (user != null && (user.getUserPrivilege().isAdd_parcel())) {
+			String param = getServletRequest().getParameter("sender_nic");
+			CustomerManager cm = new CustomerManager();
+			sender = cm.getCustomer(param);
+			if (sender == null) {
+				session.put("sender", param);
 			}
 			return SUCCESS;
 		} else {
