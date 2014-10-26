@@ -1,11 +1,13 @@
 package model.models;
-import static org.junit.Assert.*;
-import model.models.Station;
+//import static org.junit.Assert.*;
+//import model.models.Station;
 
-import org.junit.Test;
+//import org.junit.Test;
 
 
 public class test1 {//example test class
+	
+	/*
 	
 	Station s=new Station(1,"Colombo","0112054468","Rand"); //create object
 
@@ -24,6 +26,6 @@ public class test1 {//example test class
 		assertEquals(2,s.getID());
 		
 	}
-	
+	*/
 
 }
