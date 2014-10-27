@@ -4,7 +4,7 @@ public class Category {
 	
 	private int ID;
 	private String catName;
-	private int unitCost;
+	private float unitCost;
 	private String addBy;
 	
 	public String getCatName() {
@@ -13,10 +13,10 @@ public class Category {
 	public void setCatName(String catName) {
 		this.catName = catName;
 	}
-	public int getUnitCost() {
+	public float getUnitCost() {
 		return unitCost;
 	}
-	public void setUnitCost(int unitCost) {
+	public void setUnitCost(float unitCost) {
 		this.unitCost = unitCost;
 	}
 	public String getAddBy() {

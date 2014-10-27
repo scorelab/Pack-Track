@@ -30,9 +30,30 @@
     <![endif]-->
 <script>
 	function change() {
-		var el1 = document.getElementById("weight");
-		var el2 = document.getElementById("cost");
-		el2.innerHTML = el1.value;
+		var weight= document.getElementById("weight").value;
+		var start= document.getElementById("start").value;
+		var finish= document.getElementById("destination").value;
+		var category= document.getElementById("categoryq").value;
+		var express= document.getElementById("express").value;
+		if(isNaN(parseFloat(weight))){   
+			$("#cost").html("input error");
+			return true;  
+		} 
+		if(weight===""){
+			el2.html("0.0")
+			return true;  
+		}
+		$.post("calculate-cost",
+	    	    {
+	    	      weight:weight,
+	    	      start:start,
+	    	      finish:finish,
+	    	      category:category,
+	    	      express:express
+	    	    },
+	    	    function(data){
+	    	     	$("#cost").html(data.cost);
+	  });
 	}
 </script>
 </head>
@@ -40,7 +61,7 @@
 <body>
 
 	<div id="wrapper">
-
+<input type="text" name="start" id='start' value='<s:property value="%{session.user.userDetail.station.ID}"/>' style="display:none;"/>
 		<!-- Navigation -->
 		<nav class="navbar navbar-default navbar-static-top" role="navigation"
 			style="margin-bottom: 0"> <s:action name="navbar" flush="true"
@@ -91,7 +112,7 @@
 											<td><b>Start</b></td>
 											<td>
 												<table style="width: 100%">
-													<s:property escape="false" value="startName" />
+													<s:property value="%{session.user.userDetail.station.name}" />
 												</table>
 											</td>
 										</tr>
@@ -101,7 +122,7 @@
 												<table style="width: 100%">
 													<s:select cssClass='input_class' name='destination'
 														id='destination' list="stationList" listValue="name"
-														listKey="ID"></s:select>
+														listKey="ID" onchange="change()"></s:select>
 												</table>
 											</td>
 										</tr>
@@ -110,13 +131,13 @@
 											<td>
 												<table style="width: 100%">
 													<s:select cssClass='input_class' name='category'
-														id='category' list="categoryList" listValue="catName"
-														listKey="unitCost"></s:select>
+														id='categoryq' list="categoryList" listValue="catName"
+														listKey="unitCost" onchange="change()"></s:select>
 												</table>
 											</td>
 											<td style="padding-left: 10px;"><table
 													style="width: 100%">
-													<s:checkbox name='express' label="Express" />
+													<s:checkbox name='express' label="Express" id='express' onchange="change()"/>
 												</table></td>
 										</tr>
 										<tr>
@@ -247,7 +268,7 @@
 						</p>
 						<p align='center'>
 							From :
-							<s:property value="%session.reciept.start}" />
+							<s:property value="%{session.user.userDetail.station.name}" />
 						</p>
 						<p align='center'>
 							Destination :

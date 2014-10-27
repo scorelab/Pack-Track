@@ -83,6 +83,10 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 			UserDetail userdetail = new UserDetail();
 			UserPrivilege userPrivilege = new UserPrivilege();
 			userdetail.setName(name);
+			if(uManager.checkEmail(email)){
+				addFieldError("email", "Email already exist");
+				return SUCCESS;
+			}
 			userdetail.setEmail(email);
 			userdetail.setPhone(phone);
 			userdetail.setUser(temp);
@@ -213,7 +217,6 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 
 	@RequiredStringValidator(type = ValidatorType.FIELD, message = "UserName cannot be empty")
 	public void setUserName(String userName) {
-		System.out.println("rtyui234");
 		this.userName = userName;
 	}
 

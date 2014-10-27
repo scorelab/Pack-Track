@@ -182,5 +182,21 @@ public class UserManager {
 
 		return list.get(0);
 	}
+	
+	public boolean checkEmail(String email) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query = session.createQuery("from User u where u.userDetail.email=:email");
+		query.setString("email", email);
+		List<User> list = query.list();
+		session.getTransaction().commit();
+		session.close();
+
+		if (list.size() == 0) {
+			return false;
+		}
+
+		return true;
+	}
 
 }

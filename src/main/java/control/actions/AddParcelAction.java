@@ -1,5 +1,6 @@
 package control.actions;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,9 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
+
+import control.util.CostFunction;
+import control.util.StationSearch;
 
 @InterceptorRef(value = "secureStack")
 public class AddParcelAction extends ActionSupport implements SessionAware {
@@ -76,6 +80,16 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 			parcel.setReceiver(receiver);
 			parcel.setSender(sender);
 			Reciept r=new Reciept();
+			if (start==destination){
+				addFieldError("destination", "Invalid destination");
+				return SUCCESS;
+			}
+			
+			if (weight<1){
+				addFieldError("weight", "Invalid weight");
+				return SUCCESS;
+			}
+			
 			for (Station st : stationList) {
 				if (st.getID() == start) {
 					parcel.setStarts(st);
@@ -94,8 +108,13 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 			parcel.setExpress(express);
 			parcel.setAddBy(user.getUserName());
 			parcel.setDateRecieved( (new Date().getTime())/1000);
-
-			cost = category * 5 * weight;
+			float dist=StationSearch.getInstance().getDistance(parcel.getStarts().getCode(), parcel.getDestination().getCode());
+			
+			cost = CostFunction.calculate(dist, category, weight, express);
+			
+			BigDecimal bd = new BigDecimal(Float.toString(cost));
+		    bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
+		    cost=bd.floatValue();
 			parcel.setTotalCost(cost);
 			if (pm.addParcel(parcel)) {
 

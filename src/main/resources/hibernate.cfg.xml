@@ -19,5 +19,6 @@
   <mapping resource="model/models/Customer.hbm.xml"/>
   <mapping resource="model/models/Parcel.hbm.xml"/>
   <mapping resource="model/models/Train.hbm.xml"/>
+  <mapping resource="model/models/Dist.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>

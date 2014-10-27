@@ -11,7 +11,7 @@
         <property name="catName" type="java.lang.String">
             <column name="CATNAME" />
         </property>
-        <property name="unitCost" type="int">
+        <property name="unitCost" type="float">
             <column name="UNITCOST" />
         </property>
         <property name="addBy" type="java.lang.String">
