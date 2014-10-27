@@ -72,9 +72,9 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 				&& (user.getUserPrivilege().isAdd_user() || user
 						.getUserPrivilege().isRemove_user())) {
 
-			String change = (String) session.get("change");
+			User change = (User) session.get("change");
 			UserManager uManager = new UserManager();
-			if (uManager.isUser(userName) && change == null) {
+			if (uManager.isUser(userName) && (change==null || !change.getUserName().equals(userName))) {
 				addFieldError("userName", "UserName already exist");
 				return SUCCESS;
 			}
@@ -83,7 +83,8 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 			UserDetail userdetail = new UserDetail();
 			UserPrivilege userPrivilege = new UserPrivilege();
 			userdetail.setName(name);
-			if(uManager.checkEmail(email)){
+			
+			if(uManager.checkEmail(email) && (change==null || !change.getUserDetail().getEmail().equals(email))){
 				addFieldError("email", "Email already exist");
 				return SUCCESS;
 			}
@@ -116,7 +117,7 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 
 			temp.setUserName(userName);
 			
-			if(uManager.checkNIC(nic)){
+			if(uManager.checkNIC(nic) && (change==null || !change.getNicNumber().equals(nic))){
 				addFieldError("nic", "NIC already exist");
 				return SUCCESS;
 			}
@@ -159,7 +160,7 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 			} else {
 				temp.getUserPrivilege().setUserName(userName);
 				temp.getUserDetail().setUserName(userName);
-				temp.setPassword(change);
+				temp.setPassword(change.getPassword());
 				if (uManager.updateUser(temp)) {
 					session.put("message", temp.getUserName()
 							+ " updated successfully!");

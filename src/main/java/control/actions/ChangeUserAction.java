@@ -58,7 +58,7 @@ public class ChangeUserAction extends ActionSupport implements SessionAware,
 			if (temp == null) {
 				return "done";
 			}
-			session.put("change", temp.getPassword());
+			session.put("change", temp);
 			return SUCCESS;
 		} else {
 			return ERROR;

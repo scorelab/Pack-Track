@@ -204,7 +204,7 @@
 									</table>
 									<br />
 									<div class='wrapper'>
-										<input type='submit' name='create' value='Create User'>
+										<input type='submit' name='create' value='Save'>
 										</td>
 									</div>
 									<br>
