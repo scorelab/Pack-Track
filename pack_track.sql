@@ -1,13 +1,33 @@
+-- phpMyAdmin SQL Dump
+-- version 4.1.14
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: Oct 26, 2014 at 07:52 AM
+-- Server version: 5.6.17
+-- PHP Version: 5.5.12
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
-CREATE DATABASE IF NOT EXISTS `pack_track` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `pack_track`;
+--
+-- Database: `pack_track`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category`
+--
+
+create database `pack_track`;
+use `pack_track`;
 
 CREATE TABLE IF NOT EXISTS `category` (
   `catID` int(5) NOT NULL AUTO_INCREMENT,
@@ -21,10 +41,22 @@ CREATE TABLE IF NOT EXISTS `category` (
   UNIQUE KEY `catName_UNIQUE` (`catName`),
   KEY `categoryAdmin_idx` (`addBy`),
   KEY `categoryDeleteBy_idx` (`deleteBy`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `category`
+--
 
 INSERT INTO `category` (`catID`, `catName`, `unitCost`, `addBy`, `deleted`, `deleteBy`) VALUES
-(1, 'Normal', 12, 'Rand', 0, NULL);
+(1, 'Normal', 12, 'Rand', 0, NULL),
+(2, 'Food and bev :', 20, 'thamali', 0, NULL),
+(3, 'Animals', 50, 'Rand', 0, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer`
+--
 
 CREATE TABLE IF NOT EXISTS `customer` (
   `custID` int(6) NOT NULL AUTO_INCREMENT,
@@ -41,16 +73,25 @@ CREATE TABLE IF NOT EXISTS `customer` (
   UNIQUE KEY `custID_UNIQUE` (`custID`),
   UNIQUE KEY `custNIC_UNIQUE` (`custNIC`),
   UNIQUE KEY `custEmail_UNIQUE` (`custEmail`),
-  UNIQUE KEY `custMobile_UNIQUE` (`custMobile`),
-  UNIQUE KEY `custTel_UNIQUE` (`custTel`),
-  UNIQUE KEY `custAddress_UNIQUE` (`custAddress`),
   KEY `customerAdmin_idx` (`addBy`),
   KEY `custAddUser_idx` (`addBy`),
   KEY `custDeleteBy_idx` (`deleteBy`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `customer`
+--
 
 INSERT INTO `customer` (`custID`, `custName`, `custEmail`, `custMobile`, `custTel`, `custAddress`, `custNIC`, `addBy`, `deleted`, `deleteBy`) VALUES
-(1, 'boo', 'booo', '456', '456', 'fgghfhdf', 'dfgdfg4', 'Rand', 0, NULL);
+(1, 'boo', 'booo', '456', '456', 'fgghfhdf', 'dfgdfg4', 'Rand', 0, NULL),
+(2, 'ghfgh', NULL, '', '', NULL, '564', 'Rand', 0, NULL),
+(3, 'poo', NULL, '', '', NULL, '12345', 'Rand', 0, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `device`
+--
 
 CREATE TABLE IF NOT EXISTS `device` (
   `devID` int(11) NOT NULL AUTO_INCREMENT,
@@ -65,76 +106,164 @@ CREATE TABLE IF NOT EXISTS `device` (
   KEY `FAdmin_idx` (`addBy`),
   KEY `deviceUser_idx` (`assignTo`),
   KEY `deviceDeleteBy_idx` (`deleteBy`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `device`
+--
+
+INSERT INTO `device` (`devID`, `imei`, `assignTo`, `addBy`, `deleted`, `deleteBy`) VALUES
+(1, '1111', 'Rand', 'Lahiru', 0, NULL),
+(2, '1212', 'Lahiru', 'Rand', 0, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `parcel`
+--
 
 CREATE TABLE IF NOT EXISTS `parcel` (
   `parcelID` int(11) NOT NULL AUTO_INCREMENT,
   `weight` float NOT NULL,
-  `currentStation` int(5) NOT NULL,
+  `currentStation` int(11) NOT NULL,
   `sender` int(6) NOT NULL,
   `receiver` int(6) NOT NULL,
-  `starts` int(5) NOT NULL,
-  `destination` int(5) NOT NULL,
-  `qr` varchar(45) NOT NULL,
+  `starts` int(11) NOT NULL,
+  `destination` int(11) NOT NULL,
   `totalCost` float NOT NULL,
   `express` varchar(1) NOT NULL,
   `dateReceived` bigint(20) NOT NULL,
   `dateDelivered` bigint(20) NOT NULL,
   `addBy` varchar(100) NOT NULL,
-  `train` int(11) DEFAULT NULL,
+  `train` varchar(45) DEFAULT NULL,
   `released` tinyint(1) DEFAULT NULL,
+  `releaseBy` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`parcelID`),
   UNIQUE KEY `parcelID_UNIQUE` (`parcelID`),
-  KEY `st_idx` (`starts`),
   KEY `stationFK1_idx` (`starts`),
   KEY `senderFK_idx` (`sender`),
   KEY `receiverFK_idx` (`receiver`),
   KEY `addByUser_idx` (`addBy`),
   KEY `startStation_idx` (`starts`),
-  KEY `finish_idx` (`destination`),
   KEY `current_idx` (`currentStation`),
-  KEY `assignTrain_idx` (`train`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  KEY `assignTrain_idx` (`train`),
+  KEY `releaseByUser_idx` (`releaseBy`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
-INSERT INTO `parcel` (`parcelID`, `weight`, `currentStation`, `sender`, `receiver`, `starts`, `destination`, `qr`, `totalCost`, `express`, `dateReceived`, `dateDelivered`, `addBy`, `train`, `released`) VALUES
-(5, 34.2, 1, 1, 1, 1, 2, '', 345.8, '0', 20140916000000, 20140918000000, 'Rand', NULL, 0);
+--
+-- Dumping data for table `parcel`
+--
 
-CREATE TABLE IF NOT EXISTS `station` (
-  `stationID` int(5) NOT NULL AUTO_INCREMENT,
-  `stationName` varchar(20) NOT NULL,
-  `telNo` varchar(10) NOT NULL,
-  `addBy` varchar(100) NOT NULL,
-  `deleted` tinyint(1) DEFAULT '0',
-  `deleteBy` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`stationID`),
-  UNIQUE KEY `stationID_UNIQUE` (`stationID`),
-  UNIQUE KEY `telNo_UNIQUE` (`telNo`),
-  KEY `stationAdmin_idx` (`addBy`),
-  KEY `stationDeleteBy_idx` (`deleteBy`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+INSERT INTO `parcel` (`parcelID`, `weight`, `currentStation`, `sender`, `receiver`, `starts`, `destination`, `totalCost`, `express`, `dateReceived`, `dateDelivered`, `addBy`, `train`, `released`, `releaseBy`) VALUES
+(5, 34.2, 1, 1, 1, 1, 3, 345.8, '0', 20140916000000, 20140918000000, 'Rand', NULL, 0, NULL),
+(6, 45, 1, 2, 2, 1, 1, 2700, '0', 1412596130, 0, 'Rand', NULL, 0, NULL);
 
-INSERT INTO `station` (`stationID`, `stationName`, `telNo`, `addBy`, `deleted`, `deleteBy`) VALUES
-(1, 'colombo_fort', '112054468', 'Rand', 0, NULL),
-(2, 'kandy', '0112054486', 'Rand', 0, NULL);
+-- --------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `train` (
-  `trainID` int(11) NOT NULL AUTO_INCREMENT,
-  `trainName` varchar(45) NOT NULL,
-  `start` int(5) NOT NULL,
-  `finish` int(5) NOT NULL,
-  `addBy` varchar(100) NOT NULL,
-  `deleted` tinyint(1) DEFAULT '0',
-  `deleteBy` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`trainID`),
-  UNIQUE KEY `trainID_UNIQUE` (`trainID`),
-  KEY `trainAdmin_idx` (`addBy`),
-  KEY `startStation_idx` (`start`),
-  KEY `finishStation_idx` (`finish`),
-  KEY `trainDeleteBy_idx` (`deleteBy`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+--
+-- Table structure for table `station_mapping`
+--
 
-INSERT INTO `train` (`trainID`, `trainName`, `start`, `finish`, `addBy`, `deleted`, `deleteBy`) VALUES
-(1, 'Podi_Manike', 1, 2, 'Rand', 0, NULL);
+CREATE TABLE IF NOT EXISTS `station_mapping` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `station_code` varchar(10) NOT NULL,
+  `station_name` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `station_code` (`station_code`),
+  UNIQUE KEY `station_code_2` (`station_code`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
+
+--
+-- Dumping data for table `station_mapping`
+--
+
+INSERT INTO `station_mapping` (`id`, `station_code`, `station_name`) VALUES
+(1, 'MDA', 'Maradana'),
+(3, 'FOT', 'Colombo Fort'),
+(4, 'BPT', 'Bambalapitiya'),
+(5, 'WEL', 'Wellawatta'),
+(6, 'MLV', 'Mount Lavinia'),
+(7, 'RML', 'Ratmalana'),
+(8, 'MRT', 'Moratuwa'),
+(9, 'PND', 'Panadura'),
+(10, 'WDA', 'Wadduwa'),
+(13, 'KTN', 'Kalutara North'),
+(14, 'KTS', 'Kalutara South'),
+(15, 'PGS', 'Payagala South'),
+(16, 'BRL', 'Beruwala'),
+(17, 'ALT', 'Aluthgama'),
+(18, 'BNT', 'Bentota'),
+(19, 'IDA', 'Induruwa'),
+(20, 'KDA', 'Kosgoda'),
+(21, 'BPA', 'Balapitiya'),
+(22, 'ABA', 'Ambalangoda'),
+(23, 'KWE', 'Kahawa'),
+(24, 'HKD', 'Hikkaduwa'),
+(25, 'DNA', 'Dodanduwa'),
+(26, 'BSH', 'Boossa'),
+(27, 'GNT', 'Gintota'),
+(28, 'GLE', 'Galle'),
+(29, 'KUG', 'Katugoda'),
+(30, 'TLP', 'Talpe'),
+(31, 'KOG', 'Koggala'),
+(32, 'ANM', 'Ahangama'),
+(33, 'WLM', 'Weligama'),
+(34, 'KMG', 'Kamburugamuwa'),
+(35, 'MTR', 'Matara');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `train_mapping`
+--
+
+CREATE TABLE IF NOT EXISTS `train_mapping` (
+  `train_num` varchar(45) NOT NULL,
+  `start_station` varchar(45) DEFAULT NULL,
+  `destination` varchar(45) DEFAULT NULL,
+  `train_type` varchar(45) DEFAULT NULL,
+  `train_run` varchar(45) DEFAULT NULL,
+  `train_name` varchar(45) DEFAULT NULL,
+  `train_direction` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`train_num`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `train_mapping`
+--
+
+INSERT INTO `train_mapping` (`train_num`, `start_station`, `destination`, `train_type`, `train_run`, `train_name`, `train_direction`) VALUES
+('8039', 'MTR', 'KDT', 'PGR', 'EXP', 'Matara-Kandy Ex', 'UP'),
+('8040', 'KDT', 'MTR', 'PGR', 'EXP', 'Kandy-Matara Express', 'DOWN'),
+('8050', 'MDA', 'MTR', 'PGR', 'EXP', 'Matara Express', 'DOWN'),
+('8051', 'MTR', 'MDA', 'PGR', 'EXP', 'Matara-Maradana Express', 'UP'),
+('8056', 'MDA', 'MTR', 'PGR', 'EXP', 'Galu Kumari', 'DOWN'),
+('8057', 'MTR', 'MDA', 'PGR', 'EXP', 'Galu Kumari', 'UP'),
+('8058', 'MDA', 'MTR', 'PGR', 'EXP', 'Ruhunu Kumari', 'DOWN'),
+('8059', 'MTR', 'MDA', 'PGR', 'EXP', 'Ruhunu Kumari', 'UP'),
+('8062', 'MDA', 'HKD', 'PGR', 'EXP', 'Maradana-Hikkaduwa Express', 'DOWN'),
+('8063', 'HKD', 'MDA', 'PGR', 'EXP', 'Hikkaduwa-Maradana Express', 'UP'),
+('8085', 'MTR', 'VNY', 'PNG', 'EXP', 'Rajarata Rajini', 'UP'),
+('8086', 'MTR', 'VNY', 'PGR', 'EXP', 'Rajarata Rajini', 'DOWN'),
+('8093', 'MTR', 'Pallai', 'PGR', 'EX', 'Matara-Pallai Express', 'UP'),
+('8096', 'MDA', 'MTR', 'PGR', 'EXP', 'Sagarika', 'DOWN'),
+('8097', 'MTR', 'MDA', 'PGR', 'EXP', 'Sagarika', 'UP'),
+('8311', 'GLE', 'MDA', 'PGR', 'EXP', 'Galle-Maradana Mail', 'UP'),
+('8320', 'GLE', 'MDA', 'PGR', 'SLW', 'Galle-Maradana Slow', 'UP'),
+('8324', 'ALT', 'MDA', 'PGR', 'NEX', 'Aluthgama-Maradana Slow', 'UP'),
+('8326', 'KTS', 'MDA', 'PGR', 'EXP', 'Kalutara South-Maradana Express', 'UP'),
+('8327', 'GLE', 'MDA', 'PGR', 'EXP', 'Samudra Devi', 'UP'),
+('8758', 'MDA', 'ALT', 'PGR', 'NEX', 'Maradana-Aluthgama Slow', 'DOWN'),
+('8760', 'MDA', 'GLE', 'PGR', 'EXP', 'Samudra Devi', 'DOWN'),
+('8764', 'MDA', 'GLE', 'PGR', 'NEX', 'Maradana-Galle Slow', 'DOWN'),
+('8765', 'MDA', 'KTS', 'PGR', 'EXP', 'Maradana-Kalutara South Express', 'DOWN'),
+('8766', 'MDA', 'MTR', 'PGR', 'EXP', 'Maradana-Matara Express', 'DOWN');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
 
 CREATE TABLE IF NOT EXISTS `user` (
   `UserName` varchar(100) NOT NULL DEFAULT '',
@@ -152,16 +281,26 @@ CREATE TABLE IF NOT EXISTS `user` (
   KEY `userAddBy_idx` (`addBy`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `user`
+--
+
 INSERT INTO `user` (`UserName`, `password`, `designation`, `role`, `home_page`, `shed`, `sub_dept`, `nic_number`, `addBy`) VALUES
 ('Lahiru', 'd74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1', 'sith', 'pith', 'gdgd', 'ddd', 'dd', '123456789V', 'Rand'),
 ('Rand', 'd74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1', 'jil', 'bil', 'gdg', 'gggg', 'gg', '911672375V', 'Rand'),
 ('thamali', 'fcba89201226b0bc0feac29ed8a07a20559a62c5ea776042fd15877d4b301387', 'Ms', 'SM', NULL, 'No1', '', '12345v', 'Rand');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_detail`
+--
+
 CREATE TABLE IF NOT EXISTS `user_detail` (
   `UserName` varchar(100) NOT NULL,
   `name` varchar(45) NOT NULL,
   `Email` varchar(50) NOT NULL,
-  `station` int(5) DEFAULT NULL,
+  `station` int(11) DEFAULT NULL,
   `phone` varchar(12) DEFAULT NULL,
   `deleted` tinyint(1) DEFAULT '0',
   `deleteBy` varchar(100) DEFAULT NULL,
@@ -171,10 +310,23 @@ CREATE TABLE IF NOT EXISTS `user_detail` (
   KEY `deleteByUser_idx` (`deleteBy`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `user_detail`
+--
+
 INSERT INTO `user_detail` (`UserName`, `name`, `Email`, `station`, `phone`, `deleted`, `deleteBy`) VALUES
-('Lahiru', 'Rangana', 'lahiru.rangana54@gmail.com', 2, '754129659', 0, NULL),
+('chandu', 'Chanduni', 'chaaz92@gmail.com', 1, '6666', 0, NULL),
+('kulani', 'Kulani', 'kulani.s91@gmail.com', 4, '567890', 0, NULL),
+('Lahiru', 'Rangana', 'lahiru.rangana54@gmail.com', 1, '754129659', 0, NULL),
+('maneesha', 'Maneesha', 'kmerandi25@gmail.com', 8, '1234', 0, NULL),
 ('Rand', 'Randika', 'lahiru.rangana77@gmail.com', 1, '713823479', 0, NULL),
-('thamali', 'Thamali', 'ravingae@gmail.com', 2, '1245', 0, NULL);
+('thamali', 'Thamali', 'ravingae@gmail.com', 1, '1245', 0, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_privilege`
+--
 
 CREATE TABLE IF NOT EXISTS `user_privilege` (
   `User_Name` varchar(100) NOT NULL,
@@ -199,54 +351,43 @@ CREATE TABLE IF NOT EXISTS `user_privilege` (
   KEY `userPrivilige_idx` (`User_Name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `user_privilege`
+--
+
 INSERT INTO `user_privilege` (`User_Name`, `add_user`, `remove_User`, `add_station`, `remove_station`, `add_train`, `remove_train`, `add_category`, `remove_category`, `add_customer`, `remove_customer`, `add_parcel`, `release_parcel`, `confirm_arrival`, `check_upcoming_parcel`, `select_train`, `add_device`, `remove_device`) VALUES
 ('Lahiru', 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-('Rand', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1),
+('Rand', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 ('thamali', 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `category`
+--
 
 ALTER TABLE `category`
   ADD CONSTRAINT `categoryAddBy` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `categoryDeleteBy` FOREIGN KEY (`deleteBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
+--
+-- Constraints for table `customer`
+--
+
 ALTER TABLE `customer`
   ADD CONSTRAINT `custAddBy` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `custDeleteBy` FOREIGN KEY (`deleteBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `device`
+--
 
 ALTER TABLE `device`
   ADD CONSTRAINT `deviceAddBy` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON UPDATE CASCADE,
   ADD CONSTRAINT `deviceDeleteBy` FOREIGN KEY (`deleteBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `deviceUser` FOREIGN KEY (`assignTo`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-ALTER TABLE `parcel`
-  ADD CONSTRAINT `addByUser` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `assignTrain` FOREIGN KEY (`train`) REFERENCES `train` (`trainID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `currentS` FOREIGN KEY (`currentStation`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `finish` FOREIGN KEY (`destination`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `receiverFK` FOREIGN KEY (`receiver`) REFERENCES `customer` (`custID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `senderFK` FOREIGN KEY (`sender`) REFERENCES `customer` (`custID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `starts` FOREIGN KEY (`starts`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-ALTER TABLE `station`
-  ADD CONSTRAINT `stationAdmin` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `stationDeleteBy` FOREIGN KEY (`deleteBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-ALTER TABLE `train`
-  ADD CONSTRAINT `finishStation` FOREIGN KEY (`finish`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `startStation` FOREIGN KEY (`start`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `trainAdmin` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `trainDeleteBy` FOREIGN KEY (`deleteBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-ALTER TABLE `user`
-  ADD CONSTRAINT `userAddBy` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-ALTER TABLE `user_detail`
-  ADD CONSTRAINT `deleteByUser` FOREIGN KEY (`deleteBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `userDetail` FOREIGN KEY (`UserName`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `userStation` FOREIGN KEY (`station`) REFERENCES `station` (`stationID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-ALTER TABLE `user_privilege`
-  ADD CONSTRAINT `userPrivilige` FOREIGN KEY (`User_Name`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

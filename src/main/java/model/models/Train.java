@@ -15,6 +15,8 @@ public class Train {
 	private String train_type;
 	private String train_run;
 	private String train_direction;
+	
+	
 	public String getTrain_num() {
 		return train_num;
 	}
