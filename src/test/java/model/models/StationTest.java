@@ -7,28 +7,21 @@ import org.junit.Test;
 public class StationTest {
 
 	Station stationDefault=new Station();
-	//Station stationParameter=new Station(1,"Colombo_Fort", "0112054468", "Rand");
+	
 	
 	
 	@Test
 	public void getIDTest() {
-		assertEquals(1,stationParameter.getID());
+		stationDefault.setID(3);
+		assertEquals(3, stationDefault.getID());
 	}
 	
 	@Test
 	public void getNameTest() {
-		assertEquals("Colombo_Fort",stationParameter.getName());
+		stationDefault.setName("Colombo Fort");
+		assertEquals("Colombo Fort",stationDefault.getName());
 	}
 	
-	@Test
-	public void getContactNumTest() {
-		assertEquals("0112054468", stationParameter.getContactNum());
-	}
-	
-	@Test
-	public void getAddByTest() {
-		assertEquals("Rand",stationParameter.getAddBy());
-	}
 	
 	@Test
 	public void setIDTest() {
@@ -42,16 +35,14 @@ public class StationTest {
 		assertEquals("Gampaha",stationDefault.getName());
 	}
 	
-	@Test
-	public void setContactNumTest() {
-		stationDefault.setContactNum("0112789789");
-		assertEquals("0112789789",stationDefault.getContactNum());
+	public void getCodeTest() {
+		stationDefault.setName("110");
+		assertEquals("110",stationDefault.getName());
 	}
-	
-	@Test
-	public void setAddByTest() {
-		stationDefault.setAddBy("Lahiru");;
-		assertEquals("Lahiru",stationDefault.getAddBy());
+
+	public void setCodeTest(String code) {
+		stationDefault.setName("115");
+		assertEquals("115",stationDefault.getName());
 	}
 
 }

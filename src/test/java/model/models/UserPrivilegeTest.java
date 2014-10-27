@@ -9,12 +9,16 @@ public class UserPrivilegeTest {
 	User user=new User();
 	
 	UserPrivilege userPrivilegeDefault=new UserPrivilege(); //Default Contructor
-	UserPrivilege userPrivilegeParameter=new UserPrivilege(user, "Rand", 
-			true, true, true, false, false,
-			false, false, true, false, true,
-			true, true, true, true, true,
-			false, false);
-		
+	
+	UserPrivilege userPrivilegeParameter=new UserPrivilege(
+			user, "Rand", 
+			true, true, false, 
+			true, true, false, 
+			true, true, false, 
+			true, true, false, 
+			true, true, false, true);
+			
+
 	@Test
 	public void isAddUserTest() {
 		assertEquals(true, userPrivilegeParameter.isAdd_user());
@@ -27,17 +31,17 @@ public class UserPrivilegeTest {
 
 	@Test
 	public void isAddStationTest() {
-		assertEquals(true, userPrivilegeParameter.isAdd_station());
+		assertEquals(false, userPrivilegeParameter.isAdd_station());
 	}
 	
 	@Test
 	public void isRemoveStationTest() {
-		assertEquals(false, userPrivilegeParameter.isRemove_station());
+		assertEquals(true, userPrivilegeParameter.isRemove_station());
 	}
 
 	@Test
 	public void isAddTrainTest() {
-		assertEquals(false, userPrivilegeParameter.isAdd_train());
+		assertEquals(true, userPrivilegeParameter.isAdd_train());
 	}
 	
 	@Test
@@ -47,7 +51,7 @@ public class UserPrivilegeTest {
 	
 	@Test
 	public void isAddCategoryTest() {
-		assertEquals(false, userPrivilegeParameter.isAdd_category());
+		assertEquals(true, userPrivilegeParameter.isAdd_category());
 	}
 	
 	@Test
@@ -57,13 +61,14 @@ public class UserPrivilegeTest {
 	
 	@Test
 	public void isAddCustomerTest() {
-		assertEquals(false, userPrivilegeParameter.isAdd_customer());
+		assertEquals(false, userPrivilegeParameter.isEdit_customer());
 	}
 	
+	/*
 	@Test
 	public void isRemoveCustomerTest() {
 		assertEquals(true, userPrivilegeParameter.isRemove_customer());
-	}
+	}*/
 
 	@Test
 	public void isAddParcelTest() {
@@ -77,7 +82,7 @@ public class UserPrivilegeTest {
 
 	@Test
 	public void isConfirmArrivalTest() {
-		assertEquals(true, userPrivilegeParameter.isConfirm_arrival());
+		assertEquals(false, userPrivilegeParameter.isConfirm_arrival());
 	}
 	
 	@Test
@@ -107,7 +112,7 @@ public class UserPrivilegeTest {
 	
 	@Test
 	public void isRemoveDeviceTest() {
-		assertEquals(false, userPrivilegeParameter.isRemove_device());
+		assertEquals(true, userPrivilegeParameter.isRemove_device());
 	}
 	
 	@Test
@@ -160,15 +165,16 @@ public class UserPrivilegeTest {
 
 	@Test
 	public void setAddCustomerTest() {
-		userPrivilegeDefault.setAdd_customer(true);
-		assertEquals(true, userPrivilegeDefault.isAdd_customer());
+		userPrivilegeDefault.setEdit_customer(true);
+		assertEquals(true, userPrivilegeDefault.isEdit_customer());
 	}
 	
+	/*
 	@Test
 	public void setRemoveCustomerTest() {
 		userPrivilegeDefault.setRemove_customer(false);
 		assertEquals(false, userPrivilegeDefault.isRemove_customer());
-	}
+	}*/
 
 	@Test
 	public void setAddParcelTest() {
