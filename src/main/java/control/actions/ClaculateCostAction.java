@@ -39,8 +39,7 @@ public class ClaculateCostAction extends ActionSupport implements ServletRequest
 			e=false;
 		}
 		String category = request.getParameter("category");
-		StationManager sm = new StationManager();
-		float dist=StationSearch.getInstance().getDistance(sm.getStation(Integer.parseInt(start)).getCode(), sm.getStation(Integer.parseInt(finish)).getCode());
+		float dist=StationSearch.getInstance().getDistance(start, finish);
 		cost = CostFunction.calculate(dist, Float.parseFloat(category), Float.parseFloat(weight), e);
 		BigDecimal bd = new BigDecimal(Float.toString(cost));
 	    bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
