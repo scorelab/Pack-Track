@@ -198,5 +198,21 @@ public class UserManager {
 
 		return true;
 	}
+	
+	public boolean checkNIC(String NIC) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query = session.createQuery("from User u where u.nicNumber=:nic");
+		query.setString("nic", NIC);
+		List<User> list = query.list();
+		session.getTransaction().commit();
+		session.close();
+
+		if (list.size() == 0) {
+			return false;
+		}
+
+		return true;
+	}
 
 }

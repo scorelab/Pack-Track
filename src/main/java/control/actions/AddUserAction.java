@@ -115,6 +115,12 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 			userPrivilege.setEdit_customer(edit_customer);
 
 			temp.setUserName(userName);
+			
+			if(uManager.checkNIC(nic)){
+				addFieldError("nic", "NIC already exist");
+				return SUCCESS;
+			}
+			
 			temp.setNicNumber(nic);
 			temp.setDesignation(designation);
 			temp.setRole(role);
