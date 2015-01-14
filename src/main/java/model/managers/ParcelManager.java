@@ -4,6 +4,7 @@ import java.util.List;
 
 import model.db.HibernateUtil;
 import model.models.Parcel;
+import model.models.Station;
 
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
@@ -216,5 +217,19 @@ public class ParcelManager {
 			return list.get(0).getCurrentStation().getName();
 		}
 		return null;
+	}
+	
+	/*
+	 * Returns list of pending parcels for given Station
+	 */
+	public List<Parcel> getPendingParcelList(Station station) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query = session.createQuery("from Parcel p where p.destination.id=:station and p.currentStation.id!=:station");
+		query.setInteger("station", station.getID());
+		List<Parcel> list = query.list();
+		session.getTransaction().commit();
+		session.close();
+		return list;
 	}
 }
