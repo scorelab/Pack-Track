@@ -14,6 +14,7 @@ import model.models.Station;
 import model.models.User;
 import model.models.UserDetail;
 import model.models.UserPrivilege;
+import model.util.ValidationUtil;
 
 import org.apache.struts2.components.template.TemplateEngineManager;
 import org.apache.struts2.convention.annotation.InterceptorRef;
@@ -119,6 +120,10 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 			
 			if(uManager.checkNIC(nic) && (change==null || !change.getNicNumber().equals(nic))){
 				addFieldError("nic", "NIC already exist");
+				return SUCCESS;
+			}
+			if(!ValidationUtil.validateID(nic)){
+				addFieldError("nic", "NIC not valid");
 				return SUCCESS;
 			}
 			

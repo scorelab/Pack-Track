@@ -199,6 +199,9 @@ public class UserManager {
 		return true;
 	}
 	
+	/*
+	 * Check for NIC alredy exists. True if exists and false otherwise
+	 */
 	public boolean checkNIC(String NIC) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();

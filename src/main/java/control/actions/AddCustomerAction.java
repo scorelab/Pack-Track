@@ -7,6 +7,7 @@ import model.managers.DeviceManager;
 import model.models.Customer;
 import model.models.Device;
 import model.models.User;
+import model.util.ValidationUtil;
 
 import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.Result;
@@ -39,6 +40,14 @@ public class AddCustomerAction extends ActionSupport implements SessionAware {
 
 			CustomerManager cm=new CustomerManager();
 			Customer customer=new Customer();
+			if(!ValidationUtil.validateID(nic)){
+				addFieldError("nic", "NIC not valid");
+				return SUCCESS;
+			}
+			if(cm.getCustomer(nic)!=null){
+				addFieldError("nic", "NIC already exists");
+				return SUCCESS;
+			}
 			customer.setNic(nic);
 			customer.setName(name);
 			customer.setMobile(mobile);
@@ -52,6 +61,12 @@ public class AddCustomerAction extends ActionSupport implements SessionAware {
 			if(cm.addCustomer(customer)){
 				session.put("message", "Customer "+customer.getName()
 						+ " added successfully!");
+				if(session.get("sender")!=null){
+					session.put("sender",nic);
+				}
+				if(session.get("receiver")!=null){
+					session.put("receiver",nic);
+				}
 				return "done";
 			}
 			return SUCCESS;

@@ -53,8 +53,8 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 			@Result(name = "done", location = "add_parcel-input", type = "redirect") })
 	public String createUser() throws Exception {
 
-		session.remove("sender");
-		session.remove("receiver");
+//		session.remove("sender");
+//		session.remove("receiver");
 		User user = (User) session.get("user");
 		start = user.getUserDetail().getStation().getID();
 		startName=user.getUserDetail().getStation().getName();
