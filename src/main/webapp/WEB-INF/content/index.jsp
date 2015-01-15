@@ -71,7 +71,7 @@
 							<label> From :</label>
 							<s:select cssClass='form-control-inline' name='start'
 														id='start' list="stationList" listValue="name"
-														listKey="code" onchange="change()"></s:select>
+														listKey="ID" onchange="change()"></s:select>
 						</div>
 						
 					
@@ -79,7 +79,7 @@
 							<label>To :</label>
 							<s:select cssClass='form-control-inline' name='destination'
 														id='destination' list="stationList" listValue="name"
-														listKey="code" onchange="change()"></s:select>
+														listKey="ID" onchange="change()"></s:select>
 						</div>
 						
 					</div><br>
