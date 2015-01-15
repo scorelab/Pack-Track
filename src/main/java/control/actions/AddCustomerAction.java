@@ -52,6 +52,7 @@ public class AddCustomerAction extends ActionSupport implements SessionAware {
 			customer.setName(name);
 			customer.setMobile(mobile);
 			customer.setTelephone(telephone);
+			customer.setAddress(address);
 			if(!email.equals("")){
 				customer.setEmail(email);
 			}else{

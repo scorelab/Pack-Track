@@ -73,7 +73,6 @@ CREATE TABLE IF NOT EXISTS `customer` (
   PRIMARY KEY (`custID`),
   UNIQUE KEY `custID_UNIQUE` (`custID`),
   UNIQUE KEY `custNIC_UNIQUE` (`custNIC`),
-  UNIQUE KEY `custEmail_UNIQUE` (`custEmail`),
   KEY `customerAdmin_idx` (`addBy`),
   KEY `custAddUser_idx` (`addBy`),
   KEY `custDeleteBy_idx` (`deleteBy`)
