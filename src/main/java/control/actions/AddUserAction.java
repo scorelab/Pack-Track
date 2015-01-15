@@ -60,6 +60,7 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 	private boolean confirm_arrival;
 	private boolean check_upcoming;
 	private boolean select_train;
+	private boolean accounts;
 	private String message;
 
 	@org.apache.struts2.convention.annotation.Action(value = "add_user", results = {
@@ -115,6 +116,7 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 			userPrivilege.setConfirm_arrival(confirm_arrival);
 			userPrivilege.setSelect_train(select_train);
 			userPrivilege.setEdit_customer(edit_customer);
+			userPrivilege.setAccounts(accounts);
 
 			temp.setUserName(userName);
 			
@@ -433,6 +435,14 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public boolean isAccounts() {
+		return accounts;
+	}
+
+	public void setAccounts(boolean accounts) {
+		this.accounts = accounts;
 	}
 
 }

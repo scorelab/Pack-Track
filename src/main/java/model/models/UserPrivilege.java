@@ -19,6 +19,7 @@ public class UserPrivilege {
 	boolean select_train;
 	boolean add_device;
 	boolean remove_device;
+	private boolean accounts;
 	
 	public UserPrivilege() {
 		super();
@@ -194,6 +195,14 @@ public class UserPrivilege {
 
 	public void setRemove_device(boolean remove_device) {
 		this.remove_device = remove_device;
+	}
+
+	public boolean isAccounts() {
+		return accounts;
+	}
+
+	public void setAccounts(boolean accounts) {
+		this.accounts = accounts;
 	}
 	
 }

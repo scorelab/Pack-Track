@@ -204,6 +204,11 @@
 													<s:checkbox name='select_train' label="Select train" />
 												</table></td>
 										</tr>
+										<tr>
+											<td><table style="width: 100%">
+													<s:checkbox name='accounts' label="Accounts" />
+												</table></td>
+										</tr>
 									</table>
 									<br />
 									<div class='wrapper'>
