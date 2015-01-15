@@ -1,5 +1,11 @@
 package model.managers;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import model.db.HibernateUtil;
@@ -134,7 +140,7 @@ public class ParcelManager {
 			return false;
 		}
 	}
-	
+
 	public boolean confirmArrival(int stationID, Long id) {
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -153,7 +159,7 @@ public class ParcelManager {
 			return false;
 		}
 	}
-	
+
 	public boolean getParcelsToConfirm(long id) {
 		System.out.println("ght boo");
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -164,14 +170,14 @@ public class ParcelManager {
 		List<Parcel> list = query.list();
 		session.getTransaction().commit();
 		session.close();
-		if(list.size()>0){
+		if (list.size() > 0) {
 			System.out.println("rtbb d3e3");
 			return true;
 		}
 		return false;
 	}
 
-	public List<Parcel> searchRealease(String searchText,int stationID) {
+	public List<Parcel> searchRealease(String searchText, int stationID) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		Query query = session
@@ -183,7 +189,7 @@ public class ParcelManager {
 		session.close();
 		return list;
 	}
-	
+
 	public boolean releaseParcel(Long id, String userName) {
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -202,7 +208,7 @@ public class ParcelManager {
 			return false;
 		}
 	}
-	
+
 	public String trackParcel(long id, String nic) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -213,23 +219,87 @@ public class ParcelManager {
 		List<Parcel> list = query.list();
 		session.getTransaction().commit();
 		session.close();
-		if(list.size()>0){
+		if (list.size() > 0) {
 			return list.get(0).getCurrentStation().getName();
 		}
 		return null;
 	}
-	
+
 	/*
 	 * Returns list of pending parcels for given Station
 	 */
 	public List<Parcel> getPendingParcelList(Station station) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Query query = session.createQuery("from Parcel p where p.destination.id=:station and p.currentStation.id!=:station");
+		Query query = session
+				.createQuery("from Parcel p where p.destination.id=:station and p.currentStation.id!=:station");
 		query.setInteger("station", station.getID());
 		List<Parcel> list = query.list();
 		session.getTransaction().commit();
 		session.close();
 		return list;
+	}
+
+	public float[] getIncomeMonth(int year) {
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		long january=0, february = 0, march=0, april = 0, may = 0, june = 0, july = 0, august = 0, september = 0, october = 0, november = 0, december = 0, end = 0;
+		try {
+			january = df.parse("1/1/" + year).getTime()/1000;
+			february = df.parse("1/2/" + year).getTime()/1000;
+			march = df.parse("1/3/" + year).getTime()/1000;
+			april = df.parse("1/4/" + year).getTime()/1000;
+			may = df.parse("1/5/" + year).getTime()/1000;
+			june = df.parse("1/6/" + year).getTime()/1000;
+			july = df.parse("1/7/" + year).getTime()/1000;
+			august = df.parse("1/8/" + year).getTime()/1000;
+			september = df.parse("1/9/" + year).getTime()/1000;
+			october = df.parse("1/10/" + year).getTime()/1000;
+			november = df.parse("1/11/" + year).getTime()/1000;
+			december = df.parse("1/12/" + year).getTime()/1000;
+			end = df.parse("1/1/" + new Integer(year + 1).toString()).getTime()/1000;
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		float [] out=new float[12];
+		if(january!=0){
+			System.out.println(getIncome(january, february));
+			System.out.println(getIncome(february,march));
+			System.out.println(getIncome(march, april));
+			System.out.println(getIncome(april, may));
+			System.out.println(getIncome(may,june));
+			System.out.println(getIncome(june,july));
+			System.out.println(getIncome(july, august));
+			System.out.println(getIncome(august, september));
+			System.out.println(getIncome(september,october));
+			System.out.println(getIncome(october,november));
+			System.out.println(getIncome(november,december));
+			System.out.println(getIncome(december,end));
+		}
+//		System.out.println(year);
+
+		return null;
+
+	}
+	
+	public float getIncome(long start,long end){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query = session
+				.createQuery("select sum(p.totalCost) as totalCost from Parcel p WHERE p.dateRecieved>=:start and p.dateRecieved<:end");
+		query.setLong("start", start);
+		query.setLong("end", end);
+		System.out.println("start "+start+"  end "+end);
+		List<Double> list = query.list();
+		session.getTransaction().commit();
+		session.close();
+		if (list!=null && list.size()> 0) {
+			for(Double arr: list){
+				if(arr==null){
+					return 0f;
+				}
+				return arr.floatValue();
+			}
+		}
+		return 0f;
 	}
 }
