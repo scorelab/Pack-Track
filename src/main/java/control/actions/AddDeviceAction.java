@@ -9,6 +9,7 @@ import model.managers.UserManager;
 import model.models.Device;
 import model.models.Station;
 import model.models.User;
+import model.util.ValidationUtil;
 
 import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.Result;
@@ -52,7 +53,7 @@ public class AddDeviceAction extends ActionSupport implements SessionAware {
 						"IMEI lenght cannot exceed 15 digits.(Do not add \"/\" or \"-\") ");
 				return SUCCESS;
 			}
-			if (!isNumeric(IMEI)) {
+			if (!ValidationUtil.isNumeric(IMEI)) {
 				addFieldError("IMEI",
 						"IMEI should consist 15 digits.(Do not add \"/\" or \"-\") ");
 				return SUCCESS;
@@ -108,15 +109,6 @@ public class AddDeviceAction extends ActionSupport implements SessionAware {
 			return ERROR;
 		}
 
-	}
-
-	public static boolean isNumeric(String str) {
-		try {
-			double d = Double.parseDouble(str);
-		} catch (NumberFormatException nfe) {
-			return false;
-		}
-		return true;
 	}
 
 	@Override
