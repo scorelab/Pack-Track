@@ -59,5 +59,8 @@
         <property name="select_train" type="boolean">
             <column name="SELECT_TRAIN" />
         </property>
+        <property name="accounts" type="boolean">
+            <column name="ACCOUNTS" />
+        </property>
     </class>
 </hibernate-mapping>

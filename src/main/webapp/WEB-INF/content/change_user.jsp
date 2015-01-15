@@ -214,6 +214,12 @@
 														value="%{temp.userPrivilege.select_train}" />
 												</table></td>
 										</tr>
+										<tr>
+											<td><table style="width: 100%">
+													<s:checkbox name='accounts' label="Accounts" 
+													value="%{temp.userPrivilege.accounts}"/>
+												</table></td>
+										</tr>
 									</table>
 									<br />
 									<div class='wrapper'>
