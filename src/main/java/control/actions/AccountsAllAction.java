@@ -23,6 +23,8 @@ public class AccountsAllAction extends ActionSupport implements SessionAware {
 
 	private Map<String, Object> session;
 	private String year;
+	private float[] incomeMonth= new float[12];
+	private float total;
 
 	@org.apache.struts2.convention.annotation.Action(value = "accounts-all", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String getReport() throws Exception {
@@ -40,7 +42,11 @@ public class AccountsAllAction extends ActionSupport implements SessionAware {
 			return SUCCESS;
 		}
 		ParcelManager pm=new ParcelManager();
-		pm.getIncomeMonth(yearInt);
+		incomeMonth=pm.getIncomeMonth(yearInt);
+		for(float f:incomeMonth){
+			total+=f;
+		}
+		total=(float) Math.round(total*100)/100;
 		return SUCCESS;
 	}
 
@@ -69,5 +75,21 @@ public class AccountsAllAction extends ActionSupport implements SessionAware {
 			return ERROR;
 		}
 
+	}
+
+	public float[] getIncomeMonth() {
+		return incomeMonth;
+	}
+
+	public void setIncomeMonth(float[] incomeMonth) {
+		this.incomeMonth = incomeMonth;
+	}
+
+	public float getTotal() {
+		return total;
+	}
+
+	public void setTotal(float total) {
+		this.total = total;
 	}
 }

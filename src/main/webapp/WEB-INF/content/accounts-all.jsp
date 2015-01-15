@@ -33,48 +33,159 @@
 		<nav class="navbar navbar-default navbar-static-top" role="navigation"
 			style="margin-bottom: 0"> <s:action name="navbar" flush="true"
 			executeResult="true" namespace="/" /> </nav>
-<div id="page-wrapper">
+		<div id="page-wrapper">
 			<div class="row">
 				<div class="input-group"
 					style="width: 30%; margin: 30px 30px 30px 30px; min-width: 180px;">
 					<s:form action="accounts-all">
-					<table>
-					<tr><b>Enter a year </b></tr>
-					<tr>
-											
-											<td>
-												<table style="width: 100%">
-													<s:textfield cssClass='form-control' type='text' name='year'
-														id='year' />
-												</table>
-											</td>
-											<td style="padding: 5px;"><input type="submit" name='create' value='Go!' class="btn btn-default"></td>
-										</tr>
-							</table>
-				</s:form>
+						<table>
+							<tr>
+								<b>Enter a year </b>
+							</tr>
+							<tr>
+
+								<td>
+									<table style="width: 100%">
+										<s:textfield cssClass='form-control' type='text' name='year'
+											id='year' />
+									</table>
+								</td>
+								<td style="padding: 5px;"><input type="submit"
+									name='create' value='Go!' class="btn btn-default"></td>
+							</tr>
+						</table>
+					</s:form>
+				</div>
+			</div>
+			<div class='row'>
+			<div class='col-lg-offset-1 col-md-offset-1' style="padding-bottom: 20px;">
+			<h2>Total income : Rs. <s:property escape="false" value="total"></s:property></h2>
+			</div>
+			</div>
+			<div class='row'>
+				<div class='col-lg-4 col-md-6'>
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h4>January</h4>
+						</div>
+						<div class="panel-body">
+							<h3>Rs. <s:property escape="false" value="incomeMonth[0]"></s:property></h3>
+						</div>
 					</div>
 				</div>
-				<div id="result">
-					<table class="table table-striped" style="width: 90%;"
-						align="center">
-						<thead>
-							<tr>
-								<th style="width: 10%;">ID</th>
-								<th style="width: 15%;">Start</th>
-								<th style="width: 15%;">Destination</th>
-								<th style="width: 15%;">Receiver NIC</th>
-								<th style="width: 15%;">Sender NIC</th>
-								<th style="width: 15%;">Current Station</th>
-								<th style="width: 10%;">Released</th>
-							</tr>
-						</thead>
-						<tbody class="searchable">
-						<s:property escape="false" value="tableRows"></s:property>
-						</tbody>
-					</table>
+				<div class='col-lg-4 col-md-6'>
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h4>February</h4>
+						</div>
+						<div class="panel-body">
+							<h3>Rs. <s:property escape="false" value="incomeMonth[1]"></s:property></h3>
+						</div>
+					</div>
+				</div>
+				<div class='col-lg-4 col-md-6'>
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h4>March</h4>
+						</div>
+						<div class="panel-body">
+							<h3>Rs. <s:property escape="false" value="incomeMonth[2]"></s:property></h3>
+						</div>
+					</div>
+				</div>
+				<div class='col-lg-4 col-md-6'>
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h4>April</h4>
+						</div>
+						<div class="panel-body">
+							<h3>Rs. <s:property escape="false" value="incomeMonth[3]"></s:property></h3>
+						</div>
+					</div>
+				</div>
+				<div class='col-lg-4 col-md-6'>
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h4>May</h4>
+						</div>
+						<div class="panel-body">
+							<h3>Rs. <s:property escape="false" value="incomeMonth[4]"></s:property></h3>
+						</div>
+					</div>
+				</div>
+				<div class='col-lg-4 col-md-6'>
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h4>June</h4>
+						</div>
+						<div class="panel-body">
+							<h3>Rs. <s:property escape="false" value="incomeMonth[5]"></s:property></h3>
+						</div>
+					</div>
+				</div>
+				<div class='col-lg-4 col-md-6'>
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h4>July</h4>
+						</div>
+						<div class="panel-body">
+							<h3>Rs. <s:property escape="false" value="incomeMonth[6]"></s:property></h3>
+						</div>
+					</div>
+				</div>
+				<div class='col-lg-4 col-md-6'>
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h4>Augast</h4>
+						</div>
+						<div class="panel-body">
+							<h3>Rs. <s:property escape="false" value="incomeMonth[7]"></s:property></h3>
+						</div>
+					</div>
+				</div>
+				<div class='col-lg-4 col-md-6'>
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h4>September</h4>
+						</div>
+						<div class="panel-body">
+							<h3>Rs. <s:property escape="false" value="incomeMonth[8]"></s:property></h3>
+						</div>
+					</div>
+				</div>
+				<div class='col-lg-4 col-md-6'>
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h4>October</h4>
+						</div>
+						<div class="panel-body">
+							<h3>Rs. <s:property escape="false" value="incomeMonth[9]"></s:property></h3>
+						</div>
+					</div>
+				</div>
+				<div class='col-lg-4 col-md-6'>
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h4>November</h4>
+						</div>
+						<div class="panel-body">
+							<h3>Rs. <s:property escape="false" value="incomeMonth[10]"></s:property></h3>
+						</div>
+					</div>
+				</div>
+				<div class='col-lg-4 col-md-6'>
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h4>December</h4>
+						</div>
+						<div class="panel-body">
+							<h3>Rs. <s:property escape="false" value="incomeMonth[11]"></s:property></h3>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 	<!-- jQuery Version 1.11.0 -->
 	<script src="js/jquery-1.11.0.js"></script>

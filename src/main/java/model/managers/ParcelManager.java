@@ -240,6 +240,11 @@ public class ParcelManager {
 		return list;
 	}
 
+	/**
+	 * Gives the income by month in a given year
+	 * @param year
+	 * @return array containing incomes of 12 months
+	 */
 	public float[] getIncomeMonth(int year) {
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		long january=0, february = 0, march=0, april = 0, may = 0, june = 0, july = 0, august = 0, september = 0, october = 0, november = 0, december = 0, end = 0;
@@ -262,21 +267,20 @@ public class ParcelManager {
 		}
 		float [] out=new float[12];
 		if(january!=0){
-			System.out.println(getIncome(january, february));
-			System.out.println(getIncome(february,march));
-			System.out.println(getIncome(march, april));
-			System.out.println(getIncome(april, may));
-			System.out.println(getIncome(may,june));
-			System.out.println(getIncome(june,july));
-			System.out.println(getIncome(july, august));
-			System.out.println(getIncome(august, september));
-			System.out.println(getIncome(september,october));
-			System.out.println(getIncome(october,november));
-			System.out.println(getIncome(november,december));
-			System.out.println(getIncome(december,end));
+			out[0]=getIncome(january, february);
+			out[1]=getIncome(february,march);
+			out[2]=getIncome(march, april);
+			out[3]=getIncome(april, may);
+			out[4]=getIncome(may,june);
+			out[5]=getIncome(june,july);
+			out[6]=getIncome(july, august);
+			out[7]=getIncome(august, september);
+			out[8]=getIncome(september,october);
+			out[9]=getIncome(october,november);
+			out[10]=getIncome(november,december);
+			out[11]=getIncome(december,end);
+			return out;
 		}
-//		System.out.println(year);
-
 		return null;
 
 	}
@@ -288,7 +292,6 @@ public class ParcelManager {
 				.createQuery("select sum(p.totalCost) as totalCost from Parcel p WHERE p.dateRecieved>=:start and p.dateRecieved<:end");
 		query.setLong("start", start);
 		query.setLong("end", end);
-		System.out.println("start "+start+"  end "+end);
 		List<Double> list = query.list();
 		session.getTransaction().commit();
 		session.close();
@@ -297,7 +300,8 @@ public class ParcelManager {
 				if(arr==null){
 					return 0f;
 				}
-				return arr.floatValue();
+				System.out.println((float)Math.round(arr.floatValue()*100)/100);
+				return (float) Math.round(arr.floatValue()*100)/100;
 			}
 		}
 		return 0f;
