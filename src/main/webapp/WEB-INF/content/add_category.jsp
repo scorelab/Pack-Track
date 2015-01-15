@@ -52,7 +52,7 @@
 									<h1 class='hedinh-tag'>Category</h1>
 									<table class='main-table'>
 										<tr>
-											<td><b>Category name</b></td>
+											<td><b>Category name</b><span style="color:red;"> *</span></td>
 											<td colspan='3'>
 												<table style="width: 100%">
 													<s:textfield cssClass='input_class' type='text'
@@ -61,7 +61,7 @@
 											</td>
 										</tr>
 										<tr>
-											<td><b>Unit cost (Rs. per 1kg)</b></td>
+											<td><b>Unit cost (Rs. per 1kg)</b><span style="color:red;"> *</span></td>
 											<td colspan='3'>
 												<table style="width: 100%">
 													<s:textfield cssClass='input_class' type='text'
