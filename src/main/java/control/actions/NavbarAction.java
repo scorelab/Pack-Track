@@ -78,7 +78,10 @@ public class NavbarAction extends ActionSupport implements SessionAware, Servlet
 				}
 				sbTab.append("</ul></li>");
 			}
-			
+			if (user.getUserPrivilege().isRemove_category()) {
+				sbTab.append("<li id=\"accounts\"><a href=\"#\">Accounts<span class=\"fa arrow\"></span></a><ul class=\"nav nav-second-level\"><li><a href=\"accounts-all\" id=\"accounts-all\">Accounts all</a></li><li><a href=\"accounts-station\" id=\"accounts-station\">Acounts by Station</a></li></ul></li>");
+
+			}
 			int index = sbTab.indexOf("i");
 			setItems(sbTab.toString());
 			return SUCCESS;
