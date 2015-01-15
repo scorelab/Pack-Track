@@ -52,16 +52,18 @@
 									<h1 class='hedinh-tag'>Add User</h1>
 									<table class='main-table'>
 										<tr>
-											<td><b>Name</b></td>
+											<td><b>Name</b> <span style="color:red;"> *</span> </td>
 											<td colspan='3'>
 												<table style="width: 100%">
 													<s:textfield cssClass='input_class' type='text' name='name'
-														id='name' />
+														id='name'/>
+														
+												
 												</table>
 											</td>
 										</tr>
 										<tr>
-											<td><b>UserName</b></td>
+											<td><b>UserName</b><span style="color:red;"> *</span></td>
 											<td colspan='3'>
 												<table style="width: 100%">
 													<s:textfield cssClass='input_class' type='text'
@@ -70,16 +72,16 @@
 											</td>
 										</tr>
 										<tr>
-											<td><b>Email</b></td>
+											<td><b>Email</b><span style="color:red;"> *</span></td>
 											<td colspan='3'>
 												<table style="width: 100%">
 													<s:textfield cssClass='input_class' type='text'
-														name='email' id='email' />
+														name='email' id='email' style="*" />
 												</table>
 											</td>
 										</tr>
 										<tr>
-											<td><b>NIC</b></td>
+											<td><b>NIC</b><span style="color:red;"> *</span></td>
 											<td>
 												<table style="width: 100%">
 													<s:textfield cssClass='input_class' type='text' name='nic'
@@ -92,6 +94,7 @@
 													<s:textfield cssClass='input_class' type='text'
 														name='phone' id='phone' />
 												</table>
+												
 											</td>
 										</tr>
 										<tr>
@@ -215,6 +218,7 @@
 									<br>
 									</tr>
 								</div>
+			
 							</s:form>
 						</div>
 					</div>

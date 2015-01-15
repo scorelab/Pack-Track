@@ -51,7 +51,7 @@
 									<h1 class='hedinh-tag'>Device</h1>
 									<table class='main-table'>
 										<tr>
-											<td><b>Device IMEI</b></td>
+											<td><b>Device IMEI</b><span style="color:red;"> *</span></td>
 											<td colspan='3'>
 												<table style="width: 100%">
 													<s:textfield cssClass='input_class' type='text' name='IMEI'
@@ -60,7 +60,7 @@
 											</td>
 										</tr>
 										<tr>
-											<td><b>Assigned user</b></td>
+											<td><b>Assigned user</b><span style="color:red;"> *</span></td>
 											<td>
 												<table style="width: 100%">
 													<s:select cssClass='input_class' name='assigned'

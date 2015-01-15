@@ -81,7 +81,7 @@
 									<h1 class='hedinh-tag'>Parcel</h1>
 									<table class='main-table'>
 										<tr>
-											<td><b>Sender NIC</b></td>
+											<td><b>Sender NIC</b><span style="color:red;"> *</span></td>
 											<td colspan='3'>
 												<table style="width: 100%">
 													<s:textfield cssClass='input_class' type='text'
@@ -95,7 +95,7 @@
 									</table>
 									<table class='main-table'>
 										<tr>
-											<td><b>Receiver NIC</b></td>
+											<td><b>Receiver NIC</b><span style="color:red;"> *</span></td>
 											<td colspan='3'>
 												<table style="width: 100%">
 													<s:textfield cssClass='input_class' type='text'
