@@ -18,6 +18,7 @@
 <link href="css/pt-main.css" rel="stylesheet">
 <link href="css/home.css" rel="stylesheet">
 <link href="css/add_user.css" rel="stylesheet">
+<link href="css/morris.css" rel="stylesheet">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,9 +59,13 @@
 				</div>
 			</div>
 			<div class='row'>
-			<div class='col-lg-offset-1 col-md-offset-1' style="padding-bottom: 20px;">
-			<h2>Total income : Rs. <s:property escape="false" value="total"></s:property></h2>
-			</div>
+				<div class='col-lg-offset-1 col-md-offset-1'
+					style="padding-bottom: 20px;">
+					<h2>
+						Total income : Rs.
+						<s:property escape="false" value="total"></s:property>
+					</h2>
+				</div>
 			</div>
 			<div class='row'>
 				<div class='col-lg-4 col-md-6'>
@@ -69,7 +74,10 @@
 							<h4>January</h4>
 						</div>
 						<div class="panel-body">
-							<h3>Rs. <s:property escape="false" value="incomeMonth[0]"></s:property></h3>
+							<h3>
+								Rs.
+								<s:property escape="false" value="incomeMonth[0]"></s:property>
+							</h3>
 						</div>
 					</div>
 				</div>
@@ -79,7 +87,10 @@
 							<h4>February</h4>
 						</div>
 						<div class="panel-body">
-							<h3>Rs. <s:property escape="false" value="incomeMonth[1]"></s:property></h3>
+							<h3>
+								Rs.
+								<s:property escape="false" value="incomeMonth[1]"></s:property>
+							</h3>
 						</div>
 					</div>
 				</div>
@@ -89,7 +100,10 @@
 							<h4>March</h4>
 						</div>
 						<div class="panel-body">
-							<h3>Rs. <s:property escape="false" value="incomeMonth[2]"></s:property></h3>
+							<h3>
+								Rs.
+								<s:property escape="false" value="incomeMonth[2]"></s:property>
+							</h3>
 						</div>
 					</div>
 				</div>
@@ -99,7 +113,10 @@
 							<h4>April</h4>
 						</div>
 						<div class="panel-body">
-							<h3>Rs. <s:property escape="false" value="incomeMonth[3]"></s:property></h3>
+							<h3>
+								Rs.
+								<s:property escape="false" value="incomeMonth[3]"></s:property>
+							</h3>
 						</div>
 					</div>
 				</div>
@@ -109,7 +126,10 @@
 							<h4>May</h4>
 						</div>
 						<div class="panel-body">
-							<h3>Rs. <s:property escape="false" value="incomeMonth[4]"></s:property></h3>
+							<h3>
+								Rs.
+								<s:property escape="false" value="incomeMonth[4]"></s:property>
+							</h3>
 						</div>
 					</div>
 				</div>
@@ -119,7 +139,10 @@
 							<h4>June</h4>
 						</div>
 						<div class="panel-body">
-							<h3>Rs. <s:property escape="false" value="incomeMonth[5]"></s:property></h3>
+							<h3>
+								Rs.
+								<s:property escape="false" value="incomeMonth[5]"></s:property>
+							</h3>
 						</div>
 					</div>
 				</div>
@@ -129,7 +152,10 @@
 							<h4>July</h4>
 						</div>
 						<div class="panel-body">
-							<h3>Rs. <s:property escape="false" value="incomeMonth[6]"></s:property></h3>
+							<h3>
+								Rs.
+								<s:property escape="false" value="incomeMonth[6]"></s:property>
+							</h3>
 						</div>
 					</div>
 				</div>
@@ -139,7 +165,10 @@
 							<h4>Augast</h4>
 						</div>
 						<div class="panel-body">
-							<h3>Rs. <s:property escape="false" value="incomeMonth[7]"></s:property></h3>
+							<h3>
+								Rs.
+								<s:property escape="false" value="incomeMonth[7]"></s:property>
+							</h3>
 						</div>
 					</div>
 				</div>
@@ -149,7 +178,10 @@
 							<h4>September</h4>
 						</div>
 						<div class="panel-body">
-							<h3>Rs. <s:property escape="false" value="incomeMonth[8]"></s:property></h3>
+							<h3>
+								Rs.
+								<s:property escape="false" value="incomeMonth[8]"></s:property>
+							</h3>
 						</div>
 					</div>
 				</div>
@@ -159,7 +191,10 @@
 							<h4>October</h4>
 						</div>
 						<div class="panel-body">
-							<h3>Rs. <s:property escape="false" value="incomeMonth[9]"></s:property></h3>
+							<h3>
+								Rs.
+								<s:property escape="false" value="incomeMonth[9]"></s:property>
+							</h3>
 						</div>
 					</div>
 				</div>
@@ -169,7 +204,10 @@
 							<h4>November</h4>
 						</div>
 						<div class="panel-body">
-							<h3>Rs. <s:property escape="false" value="incomeMonth[10]"></s:property></h3>
+							<h3>
+								Rs.
+								<s:property escape="false" value="incomeMonth[10]"></s:property>
+							</h3>
 						</div>
 					</div>
 				</div>
@@ -179,13 +217,28 @@
 							<h4>December</h4>
 						</div>
 						<div class="panel-body">
-							<h3>Rs. <s:property escape="false" value="incomeMonth[11]"></s:property></h3>
+							<h3>
+								Rs.
+								<s:property escape="false" value="incomeMonth[11]"></s:property>
+							</h3>
 						</div>
 					</div>
 				</div>
 			</div>
+			<div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3>Income Chart for year <s:property value="year"/></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="morris-line-chart"></div>
+                        </div>
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                </div>
 		</div>
-	</div>
 	</div>
 	<!-- jQuery Version 1.11.0 -->
 	<script src="js/jquery-1.11.0.js"></script>
@@ -196,6 +249,33 @@
 
 	<!-- Metis Menu Plugin JavaScript -->
 	<script src="js/plugins/metisMenu/metisMenu.min.js"></script>
+
+	<!-- Morris Charts JavaScript -->
+	<script src="js/raphael-min.js"></script>
+	<script src="js/morris.min.js"></script>
+	<script type="text/javascript">
+	new Morris.Line({
+		  element: 'morris-line-chart',
+		  data: [
+		    { year: 'Jan', value: <s:property escape="false" value="incomeMonth[0]"/>},
+		    { year: 'Feb', value: <s:property escape="false" value="incomeMonth[1]"/>},
+		    { year: 'Mar', value: <s:property escape="false" value="incomeMonth[2]"/>},
+		    { year: 'Apr', value: <s:property escape="false" value="incomeMonth[3]"/>},
+		    { year: 'May', value: <s:property escape="false" value="incomeMonth[4]"/>},
+		    { year: 'Jun', value: <s:property escape="false" value="incomeMonth[5]"/>},
+		    { year: 'Jul', value: <s:property escape="false" value="incomeMonth[6]"/>},
+		    { year: 'Aug', value: <s:property escape="false" value="incomeMonth[7]"/>},
+		    { year: 'Sep', value: <s:property escape="false" value="incomeMonth[8]"/>},
+		    { year: 'Oct', value: <s:property escape="false" value="incomeMonth[9]"/>},
+		    { year: 'Nov', value: <s:property escape="false" value="incomeMonth[10]"/>},
+		    { year: 'Dec', value: <s:property escape="false" value="incomeMonth[11]"/>},
+		  ],
+		  parseTime: false,
+		  xkey: 'year',
+		  ykeys: ['value'],
+		  labels: ['Value']
+		});
+	</script>
 
 	<script src="js/pt-main.js"></script>
 
