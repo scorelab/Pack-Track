@@ -19,6 +19,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `pack_track`
 --
+
 CREATE DATABASE IF NOT EXISTS `pack_track` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `pack_track`;
 
@@ -453,6 +454,7 @@ INSERT INTO `user_privilege` (`User_Name`, `add_user`, `remove_User`, `add_stati
 --
 -- Constraints for table `category`
 --
+
 ALTER TABLE `category`
   ADD CONSTRAINT `categoryAddBy` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `categoryDeleteBy` FOREIGN KEY (`deleteBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -460,6 +462,7 @@ ALTER TABLE `category`
 --
 -- Constraints for table `customer`
 --
+
 ALTER TABLE `customer`
   ADD CONSTRAINT `custAddBy` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `custDeleteBy` FOREIGN KEY (`deleteBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -467,6 +470,7 @@ ALTER TABLE `customer`
 --
 -- Constraints for table `device`
 --
+
 ALTER TABLE `device`
   ADD CONSTRAINT `deviceAddBy` FOREIGN KEY (`addBy`) REFERENCES `user` (`UserName`) ON UPDATE CASCADE,
   ADD CONSTRAINT `deviceDeleteBy` FOREIGN KEY (`deleteBy`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
