@@ -226,7 +226,7 @@
 				</div>
 			</div>
 			<div class="row">
-                <div class="col-lg-12">
+                <div col-lg-12>
                     <div class="panel panel-info">
                         <div class="panel-heading">
                             <h3>Income Chart for year <s:property value="year"/></h3>
@@ -272,8 +272,10 @@
 		  ],
 		  parseTime: false,
 		  xkey: 'year',
+		  resize: true,
 		  ykeys: ['value'],
-		  labels: ['Value']
+		  labels: ['Value'],
+		  xLabelAngle: 35,
 		});
 	</script>
 
