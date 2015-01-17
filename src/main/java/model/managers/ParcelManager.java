@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -242,68 +243,115 @@ public class ParcelManager {
 
 	/**
 	 * Gives the income by month in a given year
+	 * 
 	 * @param year
 	 * @return array containing incomes of 12 months
 	 */
-	public float[] getIncomeMonth(int year) {
+	public float[] getIncomeMonth(int year, int station) {
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-		long january=0, february = 0, march=0, april = 0, may = 0, june = 0, july = 0, august = 0, september = 0, october = 0, november = 0, december = 0, end = 0;
+		long january = 0, february = 0, march = 0, april = 0, may = 0, june = 0, july = 0, august = 0, september = 0, october = 0, november = 0, december = 0, end = 0;
 		try {
-			january = df.parse("1/1/" + year).getTime()/1000;
-			february = df.parse("1/2/" + year).getTime()/1000;
-			march = df.parse("1/3/" + year).getTime()/1000;
-			april = df.parse("1/4/" + year).getTime()/1000;
-			may = df.parse("1/5/" + year).getTime()/1000;
-			june = df.parse("1/6/" + year).getTime()/1000;
-			july = df.parse("1/7/" + year).getTime()/1000;
-			august = df.parse("1/8/" + year).getTime()/1000;
-			september = df.parse("1/9/" + year).getTime()/1000;
-			october = df.parse("1/10/" + year).getTime()/1000;
-			november = df.parse("1/11/" + year).getTime()/1000;
-			december = df.parse("1/12/" + year).getTime()/1000;
-			end = df.parse("1/1/" + new Integer(year + 1).toString()).getTime()/1000;
+			january = df.parse("1/1/" + year).getTime() / 1000;
+			february = df.parse("1/2/" + year).getTime() / 1000;
+			march = df.parse("1/3/" + year).getTime() / 1000;
+			april = df.parse("1/4/" + year).getTime() / 1000;
+			may = df.parse("1/5/" + year).getTime() / 1000;
+			june = df.parse("1/6/" + year).getTime() / 1000;
+			july = df.parse("1/7/" + year).getTime() / 1000;
+			august = df.parse("1/8/" + year).getTime() / 1000;
+			september = df.parse("1/9/" + year).getTime() / 1000;
+			october = df.parse("1/10/" + year).getTime() / 1000;
+			november = df.parse("1/11/" + year).getTime() / 1000;
+			december = df.parse("1/12/" + year).getTime() / 1000;
+			end = df.parse("1/1/" + new Integer(year + 1).toString()).getTime() / 1000;
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		float [] out=new float[12];
-		if(january!=0){
-			out[0]=getIncome(january, february);
-			out[1]=getIncome(february,march);
-			out[2]=getIncome(march, april);
-			out[3]=getIncome(april, may);
-			out[4]=getIncome(may,june);
-			out[5]=getIncome(june,july);
-			out[6]=getIncome(july, august);
-			out[7]=getIncome(august, september);
-			out[8]=getIncome(september,october);
-			out[9]=getIncome(october,november);
-			out[10]=getIncome(november,december);
-			out[11]=getIncome(december,end);
+		float[] out = new float[12];
+		if (january != 0) {
+			out[0] = getIncome(january, february,station);
+			out[1] = getIncome(february, march,station);
+			out[2] = getIncome(march, april,station);
+			out[3] = getIncome(april, may,station);
+			out[4] = getIncome(may, june,station);
+			out[5] = getIncome(june, july,station);
+			out[6] = getIncome(july, august,station);
+			out[7] = getIncome(august, september,station);
+			out[8] = getIncome(september, october,station);
+			out[9] = getIncome(october, november,station);
+			out[10] = getIncome(november, december,station);
+			out[11] = getIncome(december, end,station);
 			return out;
 		}
 		return null;
 
 	}
-	
-	public float getIncome(long start,long end){
+
+	public float getIncome(long start, long end, int station) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
+		String qText="select sum(p.totalCost) as totalCost from Parcel p WHERE p.dateRecieved>=:start and p.dateRecieved<:end";
+		if(station!=-1){
+			qText="select sum(p.totalCost) as totalCost from Parcel p WHERE p.dateRecieved>=:start and p.dateRecieved<:end and starts="+station;
+		}
 		Query query = session
-				.createQuery("select sum(p.totalCost) as totalCost from Parcel p WHERE p.dateRecieved>=:start and p.dateRecieved<:end");
+				.createQuery(qText);
 		query.setLong("start", start);
 		query.setLong("end", end);
 		List<Double> list = query.list();
 		session.getTransaction().commit();
 		session.close();
-		if (list!=null && list.size()> 0) {
-			for(Double arr: list){
-				if(arr==null){
+		if (list != null && list.size() > 0) {
+			for (Double arr : list) {
+				if (arr == null) {
 					return 0f;
 				}
-				System.out.println((float)Math.round(arr.floatValue()*100)/100);
-				return (float) Math.round(arr.floatValue()*100)/100;
+				return (float) Math.round(arr.floatValue() * 100) / 100;
 			}
 		}
 		return 0f;
+	}
+
+	/**
+	 * Gives the income of the year,month and day for a given station and date.
+	 * 
+	 * @param station
+	 *            station to calculate income
+	 * @param date
+	 *            to calculate income
+	 * @return
+	 */
+	public float[] getIncomeStation(int station, String date) {
+		System.out.println(station);
+		DateFormat df=new SimpleDateFormat("MM/dd/yyyy");
+		Date d=new Date();
+		float[] out = new float[3];
+		try {
+			d = df.parse(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		Calendar calendar=Calendar.getInstance();
+		calendar.setTime(d);
+		int year=calendar.get(Calendar.YEAR);
+		int month=calendar.get(Calendar.MONTH)+1;
+		int day=calendar.get(Calendar.DAY_OF_MONTH);
+//		int daysOfMonth=calendar.getMaximum(Calendar.DAY_OF_MONTH);
+		long yearBegin=0, yearEnd=0, monthBegin=0, monthEnd=0, dayBegin=0, dayEnd=0;
+		try {
+			yearBegin=df.parse("1/1/"+year).getTime()/1000;
+			yearEnd=df.parse("1/1/"+(year+1)).getTime()/1000;
+			monthBegin=df.parse(month+"/1/"+year).getTime()/1000;
+			monthEnd=df.parse((month+1)+"/1/"+year).getTime()/1000;
+			dayBegin=df.parse(month+"/"+day+"/"+year).getTime()/1000;
+			dayEnd=df.parse(month+"/"+(day+1)+"/"+year).getTime()/1000;
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		out[0]=getIncome(yearBegin, yearEnd,station);
+		out[1]=getIncome(monthBegin, monthEnd,station);
+		out[2]=getIncome(dayBegin, dayEnd,station);
+		return out;
+
 	}
 }

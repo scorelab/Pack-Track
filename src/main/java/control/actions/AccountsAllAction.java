@@ -42,7 +42,7 @@ public class AccountsAllAction extends ActionSupport implements SessionAware {
 			return SUCCESS;
 		}
 		ParcelManager pm=new ParcelManager();
-		incomeMonth=pm.getIncomeMonth(yearInt);
+		incomeMonth=pm.getIncomeMonth(yearInt,-1);
 		for(float f:incomeMonth){
 			total+=f;
 		}
