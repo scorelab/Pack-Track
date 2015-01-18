@@ -1,9 +1,11 @@
 package control.actions;
 
+import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import model.managers.ParcelManager;
 import model.managers.UserManager;
 import model.models.User;
 
@@ -16,82 +18,43 @@ import com.opensymphony.xwork2.ActionSupport;
 
 /**
  * Action to manage user home screen
- *
+ * 
  */
-@InterceptorRef(value="secureStack")
-public class HomeAction extends ActionSupport implements SessionAware, ServletResponseAware {
+@InterceptorRef(value = "secureStack")
+public class HomeAction extends ActionSupport implements SessionAware,
+		ServletResponseAware {
 
 	private Map<String, Object> session;
-	private String tabs;
+	private int toHandle;
+	private int recieved;
 	private HttpServletResponse response;
 	private String message;
-	
 
 	/**
 	 * Method to generate tabs for user according to privileges
+	 * 
 	 * @return
 	 * @throws Exception
 	 */
 	@org.apache.struts2.convention.annotation.Action(value = "home", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String authCheck() throws Exception {
-		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+		response.setHeader("Cache-Control",
+				"no-cache, no-store, must-revalidate"); // HTTP 1.1.
 		response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
 		response.setDateHeader("Expires", 0);
-		
-		UserManager uManager = new UserManager();
+
+		ParcelManager pm = new ParcelManager();
 		User user = (User) session.get("user");
+		toHandle = pm.getToBeHandled(user.getUserDetail().getStation().getID());
+		recieved = pm.getRecieved(user.getUserDetail().getStation().getID(),
+				new Date());
 
-			StringBuilder sbTab = new StringBuilder();
-			if (user.getUserPrivilege().isRemove_user()) {
-				sbTab.append("<li><a href=\"#home\" data-url=\"add-remove-user\">Users</a></li>");
+		if (session.get("message") != null) {
+			message = (String) session.get("message");
+			session.remove("message");
+		}
 
-			} else if (user.getUserPrivilege().isAdd_user()) {
-				sbTab.append("<li><a href=\"#home\" data-url=\"add-user-home\">Users</a></li>");
-			}
-
-			if (user.getUserPrivilege().isRemove_train()) {
-				sbTab.append("<li><a href=\"#home\" data-url=\"add-remove-train\">Trains</a></li>");
-
-			} else if (user.getUserPrivilege().isAdd_train()) {
-				sbTab.append("<li><a href=\"#home\" data-url=\"add-train-home\">Trains</a></li>");
-			}
-			
-			if (user.getUserPrivilege().isRemove_station()) {
-				sbTab.append("<li><a href=\"#home\" data-url=\"add-remove-station\">Stations</a></li>");
-
-			} else if (user.getUserPrivilege().isAdd_station()) {
-				sbTab.append("<li><a href=\"#home\" data-url=\"add-station-home\">Stations</a></li>");
-			}
-			
-			if (user.getUserPrivilege().isRemove_device()) {
-				sbTab.append("<li><a href=\"#home\" data-url=\"add-remove-device\">Device</a></li>");
-
-			} else if (user.getUserPrivilege().isAdd_device()) {
-				sbTab.append("<li><a href=\"#home\" data-url=\"add-device-home\">Device</a></li>");
-			}
-			
-			if (user.getUserPrivilege().isRemove_category()) {
-				sbTab.append("<li><a href=\"#home\" data-url=\"add-remove-category\">Categories</a></li>");
-
-			} else if (user.getUserPrivilege().isAdd_category()) {
-				sbTab.append("<li><a href=\"#home\" data-url=\"add-category-home\">Categories</a></li>");
-			}
-			
-			if (user.getUserPrivilege().isAdd_parcel() || user.getUserPrivilege().isRelease_parcel() || user.getUserPrivilege().isSelect_train()) {
-				sbTab.append("<li><a href=\"#home\" data-url=\"parcel-home\">Parcel</a></li>");
-
-			}
-			
-			int index = sbTab.indexOf("i");
-			sbTab.insert(index + 1, " class=\"active\"");
-			setTabs(sbTab.toString());
-			
-			if(session.get("message")!=null){
-				message=(String)session.get("message");
-				session.remove("message");
-			}
-			
-			return SUCCESS;
+		return SUCCESS;
 	}
 
 	@Override
@@ -100,17 +63,22 @@ public class HomeAction extends ActionSupport implements SessionAware, ServletRe
 
 	}
 
-	public String getTabs() {
-		return tabs;
+	public Map<String, Object> getSession() {
+		return session;
 	}
 
-	public void setTabs(String tabs) {
-		this.tabs = tabs;
+	public int getToHandle() {
+		return toHandle;
+	}
+
+	public void setToHandle(int toHandle) {
+		this.toHandle = toHandle;
 	}
 
 	public void setServletResponse(HttpServletResponse response) {
 		this.response = response;
 	}
+
 	public HttpServletResponse getServletResponse() {
 		return this.response;
 	}
@@ -121,5 +89,13 @@ public class HomeAction extends ActionSupport implements SessionAware, ServletRe
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public int getRecieved() {
+		return recieved;
+	}
+
+	public void setRecieved(int recieved) {
+		this.recieved = recieved;
 	}
 }

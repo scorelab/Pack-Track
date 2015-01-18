@@ -269,18 +269,18 @@ public class ParcelManager {
 		}
 		float[] out = new float[12];
 		if (january != 0) {
-			out[0] = getIncome(january, february,station);
-			out[1] = getIncome(february, march,station);
-			out[2] = getIncome(march, april,station);
-			out[3] = getIncome(april, may,station);
-			out[4] = getIncome(may, june,station);
-			out[5] = getIncome(june, july,station);
-			out[6] = getIncome(july, august,station);
-			out[7] = getIncome(august, september,station);
-			out[8] = getIncome(september, october,station);
-			out[9] = getIncome(october, november,station);
-			out[10] = getIncome(november, december,station);
-			out[11] = getIncome(december, end,station);
+			out[0] = getIncome(january, february, station);
+			out[1] = getIncome(february, march, station);
+			out[2] = getIncome(march, april, station);
+			out[3] = getIncome(april, may, station);
+			out[4] = getIncome(may, june, station);
+			out[5] = getIncome(june, july, station);
+			out[6] = getIncome(july, august, station);
+			out[7] = getIncome(august, september, station);
+			out[8] = getIncome(september, october, station);
+			out[9] = getIncome(october, november, station);
+			out[10] = getIncome(november, december, station);
+			out[11] = getIncome(december, end, station);
 			return out;
 		}
 		return null;
@@ -290,12 +290,12 @@ public class ParcelManager {
 	public float getIncome(long start, long end, int station) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		String qText="select sum(p.totalCost) as totalCost from Parcel p WHERE p.dateRecieved>=:start and p.dateRecieved<:end";
-		if(station!=-1){
-			qText="select sum(p.totalCost) as totalCost from Parcel p WHERE p.dateRecieved>=:start and p.dateRecieved<:end and starts="+station;
+		String qText = "select sum(p.totalCost) as totalCost from Parcel p WHERE p.dateRecieved>=:start and p.dateRecieved<:end";
+		if (station != -1) {
+			qText = "select sum(p.totalCost) as totalCost from Parcel p WHERE p.dateRecieved>=:start and p.dateRecieved<:end and starts="
+					+ station;
 		}
-		Query query = session
-				.createQuery(qText);
+		Query query = session.createQuery(qText);
 		query.setLong("start", start);
 		query.setLong("end", end);
 		List<Double> list = query.list();
@@ -323,35 +323,83 @@ public class ParcelManager {
 	 */
 	public float[] getIncomeStation(int station, String date) {
 		System.out.println(station);
-		DateFormat df=new SimpleDateFormat("MM/dd/yyyy");
-		Date d=new Date();
+		DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+		Date d = new Date();
 		float[] out = new float[3];
 		try {
 			d = df.parse(date);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		Calendar calendar=Calendar.getInstance();
+		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(d);
-		int year=calendar.get(Calendar.YEAR);
-		int month=calendar.get(Calendar.MONTH)+1;
-		int day=calendar.get(Calendar.DAY_OF_MONTH);
-//		int daysOfMonth=calendar.getMaximum(Calendar.DAY_OF_MONTH);
-		long yearBegin=0, yearEnd=0, monthBegin=0, monthEnd=0, dayBegin=0, dayEnd=0;
+		int year = calendar.get(Calendar.YEAR);
+		int month = calendar.get(Calendar.MONTH) + 1;
+		int day = calendar.get(Calendar.DAY_OF_MONTH);
+		// int daysOfMonth=calendar.getMaximum(Calendar.DAY_OF_MONTH);
+		long yearBegin = 0, yearEnd = 0, monthBegin = 0, monthEnd = 0, dayBegin = 0, dayEnd = 0;
 		try {
-			yearBegin=df.parse("1/1/"+year).getTime()/1000;
-			yearEnd=df.parse("1/1/"+(year+1)).getTime()/1000;
-			monthBegin=df.parse(month+"/1/"+year).getTime()/1000;
-			monthEnd=df.parse((month+1)+"/1/"+year).getTime()/1000;
-			dayBegin=df.parse(month+"/"+day+"/"+year).getTime()/1000;
-			dayEnd=df.parse(month+"/"+(day+1)+"/"+year).getTime()/1000;
+			yearBegin = df.parse("1/1/" + year).getTime() / 1000;
+			yearEnd = df.parse("1/1/" + (year + 1)).getTime() / 1000;
+			monthBegin = df.parse(month + "/1/" + year).getTime() / 1000;
+			monthEnd = df.parse((month + 1) + "/1/" + year).getTime() / 1000;
+			dayBegin = df.parse(month + "/" + day + "/" + year).getTime() / 1000;
+			dayEnd = df.parse(month + "/" + (day + 1) + "/" + year).getTime() / 1000;
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		out[0]=getIncome(yearBegin, yearEnd,station);
-		out[1]=getIncome(monthBegin, monthEnd,station);
-		out[2]=getIncome(dayBegin, dayEnd,station);
+		out[0] = getIncome(yearBegin, yearEnd, station);
+		out[1] = getIncome(monthBegin, monthEnd, station);
+		out[2] = getIncome(dayBegin, dayEnd, station);
 		return out;
+
+	}
+
+	public int getToBeHandled(int station) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query = session
+				.createQuery("select count(p.id) as total from Parcel p WHERE p.currentStation=:station");
+		query.setInteger("station", station);
+		List<Long> list = query.list();
+		session.getTransaction().commit();
+		session.close();
+		if (list != null && list.size() > 0) {
+			for (Long arr : list) {
+				return arr.intValue();
+			}
+		}
+		return 0;
+	}
+	
+	public int getRecieved(int station, Date date) {
+		DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		int year = calendar.get(Calendar.YEAR);
+		int month = calendar.get(Calendar.MONTH) + 1;
+		int day = calendar.get(Calendar.DAY_OF_MONTH);
+		long dayBegin = 0;
+		try {
+			dayBegin = df.parse(month + "/" + day + "/" + year).getTime() / 1000;
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query = session
+				.createQuery("select count(p.id) as total from Parcel p WHERE p.currentStation=:station and p.dateRecieved>=:start");
+		query.setInteger("station", station);
+		query.setLong("start", dayBegin);
+		List<Long> list = query.list();
+		session.getTransaction().commit();
+		session.close();
+		if (list != null && list.size() > 0) {
+			for (Long arr : list) {
+				return arr.intValue();
+			}
+		}
+		return 0;
 
 	}
 }

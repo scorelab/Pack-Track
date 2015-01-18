@@ -44,37 +44,44 @@
 				style='display: none; margin: 5px auto auto auto; width: 30%; text-align: center; border: 1px solid green; color: green; background: rgb(189, 248, 189);'>
 				<s:property value="message" />
 			</div>
-			<ul class="nav nav-tabs" id="myTab">
-<%-- 				<s:property escape="false" value="tabs"></s:property> --%>
-			</ul>
-
-			<div class="tab-content">
-				<div class="tab-pane active" id="home"></div>
+			
+			<div class="row">
+				<div class="col-lg-6">
+                    <div class="panel panel-default" style="margin-top:30px;">
+                        <div class="panel-heading">
+                            <h3 style="color:rgb(119, 119, 119)">Personnel Info</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>
+                            <b>Name : </b><s:property value="%{session.user.userDetail.name}" /></br>
+                            <b>NIC : </b><s:property value="%{session.user.nicNumber}" /></br>
+                            <b>Role : </b><s:property value="%{session.user.role}" /></br>
+                            <b>Shed : </b><s:property value="%{session.user.shed}" /></br>
+                            <b>Sub Dept. : </b><s:property value="%{session.user.subDept}" /></br>
+                            <b>Email : </b><s:property value="%{session.user.userDetail.email}" /></br>
+                            <b>Station : </b><s:property value="%{session.user.userDetail.station.name}" /></br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="panel panel-default" style="margin-top:30px;">
+                        <div class="panel-heading">
+                            <h3 style="color:rgb(119, 119, 119)">In <s:property value="%{session.user.userDetail.station.name}" /> today</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>
+                            <font size="4">Parcels to be handled :   </font><font size="9"><s:property value="toHandle" /></font></br>
+                            <font size="4">Parcels received :   </font><font size="9"><s:property value="recieved" /></font></br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
 			</div>
-
-			<section>
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12"></div>
-				</div>
-				<!-- /.row -->
-			</div>
-			<!-- /.container --> </section>
-			<s:set name="message" value="%{message}" />
-
-
-			<footer>
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<p>Copyright &copy; Pack Track 2014</p>
-					</div>
-				</div>
-				<!-- /.row -->
-			</div>
-			<!-- /.container --> </footer>
 		</div>
+		<s:set name="message" value="%{message}" />
 	</div>
+
 
 	<!-- jQuery Version 1.11.0 -->
 	<script src="js/jquery-1.11.0.js"></script>
