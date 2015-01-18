@@ -72,8 +72,21 @@ public class StationSearch {
 
 			List<Node> path = printPath(n2);
 
+			float dist=(float) n2.distance();
 			
-			return (float) n2.distance();
+			if (stationList.size() != 0) {
+				for (int i = 0; i < stationList.size(); i++) {
+					Node n = (Node) stationList.get(i);
+					n.f_scores=0;
+					n.g_scores=0;
+					n.parent=null;
+					
+					//n.h_scores=0;
+					
+				}
+			}
+			
+			return dist;
 			
 		}
 
