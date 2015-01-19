@@ -189,12 +189,11 @@
 		});
 	</script>
 	<s:if test="%{year==0}">
-	<script type="text/javascript">
-	$(document).ready(
-	function (){
-		document.getElementById('graph').style.visibility = "hidden";
-	});
-	</script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				document.getElementById('graph').style.visibility = "hidden";
+			});
+		</script>
 	</s:if>
 	<script src="js/pt-main.js"></script>
 	<script src="js/bootstrap-datepicker.js"></script>

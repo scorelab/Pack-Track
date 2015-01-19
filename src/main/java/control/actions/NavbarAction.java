@@ -83,7 +83,7 @@ public class NavbarAction extends ActionSupport implements SessionAware,
 			sbTab.append("</ul></li>");
 		}
 		if (user.getUserPrivilege().isRemove_category()) {
-			sbTab.append("<li id=\"accounts\"><a href=\"#\">Accounts<span class=\"fa arrow\"></span></a><ul class=\"nav nav-second-level\"><li><a href=\"accounts-all-input\" id=\"accounts-all\">Accounts all</a></li><li><a href=\"accounts-station-input\" id=\"accounts-station\">Acounts by Station</a></li></ul></li>");
+			sbTab.append("<li id=\"accounts\"><a href=\"#\">Accounts<span class=\"fa arrow\"></span></a><ul class=\"nav nav-second-level\"><li><a href=\"accounts-all-input\" id=\"accounts-all\">Accounts all</a></li><li><a href=\"accounts-station-input\" id=\"accounts-station\">Acounts by Station</a></li><li><a href=\"account-time-period-input\" id=\"account-time-period\">Accounts Time Period</a></li></ul></li>");
 
 		}
 		int index = sbTab.indexOf("i");
