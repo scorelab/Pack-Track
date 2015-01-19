@@ -240,6 +240,22 @@
 					</div>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h3>
+								Income Bar Chart for year
+								<s:property value="station" />
+							</h3>
+						</div>
+						<div class="panel-body">
+							<div id="morris-bar-chart"></div>
+						</div>
+					</div>
+					<!-- /.panel -->
+				</div>
+			</div>
 		</div>
 	</div>
 	<!-- jQuery Version 1.11.0 -->
@@ -259,49 +275,62 @@
 		new Morris.Line({
 			element : 'morris-line-chart',
 			data : [ {
-				year : 'Jan',
+				month : 'Jan',
 				value : <s:property escape="false" value="incomeMonth[0]"/>
 			}, {
-				year : 'Feb',
+				month : 'Feb',
 				value : <s:property escape="false" value="incomeMonth[1]"/>
 			}, {
-				year : 'Mar',
+				month : 'Mar',
 				value : <s:property escape="false" value="incomeMonth[2]"/>
 			}, {
-				year : 'Apr',
+				month : 'Apr',
 				value : <s:property escape="false" value="incomeMonth[3]"/>
 			}, {
-				year : 'May',
+				month : 'May',
 				value : <s:property escape="false" value="incomeMonth[4]"/>
 			}, {
-				year : 'Jun',
+				month : 'Jun',
 				value : <s:property escape="false" value="incomeMonth[5]"/>
 			}, {
-				year : 'Jul',
+				month : 'Jul',
 				value : <s:property escape="false" value="incomeMonth[6]"/>
 			}, {
-				year : 'Aug',
+				month : 'Aug',
 				value : <s:property escape="false" value="incomeMonth[7]"/>
 			}, {
-				year : 'Sep',
+				month : 'Sep',
 				value : <s:property escape="false" value="incomeMonth[8]"/>
 			}, {
-				year : 'Oct',
+				month : 'Oct',
 				value : <s:property escape="false" value="incomeMonth[9]"/>
 			}, {
-				year : 'Nov',
+				month : 'Nov',
 				value : <s:property escape="false" value="incomeMonth[10]"/>
 			}, {
-				year : 'Dec',
+				month : 'Dec',
 				value : <s:property escape="false" value="incomeMonth[11]"/>
 			}, ],
 			parseTime : false,
-			xkey : 'year',
+			xkey : 'month',
 			resize : true,
 			ykeys : [ 'value' ],
 			labels : [ 'Value' ],
 			xLabelAngle : 35,
 		});
+
+		new Morris.Bar({
+			element : 'morris-bar-chart',
+			data : <s:property escape="false" value="incomeYear"/>,
+			parseTime : false,
+			xkey : 'station',
+			ykeys : [ 'value' ],
+			labels : [ 'Value' ],
+			xLabelAngle : 35,
+			resize : true
+
+		});
+		
 	</script>
 
 	<script src="js/pt-main.js"></script>

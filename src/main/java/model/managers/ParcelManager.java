@@ -402,4 +402,33 @@ public class ParcelManager {
 		return 0;
 
 	}
+	
+	public String getAnualSatationIncome(int year){
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		long start = 0, end = 0;
+		try {
+			start = df.parse("1/1/" + year).getTime() / 1000;
+			end = df.parse("1/1/" + new Integer(year + 1).toString()).getTime() / 1000;
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		StringBuilder sb = new StringBuilder();
+		StationManager sm = new StationManager();
+		
+		List<Station> list = sm.getStationList();
+		
+		if(list!=null && list.size()>0){
+			sb.append("[");
+			for(Station arr :list){
+				int id=arr.getID();
+				float income=getIncome(start,end,id);
+				sb.append("{ station : \""+arr.getName()+"\", value :"+income+" },");
+				
+			}
+			sb.append("]");
+		}
+		
+		return sb.toString() ;
+	}
 }
