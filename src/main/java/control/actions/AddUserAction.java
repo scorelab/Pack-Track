@@ -66,7 +66,7 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 	@org.apache.struts2.convention.annotation.Action(value = "add_user", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
 			@Result(name = "done", location = "add-user-input", type = "redirect"),
-			@Result(name = "change", location = "add-remove-user", type = "redirect")})
+			@Result(name = "change", location = "add-remove-user", type = "redirect") })
 	public String createUser() throws Exception {
 
 		User user = (User) session.get("user");
@@ -76,7 +76,9 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 
 			User change = (User) session.get("change");
 			UserManager uManager = new UserManager();
-			if (uManager.isUser(userName) && (change==null || !change.getUserName().equals(userName))) {
+			if (uManager.isUser(userName)
+					&& (change == null || !change.getUserName()
+							.equals(userName))) {
 				addFieldError("userName", "UserName already exist");
 				return SUCCESS;
 			}
@@ -85,8 +87,10 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 			UserDetail userdetail = new UserDetail();
 			UserPrivilege userPrivilege = new UserPrivilege();
 			userdetail.setName(name);
-			
-			if(uManager.checkEmail(email) && (change==null || !change.getUserDetail().getEmail().equals(email))){
+
+			if (uManager.checkEmail(email)
+					&& (change == null || !change.getUserDetail().getEmail()
+							.equals(email))) {
 				addFieldError("email", "Email already exist");
 				return SUCCESS;
 			}
@@ -119,16 +123,17 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 			userPrivilege.setAccounts(accounts);
 
 			temp.setUserName(userName);
-			
-			if(uManager.checkNIC(nic) && (change==null || !change.getNicNumber().equals(nic))){
+
+			if (uManager.checkNIC(nic)
+					&& (change == null || !change.getNicNumber().equals(nic))) {
 				addFieldError("nic", "NIC already exist");
 				return SUCCESS;
 			}
-			if(!ValidationUtil.validateID(nic)){
+			if (!ValidationUtil.validateID(nic)) {
 				addFieldError("nic", "NIC not valid");
 				return SUCCESS;
 			}
-			
+
 			temp.setNicNumber(nic);
 			temp.setDesignation(designation);
 			temp.setRole(role);
@@ -189,9 +194,9 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 		if (user != null
 				&& (user.getUserPrivilege().isAdd_user() || user
 						.getUserPrivilege().isRemove_user())) {
-			
-			if(session.get("message")!=null){
-				setMessage((String)session.get("message"));
+
+			if (session.get("message") != null) {
+				setMessage((String) session.get("message"));
 				session.remove("message");
 			}
 

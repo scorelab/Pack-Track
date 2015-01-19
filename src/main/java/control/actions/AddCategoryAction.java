@@ -76,7 +76,7 @@ public class AddCategoryAction extends ActionSupport implements SessionAware {
 		if (user != null
 				&& (user.getUserPrivilege().isAdd_category() || user
 						.getUserPrivilege().isRemove_category())) {
-			
+
 			if (session.get("message") != null) {
 				setMessage((String) session.get("message"));
 				session.remove("message");

@@ -18,7 +18,8 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 @InterceptorRef(value = "secureStack")
-public class ParcelAction extends ActionSupport implements SessionAware,ServletRequestAware {
+public class ParcelAction extends ActionSupport implements SessionAware,
+		ServletRequestAware {
 
 	private HttpServletRequest response;
 	private Map<String, Object> session;
@@ -31,34 +32,30 @@ public class ParcelAction extends ActionSupport implements SessionAware,ServletR
 
 	@org.apache.struts2.convention.annotation.Action(value = "parcel-search", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String searchParcelAction() throws Exception {
-		String param=getServletRequest().getParameter("searchText");
-		ParcelManager pm=new ParcelManager();
+		String param = getServletRequest().getParameter("searchText");
+		ParcelManager pm = new ParcelManager();
 		List<Parcel> list = pm.search(param);
 		StringBuilder sb = new StringBuilder();
 		for (Parcel parcels : list) {
-			String temp = "<tr><td>" + parcels.getID()+ "</td><td>"
+			String temp = "<tr><td>" + parcels.getID() + "</td><td>"
 					+ parcels.getStarts().getName() + "</td><td>"
 					+ parcels.getDestination().getName() + "</td><td>"
 					+ parcels.getSender().getNic() + "</td><td>"
 					+ parcels.getReceiver().getNic() + "</td><td>"
 					+ parcels.getCurrentStation().getName() + "</td><td>"
-					+ parcels.isReleased() + "</td><td>"
-					+ "</td></tr>";
+					+ parcels.isReleased() + "</td><td>" + "</td></tr>";
 			sb.append(temp);
 		}
-		if(list.size()==0){
-			String temp = "<tr><td>null</td><td>"
-					+"null</td><td>"
-					+"null</td><td>"
-					+"null</td><td>"
-					+"null</td><td>"
-					+"null</td><td>"
-					+"</td></tr>";
+		if (list.size() == 0) {
+			String temp = "<tr><td>null</td><td>" + "null</td><td>"
+					+ "null</td><td>" + "null</td><td>" + "null</td><td>"
+					+ "null</td><td>" + "</td></tr>";
 			sb.append(temp);
 		}
 		tableRows = sb.toString();
 		return SUCCESS;
 	}
+
 	@Override
 	public void setSession(Map<String, Object> session) {
 		this.session = session;

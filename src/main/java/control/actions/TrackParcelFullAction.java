@@ -29,22 +29,22 @@ public class TrackParcelFullAction extends ActionSupport implements
 	@org.apache.struts2.convention.annotation.Action(value = "track-master", results = { @Result(name = "success", type = "json") })
 	public String execute() {
 		String id = request.getParameter("id");
-		System.out.println(id);
 		String userName = request.getParameter("userName");
 		String password = request.getParameter("password");
 		String imei = request.getParameter("imei");
 		ParcelManager pm = new ParcelManager();
-		UserManager um=new UserManager();
-		DeviceManager dm= new DeviceManager();
-		User user=um.login(userName, password);
-		Device device=dm.getDeviceByIMEI(imei);
-		
-		if(user==null || device==null){
+		UserManager um = new UserManager();
+		DeviceManager dm = new DeviceManager();
+		User user = um.login(userName, password);
+		Device device = dm.getDeviceByIMEI(imei);
+
+		if (user == null || device == null) {
 			return "success";
-		}else if(!user.getUserName().equals(device.getAssigned().getUserName())){
+		} else if (!user.getUserName().equals(
+				device.getAssigned().getUserName())) {
 			return "success";
 		}
-		
+
 		if (id != null && !id.equals("")) {
 			setParcel(pm.getParcel(Long.parseLong(id)));
 		}

@@ -23,9 +23,9 @@ public class AccountsAllAction extends ActionSupport implements SessionAware {
 
 	private Map<String, Object> session;
 	private String year;
-	private float[] incomeMonth= new float[12];
+	private float[] incomeMonth = new float[12];
 	private float total;
-	private String incomeYear ;
+	private String incomeYear;
 
 	@org.apache.struts2.convention.annotation.Action(value = "accounts-all", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String getReport() throws Exception {
@@ -37,18 +37,18 @@ public class AccountsAllAction extends ActionSupport implements SessionAware {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
 		int todayYear = cal.get(Calendar.YEAR);
-		System.out.println(todayYear);
+
 		if (yearInt < 2014 || yearInt > todayYear) {
 			addFieldError("year", "Not a valid year");
 			return SUCCESS;
 		}
-		ParcelManager pm=new ParcelManager();
-		incomeMonth=pm.getIncomeMonth(yearInt,-1);
-		for(float f:incomeMonth){
-			total+=f;
+		ParcelManager pm = new ParcelManager();
+		incomeMonth = pm.getIncomeMonth(yearInt, -1);
+		for (float f : incomeMonth) {
+			total += f;
 		}
-		total=(float) Math.round(total*100)/100;
-		incomeYear=pm.getAnualSatationIncome(yearInt);
+		total = (float) Math.round(total * 100) / 100;
+		incomeYear = pm.getAnualSatationIncome(yearInt);
 		return SUCCESS;
 	}
 
@@ -65,13 +65,13 @@ public class AccountsAllAction extends ActionSupport implements SessionAware {
 	public void setYear(String year) {
 		this.year = year;
 	}
+
 	@org.apache.struts2.convention.annotation.Action(value = "accounts-all-input", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String input() throws Exception {
 
 		User user = (User) session.get("user");
-		if (user != null
-				&& user.getUserPrivilege().isAccounts()) {
-			
+		if (user != null && user.getUserPrivilege().isAccounts()) {
+
 			return "accounts-all";
 		} else {
 			return ERROR;

@@ -15,9 +15,10 @@ import com.opensymphony.xwork2.ActionSupport;
 
 /**
  * Action that manages login page
- *
+ * 
  */
-public class LoginAction extends ActionSupport implements SessionAware,ServletRequestAware {
+public class LoginAction extends ActionSupport implements SessionAware,
+		ServletRequestAware {
 	private String userName;
 	private String password;
 	private Map<String, Object> session;
@@ -25,6 +26,7 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 
 	/**
 	 * Method to log in the user in to the system by checking credentials.
+	 * 
 	 * @return
 	 * @throws Exception
 	 */
@@ -56,7 +58,8 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 	}
 
 	/**
-	 * Method to log out the user from system. 
+	 * Method to log out the user from system.
+	 * 
 	 * @return
 	 */
 	@org.apache.struts2.convention.annotation.Action(value = "logout", results = { @Result(name = "success", location = "index", type = "redirect") })
@@ -91,8 +94,8 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 
 	@Override
 	public void setServletRequest(HttpServletRequest reuqest) {
-		this.request=reuqest;
-		
+		this.request = reuqest;
+
 	}
 
 }

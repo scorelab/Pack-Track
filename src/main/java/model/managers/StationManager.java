@@ -40,7 +40,7 @@ public class StationManager {
 			session.close();
 			HibernateUtil.getSessionFactory().close();
 			return true;
-			
+
 		} catch (Exception e) {
 			return false;
 		}
@@ -78,25 +78,26 @@ public class StationManager {
 
 		return list.get(0);
 	}
-	
-//	public boolean deleteStation(int id, String by) {
-//		try {
-//			Session session = HibernateUtil.getSessionFactory().openSession();
-//			session.beginTransaction();
-//			SQLQuery query = session.createSQLQuery("update Station set deleted=1, deleteby=:by where stationid=:id");
-//			query.setInteger("id", id);
-//			query.setString("by", by);
-//			query.executeUpdate();
-//			session.getTransaction().commit();
-//			session.close();
-//			return true;
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return false;
-//		}
-//	}
-	
+
+	// public boolean deleteStation(int id, String by) {
+	// try {
+	// Session session = HibernateUtil.getSessionFactory().openSession();
+	// session.beginTransaction();
+	// SQLQuery query =
+	// session.createSQLQuery("update Station set deleted=1, deleteby=:by where stationid=:id");
+	// query.setInteger("id", id);
+	// query.setString("by", by);
+	// query.executeUpdate();
+	// session.getTransaction().commit();
+	// session.close();
+	// return true;
+	//
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// return false;
+	// }
+	// }
+
 	public boolean updateStation(Station station) {
 
 		try {
@@ -112,7 +113,7 @@ public class StationManager {
 			return false;
 		}
 	}
-	
+
 	public List<Dist> getDistList() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();

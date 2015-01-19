@@ -35,7 +35,7 @@ public class AccountsStationAction extends ActionSupport implements
 
 	@org.apache.struts2.convention.annotation.Action(value = "accounts-station", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String getReport() throws Exception {
-		year=Integer.parseInt(date.substring(date.lastIndexOf("/")+1));
+		year = Integer.parseInt(date.substring(date.lastIndexOf("/") + 1));
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
 		int todayYear = cal.get(Calendar.YEAR);
@@ -43,12 +43,12 @@ public class AccountsStationAction extends ActionSupport implements
 			addFieldError("date", "Not a valid year");
 			return SUCCESS;
 		}
-		ParcelManager pm=new ParcelManager();
+		ParcelManager pm = new ParcelManager();
 		setDayIncome(pm.getIncomeStation(station, date));
 		setIncomeMonth(pm.getIncomeMonth(getYear(), station));
-		for(Station st:stationList){
-			if(st.getID()==station){
-				stName=st.getName();
+		for (Station st : stationList) {
+			if (st.getID() == station) {
+				stName = st.getName();
 			}
 		}
 		return SUCCESS;

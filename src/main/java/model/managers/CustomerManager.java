@@ -25,7 +25,7 @@ public class CustomerManager {
 			return false;
 		}
 	}
-	
+
 	public Customer getCustomer(String nic) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();

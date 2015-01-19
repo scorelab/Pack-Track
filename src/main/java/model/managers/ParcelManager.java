@@ -162,7 +162,7 @@ public class ParcelManager {
 	}
 
 	public boolean getParcelsToConfirm(long id) {
-		System.out.println("ght boo");
+
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		Query query = session
@@ -172,7 +172,7 @@ public class ParcelManager {
 		session.getTransaction().commit();
 		session.close();
 		if (list.size() > 0) {
-			System.out.println("rtbb d3e3");
+
 			return true;
 		}
 		return false;
@@ -322,7 +322,7 @@ public class ParcelManager {
 	 * @return
 	 */
 	public float[] getIncomeStation(int station, String date) {
-		System.out.println(station);
+
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 		Date d = new Date();
 		float[] out = new float[3];
@@ -371,7 +371,7 @@ public class ParcelManager {
 		}
 		return 0;
 	}
-	
+
 	public int getRecieved(int station, Date date) {
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 		Calendar calendar = Calendar.getInstance();
@@ -402,8 +402,8 @@ public class ParcelManager {
 		return 0;
 
 	}
-	
-	public String getAnualSatationIncome(int year){
+
+	public String getAnualSatationIncome(int year) {
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		long start = 0, end = 0;
 		try {
@@ -412,23 +412,24 @@ public class ParcelManager {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
+
 		StringBuilder sb = new StringBuilder();
 		StationManager sm = new StationManager();
-		
+
 		List<Station> list = sm.getStationList();
-		
-		if(list!=null && list.size()>0){
+
+		if (list != null && list.size() > 0) {
 			sb.append("[");
-			for(Station arr :list){
-				int id=arr.getID();
-				float income=getIncome(start,end,id);
-				sb.append("{ station : \""+arr.getName()+"\", value :"+income+" },");
-				
+			for (Station arr : list) {
+				int id = arr.getID();
+				float income = getIncome(start, end, id);
+				sb.append("{ station : \"" + arr.getName() + "\", value :"
+						+ income + " },");
+
 			}
 			sb.append("]");
 		}
-		
-		return sb.toString() ;
+
+		return sb.toString();
 	}
 }

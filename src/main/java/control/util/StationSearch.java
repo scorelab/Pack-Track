@@ -17,7 +17,6 @@ import model.models.Dist;
 
 public class StationSearch {
 
-	
 	private static List<Node> stationList = new ArrayList<Node>();
 	private static StationSearch instance;
 
@@ -30,12 +29,12 @@ public class StationSearch {
 
 		for (Dist d : br) {
 			String[] parameter = d.getDist().split(" ");
-			
+
 			createStation(parameter[1], parameter[0],
 					Double.parseDouble(parameter[2]));
-			
+
 		}
-		
+
 	}
 
 	// h scores is the stright-line distance from the current city to Bucharest
@@ -61,7 +60,6 @@ public class StationSearch {
 
 		Node n1 = getStation(start);
 		Node n2 = getStation(finish);
-		
 
 		if (n1 == null) {
 			return 0;
@@ -72,22 +70,22 @@ public class StationSearch {
 
 			List<Node> path = printPath(n2);
 
-			float dist=(float) n2.distance();
-			
+			float dist = (float) n2.distance();
+
 			if (stationList.size() != 0) {
 				for (int i = 0; i < stationList.size(); i++) {
 					Node n = (Node) stationList.get(i);
-					n.f_scores=0;
-					n.g_scores=0;
-					n.parent=null;
-					
-					//n.h_scores=0;
-					
+					n.f_scores = 0;
+					n.g_scores = 0;
+					n.parent = null;
+
+					// n.h_scores=0;
+
 				}
 			}
-			
+
 			return dist;
-			
+
 		}
 
 	}
@@ -97,7 +95,7 @@ public class StationSearch {
 		if (stationList.size() != 0) {
 			for (int i = 0; i < stationList.size(); i++) {
 				Node n = (Node) stationList.get(i);
-				
+
 			}
 		}
 
@@ -105,19 +103,17 @@ public class StationSearch {
 
 	public static Node getStation(String name) {
 
-		
 		if (stationList.size() != 0) {
 			for (int i = 0; i < stationList.size(); i++) {
 				Node n = stationList.get(i);
-				
+
 				if (n.value.equals(name)) {
-					
+
 					return stationList.get(i);
 				}
 			}
 		}
 
-		
 		return null;
 
 	}
@@ -127,20 +123,18 @@ public class StationSearch {
 		if (stationList.size() == 0) {
 
 			Node newStation = new Node(name);
-			
+
 			Node prevStation = new Node(prev);
 			stationList.add(newStation);
-			
+
 			stationList.add(prevStation);
 			newStation = getStation(name);
 			prevStation = getStation(prev);
 			prevStation.adjacencies.add(new Edge(newStation, distance));
 			newStation.adjacencies.add(new Edge(prevStation, distance));
 
-			
-
 		} else {
-			
+
 			Node newStation = new Node(name);
 			Node parent = getStation(prev);
 			if (parent == null) {
@@ -155,8 +149,6 @@ public class StationSearch {
 				stationList.add(newStation);
 			}
 
-			
-
 		}
 
 		try (FileWriter fw = new FileWriter("station.txt", true);
@@ -164,10 +156,8 @@ public class StationSearch {
 				PrintWriter out = new PrintWriter(bw)) {
 			out.println(name + " " + prev + " " + Integer.toString(distance));
 		} catch (IOException e) {
-			
-		}
 
-		
+		}
 
 	}
 
@@ -177,21 +167,21 @@ public class StationSearch {
 		if (stationList.size() == 0) {
 
 			Node newStation = new Node(name);
-			
+
 			Node prevStation = new Node(prev);
 			stationList.add(newStation);
-			
+
 			stationList.add(prevStation);
 			newStation = getStation(name);
 			prevStation = getStation(prev);
 			prevStation.adjacencies.add(new Edge(newStation, distance));
 			newStation.adjacencies.add(new Edge(prevStation, distance));
 		} else {
-			
+
 			Node newStation = new Node(name);
 			Node parent = getStation(prev);
 			if (parent == null) {
-				
+
 				parent = new Node(prev);
 				parent.adjacencies.add(new Edge(newStation, distance));
 				newStation.adjacencies.add(new Edge(parent, distance));

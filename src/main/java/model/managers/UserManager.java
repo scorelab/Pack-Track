@@ -80,7 +80,8 @@ public class UserManager {
 	public List<User> getUserList() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Query query = session.createQuery("from User u where u.userDetail.deleted='false'");
+		Query query = session
+				.createQuery("from User u where u.userDetail.deleted='false'");
 		List<User> list = query.list();
 		session.getTransaction().commit();
 		session.close();
@@ -117,7 +118,7 @@ public class UserManager {
 			return false;
 		}
 	}
-	
+
 	public User getUser(String userName) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -133,7 +134,7 @@ public class UserManager {
 
 		return list.get(0);
 	}
-	
+
 	public boolean updateUser(User user) {
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -148,12 +149,13 @@ public class UserManager {
 			return false;
 		}
 	}
-	
+
 	public boolean deleteUser(String userName, String by) {
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
-			SQLQuery query = session.createSQLQuery("update User_detail set deleted=1, deleteby=:by where username=:userName");
+			SQLQuery query = session
+					.createSQLQuery("update User_detail set deleted=1, deleteby=:by where username=:userName");
 			query.setString("userName", userName);
 			query.setString("by", by);
 			query.executeUpdate();
@@ -166,11 +168,12 @@ public class UserManager {
 			return false;
 		}
 	}
-	
+
 	public User getUserByEmail(String email) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Query query = session.createQuery("from User u where u.userDetail.email=:email and  u.userDetail.deleted='false'");
+		Query query = session
+				.createQuery("from User u where u.userDetail.email=:email and  u.userDetail.deleted='false'");
 		query.setString("email", email);
 		List<User> list = query.list();
 		session.getTransaction().commit();
@@ -182,11 +185,12 @@ public class UserManager {
 
 		return list.get(0);
 	}
-	
+
 	public boolean checkEmail(String email) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Query query = session.createQuery("from User u where u.userDetail.email=:email");
+		Query query = session
+				.createQuery("from User u where u.userDetail.email=:email");
 		query.setString("email", email);
 		List<User> list = query.list();
 		session.getTransaction().commit();
@@ -198,7 +202,7 @@ public class UserManager {
 
 		return true;
 	}
-	
+
 	/*
 	 * Check for NIC alredy exists. True if exists and false otherwise
 	 */

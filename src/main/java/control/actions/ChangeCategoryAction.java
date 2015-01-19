@@ -33,9 +33,9 @@ public class ChangeCategoryAction extends ActionSupport implements
 		if (user != null && user.getUserPrivilege().isRemove_category()) {
 			CategoryManager cm = new CategoryManager();
 			String param = getServletRequest().getParameter("id");
-			System.out.println(param);
+
 			setTemp(cm.getCategory(Integer.parseInt(param)));
-			System.out.println(getTemp().getCatName());
+
 			if (getTemp() == null) {
 				return "done";
 			}
@@ -54,7 +54,7 @@ public class ChangeCategoryAction extends ActionSupport implements
 		if (user != null && user.getUserPrivilege().isRemove_category()) {
 			CategoryManager cm = new CategoryManager();
 			String param = getServletRequest().getParameter("id");
-			System.out.println(param);
+
 			if (cm.deleteCategory(Integer.parseInt(param), user.getUserName())) {
 				session.put("message", "Category deleted successfully!");
 				session.remove("change");

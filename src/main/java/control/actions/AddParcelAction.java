@@ -53,17 +53,16 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 			@Result(name = "done", location = "add_parcel-input", type = "redirect") })
 	public String createUser() throws Exception {
 
-//		session.remove("sender");
-//		session.remove("receiver");
+		// session.remove("sender");
+		// session.remove("receiver");
 		User user = (User) session.get("user");
 		start = user.getUserDetail().getStation().getID();
-		startName=user.getUserDetail().getStation().getName();
+		startName = user.getUserDetail().getStation().getName();
 		if (user != null && user.getUserPrivilege().isAdd_parcel()) {
 			CustomerManager cm = new CustomerManager();
 			Customer sender = cm.getCustomer(senderNIC);
 			Customer receiver = cm.getCustomer(receiverNIC);
 
-			
 			if (sender == null && receiver == null) {
 				System.out.println(1);
 				return "add-sender-receiver-parcel";
@@ -79,17 +78,17 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 			ParcelManager pm = new ParcelManager();
 			parcel.setReceiver(receiver);
 			parcel.setSender(sender);
-			Reciept r=new Reciept();
-			if (start==destination){
+			Reciept r = new Reciept();
+			if (start == destination) {
 				addFieldError("destination", "Invalid destination");
 				return SUCCESS;
 			}
-			
-			if (weight<1){
+
+			if (weight < 1) {
 				addFieldError("weight", "Invalid weight");
 				return SUCCESS;
 			}
-			
+
 			for (Station st : stationList) {
 				if (st.getID() == start) {
 					parcel.setStarts(st);
@@ -107,14 +106,16 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 			parcel.setWeight(weight);
 			parcel.setExpress(express);
 			parcel.setAddBy(user.getUserName());
-			parcel.setDateRecieved( (new Date().getTime())/1000);
-			float dist=StationSearch.getInstance().getDistance(parcel.getStarts().getCode(), parcel.getDestination().getCode());
-			
+			parcel.setDateRecieved((new Date().getTime()) / 1000);
+			float dist = StationSearch.getInstance().getDistance(
+					parcel.getStarts().getCode(),
+					parcel.getDestination().getCode());
+
 			cost = CostFunction.calculate(dist, category, weight, express);
-			
+
 			BigDecimal bd = new BigDecimal(Float.toString(cost));
-		    bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
-		    cost=bd.floatValue();
+			bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
+			cost = bd.floatValue();
 			parcel.setTotalCost(cost);
 			if (pm.addParcel(parcel)) {
 
@@ -124,8 +125,9 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 				r.setFee(cost);
 				r.setWeight(weight);
 				r.setStart(startName);
-				r.setUrl("http://localhost:8081/PackTrack/track-me?id="+parcel.getID()+"&nic="+senderNIC);
-				session.put("reciept",r);
+				r.setUrl("http://localhost:8081/PackTrack/track-me?id="
+						+ parcel.getID() + "&nic=" + senderNIC);
+				session.put("reciept", r);
 				return "done";
 			}
 
@@ -135,28 +137,27 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 		return SUCCESS;
 	}
 
-	@org.apache.struts2.convention.annotation.Action(value = "add_parcel-input", results = {
-			@Result(name = "error", location = "login", type = "redirect")})
+	@org.apache.struts2.convention.annotation.Action(value = "add_parcel-input", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String input() throws Exception {
 
-		senderNIC=(String) session.get("sender");
-		receiverNIC=(String) session.get("receiver");
+		senderNIC = (String) session.get("sender");
+		receiverNIC = (String) session.get("receiver");
 		session.remove("sender");
 		session.remove("receiver");
 		User user = (User) session.get("user");
-		start=user.getUserDetail().getStation().getID();
-		startName=user.getUserDetail().getStation().getName();
+		start = user.getUserDetail().getStation().getID();
+		startName = user.getUserDetail().getStation().getName();
 		if (user != null && user.getUserPrivilege().isAdd_parcel()) {
-			if(session.get("message")!=null){
-				setMessage((String)session.get("message"));
+			if (session.get("message") != null) {
+				setMessage((String) session.get("message"));
 				session.remove("message");
 			}
-			if(session.get("reciept")!=null){
-				setReciept((Reciept)session.get("reciept"));
+			if (session.get("reciept") != null) {
+				setReciept((Reciept) session.get("reciept"));
 				session.remove("reciept");
 			}
 			return "add_parcel";
-		}else{
+		} else {
 			return ERROR;
 		}
 	}

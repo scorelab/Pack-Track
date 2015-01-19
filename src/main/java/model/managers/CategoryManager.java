@@ -35,7 +35,8 @@ public class CategoryManager {
 	public List<Category> getCategoryList() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Query query = session.createQuery("from Category where deleted='false'");
+		Query query = session
+				.createQuery("from Category where deleted='false'");
 		List<Category> list = query.list();
 		session.getTransaction().commit();
 		session.close();
@@ -57,12 +58,13 @@ public class CategoryManager {
 
 		return list.get(0);
 	}
-	
+
 	public boolean deleteCategory(int id, String by) {
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
-			SQLQuery query = session.createSQLQuery("update Category set deleted=1, deleteby=:by where catid=:id");
+			SQLQuery query = session
+					.createSQLQuery("update Category set deleted=1, deleteby=:by where catid=:id");
 			query.setInteger("id", id);
 			query.setString("by", by);
 			query.executeUpdate();
@@ -75,7 +77,7 @@ public class CategoryManager {
 			return false;
 		}
 	}
-	
+
 	public boolean updateCategory(Category cat) {
 
 		try {

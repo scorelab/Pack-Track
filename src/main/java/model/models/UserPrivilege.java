@@ -20,7 +20,7 @@ public class UserPrivilege {
 	boolean add_device;
 	boolean remove_device;
 	private boolean accounts;
-	
+
 	public UserPrivilege() {
 		super();
 	}
@@ -28,10 +28,10 @@ public class UserPrivilege {
 	public UserPrivilege(User user, String userName, boolean add_user,
 			boolean remove_User, boolean add_station, boolean remove_station,
 			boolean add_train, boolean remove_train, boolean add_category,
-			boolean remove_category,
-			boolean remove_customer, boolean add_parcel,
-			boolean release_parcel, boolean confirm_arrival,
-			boolean check_upcoming_parcel, boolean select_train, boolean add_device, boolean remove_device) {
+			boolean remove_category, boolean remove_customer,
+			boolean add_parcel, boolean release_parcel,
+			boolean confirm_arrival, boolean check_upcoming_parcel,
+			boolean select_train, boolean add_device, boolean remove_device) {
 		super();
 		this.add_user = add_user;
 		this.remove_user = remove_User;
@@ -47,10 +47,10 @@ public class UserPrivilege {
 		this.confirm_arrival = confirm_arrival;
 		this.check_upcoming_parcel = check_upcoming_parcel;
 		this.select_train = select_train;
-		this.user=user;
-		this.userName=userName;
-		this.add_device=add_device;
-		this.remove_device=remove_device;
+		this.user = user;
+		this.userName = userName;
+		this.add_device = add_device;
+		this.remove_device = remove_device;
 	}
 
 	public boolean isAdd_user() {
@@ -204,5 +204,5 @@ public class UserPrivilege {
 	public void setAccounts(boolean accounts) {
 		this.accounts = accounts;
 	}
-	
+
 }

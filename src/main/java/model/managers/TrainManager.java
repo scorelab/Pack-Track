@@ -76,24 +76,24 @@ public class TrainManager {
 		return list.get(0);
 	}
 
-//	public boolean deleteTrain(int id, String by) {
-//		try {
-//			Session session = HibernateUtil.getSessionFactory().openSession();
-//			session.beginTransaction();
-//			SQLQuery query = session
-//					.createSQLQuery("update Train set deleted=1, deleteby=:by where trainid=:id");
-//			query.setInteger("id", id);
-//			query.setString("by", by);
-//			query.executeUpdate();
-//			session.getTransaction().commit();
-//			session.close();
-//			return true;
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return false;
-//		}
-//	}
+	// public boolean deleteTrain(int id, String by) {
+	// try {
+	// Session session = HibernateUtil.getSessionFactory().openSession();
+	// session.beginTransaction();
+	// SQLQuery query = session
+	// .createSQLQuery("update Train set deleted=1, deleteby=:by where trainid=:id");
+	// query.setInteger("id", id);
+	// query.setString("by", by);
+	// query.executeUpdate();
+	// session.getTransaction().commit();
+	// session.close();
+	// return true;
+	//
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// return false;
+	// }
+	// }
 
 	public boolean updateTrain(Train train) {
 

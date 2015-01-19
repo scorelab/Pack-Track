@@ -74,8 +74,7 @@ public class ChangeUserAction extends ActionSupport implements SessionAware,
 			UserManager um = new UserManager();
 			String param = getServletRequest().getParameter("id");
 			if (um.deleteUser(param, user.getUserName())) {
-				session.put("message", param
-						+ " deleted successfully!");
+				session.put("message", param + " deleted successfully!");
 				session.remove("change");
 			}
 			return "done";
