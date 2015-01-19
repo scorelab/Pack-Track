@@ -44,7 +44,7 @@ public class UserAction extends ActionSupport implements SessionAware {
 				String temp = "<tr><td>" + users.getUserDetail().getName()
 						+ "</td><td>" + users.getUserName() + "</td><td>"
 						+ users.getUserDetail().getEmail() + "</td><td>"
-						+ users.getRole() + "</td><td>" + user.getNicNumber()
+						+ users.getRole() + "</td><td>" + users.getNicNumber()
 						+ "</td></tr>";
 				sb.append(temp);
 			}
