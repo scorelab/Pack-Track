@@ -79,6 +79,12 @@
 			<version>2.3.16.3</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.twilio.sdk</groupId>
+			<artifactId>twilio-java-sdk</artifactId>
+			<version>3.4.5</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

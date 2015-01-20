@@ -20,6 +20,7 @@ import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
 import control.message.Email;
+import control.message.SmsSender;
 
 @InterceptorRef(value = "secureStack")
 public class ConfirmArrivalAction extends ActionSupport implements SessionAware {
@@ -65,7 +66,8 @@ public class ConfirmArrivalAction extends ActionSupport implements SessionAware 
 						Email.send("PackTrack","Your parcel has arrived it's destination",customer.getEmail());
 					}
 					if(!customer.getMobile().equals("")){
-						
+						String to="+94"+customer.getMobile().substring(1);
+						SmsSender.snedSMS(to, "+19284517326", "Your parcel has arrived it's destination");
 					}
 				}
 				return "done";
