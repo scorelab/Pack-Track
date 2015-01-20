@@ -133,6 +133,16 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 				addFieldError("nic", "NIC not valid");
 				return SUCCESS;
 			}
+			
+			if (!ValidationUtil.isNumeric(phone)) {
+				addFieldError("phone", "Phone number is digits only");
+				return SUCCESS;
+			}
+			
+			if (phone.length()!=10) {
+				addFieldError("phone", "Phone number should have ten digits");
+				return SUCCESS;
+			}
 
 			temp.setNicNumber(nic);
 			temp.setDesignation(designation);
