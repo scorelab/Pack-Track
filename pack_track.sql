@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   UNIQUE KEY `catName_UNIQUE` (`catName`),
   KEY `categoryAdmin_idx` (`addBy`),
   KEY `categoryDeleteBy_idx` (`deleteBy`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 INSERT INTO `category` (`catID`, `catName`, `unitCost`, `addBy`, `deleted`, `deleteBy`) VALUES
 (1, 'Normal', 1, 'Rand', 0, NULL),
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `customer` (
   KEY `customerAdmin_idx` (`addBy`),
   KEY `custAddUser_idx` (`addBy`),
   KEY `custDeleteBy_idx` (`deleteBy`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 INSERT INTO `customer` (`custID`, `custName`, `custEmail`, `custMobile`, `custTel`, `custAddress`, `custNIC`, `addBy`, `deleted`, `deleteBy`) VALUES
 (13, 'Rashendra Oshanda', 'lahiru.rangana58@gmail.com', '0714578963', '0112856947', '15, Kadawatha, Kirillawala', '893456752V', 'Thamali', 0, NULL),
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `device` (
   KEY `FAdmin_idx` (`addBy`),
   KEY `deviceUser_idx` (`assignTo`),
   KEY `deviceDeleteBy_idx` (`deleteBy`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 INSERT INTO `device` (`devID`, `imei`, `assignTo`, `addBy`, `deleted`, `deleteBy`) VALUES
 (1, '1234567890', 'Rand', 'Rand', 0, NULL);
@@ -100,12 +100,29 @@ CREATE TABLE IF NOT EXISTS `parcel` (
   KEY `current_idx` (`currentStation`),
   KEY `assignTrain_idx` (`train`),
   KEY `releaseByUser_idx` (`releaseBy`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=48 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=65 ;
 
 INSERT INTO `parcel` (`parcelID`, `weight`, `currentStation`, `sender`, `receiver`, `starts`, `destination`, `totalCost`, `express`, `dateReceived`, `dateDelivered`, `addBy`, `train`, `released`, `releaseBy`) VALUES
 (45, 10, 21, 13, 14, 7, 21, 3429.8, '0', 1421588082, 0, 'Thamali', NULL, 1, 'Lahiru'),
 (46, 15, 13, 13, 15, 7, 17, 658.5, '0', 1421588296, 0, 'Thamali', NULL, 0, NULL),
-(47, 20, 4, 14, 15, 4, 28, 2135.6, '0', 1421750265, 0, 'Dilanka', NULL, 0, NULL);
+(47, 20, 4, 14, 15, 4, 28, 2135.6, '0', 1421750265, 0, 'Dilanka', NULL, 0, NULL),
+(48, 10, 1, 13, 14, 1, 3, 20.8, '0', 1389790111, 0, 'Rand', NULL, 0, NULL),
+(49, 100, 1, 15, 14, 22, 5, 6270, '0', 1421760375, 0, 'Rand', NULL, 0, NULL),
+(50, 30, 1, 14, 15, 1, 21, 13279.2, '0', 1413377311, 0, 'Rand', NULL, 0, NULL),
+(51, 8, 1, 15, 13, 28, 9, 242.24, '0', 1416055711, 0, 'Rand', NULL, 0, NULL),
+(52, 25, 1, 15, 14, 10, 23, 2295, '0', 1421762886, 0, 'Rand', NULL, 0, NULL),
+(53, 20, 1, 13, 14, 1, 35, 4756.2, '0', 1419511711, 0, 'Rand', NULL, 0, NULL),
+(54, 100, 1, 14, 15, 22, 6, 1629, '0', 1421763125, 0, 'Rand', NULL, 0, NULL),
+(55, 10, 1, 15, 14, 13, 30, 1895.4, '0', 1421326111, 0, 'Rand', NULL, 0, NULL),
+(56, 10, 1, 13, 14, 1, 5, 627, '0', 1421763371, 0, 'Rand', NULL, 0, NULL),
+(57, 35, 1, 15, 13, 22, 28, 4062.8, '0', 1421763541, 0, 'Rand', NULL, 0, NULL),
+(58, 2, 1, 13, 14, 1, 28, 348.24, '0', 1414241311, 0, 'Rand', NULL, 0, NULL),
+(59, 7, 1, 14, 15, 1, 28, 4469.08, '0', 1421763622, 0, 'Rand', NULL, 0, NULL),
+(60, 3, 1, 15, 13, 13, 28, 1915.32, '0', 1410785311, 0, 'Rand', NULL, 0, NULL),
+(61, 6, 1, 13, 15, 1, 28, 1044.72, '0', 1418647711, 0, 'Rand', NULL, 0, NULL),
+(62, 10, 1, 15, 15, 28, 8, 1265, '0', 1421763806, 0, 'Rand', NULL, 0, NULL),
+(63, 30, 1, 15, 14, 22, 26, 3238.8, '0', 1421763854, 0, 'Rand', NULL, 0, NULL),
+(64, 40, 1, 14, 14, 1, 33, 5787.2, '0', 1419070867, 0, 'Rand', NULL, 0, NULL);
 
 DROP TABLE IF EXISTS `station_dist`;
 CREATE TABLE IF NOT EXISTS `station_dist` (
