@@ -55,7 +55,7 @@
 											listKey="ID"></s:select>
 									</table>
 								</td>
-								<td>
+								<td style="padding-right: 10px">
 									<table style="width: 100%">
 										<s:textfield cssClass='form-control' name="startDate"
 											id='startDate' readonly='true'
@@ -77,7 +77,7 @@
 				</div>
 			</div>
 			<div class='row'>
-				<div class='col-lg-4 col-md-6'>
+				<div class='col-lg-4 col-md-6 col-lg-offset-1 col-md-offset-1'>
 					<div class="panel panel-info" id="panel">
 						<div class="panel-heading">
 							<h4>
@@ -131,7 +131,7 @@
 		<script type="text/javascript" src="js/tabs.js"></script>
 		<script type="text/javascript">
 			$('#accounts').addClass('active');
-			$('#accounts-time-period').addClass('active');
+			$('#account-time-period').addClass('active');
 		</script>
 </body>
 </html>
