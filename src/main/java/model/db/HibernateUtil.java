@@ -4,7 +4,10 @@ import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-
+/**
+ * Builds the Hibernate sessionFactory object.
+ *
+ */
 public class HibernateUtil {
 
 	static StandardServiceRegistryBuilder builder;

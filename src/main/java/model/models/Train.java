@@ -3,7 +3,6 @@ package model.models;
 /**
  * Entity class for train object
  * 
- * @author Dilanka1
  * 
  */
 public class Train {

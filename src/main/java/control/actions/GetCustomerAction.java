@@ -17,6 +17,10 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+/**
+ * Handles getting a customer for parcel
+ *
+ */
 @InterceptorRef(value = "secureStack")
 public class GetCustomerAction extends ActionSupport implements SessionAware,
 		ServletRequestAware {
@@ -27,6 +31,11 @@ public class GetCustomerAction extends ActionSupport implements SessionAware,
 	private Customer receiver;
 	private Customer sender;
 
+	/**
+	 * Gets a receiver for parcel
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "get_receiver", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String getReceiverDetail() throws Exception {
 
@@ -44,6 +53,11 @@ public class GetCustomerAction extends ActionSupport implements SessionAware,
 		}
 	}
 
+	/**
+	 * Gets a sender for parcel
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "get_sender", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String getSenderDetail() throws Exception {
 

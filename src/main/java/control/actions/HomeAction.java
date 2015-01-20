@@ -31,7 +31,7 @@ public class HomeAction extends ActionSupport implements SessionAware,
 	private String message;
 
 	/**
-	 * Method to generate tabs for user according to privileges
+	 * Method to generate details on home screen
 	 * 
 	 * @return
 	 * @throws Exception

@@ -14,12 +14,21 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+/**
+ * Handles category lists
+ *
+ */
 @InterceptorRef(value = "secureStack")
 public class CategoryAction extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
 	private String tableRows;
 	private String message;
 
+	/**
+	 * Generates category list for add-category-home view
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "add-category-home", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String addCategory() throws Exception {
 
@@ -47,6 +56,11 @@ public class CategoryAction extends ActionSupport implements SessionAware {
 
 	}
 
+	/**
+	 * Generates category list with buttons for add-remove-category view
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "add-remove-category", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String addRemoveCategory() throws Exception {
 

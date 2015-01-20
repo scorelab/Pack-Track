@@ -1,5 +1,9 @@
 package model.models;
 
+/**
+ * Entity class for Customer
+ *
+ */
 public class Customer {
 	private int id;
 	private String name;

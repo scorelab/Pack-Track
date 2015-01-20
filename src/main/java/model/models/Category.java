@@ -1,5 +1,9 @@
 package model.models;
 
+/**
+ *Entity class for category
+ *
+ */
 public class Category {
 
 	private int ID;

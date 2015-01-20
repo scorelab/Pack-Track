@@ -16,6 +16,10 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
+/**
+ * Handles account settings for user
+ *
+ */
 @InterceptorRef(value = "secureStack")
 public class SettingsAction extends ActionSupport implements SessionAware {
 
@@ -24,6 +28,9 @@ public class SettingsAction extends ActionSupport implements SessionAware {
 	private String newP;
 	private String repeat;
 
+	/**
+	 * Handles changing of password
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "settings", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
 			@Result(name = "done", location = "home", type = "redirect") })

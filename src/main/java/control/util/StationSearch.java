@@ -15,6 +15,10 @@ import java.io.PrintWriter;
 import model.managers.StationManager;
 import model.models.Dist;
 
+/**
+ * Calculate distance between stations
+ *
+ */
 public class StationSearch {
 
 	private static List<Node> stationList = new ArrayList<Node>();

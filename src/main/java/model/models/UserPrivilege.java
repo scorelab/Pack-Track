@@ -1,5 +1,9 @@
 package model.models;
 
+/**
+ * Entity class for user privileges
+ *
+ */
 public class UserPrivilege {
 	String userName;
 	User user;

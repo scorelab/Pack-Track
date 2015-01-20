@@ -19,7 +19,10 @@ import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
 import control.message.Email;
-
+/**
+ * Handles the scenario when user forgets his/her password
+ *
+ */
 public class ForgotPasswordAction extends ActionSupport implements
 		SessionAware, ServletResponseAware {
 
@@ -27,6 +30,11 @@ public class ForgotPasswordAction extends ActionSupport implements
 	private HttpServletResponse response;
 	private String email;
 
+	/**
+	 * Handles the forgot-password view
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "forgot-password", results = { @Result(name = "done", location = "reset-pass", type = "redirect") })
 	public String execute() throws Exception {
 

@@ -17,6 +17,10 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+/**
+ * Handles category changes and deletes
+ *
+ */
 @InterceptorRef(value = "secureStack")
 public class ChangeCategoryAction extends ActionSupport implements
 		SessionAware, ServletRequestAware {
@@ -25,6 +29,11 @@ public class ChangeCategoryAction extends ActionSupport implements
 	private Map<String, Object> session;
 	private Category temp;
 
+	/**
+	 * Handles changing of category via change_category view
+	 * @return  redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "change_category", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
 			@Result(name = "done", location = "home", type = "redirect") })
@@ -46,6 +55,11 @@ public class ChangeCategoryAction extends ActionSupport implements
 		}
 	}
 
+	/**
+	 * Handles deleting of a category
+	 * @return  redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "delete_category", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
 			@Result(name = "done", location = "add-remove-category", type = "redirect") })

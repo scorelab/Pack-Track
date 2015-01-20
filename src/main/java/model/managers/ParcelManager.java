@@ -17,8 +17,19 @@ import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 
+/**
+ * Manages database calls to parcel table
+ * 
+ */
 public class ParcelManager {
 
+	/**
+	 * Adds a new parcel to the database
+	 * 
+	 * @param parcel
+	 *            Parcel to be added
+	 * @return If parcel added true, otherwise false
+	 */
 	public boolean addParcel(Parcel parcel) {
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -33,6 +44,13 @@ public class ParcelManager {
 		}
 	}
 
+	/**
+	 * Removes a parcel from database
+	 * 
+	 * @param parcel
+	 *            Parcel to be removed
+	 * @return boolean If parcel removed true, otherwise false
+	 */
 	public boolean removeParcel(Parcel parcel) {
 
 		try {
@@ -54,7 +72,7 @@ public class ParcelManager {
 	/**
 	 * Returns a list of Parcels
 	 * 
-	 * @return
+	 * @return List of parcels
 	 */
 	public List<Parcel> getParcelList() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -66,6 +84,13 @@ public class ParcelManager {
 		return list;
 	}
 
+	/**
+	 * Get a parcel from parcel ID
+	 * 
+	 * @param id
+	 *            ID of parcel to get
+	 * @return Parcel
+	 */
 	public Parcel getParcel(long id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -83,6 +108,13 @@ public class ParcelManager {
 		return list.get(0);
 	}
 
+	/**
+	 * Updates a parcel in database
+	 * 
+	 * @param parcel
+	 *            Parcel to be updated
+	 * @return If parcel updated true, otherwise false
+	 */
 	public boolean updateParcel(Parcel parcel) {
 
 		try {
@@ -99,6 +131,13 @@ public class ParcelManager {
 		}
 	}
 
+	/**
+	 * Search parcels by given search text
+	 * 
+	 * @param searchText
+	 *            Parcel ID or Sender NIC or Receiver NIC
+	 * @return Parcel list which match the search
+	 */
 	public List<Parcel> search(String searchText) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -111,6 +150,13 @@ public class ParcelManager {
 		return list;
 	}
 
+	/**
+	 * Gets a list of parcels which are to be loaded to a train
+	 * 
+	 * @param myStation
+	 *            Station that parcels currently resides
+	 * @return List of parcels
+	 */
 	public List<Parcel> getParcelsToSelectTrain(int myStation) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -123,6 +169,15 @@ public class ParcelManager {
 		return list;
 	}
 
+	/**
+	 * Assigns a train to the parcel
+	 * 
+	 * @param train
+	 *            Train to be assigned
+	 * @param id
+	 *            Parcel
+	 * @return If train assigned true, otherwise false
+	 */
 	public boolean selectTrain(String train, int id) {
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -142,6 +197,15 @@ public class ParcelManager {
 		}
 	}
 
+	/**
+	 * Confirms parcels arrival to a station
+	 * 
+	 * @param stationID
+	 *            Station which parcel is recently arrived
+	 * @param id
+	 *            Subjected Parcel
+	 * @return If parcel updated correctly true, otherwise false
+	 */
 	public boolean confirmArrival(int stationID, Long id) {
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -161,6 +225,15 @@ public class ParcelManager {
 		}
 	}
 
+	/**
+	 * Gets a list of parcels which were assigned trains an check if the given
+	 * parcel is in it. So only these parcels can be arrived to station.
+	 * 
+	 * @param id
+	 *            Parcel in question
+	 * @return If parcel is in a state where it can be arrived to another
+	 *         station true, otherwise false
+	 */
 	public boolean getParcelsToConfirm(long id) {
 
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -178,6 +251,12 @@ public class ParcelManager {
 		return false;
 	}
 
+	/**
+	 * Search for a parcel where it can be released
+	 * @param searchText Parcel ID or receiver NIC
+	 * @param stationID Station in question
+	 * @return List of eligible parcels
+	 */
 	public List<Parcel> searchRealease(String searchText, int stationID) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -191,6 +270,12 @@ public class ParcelManager {
 		return list;
 	}
 
+	/**
+	 * Mark a parcels as released to customer
+	 * @param id Parcel ID
+	 * @param userName User who is releasing the parcel
+	 * @return If released correctly true, otherwise false
+	 */
 	public boolean releaseParcel(Long id, String userName) {
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -210,6 +295,12 @@ public class ParcelManager {
 		}
 	}
 
+	/**
+	 * Gives current location of a parcel
+	 * @param id Parcel ID
+	 * @param nic NIC of customer
+	 * @return Current station name
+	 */
 	public String trackParcel(long id, String nic) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -226,8 +317,10 @@ public class ParcelManager {
 		return null;
 	}
 
-	/*
+	/**
 	 * Returns list of pending parcels for given Station
+	 * @param station Station in question
+	 * @return List of stations
 	 */
 	public List<Parcel> getPendingParcelList(Station station) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -244,7 +337,7 @@ public class ParcelManager {
 	/**
 	 * Gives the income by month in a given year
 	 * 
-	 * @param year
+	 * @param year Year to calculate
 	 * @return array containing incomes of 12 months
 	 */
 	public float[] getIncomeMonth(int year, int station) {
@@ -287,6 +380,13 @@ public class ParcelManager {
 
 	}
 
+	/**
+	 * Gets income of a station in the given time period
+	 * @param start Start time
+	 * @param end End time
+	 * @param station Station ID
+	 * @return Total income
+	 */
 	public float getIncome(long start, long end, int station) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -354,7 +454,11 @@ public class ParcelManager {
 		return out;
 
 	}
-
+/**
+ * Get the number of parcels currently in station
+ * @param station Station in question
+ * @return Number of parcels
+ */
 	public int getToBeHandled(int station) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -372,6 +476,12 @@ public class ParcelManager {
 		return 0;
 	}
 
+	/**
+	 * Get the number of parcels received in a given day
+	 * @param station Station in question
+	 * @param date Date to count parcels
+	 * @return Number of parcels
+	 */
 	public int getRecieved(int station, Date date) {
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 		Calendar calendar = Calendar.getInstance();
@@ -403,6 +513,11 @@ public class ParcelManager {
 
 	}
 
+	/**
+	 * Gets annual income on each station
+	 * @param year Year to calculate
+	 * @return Annual incomes and station names as JSON array
+	 */
 	public String getAnualSatationIncome(int year) {
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		long start = 0, end = 0;

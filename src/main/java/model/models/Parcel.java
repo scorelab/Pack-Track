@@ -6,6 +6,10 @@ import model.models.Customer;
 import model.models.Station;
 import model.models.Train;
 
+/**
+ * Entity class for Parcel
+ * 
+ */
 public class Parcel {
 
 	private long ID;

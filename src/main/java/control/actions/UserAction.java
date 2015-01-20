@@ -19,6 +19,10 @@ import com.opensymphony.xwork2.validator.annotations.EmailValidator;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
+/**
+ * Handles user lists
+ *
+ */
 @InterceptorRef(value = "secureStack")
 public class UserAction extends ActionSupport implements SessionAware {
 
@@ -26,6 +30,11 @@ public class UserAction extends ActionSupport implements SessionAware {
 	private String tableRows;
 	private String message;
 
+	/**
+	 * Generates user list for add-device-home view
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "add-user-home", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String addUser() throws Exception {
 
@@ -56,6 +65,11 @@ public class UserAction extends ActionSupport implements SessionAware {
 
 	}
 
+	/**
+	 * Generates user list with buttons for add-remove-device view
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "add-remove-user", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String addRemoveUser() throws Exception {
 

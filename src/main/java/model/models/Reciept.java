@@ -2,6 +2,10 @@ package model.models;
 
 import java.io.Serializable;
 
+/**
+ * Entity class for Receipt, used to output the receipt when adding parcel
+ * 
+ */
 public class Reciept implements Serializable {
 
 	private String senderName;

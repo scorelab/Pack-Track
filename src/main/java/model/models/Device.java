@@ -3,8 +3,6 @@ package model.models;
 /**
  * Entity class for device object
  * 
- * @author Dilanka1
- * 
  */
 public class Device {
 

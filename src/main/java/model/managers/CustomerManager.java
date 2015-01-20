@@ -10,8 +10,17 @@ import model.models.Parcel;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+/**
+ * Manages database calls to customer table
+ * 
+ */
 public class CustomerManager {
 
+	/**
+	 * Adds customer to DB
+	 * @param customer Customer to be added
+	 * @return If customer added true, otherwise false
+	 */
 	public boolean addCustomer (Customer customer) {
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -26,6 +35,11 @@ public class CustomerManager {
 		}
 	}
 
+	/**
+	 * Get customer by NIC
+	 * @param nic NIC to query
+	 * @return Customer object
+	 */
 	public Customer getCustomer(String nic) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();

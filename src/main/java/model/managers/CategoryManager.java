@@ -10,8 +10,19 @@ import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 
+/**
+ * Manages database calls to Category table
+ * 
+ */
 public class CategoryManager {
 
+	/**
+	 * Adds category to DB
+	 * 
+	 * @param cat
+	 *            Category to be added
+	 * @return If added correctly true, otherwise false
+	 */
 	public boolean addCategory(Category cat) {
 
 		try {
@@ -28,9 +39,9 @@ public class CategoryManager {
 	}
 
 	/**
-	 * Returns a list of Stations
+	 * Gets a list of Categories
 	 * 
-	 * @return
+	 * @return list of Categories
 	 */
 	public List<Category> getCategoryList() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -43,6 +54,13 @@ public class CategoryManager {
 		return list;
 	}
 
+	/**
+	 * Get Category by ID
+	 * 
+	 * @param id
+	 *            Category ID
+	 * @return Category object
+	 */
 	public Category getCategory(int id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -59,6 +77,15 @@ public class CategoryManager {
 		return list.get(0);
 	}
 
+	/**
+	 * Marks a Category deleted
+	 * 
+	 * @param id
+	 *            Category to be deleted
+	 * @param by
+	 *            User who performs delete
+	 * @return If deleted correctly true, otherwise false
+	 */
 	public boolean deleteCategory(int id, String by) {
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -78,6 +105,13 @@ public class CategoryManager {
 		}
 	}
 
+	/**
+	 * Update category
+	 * 
+	 * @param cat
+	 *            Category to be updated
+	 * @return If updated correctly true, otherwise false
+	 */
 	public boolean updateCategory(Category cat) {
 
 		try {

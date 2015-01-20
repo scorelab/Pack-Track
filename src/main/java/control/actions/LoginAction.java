@@ -27,7 +27,7 @@ public class LoginAction extends ActionSupport implements SessionAware,
 	/**
 	 * Method to log in the user in to the system by checking credentials.
 	 * 
-	 * @return
+	 * @return redirect state
 	 * @throws Exception
 	 */
 	@org.apache.struts2.convention.annotation.Action(value = "login", results = {
@@ -60,7 +60,7 @@ public class LoginAction extends ActionSupport implements SessionAware,
 	/**
 	 * Method to log out the user from system.
 	 * 
-	 * @return
+	 * @return redirect state
 	 */
 	@org.apache.struts2.convention.annotation.Action(value = "logout", results = { @Result(name = "success", location = "index", type = "redirect") })
 	public String logout() {

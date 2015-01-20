@@ -22,6 +22,10 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import org.json.*;
 
+/**
+ * Handles assigning trains to parcels
+ *
+ */
 @InterceptorRef(value = "secureStack")
 public class SelectTrainAction extends ActionSupport implements SessionAware,
 		ServletRequestAware {
@@ -33,6 +37,11 @@ public class SelectTrainAction extends ActionSupport implements SessionAware,
 	private HttpServletRequest request;
 	private String message;
 
+	/**
+	 * Generate parcel list and handles train assignment
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "select-train", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
 			@Result(name = "done", location = "home", type = "redirect"),

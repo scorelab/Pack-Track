@@ -14,12 +14,21 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+/**
+ * Handles device lists
+ *
+ */
 @InterceptorRef(value = "secureStack")
 public class DeviceAction extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
 	private String tableRows;
 	private String message;
 
+	/**
+	 * Generates device list for add-device-home view
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "add-device-home", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String addDevice() throws Exception {
 
@@ -47,6 +56,11 @@ public class DeviceAction extends ActionSupport implements SessionAware {
 
 	}
 
+	/**
+	 * Generates category list with buttons for add-remove-device view
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "add-remove-device", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String addRemoveDevice() throws Exception {
 

@@ -13,6 +13,10 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+/**
+ * Handles the index view
+ *
+ */
 public class IndexAction extends ActionSupport {
 
 	private List<Station> stationList = new StationManager().getStationList();
