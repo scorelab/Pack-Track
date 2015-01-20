@@ -48,6 +48,27 @@ public class AddCustomerAction extends ActionSupport implements SessionAware {
 				addFieldError("nic", "NIC already exists");
 				return SUCCESS;
 			}
+			
+			if (!ValidationUtil.isNumeric(mobile)) {
+				addFieldError("mobile", "Phone number is digits only");
+				return SUCCESS;
+			}
+			
+			if (mobile.length()!=10) {
+				addFieldError("mobile", "Phone number should have ten digits");
+				return SUCCESS;
+			}
+			
+			if (!ValidationUtil.isNumeric(telephone)) {
+				addFieldError("telephone", "Phone number is digits only");
+				return SUCCESS;
+			}
+			
+			if (telephone.length()!=10) {
+				addFieldError("telephone", "Phone number should have ten digits");
+				return SUCCESS;
+			}
+			
 			customer.setNic(nic);
 			customer.setName(name);
 			customer.setMobile(mobile);
