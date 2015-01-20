@@ -20,6 +20,10 @@ import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
+/**
+ * Handles adding a new device and updating existing device
+ * 
+ */
 @InterceptorRef(value = "secureStack")
 public class AddDeviceAction extends ActionSupport implements SessionAware {
 
@@ -29,6 +33,11 @@ public class AddDeviceAction extends ActionSupport implements SessionAware {
 	private String assigned;
 	private String message;
 
+	/**
+	 * Handles add_device view
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "add_device", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
 			@Result(name = "done", location = "add-device-input", type = "redirect"),
@@ -90,6 +99,11 @@ public class AddDeviceAction extends ActionSupport implements SessionAware {
 		}
 	}
 
+	/**
+	 * Input action for add-device view
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "add-device-input", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String input() throws Exception {
 

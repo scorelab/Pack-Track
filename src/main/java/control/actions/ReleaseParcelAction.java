@@ -16,7 +16,10 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
-
+/**
+ *Handles relesing of parcels
+ *
+ */
 @InterceptorRef(value = "secureStack")
 public class ReleaseParcelAction extends ActionSupport implements SessionAware,
 		ServletRequestAware {

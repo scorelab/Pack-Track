@@ -18,6 +18,10 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+/**
+ * Gets the annual accounts for all stations
+ *
+ */
 @InterceptorRef(value = "secureStack")
 public class AccountsAllAction extends ActionSupport implements SessionAware {
 
@@ -27,6 +31,11 @@ public class AccountsAllAction extends ActionSupport implements SessionAware {
 	private float total;
 	private String incomeYear;
 
+	/**
+	 * Handles accounts-all view
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "accounts-all", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String getReport() throws Exception {
 		if (!ValidationUtil.isNumeric(year)) {
@@ -66,6 +75,11 @@ public class AccountsAllAction extends ActionSupport implements SessionAware {
 		this.year = year;
 	}
 
+	/**
+	 * Input action for accounts-all view
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "accounts-all-input", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String input() throws Exception {
 

@@ -17,6 +17,10 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+/**
+ * Handles user changes and deletes
+ *
+ */
 @InterceptorRef(value = "secureStack")
 public class ChangeUserAction extends ActionSupport implements SessionAware,
 		ServletRequestAware {
@@ -46,6 +50,11 @@ public class ChangeUserAction extends ActionSupport implements SessionAware,
 		this.temp = temp;
 	}
 
+	/**
+	 * Handles changing of user via cchange_user view
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "change_user", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
 			@Result(name = "done", location = "add-remove-user", type = "redirect") })
@@ -65,6 +74,11 @@ public class ChangeUserAction extends ActionSupport implements SessionAware,
 		}
 	}
 
+	/**
+	 * Handles deleting of a user
+	 * @return  redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "delete_user", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
 			@Result(name = "done", location = "add-remove-user", type = "redirect") })

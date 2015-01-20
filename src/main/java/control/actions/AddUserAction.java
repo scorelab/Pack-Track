@@ -29,6 +29,10 @@ import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
 import control.message.Email;
 
+/**
+ * Handles adding a new user and updating existing user
+ * 
+ */
 @InterceptorRef(value = "secureStack")
 public class AddUserAction extends ActionSupport implements SessionAware {
 
@@ -63,6 +67,11 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 	private boolean accounts;
 	private String message;
 
+	/**
+	 * Handles add_user view
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "add_user", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
 			@Result(name = "done", location = "add-user-input", type = "redirect"),
@@ -196,6 +205,11 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 		}
 	}
 
+	/**
+	 * Input action for add-user view
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "add-user-input", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String input() throws Exception {
 

@@ -17,6 +17,10 @@ import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
+/**
+ * Handles adding a new category and updating existing category
+ * 
+ */
 @InterceptorRef(value = "secureStack")
 public class AddCategoryAction extends ActionSupport implements SessionAware {
 
@@ -25,6 +29,11 @@ public class AddCategoryAction extends ActionSupport implements SessionAware {
 	private float unitCost;
 	private String message;
 
+	/**
+	 * Handles add_category view
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "add_category", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
 			@Result(name = "done", location = "add-category-input", type = "redirect"),
@@ -69,6 +78,11 @@ public class AddCategoryAction extends ActionSupport implements SessionAware {
 		}
 	}
 
+	/**
+	 * Input action for add-category view
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "add-category-input", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String input() throws Exception {
 

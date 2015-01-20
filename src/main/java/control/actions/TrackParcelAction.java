@@ -12,7 +12,10 @@ import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
-
+/**
+ * Handles tracking of parcel for index page
+ *
+ */
 public class TrackParcelAction extends ActionSupport implements SessionAware,
 		ServletRequestAware, ServletResponseAware {
 	private HttpServletRequest request;
@@ -20,6 +23,11 @@ public class TrackParcelAction extends ActionSupport implements SessionAware,
 	private Map<String, Object> session;
 	private String res;
 
+	/**
+	 * Process POST request and calculate 
+	 * @return  redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "track-parcel")
 	public String changeUser() throws Exception {
 		String id = request.getParameter("id");

@@ -17,6 +17,10 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+/**
+ * Handles device changes and deletes
+ *
+ */
 public class ChangeDeviceAction extends ActionSupport implements SessionAware,
 		ServletRequestAware {
 
@@ -25,6 +29,11 @@ public class ChangeDeviceAction extends ActionSupport implements SessionAware,
 	private List<User> userList = new UserManager().getUserList();
 	private Device temp;
 
+	/**
+	 * Handles changing of device via change_device view
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "change_device", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
 			@Result(name = "done", location = "home", type = "redirect") })
@@ -46,6 +55,11 @@ public class ChangeDeviceAction extends ActionSupport implements SessionAware,
 		}
 	}
 
+	/**
+	 * Handles deleting of a device
+	 * @return  redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "delete_device", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
 			@Result(name = "done", location = "add-remove-device", type = "redirect") })

@@ -22,6 +22,10 @@ import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 import control.message.Email;
 import control.message.SmsSender;
 
+/**
+ * Handles confirming of parcel arrivals to the station
+ *
+ */
 @InterceptorRef(value = "secureStack")
 public class ConfirmArrivalAction extends ActionSupport implements SessionAware {
 
@@ -30,6 +34,11 @@ public class ConfirmArrivalAction extends ActionSupport implements SessionAware 
 	private String message;
 	private String myStation;
 
+	/**
+	 * Handles confirm-arrival view
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "confirm-arrival", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
 			@Result(name = "done", location = "confirm-arrival-input", type = "redirect"),
@@ -78,6 +87,11 @@ public class ConfirmArrivalAction extends ActionSupport implements SessionAware 
 		}
 	}
 
+	/**
+	 * Input action confirm-arrival view
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "confirm-arrival-input", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String input() throws Exception {
 

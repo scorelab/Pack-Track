@@ -20,6 +20,10 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
+/**
+ * Gets income of a station for specific day
+ *
+ */
 @InterceptorRef(value = "secureStack")
 public class AccountsStationAction extends ActionSupport implements
 		SessionAware {
@@ -33,6 +37,11 @@ public class AccountsStationAction extends ActionSupport implements
 	private int year;
 	private String stName;
 
+	/**
+	 * Handles accounts-station view
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "accounts-station", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String getReport() throws Exception {
 		year = Integer.parseInt(date.substring(date.lastIndexOf("/") + 1));
@@ -54,6 +63,11 @@ public class AccountsStationAction extends ActionSupport implements
 		return SUCCESS;
 	}
 
+	/**
+	 * Input action for accounts-station view
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "accounts-station-input", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String input() throws Exception {
 

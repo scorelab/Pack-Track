@@ -20,6 +20,10 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
+/**
+ * Gets income of a station in a given time period
+ *
+ */
 @InterceptorRef(value = "secureStack")
 public class AccountTimePeriodAction extends ActionSupport implements
 		SessionAware {
@@ -34,6 +38,11 @@ public class AccountTimePeriodAction extends ActionSupport implements
 	private String stName;
 	private float income;
 
+	/**
+	 * Handles account-time-period view
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "account-time-period", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String getReport() throws Exception {
 		startYear = Integer.parseInt(startDate.substring(startDate
@@ -73,6 +82,11 @@ public class AccountTimePeriodAction extends ActionSupport implements
 		return SUCCESS;
 	}
 
+	/**
+	 * Input action for account-time-period view
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "account-time-period-input", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String input() throws Exception {
 

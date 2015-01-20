@@ -29,6 +29,10 @@ import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 import control.util.CostFunction;
 import control.util.StationSearch;
 
+/**
+ * Handles adding a new parcel
+ * 
+ */
 @InterceptorRef(value = "secureStack")
 public class AddParcelAction extends ActionSupport implements SessionAware {
 
@@ -48,6 +52,11 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 	private String message;
 	private Reciept reciept;
 
+	/**
+	 * Handles add_parcel view
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "add_parcel", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
 			@Result(name = "done", location = "add_parcel-input", type = "redirect") })
@@ -137,6 +146,11 @@ public class AddParcelAction extends ActionSupport implements SessionAware {
 		return SUCCESS;
 	}
 
+	/**
+	 * Input action for add_parcel view
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "add_parcel-input", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String input() throws Exception {
 

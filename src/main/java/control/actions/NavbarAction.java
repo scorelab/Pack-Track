@@ -14,6 +14,10 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+/**
+ * Navigation bar
+ *
+ */
 @InterceptorRef(value = "secureStack")
 public class NavbarAction extends ActionSupport implements SessionAware,
 		ServletResponseAware {
@@ -24,7 +28,7 @@ public class NavbarAction extends ActionSupport implements SessionAware,
 	/**
 	 * Method to generate tabs for user according to privileges
 	 * 
-	 * @return
+	 * @return redirect state
 	 * @throws Exception
 	 */
 	@org.apache.struts2.convention.annotation.Action(value = "navbar", results = { @Result(name = "error", location = "login", type = "redirect") })

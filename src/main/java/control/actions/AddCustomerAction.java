@@ -18,6 +18,10 @@ import com.opensymphony.xwork2.validator.annotations.EmailValidator;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
+/**
+ * Handles adding a new customer
+ * 
+ */
 @InterceptorRef(value = "secureStack")
 public class AddCustomerAction extends ActionSupport implements SessionAware {
 
@@ -30,6 +34,11 @@ public class AddCustomerAction extends ActionSupport implements SessionAware {
 	private String nic;
 	private String addBy;
 
+	/**
+	 * Handles add_customer view
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "add_customer", results = {
 			@Result(name = "error", location = "login", type = "redirect"),
 			@Result(name = "done", location = "add_parcel-input", type = "redirect") })
@@ -97,6 +106,11 @@ public class AddCustomerAction extends ActionSupport implements SessionAware {
 		}
 	}
 
+	/**
+	 * Input action for add_customer view
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "add_customer-input", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String input() throws Exception {
 

@@ -17,6 +17,10 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+/**
+ *Handles parcel search
+ *
+ */
 @InterceptorRef(value = "secureStack")
 public class ParcelAction extends ActionSupport implements SessionAware,
 		ServletRequestAware {
@@ -30,6 +34,11 @@ public class ParcelAction extends ActionSupport implements SessionAware,
 		return SUCCESS;
 	}
 
+	/**
+	 * Generates parcels list according to search
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "parcel-search", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String searchParcelAction() throws Exception {
 		String param = getServletRequest().getParameter("searchText");

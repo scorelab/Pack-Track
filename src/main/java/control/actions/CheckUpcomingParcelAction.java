@@ -14,6 +14,10 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+/**
+ * Handles viewing of coming parcels to a station
+ *
+ */
 @InterceptorRef(value = "secureStack")
 public class CheckUpcomingParcelAction extends ActionSupport implements
 		SessionAware {
@@ -21,6 +25,11 @@ public class CheckUpcomingParcelAction extends ActionSupport implements
 	private Map<String, Object> session;
 	private String tableRows;
 
+	/**
+	 * Generates list of upcoming parcels
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "check-upcoming", results = { @Result(name = "error", location = "login", type = "redirect") })
 	public String getUpcoming() throws Exception {
 		ParcelManager pm = new ParcelManager();

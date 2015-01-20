@@ -12,6 +12,10 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+/**
+ * Handles parcel tracking from QR code encoded URL
+ *
+ */
 public class TrackMeAction extends ActionSupport implements SessionAware {
 
 	private Map<String, Object> session;
@@ -19,6 +23,11 @@ public class TrackMeAction extends ActionSupport implements SessionAware {
 	private String id;
 	private String nic;
 
+	/**
+	 * Process the URL parameters and get parcel location
+	 * @return redirect state
+	 * @throws Exception
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "track-me")
 	public String changeUser() throws Exception {
 

@@ -18,6 +18,10 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+/**
+ *API to track parcels using pack-track app
+ *
+ */
 @Result(name = "success", type = "json")
 @ParentPackage("json-default")
 public class TrackParcelFullAction extends ActionSupport implements
@@ -26,6 +30,9 @@ public class TrackParcelFullAction extends ActionSupport implements
 	private HttpServletRequest request;
 	private Parcel parcel;
 
+	/**
+	 * Handles request from app and response a JSON
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "track-master", results = { @Result(name = "success", type = "json") })
 	public String execute() {
 		String id = request.getParameter("id");

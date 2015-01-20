@@ -19,6 +19,10 @@ import com.opensymphony.xwork2.ActionSupport;
 import control.util.CostFunction;
 import control.util.StationSearch;
 
+/**
+ * API for cost calculation
+ *
+ */
 @Result(name = "success", type = "json")
 @ParentPackage("json-default")
 public class ClaculateCostAction extends ActionSupport implements
@@ -27,6 +31,9 @@ public class ClaculateCostAction extends ActionSupport implements
 	private HttpServletRequest request;
 	private float cost;
 
+	/**
+	 * Executes POST to calculate-cost. Responses JSON object
+	 */
 	@org.apache.struts2.convention.annotation.Action(value = "calculate-cost", results = { @Result(name = "success", type = "json") })
 	public String execute() {
 		String start = request.getParameter("start");
