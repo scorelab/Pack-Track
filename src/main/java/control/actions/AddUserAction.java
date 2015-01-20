@@ -134,12 +134,12 @@ public class AddUserAction extends ActionSupport implements SessionAware {
 				return SUCCESS;
 			}
 			
-			if (!ValidationUtil.isNumeric(phone)) {
+			if (!phone.equals("") && !ValidationUtil.isNumeric(phone)) {
 				addFieldError("phone", "Phone number is digits only");
 				return SUCCESS;
 			}
 			
-			if (phone.length()!=10) {
+			if (!phone.equals("") && phone.length()!=10) {
 				addFieldError("phone", "Phone number should have ten digits");
 				return SUCCESS;
 			}

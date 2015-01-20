@@ -49,22 +49,22 @@ public class AddCustomerAction extends ActionSupport implements SessionAware {
 				return SUCCESS;
 			}
 			
-			if (!ValidationUtil.isNumeric(mobile)) {
+			if (!mobile.equals("") && !ValidationUtil.isNumeric(mobile)) {
 				addFieldError("mobile", "Phone number is digits only");
 				return SUCCESS;
 			}
 			
-			if (mobile.length()!=10) {
+			if (!mobile.equals("") && mobile.length()!=10) {
 				addFieldError("mobile", "Phone number should have ten digits");
 				return SUCCESS;
 			}
 			
-			if (!ValidationUtil.isNumeric(telephone)) {
+			if (!telephone.equals("") && !ValidationUtil.isNumeric(telephone)) {
 				addFieldError("telephone", "Phone number is digits only");
 				return SUCCESS;
 			}
 			
-			if (telephone.length()!=10) {
+			if (!telephone.equals("") && telephone.length()!=10) {
 				addFieldError("telephone", "Phone number should have ten digits");
 				return SUCCESS;
 			}

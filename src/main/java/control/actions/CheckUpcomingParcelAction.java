@@ -30,10 +30,10 @@ public class CheckUpcomingParcelAction extends ActionSupport implements
 		StringBuilder sb = new StringBuilder();
 		Date date = new Date();
 		for (Parcel parcels : list) {
-			if (parcels.getDateRecieved() < date.getTime()
+			if (parcels.getDateRecieved() < date.getTime()/1000
 					- (1000 * 60 * 60 * 24 * 2)) {
 				sb.append("<tr class='danger'>");
-			} else if (parcels.getDateRecieved() < date.getTime()
+			} else if (parcels.getDateRecieved() < date.getTime()/1000
 					- (1000 * 60 * 60 * 24)) {
 				sb.append("<tr class='warning'>");
 			} else {

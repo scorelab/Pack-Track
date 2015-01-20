@@ -5,6 +5,8 @@ import java.util.Map;
 import model.managers.CategoryManager;
 import model.managers.ParcelManager;
 import model.models.Category;
+import model.models.Customer;
+import model.models.Parcel;
 import model.models.User;
 
 import org.apache.struts2.convention.annotation.InterceptorRef;
@@ -16,6 +18,8 @@ import com.opensymphony.xwork2.validator.annotations.IntRangeFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
+
+import control.message.Email;
 
 @InterceptorRef(value = "secureStack")
 public class ConfirmArrivalAction extends ActionSupport implements SessionAware {
@@ -54,6 +58,16 @@ public class ConfirmArrivalAction extends ActionSupport implements SessionAware 
 			if (pm.confirmArrival(user.getUserDetail().getStation().getID(),
 					Long.parseLong(pid))) {
 				session.put("message", "Arrival confirmed successfully!");
+				Parcel parcel=pm.getParcel(Long.parseLong(pid));
+				if(parcel.getDestination().getID()==parcel.getCurrentStation().getID()){
+					Customer customer=parcel.getReceiver();
+					if(!customer.getEmail().equals("")){
+						Email.send("PackTrack","Your parcel has arrived it's destination",customer.getEmail());
+					}
+					if(!customer.getMobile().equals("")){
+						
+					}
+				}
 				return "done";
 			}
 			return SUCCESS;
