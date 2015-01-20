@@ -10,7 +10,18 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+/**
+ * Class to send email
+ *
+ */
 public class Email {
+	
+	/**
+	 * Sends a email using Gmail server
+	 * @param subject Subject of the email
+	 * @param body Email body
+	 * @param to Receiver of email
+	 */
 	public static void send(String subject, String body, String to) {
 		final String username = "packtrack.ucsc@gmail.com";
 		final String password = "packtrackucsc1234";

@@ -11,6 +11,10 @@ import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 
+/**
+ * Manages database calls regarding users
+ * 
+ */
 public class UserManager {
 
 	/**
@@ -18,7 +22,7 @@ public class UserManager {
 	 * 
 	 * @param userName
 	 * @param password
-	 * @return
+	 * @return User object
 	 */
 	public User login(String userName, String password) {
 
@@ -88,6 +92,13 @@ public class UserManager {
 		return list;
 	}
 
+	/**
+	 * Checks a given user name exists in the DB
+	 * 
+	 * @param userName
+	 *            User name to be checked
+	 * @return True if exists, false otherwise
+	 */
 	public boolean isUser(String userName) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -104,6 +115,13 @@ public class UserManager {
 		return true;
 	}
 
+	/**
+	 * Adds a new user to the database
+	 * 
+	 * @param user
+	 *            user to be added
+	 * @return If user added true, otherwise false
+	 */
 	public boolean addUser(User user) {
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -119,6 +137,13 @@ public class UserManager {
 		}
 	}
 
+	/**
+	 * Gets a user by user name
+	 * 
+	 * @param userName
+	 *            User name to query
+	 * @return User object
+	 */
 	public User getUser(String userName) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -135,6 +160,13 @@ public class UserManager {
 		return list.get(0);
 	}
 
+	/**
+	 * Updates user
+	 * 
+	 * @param user
+	 *            User to be updated
+	 * @return If updated correctly true, otherwise false
+	 */
 	public boolean updateUser(User user) {
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -150,6 +182,15 @@ public class UserManager {
 		}
 	}
 
+	/**
+	 * Marks a user deleted
+	 * 
+	 * @param userName
+	 *            User to be deleted
+	 * @param by
+	 *            User who is deleting
+	 * @return If deleted correctly true, otherwise false
+	 */
 	public boolean deleteUser(String userName, String by) {
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -169,6 +210,13 @@ public class UserManager {
 		}
 	}
 
+	/**
+	 * Gets user by email
+	 * 
+	 * @param email
+	 *            Email to query
+	 * @return User object
+	 */
 	public User getUserByEmail(String email) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -186,6 +234,13 @@ public class UserManager {
 		return list.get(0);
 	}
 
+	/**
+	 * Checks a given email exists in the DB
+	 * 
+	 * @param email
+	 *            Email to check
+	 * @return If email exists true, otherwise false
+	 */
 	public boolean checkEmail(String email) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -203,8 +258,12 @@ public class UserManager {
 		return true;
 	}
 
-	/*
-	 * Check for NIC alredy exists. True if exists and false otherwise
+	/**
+	 * Check for NIC already exists
+	 * 
+	 * @param NIC
+	 *            NIC to be checked
+	 * @return If NIC exists true, otherwise false
 	 */
 	public boolean checkNIC(String NIC) {
 		Session session = HibernateUtil.getSessionFactory().openSession();

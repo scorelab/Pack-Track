@@ -10,8 +10,17 @@ import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 
+/**
+ * Manages database calls to Device table
+ * 
+ */
 public class DeviceManager {
 
+	/**
+	 * Adds Device to the DB
+	 * @param device Device to be added
+	 * @return If added correctly true, otherwise false
+	 */
 	public boolean addDevice(Device device) {
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -26,6 +35,11 @@ public class DeviceManager {
 		}
 	}
 
+	/**
+	 * Marks a Device deleted
+	 * @param device Device to be removed
+	 * @return  If removed correctly true, otherwise false
+	 */
 	public boolean removeDevice(Device device) {
 
 		try {
@@ -45,9 +59,9 @@ public class DeviceManager {
 	}
 
 	/**
-	 * Returns a list of Device
+	 * Gets a list of Devices
 	 * 
-	 * @return
+	 * @return list of Devices
 	 */
 	public List<Device> getDeviceList() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -59,6 +73,11 @@ public class DeviceManager {
 		return list;
 	}
 
+	/**
+	 * Get Device by ID
+	 * @param id Device ID
+	 * @return Device object
+	 */
 	public Device getDevice(int id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -76,6 +95,12 @@ public class DeviceManager {
 		return list.get(0);
 	}
 
+	/**
+	 * Marks a device deleted
+	 * @param id Device to be deleted
+	 * @param by User who performs delete
+	 * @return  If deleted correctly true, otherwise false
+	 */
 	public boolean deleteDevice(int id, String by) {
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -95,6 +120,11 @@ public class DeviceManager {
 		}
 	}
 
+	/**
+	 * Updates a device
+	 * @param device Device to be updated
+	 * @return  If updated correctly true, otherwise false
+	 */
 	public boolean updateDevice(Device device) {
 
 		try {
@@ -111,6 +141,11 @@ public class DeviceManager {
 		}
 	}
 
+	/**
+	 * Gets device by IMEI number
+	 * @param imei IMEI to query
+	 * @return Device object
+	 */
 	public Device getDeviceByIMEI(String imei) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();

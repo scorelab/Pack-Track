@@ -10,6 +10,10 @@ import model.models.User;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
 
+/**
+ * Custom intercepter to validate the session
+ *
+ */
 public class AuthInterceptor implements Interceptor {
 
 	@Override

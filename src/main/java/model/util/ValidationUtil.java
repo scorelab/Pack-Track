@@ -3,8 +3,17 @@ package model.util;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Utility class for special validations
+ *
+ */
 public class ValidationUtil {
 
+	/**
+	 * Validates a Sri Lankan NIC
+	 * @param id String to be validated
+	 * @return True if valid and false otherwise
+	 */
 	public static boolean validateID(String id){
 		String pattern="(\\d\\d\\d\\d\\d\\d\\d\\d\\d)([VvXx])";
 		Pattern r = Pattern.compile(pattern);
@@ -18,6 +27,11 @@ public class ValidationUtil {
 		}
 	}
 	
+	/**
+	 * Checks if numeric
+	 * @param str String to be validated
+	 * @return True if valid and false otherwise
+	 */
 	public static boolean isNumeric(String str) {
 		try {
 			double d = Double.parseDouble(str);

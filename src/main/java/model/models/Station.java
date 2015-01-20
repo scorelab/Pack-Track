@@ -3,8 +3,6 @@ package model.models;
 /**
  * Entity class for station object
  * 
- * @author Dilanka1
- * 
  */
 
 public class Station {

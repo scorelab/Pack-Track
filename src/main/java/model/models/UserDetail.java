@@ -1,5 +1,9 @@
 package model.models;
 
+/**
+ * Entity class for user details
+ *
+ */
 public class UserDetail {
 	String userName;
 	User user;

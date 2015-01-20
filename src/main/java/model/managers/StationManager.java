@@ -14,6 +14,7 @@ import org.hibernate.Session;
 
 public class StationManager {
 
+	@Deprecated
 	public boolean addStation(Station station) {
 
 		try {
@@ -29,6 +30,7 @@ public class StationManager {
 		}
 	}
 
+	@Deprecated
 	public boolean removeStation(Station station) {
 
 		try {
@@ -48,9 +50,9 @@ public class StationManager {
 	}
 
 	/**
-	 * Returns a list of Stations
+	 * Gets a list of Stations
 	 * 
-	 * @return
+	 * @return list of Stations
 	 */
 	public List<Station> getStationList() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -62,6 +64,11 @@ public class StationManager {
 		return list;
 	}
 
+	/**
+	 * Gets a station by ID
+	 * @param id Station ID
+	 * @return Station Object
+	 */
 	public Station getStation(int id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -79,25 +86,27 @@ public class StationManager {
 		return list.get(0);
 	}
 
-	// public boolean deleteStation(int id, String by) {
-	// try {
-	// Session session = HibernateUtil.getSessionFactory().openSession();
-	// session.beginTransaction();
-	// SQLQuery query =
-	// session.createSQLQuery("update Station set deleted=1, deleteby=:by where stationid=:id");
-	// query.setInteger("id", id);
-	// query.setString("by", by);
-	// query.executeUpdate();
-	// session.getTransaction().commit();
-	// session.close();
-	// return true;
-	//
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// return false;
-	// }
-	// }
+	@Deprecated
+	public boolean deleteStation(int id, String by) {
+		try {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			SQLQuery query = session
+					.createSQLQuery("update Station set deleted=1, deleteby=:by where stationid=:id");
+			query.setInteger("id", id);
+			query.setString("by", by);
+			query.executeUpdate();
+			session.getTransaction().commit();
+			session.close();
+			return true;
 
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	@Deprecated
 	public boolean updateStation(Station station) {
 
 		try {
@@ -114,6 +123,10 @@ public class StationManager {
 		}
 	}
 
+	/**
+	 * Gets station distances from distance table
+	 * @return list of distances 
+	 */
 	public List<Dist> getDistList() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
